@@ -54,6 +54,6 @@
     <string name="faq_1_text">Stačí kliknout na některý sloupec. To aktivuje řazení podle daného sloupce. Dalšími kliknutími na daný sloupec můžete přepínat mezi vzestupným a sestupným pořadím.</string>
     <!--
         Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
     -->
 </resources>

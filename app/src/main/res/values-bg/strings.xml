@@ -53,6 +53,6 @@
     <string name="faq_1_text">Просто кликнете на някоя от колонките, това ще ги сортира по тази колонка. С допълнителни кликвания можете да превключвате между възходящо и низходящо сортиране.</string>
     <!--
         Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
     -->
 </resources>

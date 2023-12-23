@@ -53,6 +53,6 @@
     <string name="faq_1_text">Només cal que feu clic a qualsevol de les columnes, això farà que les voltes s\'ordenin per la columna indicada. Amb clics addicionals, podeu alternar entre l\'ordenació ascendent i descendent.</string>
     <!--
         Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
     -->
 </resources>

@@ -55,6 +55,6 @@
     <string name="faq_1_text">Apasă pe oricare coloana, asta o să facă ca turele să fie sortate după coloana selectată. Apăsările suplimentare o să comute între ordonare crescătoare şi descrescătoare.</string>
     <!--
         Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
     -->
 </resources>

@@ -57,6 +57,6 @@
     <string name="faq_1_text">Spustelėkite ant bet kurio stulpelio, tai surikiuos etapus pagal tą stulpelį. Su papildomais paspaudimais Jūs galite pasirinkti tarp rikiavimo mažėjančia arba didėjančia tvarka.</string>
     <!--
         Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
     -->
 </resources>

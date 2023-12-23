@@ -54,6 +54,6 @@
     <string name="faq_1_text">Premendo una volta su qualsiasi colonna, i giri verranno ordinati per tale colonna. Premendo nuovamente si potrà cambiare il tipo di ordinamento, ascendente o discendente.</string>
     <!--
         Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
     -->
 </resources>

@@ -54,6 +54,6 @@
     <string name="faq_1_text">ഏതെങ്കിലും കോളങ്ങളിൽ ക്ലിക്കുചെയ്യുക, അത് നൽകിയ കോളം ഉപയോഗിച്ച് ലാപ്പുകൾ ക്രമീകരിക്കാൻ ഇടയാക്കും. അധിക ക്ലിക്കുകൾ ഉപയോഗിച്ച് നിങ്ങൾക്ക് അസെന്റിങ് ആയും ഡിസെൻഡിങ് ആയും ടോഗിൾ ചെയ്യാൻ സഹായിക്കും.</string>
     <!--
         Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
     -->
 </resources>
