@@ -1,2 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="sort_by_day_and_alarm_time">Die e hora de alarma</string>
+    <string name="no_timers_found">Necun temporisatores trovate</string>
+    <string name="sort_by_alarm_time">Hora de alarma</string>
+    <string name="digital_clock">Horologio digital</string>
+    <string name="stopwatch_tab">Scheda de chronometro</string>
+    <string name="clock_and_date">Horologio e data</string>
+    <string name="no_days_selected">Necun dies seligite</string>
+    <string name="alarm_created">Alarma create</string>
+    <string name="app_launcher_name">Horologio</string>
+    <string name="no_alarms_found">Necun alarma trovate</string>
+    <string name="stopwatch_stopped">Le chronometro esseva stoppate</string>
+    <string name="clock">Horologio</string>
+    <string name="alarm_tab">Scheda de alarma</string>
+    <string name="clock_tab">Scheda de horologio</string>
+    <string name="stopwatch">Chronometro</string>
+    <string name="vibrate">Vibrar</string>
+    <string name="time_zone">Fuso horari</string>
+    <string name="timer">Temporisator</string>
+    <string name="timer_tab">Scheda de temporisator</string>
+    <string name="add_timer">Adder temporisator</string>
+    <string name="show_seconds">Monstrar le secundas</string>
+    <string name="new_timer">Nove temporisator</string>
+    <string name="add_alarm">Adder alarma</string>
+    <string name="start_stopwatch">Initiar le chronometro</string>
+    <string name="analogue_clock">Horologio analogic</string>
+    <string name="timer_stopped">Le temporisator esseva stoppate</string>
+</resources>
