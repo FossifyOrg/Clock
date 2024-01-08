@@ -14,10 +14,6 @@
     <string name="clock_and_date">時鐘和日期</string>
     <string name="use_text_shadow">使用文字陰影</string>
     <string name="swipe_right_to_dismiss">右滑關閉，或者左滑延遲。</string>
-    <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
-    </plurals>
     <string name="clock_tab">時鐘頁面</string>
     <string name="alarm_tab">鬧鐘頁面</string>
     <string name="stopwatch_tab">碼錶頁面</string>

@@ -14,10 +14,6 @@
     <string name="clock_and_date">Saat və zaman</string>
     <string name="use_text_shadow">Mətn kölgəsini işlət</string>
     <string name="swipe_right_to_dismiss">Buraxmaq üçün sağa, Dondurmaq üçün sola sürüşdür.</string>
-    <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
-    </plurals>
     <string name="clock_tab">Saat bölməsi</string>
     <string name="alarm_tab">Siqnal bölməsi</string>
     <string name="stopwatch_tab">Saniyəölçən bölməsi</string>

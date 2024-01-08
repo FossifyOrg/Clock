@@ -11,10 +11,6 @@
     <string name="max_reminder_duration">Længste varighed af påmindelse</string>
     <string name="time_expired">Tiden er udløbet</string>
     <string name="use_text_shadow">Anvend tekstskygge</string>
-    <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
-    </plurals>
     <string name="clock_tab">Ur</string>
     <string name="alarm_tab">Alarm</string>
     <string name="stopwatch_tab">Stopur</string>
