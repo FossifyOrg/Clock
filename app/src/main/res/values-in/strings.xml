@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Jam</string>
     <string name="time_zone">Zona waktu</string>
     <string name="vibrate">Getar</string>
     <string name="no_days_selected">Tidak ada hari yang dipilih</string>
-    <string name="clock">Clock</string>
     <string name="timer">Pewaktu</string>
-    <string name="stopwatch">Stopwatch</string>
     <string name="start_stopwatch">Mulai stopwatch</string>
     <string name="lap">Putaran</string>
     <string name="stopwatch_stopped">Stopwatch telah berhenti</string>
@@ -23,36 +20,23 @@
     <string name="analogue_clock">Jam analog</string>
     <string name="digital_clock">Jam digital</string>
     <string name="alarm_dismissed">Alarm diabaikan</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Alarm ditunda selama %s</string>
     <string name="no_alarms_found">Tidak ada alarm yang ditemukan</string>
-    <string name="add_alarm">Add alarm</string>
     <string name="no_timers_found">Tidak ada pewaktu yang ditemukan</string>
     <string name="add_timer">Tambahkan pewaktu</string>
     <string name="upcoming_alarm">Alarm berikut</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!--Timer-->
     <string name="timers_notification_msg">Pewaktu sedang berjalan</string>
     <string name="timer_single_notification_label_msg">Pewaktu untuk %s sedang berjalan</string>
     <string name="new_timer">Pewaktu Baru</string>
     <plurals name="timer_notification_msg">
         <item quantity="other">%d pewaktu sedang berjalan</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Tab jam</string>
     <string name="alarm_tab">Tab alarm</string>
     <string name="stopwatch_tab">Tab stopwatch</string>
     <string name="timer_tab">Tab pewaktu</string>
     <string name="show_seconds">Tampilkan detik</string>
     <string name="increase_volume_gradually">Keraskan volume secara bertahap</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Bagaimana cara mengubah pengurutan putaran di tab stopwatch?</string>
     <string name="faq_1_text">Cukup klik salah satu kolom, dan putaran akan diurutkan menurut kolom tersebut, dari yang terlama ke tercepat atau yang tercepat ke terlama.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

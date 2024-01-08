@@ -6,7 +6,6 @@
     <string name="vibrate">Vibrera</string>
     <string name="no_days_selected">Inga dagar har valts</string>
     <string name="clock">Klocka</string>
-    <string name="timer">Timer</string>
     <string name="stopwatch">Stoppur</string>
     <string name="start_stopwatch">Starta stoppur</string>
     <string name="lap">Varv</string>
@@ -33,7 +32,6 @@
     <string name="add_timer">Lägg till timer</string>
     <string name="upcoming_alarm">Kommande alarm</string>
     <string name="early_alarm_dismissal">Tidig avstängning av alarm</string>
-    <!--Timer-->
     <string name="timers_notification_msg">Timers är igång</string>
     <string name="timer_single_notification_label_msg">Timer för %s är igång</string>
     <string name="new_timer">Ny timer</string>
@@ -41,18 +39,12 @@
         <item quantity="one">%d timer är igång</item>
         <item quantity="other">%d timers är igång</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Fliken Klocka</string>
     <string name="alarm_tab">Fliken Alarm</string>
     <string name="stopwatch_tab">Fliken Stoppur</string>
     <string name="timer_tab">Fliken Timer</string>
     <string name="show_seconds">Visa sekunder</string>
     <string name="increase_volume_gradually">Höj volymen gradvis</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Hur kan jag ändra sortering av varv i fliken stoppur\?</string>
     <string name="faq_1_text">Klicka bara på någon av kolumnerna för att sortera varven efter den aktuella kolumnen. Med ytterligare klick kan du växla mellan stigande och fallande sortering.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

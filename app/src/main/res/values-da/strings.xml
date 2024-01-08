@@ -1,61 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Ur</string>
     <string name="time_zone">Tidszone</string>
     <string name="vibrate">Vibrer</string>
     <string name="no_days_selected">Der er ikke valgt nogen dage</string>
-    <string name="clock">Clock</string>
     <string name="timer">Æggeur</string>
-    <string name="stopwatch">Stopwatch</string>
-    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Mellemtid</string>
     <string name="stopwatch_stopped">Stopuret er standset</string>
     <string name="timer_stopped">Æggeuret er standset</string>
     <string name="max_reminder_duration">Længste varighed af påmindelse</string>
     <string name="time_expired">Tiden er udløbet</string>
-    <string name="clock_and_date">Clock and date</string>
     <string name="use_text_shadow">Anvend tekstskygge</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
-    <string name="no_alarms_found">No alarms found</string>
-    <string name="add_alarm">Add alarm</string>
-    <string name="no_timers_found">No timers found</string>
-    <string name="add_timer">Add timer</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
     <plurals name="timer_notification_msg">
         <item quantity="one">%d timer is running</item>
         <item quantity="other">%d timers are running</item>
     </plurals>
-
-    <!-- Settings -->
     <string name="clock_tab">Ur</string>
     <string name="alarm_tab">Alarm</string>
     <string name="stopwatch_tab">Stopur</string>
     <string name="timer_tab">Æggeur</string>
     <string name="show_seconds">Vis sekunder</string>
-    <string name="increase_volume_gradually">Increase volume gradually</string>
-
-    <!-- FAQ -->
     <string name="faq_1_title">Hvordan kan jeg ændre sortering af mellemtider i stopuret?</string>
     <string name="faq_1_text">Klik på den kolonne der skal sorteres efter. Med flere klik kan du skifte mellem stigende og faldende rækkefølge.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

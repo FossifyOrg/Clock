@@ -33,7 +33,6 @@
     <string name="add_timer">Zamanlayıcı ekle</string>
     <string name="upcoming_alarm">Yaklaşan alarm</string>
     <string name="early_alarm_dismissal">Erken alarm kapatma</string>
-    <!--Timer-->
     <string name="timers_notification_msg">Zamanlayıcılar çalışıyor</string>
     <string name="timer_single_notification_label_msg">%s için zamanlayıcı çalışıyor</string>
     <string name="new_timer">Yeni Zamanlayıcı</string>
@@ -41,18 +40,12 @@
         <item quantity="one">%d zamanlayıcı çalışıyor</item>
         <item quantity="other">%d zamanlayıcı çalışıyor</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Saat sekmesi</string>
     <string name="alarm_tab">Alarm sekmesi</string>
     <string name="stopwatch_tab">Kronometre sekmesi</string>
     <string name="timer_tab">Zamanlayıcı sekmesi</string>
     <string name="show_seconds">Saniye göster</string>
     <string name="increase_volume_gradually">Sesi kademeli olarak artır</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Kronometre sekmesinde tur sıralamayı nasıl değiştirebilirim?</string>
     <string name="faq_1_text">Sütunların herhangi birine tıklayarak, turların belirtilen sütuna göre sıralanmasını sağlayabilirsiniz. Ek tıklamalarla, artan ve azalan sıralama arasında geçiş yapabilirsiniz.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

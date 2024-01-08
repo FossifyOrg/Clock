@@ -5,10 +5,8 @@
     <string name="time_zone">אזור זמן</string>
     <string name="vibrate">לנדנד</string>
     <string name="no_days_selected">נא לבחור ימים ולבצע שוב</string>
-    <string name="clock">Clock</string>
     <string name="timer">טיימר</string>
     <string name="stopwatch">סטופר</string>
-    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">הקפה</string>
     <string name="stopwatch_stopped">שעון העצר הופסק</string>
     <string name="timer_stopped">הטיימר הופסק</string>
@@ -22,19 +20,6 @@
     <string name="sort_by_day_and_alarm_time">התראה יום ושעה</string>
     <string name="analogue_clock">שעון אנלוגי</string>
     <string name="digital_clock">שעון דיגיטלי</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
-    <string name="no_alarms_found">No alarms found</string>
-    <string name="add_alarm">Add alarm</string>
-    <string name="no_timers_found">No timers found</string>
-    <string name="add_timer">Add timer</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!--Timer-->
     <string name="timers_notification_msg">‏טיימר פועל</string>
     <string name="timer_single_notification_label_msg">טיימר עבור %s פועל</string>
     <string name="new_timer">טיימר חדש</string>
@@ -44,18 +29,12 @@
         <item quantity="many">%d טיימר פועל</item>
         <item quantity="other">%d טיימרים פועלים</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">לשונית שעון</string>
     <string name="alarm_tab">לשונית התראות</string>
     <string name="stopwatch_tab">לשונית שעון עצר</string>
     <string name="timer_tab">לשונית טיימר</string>
     <string name="show_seconds">הצג שניות</string>
     <string name="increase_volume_gradually">הגבר את עוצמת הקול בהדרגה</string>
-    <!-- FAQ -->
     <string name="faq_1_title">כיצד אוכל לשנות את מיון ההקפה בכרטיסיית שעון העצר\?</string>
     <string name="faq_1_text">פשוט לחץ על כל אחת מהעמודות, זה יגרום להקפות להיות ממוינות לפי העמודה הנתונה. בלחיצות נוספות תוכל לעבור בין מיון עולה ויורד.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

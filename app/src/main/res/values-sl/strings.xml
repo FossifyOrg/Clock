@@ -8,7 +8,6 @@
     <string name="clock">Ura</string>
     <string name="timer">Časovnik</string>
     <string name="stopwatch">Štoparica</string>
-    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Krog</string>
     <string name="stopwatch_stopped">Štoparica se je ustavila</string>
     <string name="timer_stopped">Časovnik je bil ustavljen</string>
@@ -23,18 +22,11 @@
     <string name="analogue_clock">Analogna ura</string>
     <string name="digital_clock">Digitalna ura</string>
     <string name="alarm_dismissed">Prekinjen alarm</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Alarm je odložen s strani %s</string>
     <string name="no_alarms_found">Ni alarmov</string>
     <string name="add_alarm">Dodajte alarm</string>
     <string name="no_timers_found">Ni časovnikov</string>
     <string name="add_timer">Dodajte časovnik</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!-- Timer -->
     <string name="timers_notification_msg">Tečejo časovniki</string>
     <string name="timer_single_notification_label_msg">Časovnik za %s teče</string>
     <string name="new_timer">Nov časovnik</string>
@@ -44,14 +36,12 @@
         <item quantity="few">%d tečejo nekateri časovniki</item>
         <item quantity="other">%d tečejo drugi časovniki</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Zavihek ura</string>
     <string name="alarm_tab">Zavihek alarm</string>
     <string name="stopwatch_tab">Zavihek štoparice</string>
     <string name="timer_tab">Zavihek časovnik</string>
     <string name="show_seconds">Prikaži sekunde</string>
     <string name="increase_volume_gradually">Povečajte postopno glasnost</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Kako spremenim razvrščanje krogov v zavihku štoparica\?</string>
     <string name="faq_1_text">Kliknite na izbrani stolpec, da se krogi razvrstijo stolpcu. Z dodatnimi kliki preklapljate med naraščajočim in padajočim razvrščanjem.</string>
 </resources>

@@ -8,7 +8,6 @@
     <string name="clock">ക്ലോക്ക്</string>
     <string name="timer">ടൈമർ</string>
     <string name="stopwatch">സ്റ്റോപ്പ് വാച്ച്</string>
-    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">ലാപ്‌</string>
     <string name="stopwatch_stopped">സ്റ്റോപ്പ് വാച്ച് നിർത്തിയിരിക്കുന്നു</string>
     <string name="timer_stopped">ടൈമർ നിർത്തിയിരിക്കുന്നു</string>
@@ -23,18 +22,11 @@
     <string name="analogue_clock">അനലോഗ് ക്ലോക്ക്</string>
     <string name="digital_clock">ഡിജിറ്റൽ ക്ലോക്ക്</string>
     <string name="alarm_dismissed">അലാറം ഒഴിവാക്കി</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">അലാറം %s സ്‌നൂസ് ചെയ്‌തു</string>
     <string name="no_alarms_found">അലാറങ്ങളൊന്നും കണ്ടെത്തിയില്ല</string>
     <string name="add_alarm">പുതിയ അലാറം ചേർക്കുക</string>
     <string name="no_timers_found">ടൈമറുകളൊന്നും കണ്ടെത്തിയില്ല</string>
     <string name="add_timer">ടൈമർ ചേർക്കുക</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!--Timer-->
     <string name="timers_notification_msg">ടൈമറുകൾ പ്രവർത്തിക്കുന്നു</string>
     <string name="timer_single_notification_label_msg">%s-നുള്ള ടൈമർ പ്രവർത്തിക്കുന്നു</string>
     <string name="new_timer">പുതിയ ടൈമർ</string>
@@ -42,18 +34,12 @@
         <item quantity="one">%d ടൈമർ പ്രവർത്തിക്കുന്നു</item>
         <item quantity="other">%d ടൈമറുകൾ പ്രവർത്തിക്കുന്നു</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">ക്ലോക്ക് ടാബ്</string>
     <string name="alarm_tab">അലാറം ടാബ്</string>
     <string name="stopwatch_tab">സ്റ്റോപ്പ് വാച്ച് ടാബ്</string>
     <string name="timer_tab">ടൈമർ ടാബ്</string>
     <string name="show_seconds">സെക്കൻഡ് കാണിക്കുക</string>
     <string name="increase_volume_gradually">വോളിയം ക്രമേണ വർദ്ധിപ്പിക്കുക</string>
-    <!-- FAQ -->
     <string name="faq_1_title">സ്റ്റോപ്പ് വാച്ച് ടാബിൽ ലാപ് സോർട്ടിംഗ് എങ്ങനെ മാറ്റാം?</string>
     <string name="faq_1_text">ഏതെങ്കിലും കോളങ്ങളിൽ ക്ലിക്കുചെയ്യുക, അത് നൽകിയ കോളം ഉപയോഗിച്ച് ലാപ്പുകൾ ക്രമീകരിക്കാൻ ഇടയാക്കും. അധിക ക്ലിക്കുകൾ ഉപയോഗിച്ച് നിങ്ങൾക്ക് അസെന്റിങ് ആയും ഡിസെൻഡിങ് ആയും ടോഗിൾ ചെയ്യാൻ സഹായിക്കും.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

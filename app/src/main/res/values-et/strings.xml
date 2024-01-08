@@ -5,7 +5,6 @@
     <string name="time_zone">Ajavöönd</string>
     <string name="vibrate">Vibreeri</string>
     <string name="no_days_selected">Ühtegi päeva pole valitud</string>
-    <string name="clock">Clock</string>
     <string name="timer">Taimer</string>
     <string name="stopwatch">Stopper</string>
     <string name="start_stopwatch">Käivita stopper</string>
@@ -33,7 +32,6 @@
     <string name="add_timer">Lisa taimer</string>
     <string name="upcoming_alarm">Järgmine äratus</string>
     <string name="early_alarm_dismissal">Lõpeta äratus enneaegselt</string>
-    <!--Timer-->
     <string name="timers_notification_msg">Taimerid töötavad</string>
     <string name="timer_single_notification_label_msg">%s taimer töötab</string>
     <string name="new_timer">Uus taimer</string>
@@ -41,18 +39,12 @@
         <item quantity="one">%d taimer töötab</item>
         <item quantity="other">%d taimerit töötavad</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Kella vahekaart</string>
     <string name="alarm_tab">Äratuskella vahekaart</string>
     <string name="stopwatch_tab">Stopperi vahekaart</string>
     <string name="timer_tab">Taimeri vahekaart</string>
     <string name="show_seconds">Näita sekundeid</string>
     <string name="increase_volume_gradually">Suurenda heli valjust järk-järgult</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Kuidas ma saan stopperis muuta ringiaegade sortimist\?</string>
     <string name="faq_1_text">Klõpsi veerul ja sellega määrad, et sortimine toimub selle veeru alusel. Mitme klõpsuga saad vahetada, kas sortimine toimub kasvavas või kahanevas suunas.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

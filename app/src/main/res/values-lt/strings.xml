@@ -1,13 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Paprastas Laikrodis</string>
     <string name="app_launcher_name">Laikrodis</string>
     <string name="time_zone">Laiko juosta</string>
     <string name="vibrate">Vibruoti</string>
     <string name="no_days_selected">Nepasirinkta nė vienos dienos</string>
-    <string name="clock">Clock</string>
     <string name="timer">Laikmatis</string>
-    <string name="stopwatch">Stopwatch</string>
-    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Etapas</string>
     <string name="stopwatch_stopped">Chronometras buvo sustabdytas</string>
     <string name="timer_stopped">Laikmatis buvo sustabdytas</string>
@@ -15,48 +13,16 @@
     <string name="time_expired">Laikas pasibaigė</string>
     <string name="clock_and_date">Laikrodis ir data</string>
     <string name="use_text_shadow">Naudoti teksto šešėlį</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
-    <string name="no_alarms_found">No alarms found</string>
-    <string name="add_alarm">Add alarm</string>
-    <string name="no_timers_found">No timers found</string>
-    <string name="add_timer">Add timer</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
     <plurals name="timer_notification_msg">
         <item quantity="one">%d timer is running</item>
         <item quantity="few">%d timers are running</item>
         <item quantity="other">%d timers are running</item>
     </plurals>
-
-    <!-- Settings -->
     <string name="clock_tab">Laikrodžio skirtukas</string>
     <string name="alarm_tab">Žadintuvo skirtukas</string>
     <string name="stopwatch_tab">Chronometro skirtukas</string>
     <string name="timer_tab">Laikmačio skirtukas</string>
     <string name="show_seconds">Rodyti sekundes</string>
-    <string name="increase_volume_gradually">Increase volume gradually</string>
-
-    <!-- FAQ -->
     <string name="faq_1_title">Kaip aš galiu pakeisti etapų rikiavimą chronometro auselėje?</string>
     <string name="faq_1_text">Spustelėkite ant bet kurio stulpelio, tai surikiuos etapus pagal tą stulpelį. Su papildomais paspaudimais Jūs galite pasirinkti tarp rikiavimo mažėjančia arba didėjančia tvarka.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

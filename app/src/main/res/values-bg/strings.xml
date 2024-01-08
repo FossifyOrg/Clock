@@ -28,12 +28,9 @@
     <string name="alarm_created">Алармата е създадена</string>
     <string name="alarm_snoozed">Алармата е отложена от %s</string>
     <string name="no_alarms_found">Няма намерени аларми</string>
-    <string name="add_alarm">Add alarm</string>
     <string name="no_timers_found">Няма намерени таймери</string>
-    <string name="add_timer">Add timer</string>
     <string name="upcoming_alarm">Предстояща аларма</string>
     <string name="early_alarm_dismissal">Ранно изключване на алармата</string>
-    <!--Timer-->
     <string name="timers_notification_msg">Таймерите са включени</string>
     <string name="timer_single_notification_label_msg">Таймерът за %s е включен</string>
     <string name="new_timer">Нов таймер</string>
@@ -41,18 +38,12 @@
         <item quantity="one">%d таймер е включен</item>
         <item quantity="other">%d таймери са включени</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Часовник</string>
     <string name="alarm_tab">Аларма</string>
     <string name="stopwatch_tab">Таб \"Хронометър</string>
     <string name="timer_tab">Таймер</string>
     <string name="show_seconds">Покажи секунди</string>
     <string name="increase_volume_gradually">Постепенно увеличавай звука</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Как мога да променя сортирането на обиколките на секундомера\?</string>
     <string name="faq_1_text">Просто кликнете на някоя от колонките, това ще ги сортира по тази колонка. С допълнителни кликвания можете да превключвате между възходящо и низходящо сортиране.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

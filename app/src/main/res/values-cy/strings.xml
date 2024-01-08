@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Cloc</string>
     <string name="time_zone">Cylchfa amser</string>
     <string name="vibrate">Dirgrynu</string>
     <string name="no_days_selected">Dim diwrnodau wedi\'u dewis</string>
-    <string name="clock">Clock</string>
     <string name="timer">Amserydd</string>
-    <string name="stopwatch">Stopwatch</string>
-    <string name="start_stopwatch">Start stopwatch</string>
-    <string name="lap">Lap</string>
     <string name="stopwatch_stopped">Cafodd y stopwats ei stopio</string>
     <string name="timer_stopped">Cafodd yr amserydd ei stopio</string>
     <string name="max_reminder_duration">Hyd atgoffa hiraf</string>
@@ -17,27 +12,6 @@
     <string name="clock_and_date">Cloc a dyddiad</string>
     <string name="use_text_shadow">Defnyddio cysgod testun</string>
     <string name="swipe_right_to_dismiss">Llithro i\'r dde i\'w ddiffodd neu i\'r chwith i\'w oedi am ychydig.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
-    <string name="no_alarms_found">No alarms found</string>
-    <string name="add_alarm">Add alarm</string>
-    <string name="no_timers_found">No timers found</string>
-    <string name="add_timer">Add timer</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
     <plurals name="timer_notification_msg">
         <item quantity="zero">%d timer is running</item>
         <item quantity="one">%d timers are running</item>
@@ -46,18 +20,12 @@
         <item quantity="many">%d timers are running</item>
         <item quantity="other">%d timers are running</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Tab cloc</string>
     <string name="alarm_tab">Tab larwm</string>
     <string name="stopwatch_tab">Tab stopwats</string>
     <string name="timer_tab">Tab amserydd</string>
     <string name="show_seconds">Dangos eiliadau</string>
     <string name="increase_volume_gradually">Cynyddu uchder sain yn raddol</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Sut gallaf newid trefn lapiau yn y tab stopwats?</string>
     <string name="faq_1_text">Clifia ar unrhyw un o\'r colofnau. Mi fydd hynny\'n ail-drefnu\'r lapiau yn ôl y golofn honno. Gyda chliciau ychwanegol, bydd y drefn yn toglo rhwng esgynnol a disgynnol.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

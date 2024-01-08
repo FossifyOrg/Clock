@@ -33,7 +33,6 @@
     <string name="add_timer">Добавить таймер</string>
     <string name="upcoming_alarm">Предстоящий будильник</string>
     <string name="early_alarm_dismissal">Досрочное отключение будильника</string>
-    <!--Timer-->
     <string name="timers_notification_msg">Таймеры запущены</string>
     <string name="timer_single_notification_label_msg">Таймер для %s запущен</string>
     <string name="new_timer">Новый таймер</string>
@@ -43,18 +42,12 @@
         <item quantity="many">%d таймеров запущено</item>
         <item quantity="other">%d таймеров запущено</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Часы</string>
     <string name="alarm_tab">Будильник</string>
     <string name="stopwatch_tab">Секундомер</string>
     <string name="timer_tab">Таймер</string>
     <string name="show_seconds">Показывать секунды</string>
     <string name="increase_volume_gradually">Нарастание громкости</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Как я могу изменить сортировку кругов во вкладке секундомера?</string>
     <string name="faq_1_text">Просто нажмите на любую из колонок, и круги отсортируются по этой колонке. Дополнительными нажатиями можно переключаться между сортировкой по возрастанию и по убыванию.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

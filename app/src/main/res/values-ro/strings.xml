@@ -8,7 +8,6 @@
     <string name="clock">Ceas</string>
     <string name="timer">Temporizator</string>
     <string name="stopwatch">Cronometru</string>
-    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Tură</string>
     <string name="stopwatch_stopped">Cronometrul a fost oprit</string>
     <string name="timer_stopped">Temporizatorul a fost oprit</string>
@@ -23,18 +22,11 @@
     <string name="analogue_clock">Ceas analogic</string>
     <string name="digital_clock">Ceas digital</string>
     <string name="alarm_dismissed">Alarmă ignorată</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Alarma a fost amânată cu %s</string>
     <string name="no_alarms_found">Nu au fost găsite alarme</string>
     <string name="add_alarm">Adaugă alarmă</string>
     <string name="no_timers_found">Nu au fost găsite temporizatoare</string>
     <string name="add_timer">Adaugă temporizator</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!--Timer-->
     <string name="timers_notification_msg">Temporizatoarele sunt pornite</string>
     <string name="timer_single_notification_label_msg">Temporizatorul de %s este pornit</string>
     <string name="new_timer">Temporizator nou</string>
@@ -43,18 +35,12 @@
         <item quantity="few">%d temporizatoarele sunt pornite</item>
         <item quantity="other">%d de temporizatoare sunt pornite</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Fereastră ceas</string>
     <string name="alarm_tab">Fereastră alarmă</string>
     <string name="stopwatch_tab">Fereastră cronometru</string>
     <string name="timer_tab">Fereastră temporizator</string>
     <string name="show_seconds">Arată secunde</string>
     <string name="increase_volume_gradually">Creşte volumul gradual</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Cum pot schimba sortarea turelor în fereastra cronometrului\?</string>
     <string name="faq_1_text">Apasă pe oricare coloana, asta o să facă ca turele să fie sortate după coloana selectată. Apăsările suplimentare o să comute între ordonare crescătoare şi descrescătoare.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

@@ -6,8 +6,6 @@
     <string name="vibrate">Trillen</string>
     <string name="no_days_selected">Geen dagen geselecteerd</string>
     <string name="clock">Klok</string>
-    <string name="timer">Timer</string>
-    <string name="stopwatch">Stopwatch</string>
     <string name="start_stopwatch">Stopwatch starten</string>
     <string name="lap">Ronde</string>
     <string name="stopwatch_stopped">Stopwatch is gestopt</string>
@@ -33,7 +31,6 @@
     <string name="add_timer">Timer toevoegen</string>
     <string name="upcoming_alarm">Volgende wekker</string>
     <string name="early_alarm_dismissal">Wekker vroegtijdig uitzetten</string>
-    <!--Timer-->
     <string name="timers_notification_msg">Timers lopen</string>
     <string name="timer_single_notification_label_msg">Timer voor %s loopt</string>
     <string name="new_timer">Nieuwe Timer</string>
@@ -41,18 +38,12 @@
         <item quantity="one">%d timer loopt</item>
         <item quantity="other">%d timers lopen</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Tab Klok</string>
     <string name="alarm_tab">Tab Wekker</string>
     <string name="stopwatch_tab">Tab Stopwatch</string>
     <string name="timer_tab">Tab Timers</string>
     <string name="show_seconds">Seconden tonen</string>
     <string name="increase_volume_gradually">Volume geleidelijk verhogen</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Hoe kan ik rondetijden sorteren in de stopwatch?</string>
     <string name="faq_1_text">Klik op een van de kolommen om de rondetijden te sorteren op basis van die kolom. Klik nogmaals op dezelfde kolom om de sorteervolgorde om te keren.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>
