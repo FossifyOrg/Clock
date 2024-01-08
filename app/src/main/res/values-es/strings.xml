@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Reloj Simple</string>
+    <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Reloj</string>
     <string name="time_zone">Zona horaria</string>
     <string name="vibrate">Vibrar</string>
@@ -47,4 +47,6 @@
     <string name="increase_volume_gradually">Aumentar volumen gradualmente</string>
     <string name="faq_1_title">¿Cómo puedo cambiar el orden de las vueltas en la pestaña de cronómetro?</string>
     <string name="faq_1_text">Solo toca cualquiera de las columnas, eso hará que las vueltas sean ordenados por la columna seleccionada. Con toques adicionales, puedes cambiar entre ordenar ascendente o descendentemente.</string>
+    <string name="add_timer">Añadir un temporizador</string>
+    <string name="add_alarm">Añadir una alarma</string>
 </resources>
