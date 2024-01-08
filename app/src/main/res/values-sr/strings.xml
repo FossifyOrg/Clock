@@ -4,7 +4,6 @@
     <string name="clock">Сат</string>
     <string name="timer">Сат</string>
     <string name="stopwatch">Штоперица</string>
-    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Круг</string>
     <string name="app_name">Једноставан сат</string>
     <string name="app_launcher_name">Сат</string>
@@ -24,18 +23,13 @@
     <string name="alarm_snoozed">Аларм је одложен %s</string>
     <string name="digital_clock">Дигитални сат</string>
     <string name="alarm_dismissed">Аларм одбачен</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
     <string name="no_alarms_found">Није пронађен ниједан аларм</string>
     <string name="add_alarm">Додајте аларм</string>
     <string name="no_timers_found">Тајмери нису пронађени</string>
     <string name="add_timer">Додајте тајмер</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
     <string name="timers_notification_msg">Тајмери раде</string>
     <string name="timer_single_notification_label_msg">Тајмер за %s је покренут</string>
     <string name="new_timer">Нови тајмер</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">%d тајмер ради</item>
         <item quantity="few">%d тајмери раде</item>

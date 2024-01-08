@@ -33,7 +33,6 @@
     <string name="add_timer">Додати таймер</string>
     <string name="upcoming_alarm">Майбутній будильник</string>
     <string name="early_alarm_dismissal">Відхилення раннього будильника</string>
-    <!--Timer-->
     <string name="timers_notification_msg">Таймери працюють</string>
     <string name="timer_single_notification_label_msg">Таймер для %s працює</string>
     <string name="new_timer">Новий таймер</string>
@@ -43,18 +42,12 @@
         <item quantity="many">%d таймерів працюють</item>
         <item quantity="other">%d таймерів працюють</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Вкладка «Годинник»</string>
     <string name="alarm_tab">Будильник</string>
     <string name="stopwatch_tab">Секундомір</string>
     <string name="timer_tab">Таймер</string>
     <string name="show_seconds">Показувати з точністю до секунд</string>
     <string name="increase_volume_gradually">Поступово підвищувати гучність</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Як я можу відсортувати інтервали часу у вкладці секундоміра?</string>
     <string name="faq_1_text">Просто натисність на будь-якій з колонок, так ви відсортуєте інтервали за значеннями у даній колонці. Додатково натиснувши, ви зміните сортування за зростанням чи спаданням.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

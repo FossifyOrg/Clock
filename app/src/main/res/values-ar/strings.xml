@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Clock</string>
-    <string name="app_launcher_name">Clock</string>
     <string name="time_zone">المنطقة الزمنية</string>
     <string name="vibrate">يهتز</string>
     <string name="no_days_selected">لا توجد أيام محددة</string>
-    <string name="clock">Clock</string>
-    <string name="timer">Timer</string>
     <string name="stopwatch">ساعة التوقيف</string>
     <string name="start_stopwatch">بدء ساعة الإيقاف</string>
     <string name="lap">اللفه</string>
@@ -28,12 +24,9 @@
     <string name="alarm_created">تم إنشاء التنبيه</string>
     <string name="alarm_snoozed">إنذار غفوة من قبل %s</string>
     <string name="no_alarms_found">لم يتم العثور على منبهات</string>
-    <string name="add_alarm">Add alarm</string>
     <string name="no_timers_found">لم يتم العثور على موقتات</string>
-    <string name="add_timer">Add timer</string>
     <string name="upcoming_alarm">التنبيه القادم</string>
     <string name="early_alarm_dismissal">الفصل المبكر للتنبيه</string>
-    <!--Timer-->
     <string name="timers_notification_msg">أجهزة ضبط الوقت قيد التشغيل</string>
     <string name="timer_single_notification_label_msg">عداد الوقت لـ %s قيد التشغيل</string>
     <string name="new_timer">مؤقت جديد</string>
@@ -45,18 +38,9 @@
         <item quantity="many">اجهزة ضبط الوقت %d قيد التشغيل</item>
         <item quantity="other">جهاز ضبط الوقت %d قيد التشغيل</item>
     </plurals>
-    <!-- Settings -->
-    <string name="clock_tab">Clock tab</string>
-    <string name="alarm_tab">Alarm tab</string>
     <string name="stopwatch_tab">تبويب ساعة الإيقاف</string>
-    <string name="timer_tab">Timer tab</string>
     <string name="show_seconds">عرض الثواني</string>
     <string name="increase_volume_gradually">زيادة الصوت تدريجيا</string>
-    <!-- FAQ -->
     <string name="faq_1_title">كيف يمكنني تغيير فرز اللفات في علامة التبويب ساعة التوقيت؟</string>
     <string name="faq_1_text">ما عليك سوى النقر فوق أي من الأعمدة ، مما يجعل الدورات مرتبة حسب العمود المحدد. بنقرات إضافية ، يمكنك التبديل بين الفرز التصاعدي والتنازلي.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

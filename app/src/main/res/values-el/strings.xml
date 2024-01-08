@@ -33,30 +33,19 @@
     <string name="add_timer">Προσθήκη χρονόμετρου</string>
     <string name="upcoming_alarm">Επερχόμενη αφύπνιση</string>
     <string name="early_alarm_dismissal">Πρόωρη απόρριψη αφύπνισης</string>
-
-    <!--Timer-->
     <string name="timers_notification_msg">Τα χρονόμετρα σε λειτουργία</string>
     <string name="timer_single_notification_label_msg">Το χρονόμετρο για %s σε λειτουργία</string>
     <string name="new_timer">Νέο Χρονόμετρο</string>
-
     <plurals name="timer_notification_msg">
         <item quantity="one">%d χρονόμετρο σε λειτουργία</item>
         <item quantity="other">%d χρονόμετρα σε λειτουργία</item>
     </plurals>
-
-    <!-- Settings -->
     <string name="clock_tab">Ετικέτα Ρολογιού</string>
     <string name="alarm_tab">Ετικέτα Αφύπνισης</string>
     <string name="stopwatch_tab">Ετικέτα Χρονοδιακόπτη</string>
     <string name="timer_tab">Ετικέτα Χρονόμετρου</string>
     <string name="show_seconds">Εμφάνιση δευτ/των</string>
     <string name="increase_volume_gradually">Σταδιακή αύξηση έντασης</string>
-
-    <!-- FAQ -->
     <string name="faq_1_title">Πώς μπορώ να αλλάξω την ταξινόμηση γύρων στην καρτέλα χρονόμετρου;</string>
     <string name="faq_1_text">Απλά κάντε κλικ σε οποιαδήποτε από τις στήλες, ώστε οι γύροι να ταξινομηθούν κατά τη δεδομένη στήλη. Με πρόσθετα κλικ μπορείτε να κάνετε εναλλαγή μεταξύ αύξουσας και φθίνουσας ταξινόμησης.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

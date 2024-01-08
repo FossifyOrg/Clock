@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Rellotge</string>
     <string name="time_zone">Zona horària</string>
     <string name="vibrate">Vibra</string>
     <string name="no_days_selected">No s\'ha seleccionat cap dia</string>
-    <string name="clock">Clock</string>
     <string name="timer">Temporitzador</string>
     <string name="stopwatch">Cronòmetre</string>
     <string name="start_stopwatch">Inicia el cronòmetre</string>
@@ -28,12 +26,9 @@
     <string name="alarm_created">S\'ha creat l\'alarma</string>
     <string name="alarm_snoozed">Alarma posposada %s</string>
     <string name="no_alarms_found">No s\'ha trobat cap alarma</string>
-    <string name="add_alarm">Add alarm</string>
     <string name="no_timers_found">No s\'ha trobat cap temporitzador</string>
-    <string name="add_timer">Add timer</string>
     <string name="upcoming_alarm">Pròxima alarma</string>
     <string name="early_alarm_dismissal">Supressió d\'alarma anticipada</string>
-    <!--Timer-->
     <string name="timers_notification_msg">Els temporitzadors estan en marxa</string>
     <string name="timer_single_notification_label_msg">El temporitzador per a %s està en marxa</string>
     <string name="new_timer">Temporitzador nou</string>
@@ -41,18 +36,12 @@
         <item quantity="one">%d temporitzador en marxa</item>
         <item quantity="other">%d temporitzadors en marxa</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Pestanya del rellotge</string>
     <string name="alarm_tab">Pestanya de l\'alarma</string>
     <string name="stopwatch_tab">Pestanya del cronòmetre</string>
     <string name="timer_tab">Pestanya del temporitzador</string>
     <string name="show_seconds">Mostra els segons</string>
     <string name="increase_volume_gradually">Augmenta el volum gradualment</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Com puc canviar l\'ordenació de les voltes a la pestanya del cronòmetre\?</string>
     <string name="faq_1_text">Només cal que feu clic a qualsevol de les columnes, això farà que les voltes s\'ordenin per la columna indicada. Amb clics addicionals, podeu alternar entre l\'ordenació ascendent i descendent.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

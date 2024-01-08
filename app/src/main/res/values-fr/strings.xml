@@ -33,7 +33,6 @@
     <string name="add_timer">Ajouter un minuteur</string>
     <string name="upcoming_alarm">Alarme à venir</string>
     <string name="early_alarm_dismissal">Rejet d\'alarme précoce</string>
-    <!--Timer-->
     <string name="timers_notification_msg">Les minuteurs sont en cours d\'exécution</string>
     <string name="timer_single_notification_label_msg">Le minuteur pour %s est en cours d\'exécution</string>
     <string name="new_timer">Nouveau minuteur</string>
@@ -42,18 +41,12 @@
         <item quantity="many">%d minuteurs sont en cours d\'exécution</item>
         <item quantity="other">%d minuteurs sont en cours d\'exécution</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Onglet horloge</string>
     <string name="alarm_tab">Onglet alarme</string>
     <string name="stopwatch_tab">Onglet chronomètre</string>
     <string name="timer_tab">Onglet minuteur</string>
     <string name="show_seconds">Afficher les secondes</string>
     <string name="increase_volume_gradually">Augmenter progressivement le volume</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Comment puis-je modifier le tri des tours dans l\'onglet chronomètre \?</string>
     <string name="faq_1_text">Cliquez simplement sur l’une des colonnes afin de trier les tours selon la colonne donnée. Par des clics supplémentaires, vous basculerez entre les tris croissant et décroissant.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

@@ -1,13 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">簡易時鐘</string>
     <string name="app_launcher_name">簡易時鐘</string>
     <string name="time_zone">時區</string>
     <string name="vibrate">震動</string>
     <string name="no_days_selected">未選擇哪一天</string>
-    <string name="clock">Clock</string>
     <string name="timer">計時器</string>
-    <string name="stopwatch">Stopwatch</string>
-    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">分段</string>
     <string name="stopwatch_stopped">碼錶已停止</string>
     <string name="timer_stopped">計時器已停止</string>
@@ -16,46 +14,16 @@
     <string name="clock_and_date">時鐘和日期</string>
     <string name="use_text_shadow">使用文字陰影</string>
     <string name="swipe_right_to_dismiss">右滑關閉，或者左滑延遲。</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
-    <string name="no_alarms_found">No alarms found</string>
-    <string name="add_alarm">Add alarm</string>
-    <string name="no_timers_found">No timers found</string>
-    <string name="add_timer">Add timer</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
     <plurals name="timer_notification_msg">
         <item quantity="one">%d timer is running</item>
         <item quantity="other">%d timers are running</item>
     </plurals>
-
-    <!-- Settings -->
     <string name="clock_tab">時鐘頁面</string>
     <string name="alarm_tab">鬧鐘頁面</string>
     <string name="stopwatch_tab">碼錶頁面</string>
     <string name="timer_tab">計時器頁面</string>
     <string name="show_seconds">顯示秒數</string>
     <string name="increase_volume_gradually">音量漸增</string>
-
-    <!-- FAQ -->
     <string name="faq_1_title">碼錶頁面分段的排序如何變更?</string>
     <string name="faq_1_text">只要點擊任一欄位，就會依選定的欄位做排序。再多點一下，還能切換遞增或遞減的排序。</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

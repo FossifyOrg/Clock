@@ -33,7 +33,6 @@
     <string name="add_timer">Dodaj minutnik</string>
     <string name="upcoming_alarm">Nadchodzący alarm</string>
     <string name="early_alarm_dismissal">Wcześniejsze wyłączenie alarmu</string>
-    <!--Timer-->
     <string name="timers_notification_msg">Minutniki są uruchomione</string>
     <string name="timer_single_notification_label_msg">Minutnik dla %s jest uruchomiony</string>
     <string name="new_timer">Nowy minutnik</string>
@@ -43,18 +42,12 @@
         <item quantity="many">%d minutników jest uruchomionych</item>
         <item quantity="other">%d minutników jest uruchomionych</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Karta zegara</string>
     <string name="alarm_tab">Karta alarmu</string>
     <string name="stopwatch_tab">Karta stopera</string>
     <string name="timer_tab">Karta minutnika</string>
     <string name="show_seconds">Pokazuj sekundy</string>
     <string name="increase_volume_gradually">Zwiększaj głośność stopniowo</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Jak mogę zmienić sortowanie okrążeń w karcie stopera\?</string>
     <string name="faq_1_text">Po prostu naciśnij dowolną kolumnę, co spowoduje, że okrążenia zostaną posortowane według danej kolumny. Za pomocą dodatkowych naciśnięć możesz przełączać się między sortowaniem rosnącym i malejącym.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

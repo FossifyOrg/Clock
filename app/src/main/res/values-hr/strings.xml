@@ -23,18 +23,12 @@
     <string name="analogue_clock">Analogni sat</string>
     <string name="digital_clock">Digitalni sat</string>
     <string name="alarm_dismissed">Alarm odbačen</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Alarm odgođen za %s</string>
     <string name="no_alarms_found">Nema alarma</string>
     <string name="add_alarm">Dodaj alarm</string>
     <string name="no_timers_found">Nema brojača vremena</string>
     <string name="add_timer">Dodaj brojač vremena</string>
     <string name="upcoming_alarm">Nadolazeći alarm</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!--Timer-->
     <string name="timers_notification_msg">Brojači su pokrenuti</string>
     <string name="timer_single_notification_label_msg">Brojač za %s je pokrenut</string>
     <string name="new_timer">Novi brojač</string>
@@ -43,18 +37,12 @@
         <item quantity="few">%d brojača su pokrenuta</item>
         <item quantity="other">%d brojača je pokrenuto</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Kartica sata</string>
     <string name="alarm_tab">Kartica alarma</string>
     <string name="stopwatch_tab">Kartica štoperice</string>
     <string name="timer_tab">Kartica brojača</string>
     <string name="show_seconds">Prikaži sekunde</string>
     <string name="increase_volume_gradually">Postupno povećavaj glasnoću</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Kako mogu promijeniti razvrstavanje rundi na kartici štoperice\?</string>
     <string name="faq_1_text">Jednostavno pritisni bilo koji stupac. Time će se runde razvrstati po zadanom stupcu. Dodatnim pritiskanjem stupca možeš mijenjati između uzlaznog i silaznog razvrstavanja.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

@@ -25,9 +25,6 @@
     <string name="analogue_clock">တိုင်ကပ်နာရီ</string>
     <string name="digital_clock">ဒီဂျစ်တယ်နာရီ</string>
     <string name="alarm_dismissed">နှိုးစက်အားဖယ်ရှားပြီး</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">နှိုးစက်အားရပ်တန့်ပြီး %s</string>
     <string name="no_alarms_found">နှိုးစက်မရှိပါ</string>
     <string name="add_alarm">နှိုးစက်ထည့်မည်</string>
@@ -35,31 +32,19 @@
     <string name="add_timer">အချိန်မှတ်စက်ထည့်မည်</string>
     <string name="upcoming_alarm">လာ​တော့မည့်နှိုးစက်</string>
     <string name="early_alarm_dismissal">နှိုးစက်ဖယ်ရှားခြင်း</string>
-
-    <!-- Timer -->
     <string name="timers_notification_msg">အချိန်မှတ်စက်များသွား​နေသည်</string>
     <string name="timer_single_notification_label_msg"> %s အတွက်အချိန်မှတ်စက် သည်သွား​နေသည်</string>
     <string name="new_timer">အချိန်မှတ်စက်အသစ်</string>
-
     <plurals name="timer_notification_msg">
         <item quantity="one">%d အချိန်မှတ်စက်သွား​နေသည်</item>
         <item quantity="other">%d အချိန်မှတ်စက်များသွား​နေသည်</item>
     </plurals>
-
-    <!-- Settings -->
     <string name="clock_tab">နာရီ</string>
     <string name="alarm_tab">နှိုးစက်</string>
     <string name="stopwatch_tab">စံချိန်ယူ</string>
     <string name="timer_tab">အချိန်မှတ်စက်</string>
     <string name="show_seconds">စက္ကန့်များကိုပြ</string>
     <string name="increase_volume_gradually">မြည်သံအားတစ်ဆင့်ချင်းမြှင့်ပါ</string>
-
-    <!-- FAQ -->
     <string name="faq_1_title">ငါဘယ်လိုစံချိန်ယူနာရီမှာပြန်​ကျော့ထားတယ့်စာရင်းအစီအစဥ်ကိုချိန်းနိုင်မလဲ?</string>
     <string name="faq_1_text">ကော်လံတစ်ခု​ပေါ်မှာနှိပ်ပါ သင်နှိပ်လိုက်သည့်​ကော်လံကိုတစ်ခါထပ်နှိပ်ခြင်းဖြင့် ကြီးစဥ်ငယ်လိုက် နဲ့ငယ်စဥ်ကြီးလိုက်စီနိုင်ပါတယ်။</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
-
 </resources>

@@ -5,10 +5,7 @@
     <string name="time_zone">タイムゾーン</string>
     <string name="vibrate">バイブレーション</string>
     <string name="no_days_selected">曜日が選択されていません</string>
-    <string name="clock">Clock</string>
     <string name="timer">タイマー</string>
-    <string name="stopwatch">Stopwatch</string>
-    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">ラップ</string>
     <string name="stopwatch_stopped">ストップウォッチが停止しました</string>
     <string name="timer_stopped">タイマーが停止しました</string>
@@ -23,36 +20,23 @@
     <string name="analogue_clock">アナログ時計</string>
     <string name="digital_clock">デジタル時計</string>
     <string name="alarm_dismissed">アラームが破棄されました</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
     <string name="no_alarms_found">アラームが見つかりません</string>
     <string name="add_alarm">アラームを追加</string>
     <string name="no_timers_found">タイマーが見つかりません</string>
     <string name="add_timer">タイマーを追加</string>
     <string name="upcoming_alarm">今後のアラーム</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!--Timer-->
     <string name="timers_notification_msg">タイマーが作動中</string>
     <string name="timer_single_notification_label_msg">タイマー %s が作動中</string>
     <string name="new_timer">新しいタイマー</string>
     <plurals name="timer_notification_msg">
         <item quantity="other">%d 個のタイマーが作動中</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">時計</string>
     <string name="alarm_tab">アラーム</string>
     <string name="stopwatch_tab">ストップウォッチ</string>
     <string name="timer_tab">タイマー</string>
     <string name="show_seconds">秒を表示</string>
     <string name="increase_volume_gradually">音量を徐々に大きくする</string>
-    <!-- FAQ -->
     <string name="faq_1_title">ストップウォッチのタブでラップタイムの並べ替えを行うにはどうすればよいですか？</string>
     <string name="faq_1_text">特定の列をタップすると、その列でラップタイムが並べ替えられます。さらにもう一度タップすると、昇順と降順の切り替えを行えます。</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

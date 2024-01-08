@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Гадзіннік</string>
     <string name="time_zone">Гадзінны пояс</string>
     <string name="vibrate">Вібраваць</string>
@@ -23,18 +22,10 @@
     <string name="analogue_clock">Аналагавы гадзіннік</string>
     <string name="digital_clock">Лічбавы гадзіннік</string>
     <string name="alarm_dismissed">Будзільнік адхілены</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Будзільнік адкладзены на %s</string>
     <string name="no_alarms_found">Будзільнікі не знойдзены</string>
-    <string name="add_alarm">Add alarm</string>
     <string name="no_timers_found">Таймеры не знойдзены</string>
-    <string name="add_timer">Add timer</string>
     <string name="upcoming_alarm">Маючы адбыцца будзільнік</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!--Timer-->
     <string name="timers_notification_msg">Таймеры запушчаны</string>
     <string name="timer_single_notification_label_msg">Таймер для %s запушчаны</string>
     <string name="new_timer">Новы таймер</string>
@@ -44,18 +35,12 @@
         <item quantity="many">%d таймераў запушчана</item>
         <item quantity="other">%d таймераў запушчана</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Гадзіннік</string>
     <string name="alarm_tab">Будзільнік</string>
     <string name="stopwatch_tab">Секундамер</string>
     <string name="timer_tab">Таймер</string>
     <string name="show_seconds">Паказваць секунды</string>
     <string name="increase_volume_gradually">Паступова павялічваць гучнасць</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Як змяніць сартаванне кругоў на ўкладцы секундамера\?</string>
     <string name="faq_1_text">Проста націсніце на любы са слупкоў, і кругі будуць адсартаваны па дадзенаму слупку. Дадатковымі націсканнямі вы можаце пераключацца паміж сартаваннем па ўзрастанні і па змяншэнні.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>

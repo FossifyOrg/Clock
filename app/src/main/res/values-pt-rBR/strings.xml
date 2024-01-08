@@ -23,18 +23,12 @@
     <string name="analogue_clock">Relógio analógico</string>
     <string name="digital_clock">Relógio digital</string>
     <string name="alarm_dismissed">Alarme descartado</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Alarme adiado por %s</string>
     <string name="no_alarms_found">Nenhum alarme encontrado</string>
     <string name="add_alarm">Adicionar alarme</string>
     <string name="no_timers_found">Nenhum temporizador encontrado</string>
     <string name="add_timer">Adicionar temporizador</string>
     <string name="upcoming_alarm">Próximo alarme</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
-    <!--Timer-->
     <string name="timers_notification_msg">Temporizadores em execução</string>
     <string name="timer_single_notification_label_msg">O temporizador para %s está em execução</string>
     <string name="new_timer">Novo temporizador</string>
@@ -42,18 +36,12 @@
         <item quantity="one">%d temporizador em execução</item>
         <item quantity="other">%d temporizadores em execução</item>
     </plurals>
-    <!-- Settings -->
     <string name="clock_tab">Guia Relógio</string>
     <string name="alarm_tab">Guia Alarme</string>
     <string name="stopwatch_tab">Guia Cronômetro</string>
     <string name="timer_tab">Guia Temporizador</string>
     <string name="show_seconds">Mostrar segundos</string>
     <string name="increase_volume_gradually">Aumentar volume gradualmente</string>
-    <!-- FAQ -->
     <string name="faq_1_title">Como posso alterar a classificação das voltas na guia Cronômetro\?</string>
     <string name="faq_1_text">Basta clicar em qualquer uma das colunas e isso fará com que as voltas sejam classificadas pela coluna especificada. Com cliques adicionais, você pode alternar a ordem de classificação entre crescente e decrescente.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
-    -->
 </resources>
