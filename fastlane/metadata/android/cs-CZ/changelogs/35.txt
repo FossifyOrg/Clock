@@ -1,0 +1,2 @@
+* Added a Start Stopwatch shortcut
+ * Added some translation, stability and UX improvements

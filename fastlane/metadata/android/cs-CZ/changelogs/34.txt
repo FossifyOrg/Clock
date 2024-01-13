@@ -1,0 +1,2 @@
+* Changed the default digital widget colors to White text on transparent background
+ * Added some stability and translation improvements
