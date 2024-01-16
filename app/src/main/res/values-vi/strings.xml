@@ -2,4 +2,24 @@
 <resources>
     <string name="app_launcher_name">Đồng hồ</string>
     <string name="app_name">Đồng hồ Fossify</string>
+    <string name="no_days_selected">Không có ngày nào được chọn</string>
+    <string name="stopwatch_stopped">Đồng hồ bấm giờ đã bị dừng</string>
+    <string name="swipe_right_to_dismiss">Vuốt sang phải để Loại bỏ hoặc sang trái để Tạm ẩn.</string>
+    <string name="time_zone">Múi giờ</string>
+    <string name="vibrate">Rung</string>
+    <string name="clock">Đồng hồ</string>
+    <string name="timer">Hẹn giờ</string>
+    <string name="stopwatch">Đồng hồ bấm giờ</string>
+    <string name="start_stopwatch">Bắt đầu bấm giờ đồng hồ</string>
+    <string name="lap">Vòng</string>
+    <string name="timer_stopped">Hẹn giờ đã bị dừng</string>
+    <string name="max_reminder_duration">Thời lượng nhắc nhở tối đa</string>
+    <string name="time_expired">Hết thời gian</string>
+    <string name="clock_and_date">Đồng hồ và ngày</string>
+    <string name="use_text_shadow">Sử dụng bóng văn bản</string>
+    <string name="sort_by_creation_order">Thứ tự tạo</string>
+    <string name="sort_by_alarm_time">Thời gian báo thức</string>
+    <string name="sort_by_day_and_alarm_time">Ngày và giờ báo thức</string>
+    <string name="analogue_clock">Đồng hồ analog</string>
+    <string name="digital_clock">Đồng hồ kỹ thuật số</string>
 </resources>
