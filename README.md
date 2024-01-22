@@ -1,4 +1,4 @@
-# Simple Clock
+# Fossify Clock
 <img alt="Logo" src="graphics/icon.png" width="120" />
 
 This clock app has multiple functions related to timing. It can be used as a clock widget or as a alarm clock. It is made to help you regulate your daily life and sleep better. You can also use the stopwatch in this app to count your time when you are running for healthy lifestyle or for any other purpose. This app can also be placed on your home screen for easy navigation.
