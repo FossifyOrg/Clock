@@ -1,0 +1,2 @@
+* Utilisation du thème Material You par défaut sur Android 12+
+ * Amélioration de l'interface utilisateur, de la traduction et de la stabilité

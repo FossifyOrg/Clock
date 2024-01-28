@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Horloge simple</string>
+    <string name="app_name">Fossify Clock</string>
     <string name="app_launcher_name">Horloge</string>
     <string name="time_zone">Fuseau horaire</string>
     <string name="vibrate">Vibrer</string>
