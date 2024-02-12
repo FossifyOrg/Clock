@@ -48,4 +48,5 @@
     <string name="increase_volume_gradually">Aumentar volume gradualmente</string>
     <string name="faq_1_title">Como posso alterar a ordem das voltas no Cronómetro\?</string>
     <string name="faq_1_text">Basta clicar em qualquer uma das colunas e isso fará com que as voltas sejam ordenadas pela coluna especificada. Com cliques adicionais, pode alternar a ordem de entre crescente e decrescente.</string>
+    <string name="early_alarm_dismissal">Descartar alarme cedo</string>
 </resources>
