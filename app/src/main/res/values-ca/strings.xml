@@ -44,4 +44,7 @@
     <string name="increase_volume_gradually">Augmenta el volum gradualment</string>
     <string name="faq_1_title">Com puc canviar l\'ordenació de les voltes a la pestanya del cronòmetre\?</string>
     <string name="faq_1_text">Només cal que feu clic a qualsevol de les columnes, això farà que les voltes s\'ordenin per la columna indicada. Amb clics addicionals, podeu alternar entre l\'ordenació ascendent i descendent.</string>
+    <string name="add_timer">Afegeix un temporitzador</string>
+    <string name="clock">Rellotge</string>
+    <string name="add_alarm">Afegeix una alarma</string>
 </resources>
