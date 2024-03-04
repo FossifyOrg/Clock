@@ -21,14 +21,14 @@
     <string name="sort_by_day_and_alarm_time">Nap és ébresztési idő</string>
     <string name="analogue_clock">Analóg óra</string>
     <string name="digital_clock">Digitális óra</string>
-    <string name="alarm_dismissed">Riasztás eltüntetve</string>
+    <string name="alarm_dismissed">Ébresztés eltüntetve</string>
     <string name="alarm_snoozed">Az ébresztés ennyivel elhalasztva: %s</string>
-    <string name="no_alarms_found">Nincsenek riasztások</string>
-    <string name="add_alarm">Riasztás hozzáadása</string>
-    <string name="no_timers_found">Nincsenek időzitők</string>
+    <string name="no_alarms_found">Nincsenek ébresztések</string>
+    <string name="add_alarm">Ébresztés hozzáadása</string>
+    <string name="no_timers_found">Nincsenek időzítők</string>
     <string name="add_timer">Időzítő hozzáadása</string>
-    <string name="upcoming_alarm">Közelgő riasztás</string>
-    <string name="timers_notification_msg">Az időzítő megy</string>
+    <string name="upcoming_alarm">Közelgő ébresztés</string>
+    <string name="timers_notification_msg">Az időzítő fut</string>
     <string name="timer_single_notification_label_msg">A(z) %s időzítő fut</string>
     <string name="new_timer">Új időzítő</string>
     <plurals name="timer_notification_msg">
@@ -36,11 +36,16 @@
         <item quantity="other">%d időzítők elindultak</item>
     </plurals>
     <string name="clock_tab">Óra fül</string>
-    <string name="alarm_tab">Riasztás lap</string>
+    <string name="alarm_tab">Ébresztés lap</string>
     <string name="stopwatch_tab">Stopperóra lap</string>
     <string name="timer_tab">Időzítő lap</string>
     <string name="show_seconds">Másodperc megjelenítése</string>
     <string name="increase_volume_gradually">Hangerő fokozatos növelése</string>
-    <string name="faq_1_title">Hogyan változtathatom meg a körök rendezését a stopperóra fülön?</string>
+    <string name="faq_1_title">Hogyan változtathatom meg a körök rendezését a stopperóra lapon?</string>
     <string name="faq_1_text">Csak kattintson bármelyik oszlopra, ettől a körök az adott oszlop szerint lesznek rendezve. További kattintásokkal válthatsz a növekvő és csökkenő rendezés között.</string>
+    <string name="select_timer_to_dismiss">Válassza ki az elvetendő időzítőt</string>
+    <string name="select_alarm_to_dismiss">Válassza ki az elvetendő ébresztést</string>
+    <string name="alarm_created">Ébresztés létrehozva</string>
+    <string name="early_alarm_dismissal">Korai ébresztéselvetés</string>
+    <string name="app_name">Egyszerű Óra</string>
 </resources>
