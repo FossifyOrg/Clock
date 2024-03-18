@@ -33,7 +33,7 @@
             android:textSize="@dimen/big_text_size"
             tools:text="Mon, 1 January" />
 
-        <com.simplemobiletools.commons.views.MyTextView
+        <org.fossify.commons.views.MyTextView
             android:id="@+id/clock_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             android:textSize="@dimen/big_text_size"
             tools:text="Thu, 8:00" />
 
-        <com.simplemobiletools.commons.views.MyRecyclerView
+        <org.fossify.commons.views.MyRecyclerView
             android:id="@+id/time_zones_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -57,11 +57,11 @@
             android:paddingBottom="@dimen/fab_list_bottom_padding"
             android:scrollbars="none"
             android:visibility="gone"
-            app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager" />
+            app:layoutManager="org.fossify.commons.views.MyLinearLayoutManager" />
 
     </RelativeLayout>
 
-    <com.simplemobiletools.commons.views.MyFloatingActionButton
+    <org.fossify.commons.views.MyFloatingActionButton
         android:id="@+id/clock_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

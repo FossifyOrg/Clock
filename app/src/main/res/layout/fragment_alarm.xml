@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.simplemobiletools.commons.views.MyRecyclerView
+        <org.fossify.commons.views.MyRecyclerView
             android:id="@+id/alarms_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -18,11 +18,11 @@
             android:overScrollMode="ifContentScrolls"
             android:paddingBottom="@dimen/fab_list_bottom_padding"
             android:scrollbars="none"
-            app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager" />
+            app:layoutManager="org.fossify.commons.views.MyLinearLayoutManager" />
 
     </RelativeLayout>
 
-    <com.simplemobiletools.commons.views.MyFloatingActionButton
+    <org.fossify.commons.views.MyFloatingActionButton
         android:id="@+id/alarm_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -17,7 +17,7 @@
         android:paddingTop="@dimen/medium_margin"
         android:paddingBottom="@dimen/medium_margin">
 
-        <com.simplemobiletools.commons.views.MyTextView
+        <org.fossify.commons.views.MyTextView
             android:id="@+id/alarm_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
             android:textSize="@dimen/alarm_text_size"
             tools:text="07:00" />
 
-        <com.simplemobiletools.commons.views.MyTextView
+        <org.fossify.commons.views.MyTextView
             android:id="@+id/alarm_days"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             android:textSize="@dimen/bigger_text_size"
             tools:text="Mon, Tue, Wed, Thu, Fri" />
 
-        <com.simplemobiletools.commons.views.MyTextView
+        <org.fossify.commons.views.MyTextView
             android:id="@+id/alarm_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
             android:textSize="@dimen/bigger_text_size"
             tools:text="Good morning!" />
 
-        <com.simplemobiletools.commons.views.MyAppCompatCheckbox
+        <org.fossify.commons.views.MyAppCompatCheckbox
             android:id="@+id/alarm_switch"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

@@ -18,7 +18,7 @@
         app:np_selectedTextSize="@dimen/big_text_size"
         app:np_textSize="@dimen/big_text_size" />
 
-    <com.simplemobiletools.commons.views.MyTextView
+    <org.fossify.commons.views.MyTextView
         android:id="@+id/my_time_picker_colon_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         app:np_selectedTextSize="@dimen/big_text_size"
         app:np_textSize="@dimen/big_text_size" />
 
-    <com.simplemobiletools.commons.views.MyTextView
+    <org.fossify.commons.views.MyTextView
         android:id="@+id/my_time_picker_colon_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/add_time_zone_holder"
     android:layout_width="match_parent"
@@ -9,7 +8,7 @@
     android:clickable="true"
     android:focusable="true">
 
-    <com.simplemobiletools.commons.views.MyTextView
+    <org.fossify.commons.views.MyTextView
         android:id="@+id/add_time_zone_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,9 +18,9 @@
         android:maxLines="1"
         android:padding="@dimen/activity_margin"
         android:textSize="@dimen/bigger_text_size"
-        tools:text="GMT-11:00 Midway"/>
+        tools:text="GMT-11:00 Midway" />
 
-    <com.simplemobiletools.commons.views.MyAppCompatCheckbox
+    <org.fossify.commons.views.MyAppCompatCheckbox
         android:id="@+id/add_time_zone_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -30,6 +29,6 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/activity_margin"
         android:clickable="false"
-        android:gravity="center"/>
+        android:gravity="center" />
 
 </RelativeLayout>

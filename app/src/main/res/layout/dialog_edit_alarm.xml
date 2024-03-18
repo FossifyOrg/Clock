@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.simplemobiletools.commons.views.MyTextView
+        <org.fossify.commons.views.MyTextView
             android:id="@+id/edit_alarm_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             android:textSize="@dimen/alarm_text_size"
             tools:text="07:00" />
 
-        <com.simplemobiletools.commons.views.MyTextView
+        <org.fossify.commons.views.MyTextView
             android:id="@+id/edit_alarm_dayless_label"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -62,7 +62,7 @@
                 android:layout_alignBottom="@+id/edit_alarm_vibrate"
                 android:src="@drawable/ic_vibrate_vector" />
 
-            <com.simplemobiletools.commons.views.MyAppCompatCheckbox
+            <org.fossify.commons.views.MyAppCompatCheckbox
                 android:id="@+id/edit_alarm_vibrate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
 
         </RelativeLayout>
 
-        <com.simplemobiletools.commons.views.MyTextView
+        <org.fossify.commons.views.MyTextView
             android:id="@+id/edit_alarm_sound"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_label_vector" />
 
-            <com.simplemobiletools.commons.views.MyTextInputLayout
+            <org.fossify.commons.views.MyTextInputLayout
                 android:id="@+id/edit_alarm_hint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                     android:singleLine="true"
                     android:textSize="@dimen/normal_text_size" />
 
-            </com.simplemobiletools.commons.views.MyTextInputLayout>
+            </org.fossify.commons.views.MyTextInputLayout>
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>
