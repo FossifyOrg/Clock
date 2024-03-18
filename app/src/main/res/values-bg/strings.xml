@@ -46,4 +46,6 @@
     <string name="increase_volume_gradually">Постепенно увеличавай звука</string>
     <string name="faq_1_title">Как мога да променя сортирането на обиколките на секундомера\?</string>
     <string name="faq_1_text">Просто кликнете на някоя от колонките, това ще ги сортира по тази колонка. С допълнителни кликвания можете да превключвате между възходящо и низходящо сортиране.</string>
+    <string name="add_timer">Добавяне на таймер</string>
+    <string name="add_alarm">Добавяне на аларма</string>
 </resources>

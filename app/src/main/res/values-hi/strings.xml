@@ -1,2 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="timer">टाइमर</string>
+    <string name="app_name">Fossify Clock</string>
+    <string name="app_launcher_name">घड़ी</string>
+    <string name="time_zone">समय क्षेत्र</string>
+    <string name="vibrate">कंपन</string>
+    <string name="no_days_selected">कोई दिन चयनित नहीं</string>
+    <string name="clock">घड़ी</string>
+    <string name="stopwatch">स्टॉपवॉच</string>
+    <string name="start_stopwatch">स्टॉपवॉच प्रारंभ करें</string>
+    <string name="stopwatch_stopped">स्टॉपवॉच बंद कर दी गई है</string>
+    <string name="lap">लैप</string>
+    <string name="timer_stopped">टाइमर बंद कर दिया गया है</string>
+    <string name="alarm_dismissed">अलार्म खारिज हो गया</string>
+    <string name="no_timers_found">कोई टाइमर नहीं मिला</string>
+    <string name="early_alarm_dismissal">शीघ्र अलार्म बर्खास्तगी</string>
+    <string name="alarm_tab">अलार्म टैब</string>
+    <string name="increase_volume_gradually">धीरे-धीरे वॉल्यूम बढ़ाएं</string>
+    <string name="faq_1_text">बस किसी भी कॉलम पर क्लिक करें, जिससे लैप्स दिए गए कॉलम के अनुसार क्रमबद्ध हो जाएंगे। अतिरिक्त क्लिक के साथ आप आरोही और अवरोही सॉर्टिंग के बीच टॉगल कर सकते हैं।</string>
+    <string name="max_reminder_duration">अधिकतम अनुस्मारक अवधि</string>
+    <string name="time_expired">समय समाप्त हुआ</string>
+    <string name="clock_and_date">घड़ी और तारीख</string>
+    <string name="use_text_shadow">टेक्स्ट छाया का प्रयोग करें</string>
+    <string name="swipe_right_to_dismiss">खारिज करने के लिए दाएं स्वाइप करें, या स्नूज़ करने के लिए बाएं स्वाइप करें।</string>
+    <string name="sort_by_creation_order">सृजन क्रम</string>
+    <string name="sort_by_alarm_time">अलार्म समय</string>
+    <string name="sort_by_day_and_alarm_time">दिन और अलार्म का समय</string>
+    <string name="analogue_clock">अनुरूप घड़ी</string>
+    <string name="digital_clock">डिजिटल घड़ी</string>
+    <string name="select_timer_to_dismiss">ख़ारिज करने के लिए टाइमर चुनें</string>
+    <string name="select_alarm_to_dismiss">ख़ारिज करने के लिए अलार्म चुनें</string>
+    <string name="alarm_created">अलार्म बनाया गया</string>
+    <string name="alarm_snoozed">%s द्वारा अलार्म स्नूज़ किया गया</string>
+    <string name="no_alarms_found">कोई अलार्म नहीं मिला</string>
+    <string name="add_alarm">अलार्म जोड़ें</string>
+    <string name="add_timer">टाइमर जोड़ें</string>
+    <string name="upcoming_alarm">आगामी अलार्म</string>
+    <string name="timers_notification_msg">टाइमर चल रहे हैं</string>
+    <string name="timer_single_notification_label_msg">%s के लिए टाइमर चल रहा है</string>
+    <string name="new_timer">नया टाइमर</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d टाइमर चल रहा है</item>
+        <item quantity="other">%d टाइमर चल रहे हैं</item>
+    </plurals>
+    <string name="clock_tab">घड़ी टैब</string>
+    <string name="stopwatch_tab">स्टॉपवॉच टैब</string>
+    <string name="timer_tab">टाइमर टैब</string>
+    <string name="show_seconds">सेकंड दिखाएँ</string>
+    <string name="faq_1_title">मैं स्टॉपवॉच टैब पर लैप सॉर्टिंग कैसे बदल सकता हूं?</string>
+</resources>

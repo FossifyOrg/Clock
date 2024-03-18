@@ -34,6 +34,7 @@
     <string name="new_timer">Novo temporizador</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">%d temporizador em execução</item>
+        <item quantity="many">%d temporizadores em execução</item>
         <item quantity="other">%d temporizadores em execução</item>
     </plurals>
     <string name="clock_tab">Guia Relógio</string>
@@ -44,4 +45,8 @@
     <string name="increase_volume_gradually">Aumentar volume gradualmente</string>
     <string name="faq_1_title">Como posso alterar a classificação das voltas na guia Cronômetro\?</string>
     <string name="faq_1_text">Basta clicar em qualquer uma das colunas e isso fará com que as voltas sejam classificadas pela coluna especificada. Com cliques adicionais, você pode alternar a ordem de classificação entre crescente e decrescente.</string>
+    <string name="select_alarm_to_dismiss">Selecione o alarme para descartar</string>
+    <string name="alarm_created">Alarme criado</string>
+    <string name="early_alarm_dismissal">Descarte antecipado de alarme</string>
+    <string name="select_timer_to_dismiss">Selecione o temporizador para descartar</string>
 </resources>

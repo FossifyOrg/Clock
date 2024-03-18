@@ -43,4 +43,10 @@
     <string name="increase_volume_gradually">Creşte volumul gradual</string>
     <string name="faq_1_title">Cum pot schimba sortarea turelor în fereastra cronometrului\?</string>
     <string name="faq_1_text">Apasă pe oricare coloana, asta o să facă ca turele să fie sortate după coloana selectată. Apăsările suplimentare o să comute între ordonare crescătoare şi descrescătoare.</string>
+    <string name="upcoming_alarm">Alarma viitoare</string>
+    <string name="alarm_created">Alarma a fost creată</string>
+    <string name="start_stopwatch">Pornește cronometrul</string>
+    <string name="select_timer_to_dismiss">Selectează temporizatorul pentru a anula</string>
+    <string name="select_alarm_to_dismiss">Selectează alama pentru a anula</string>
+    <string name="early_alarm_dismissal">Anulare alarmă timpurie</string>
 </resources>
