@@ -39,4 +39,12 @@
     <string name="increase_volume_gradually">Keraskan volume secara bertahap</string>
     <string name="faq_1_title">Bagaimana cara mengubah pengurutan putaran di tab stopwatch?</string>
     <string name="faq_1_text">Cukup klik salah satu kolom, dan putaran akan diurutkan menurut kolom tersebut, dari yang terlama ke tercepat atau yang tercepat ke terlama.</string>
+    <string name="clock">Jam</string>
+    <string name="select_timer_to_dismiss">Pilih timer untuk keluar</string>
+    <string name="select_alarm_to_dismiss">Pilih alarm untuk keluar</string>
+    <string name="alarm_created">Alarm dibuat</string>
+    <string name="stopwatch">Pengukur waktu</string>
+    <string name="add_alarm">Tambah alarm</string>
+    <string name="early_alarm_dismissal">Pembatalan alarm dini</string>
+    <string name="app_name">Fossify Clock</string>
 </resources>
