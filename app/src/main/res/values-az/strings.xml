@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sadə Saat</string>
     <string name="app_launcher_name">Saat</string>
     <string name="time_zone">Vaxt zonası</string>
     <string name="vibrate">Titrət</string>
@@ -20,4 +19,4 @@
     <string name="timer_tab">Sayğaç bölməsi</string>
     <string name="show_seconds">Saniyələri göstər</string>
     <string name="increase_volume_gradually">Səsi aramla yüksəlt</string>
-    </resources>
+</resources>

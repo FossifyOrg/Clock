@@ -47,5 +47,4 @@
     <string name="select_alarm_to_dismiss">Válassza ki az elvetendő ébresztést</string>
     <string name="alarm_created">Ébresztés létrehozva</string>
     <string name="early_alarm_dismissal">Korai ébresztéselvetés</string>
-    <string name="app_name">Egyszerű Óra</string>
 </resources>

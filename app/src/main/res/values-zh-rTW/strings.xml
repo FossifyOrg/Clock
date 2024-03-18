@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">簡易時鐘</string>
     <string name="app_launcher_name">簡易時鐘</string>
     <string name="time_zone">時區</string>
     <string name="vibrate">震動</string>

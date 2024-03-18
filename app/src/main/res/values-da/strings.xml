@@ -18,5 +18,4 @@
     <string name="show_seconds">Vis sekunder</string>
     <string name="faq_1_title">Hvordan kan jeg ændre sortering af mellemtider i stopuret?</string>
     <string name="faq_1_text">Klik på den kolonne der skal sorteres efter. Med flere klik kan du skifte mellem stigende og faldende rækkefølge.</string>
-    <string name="app_name">Simpelt Ur</string>
 </resources>

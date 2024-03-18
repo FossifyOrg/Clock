@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Απλό Ρολόι</string>
     <string name="app_launcher_name">Ρολόι</string>
     <string name="time_zone">Ζώνη ώρας</string>
     <string name="vibrate">Δόνηση</string>

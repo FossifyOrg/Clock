@@ -46,5 +46,4 @@
     <string name="stopwatch">Pengukur waktu</string>
     <string name="add_alarm">Tambah alarm</string>
     <string name="early_alarm_dismissal">Pembatalan alarm dini</string>
-    <string name="app_name">Fossify Clock</string>
 </resources>
