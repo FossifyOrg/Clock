@@ -1,13 +1,13 @@
 [versions]
 #jetbrains
-kotlin = "1.9.0"
+kotlin = "1.9.22"
 #KSP
-ksp = "1.9.0-1.0.12"
+ksp = "1.9.22-1.0.17"
 #AndroidX
 androidx-constraintlayout = "2.1.4"
-androidx-lifecycle = "2.6.1"
-androidx-preference = "1.2.0"
-androidx-work = "2.8.1"
+androidx-lifecycle = "2.7.0"
+androidx-preference = "1.2.1"
+androidx-work = "2.9.0"
 #AutoFitTextView
 autofittextview = "0.2.1"
 #Eventbus
@@ -17,13 +17,13 @@ kotlinx-coroutines = "1.7.3"
 #NumberPicker
 numberpicker = "2.4.13"
 #Room
-room = "2.6.0-beta01"
+room = "2.6.1"
 #Simple tools
 simple-commons = "c573613da9"
 #Stetho
 stetho = "1.6.0"
 #Gradle
-gradlePlugins-agp = "8.1.1"
+gradlePlugins-agp = "8.3.0"
 #build
 app-build-compileSDKVersion = "34"
 app-build-targetSDK = "34"
