@@ -46,5 +46,4 @@
     <string name="increase_volume_gradually">Höj volymen gradvis</string>
     <string name="faq_1_title">Hur kan jag ändra sortering av varv i fliken stoppur\?</string>
     <string name="faq_1_text">Klicka bara på någon av kolumnerna för att sortera varven efter den aktuella kolumnen. Med ytterligare klick kan du växla mellan stigande och fallande sortering.</string>
-    <string name="timer">Timer</string>
 </resources>
