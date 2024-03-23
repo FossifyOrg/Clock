@@ -3,7 +3,6 @@ package org.fossify.clock.adapters
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import org.fossify.clock.R
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.databinding.ItemAlarmBinding
@@ -16,7 +15,6 @@ import org.fossify.clock.models.Alarm
 import org.fossify.commons.adapters.MyRecyclerViewAdapter
 import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.isVisible
 import org.fossify.commons.extensions.toast
 import org.fossify.commons.views.MyRecyclerView
 
@@ -92,7 +90,7 @@ class AlarmsAdapter(
     private fun setupView(view: View, alarm: Alarm) {
         val isSelected = selectedKeys.contains(alarm.id)
         ItemAlarmBinding.bind(view).apply {
-            alarmFrame.isSelected = isSelected
+            alarmHolder.isSelected = isSelected
             alarmTime.text = activity.getFormattedTime(alarm.timeInMinutes * 60, false, true)
             alarmTime.setTextColor(textColor)
 
@@ -137,9 +135,6 @@ class AlarmsAdapter(
                     toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
                 }
             }
-
-            val layoutParams = alarmSwitch.layoutParams as RelativeLayout.LayoutParams
-            layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM, if (alarmLabel.isVisible()) alarmLabel.id else alarmLabel.id)
         }
     }
 }
