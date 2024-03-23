@@ -2,7 +2,6 @@
 <resources>
     <string name="clock">گھڑی</string>
     <string name="new_timer">نواں سماں والا</string>
-    <string name="app_name">سادی گھڑی</string>
     <string name="app_launcher_name">گھڑی</string>
     <string name="time_zone">سماں کھیتر</string>
     <string name="no_days_selected">کوئی دن نہیں چݨے اے</string>
@@ -31,4 +30,4 @@
     <string name="timer_tab">سماں والے دی ٹیب</string>
     <string name="show_seconds">سکنٹ ویکھو</string>
     <string name="increase_volume_gradually">ہولی ہولی آواز ودھاؤ</string>
-    </resources>
+</resources>

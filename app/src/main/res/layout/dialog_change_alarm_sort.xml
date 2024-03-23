@@ -13,7 +13,7 @@
         android:paddingTop="@dimen/activity_margin"
         android:paddingEnd="@dimen/activity_margin">
 
-        <com.simplemobiletools.commons.views.MyCompatRadioButton
+        <org.fossify.commons.views.MyCompatRadioButton
             android:id="@+id/sorting_dialog_radio_creation_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
             android:paddingBottom="@dimen/medium_margin"
             android:text="@string/sort_by_creation_order" />
 
-        <com.simplemobiletools.commons.views.MyCompatRadioButton
+        <org.fossify.commons.views.MyCompatRadioButton
             android:id="@+id/sorting_dialog_radio_alarm_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             android:paddingBottom="@dimen/medium_margin"
             android:text="@string/sort_by_alarm_time" />
 
-        <com.simplemobiletools.commons.views.MyCompatRadioButton
+        <org.fossify.commons.views.MyCompatRadioButton
             android:id="@+id/sorting_dialog_radio_day_and_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

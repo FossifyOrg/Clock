@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="00:00" />
 
-        <com.simplemobiletools.commons.views.MyTextView
+        <org.fossify.commons.views.MyTextView
             android:id="@+id/timer_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

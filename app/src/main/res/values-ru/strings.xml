@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Простые часы</string>
     <string name="app_launcher_name">Часы</string>
     <string name="time_zone">Часовой пояс</string>
     <string name="vibrate">Вибрация</string>

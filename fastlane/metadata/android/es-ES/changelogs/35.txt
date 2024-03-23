@@ -1,2 +1,0 @@
-* Añadido un acceso directo al iniciar el cronómetro
- * Se han añadido algunas mejoras de traducción, estabilidad y UX

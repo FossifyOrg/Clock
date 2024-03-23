@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Ordulari sinplea</string>
     <string name="app_launcher_name">Ordularia</string>
     <string name="time_zone">Ordu eremua</string>
     <string name="vibrate">Bibratu</string>

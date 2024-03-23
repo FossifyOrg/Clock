@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Basit Saat</string>
     <string name="app_launcher_name">Saat</string>
     <string name="time_zone">Saat dilimi</string>
     <string name="vibrate">Titret</string>

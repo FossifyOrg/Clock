@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Fossify Clock</string>
     <string name="app_launcher_name">Uhr</string>
     <string name="time_zone">Zeitzone</string>
     <string name="vibrate">Vibration</string>
@@ -46,6 +45,4 @@
     <string name="increase_volume_gradually">Ansteigende Lautstärke</string>
     <string name="faq_1_title">Wie kann die Sortierung der Laschen der Stoppuhr geändert werden?</string>
     <string name="faq_1_text">Einfach auf eine der Spalten klicken, das wird die Sortierung entsprechend der Spalte anpassen. Weitere Klicks schalten zwischen auf- und absteigender Sortierung um.</string>
-    <string name="timer">Timer</string>
-    <string name="timer_tab">Timer</string>
 </resources>

@@ -1,2 +1,0 @@
-* Changement de la couleur par défaut du widget numérique en texte blanc sur fond transparent
- * Ajout de quelques améliorations au niveau de la stabilité et de la traduction

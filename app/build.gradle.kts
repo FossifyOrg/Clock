@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.konan.properties.Properties
 import java.io.FileInputStream
@@ -6,17 +7,12 @@ plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
-    base
 }
 
 val keystorePropertiesFile: File = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-}
-
-base {
-    archivesName.set("clock")
 }
 
 android {
@@ -28,6 +24,7 @@ android {
         targetSdk = project.libs.versions.app.build.targetSDK.get().toInt()
         versionName = project.libs.versions.app.version.versionName.get()
         versionCode = project.libs.versions.app.version.versionCode.get().toInt()
+        archivesName.set("clock-$versionCode")
         ksp {
             arg("room.schemaLocation", "$projectDir/schemas")
         }
@@ -68,7 +65,7 @@ android {
     flavorDimensions.add("variants")
     productFlavors {
         register("core")
-        register("fdroid")
+        register("foss")
         register("prepaid")
     }
 
@@ -77,9 +74,13 @@ android {
     }
 
     compileOptions {
-        val currentJavaVersionFromLibs = JavaVersion.valueOf(libs.versions.app.build.javaVersion.get().toString())
+        val currentJavaVersionFromLibs = JavaVersion.valueOf(libs.versions.app.build.javaVersion.get())
         sourceCompatibility = currentJavaVersionFromLibs
         targetCompatibility = currentJavaVersionFromLibs
+    }
+
+    dependenciesInfo {
+        includeInApk = false
     }
 
     tasks.withType<KotlinCompile> {
@@ -95,7 +96,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.simple.tools.commons)
+    implementation(libs.fossify.commons)
 
     implementation(libs.bundles.lifecycle)
     implementation(libs.androidx.constraintlayout)

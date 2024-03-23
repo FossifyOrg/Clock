@@ -1,1 +1,1 @@
-Combination of a beautiful clock widget, alarm clock, stopwatch, timer
+Handy, lightweight, open-source clock app with essential features.
