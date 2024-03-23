@@ -1,2 +1,0 @@
-* Ajout d'un raccourci pour démarrer le chronomètre
- * Ajout de quelques améliorations au niveau de la traduction, de la stabilité et de l'interface utilisateur

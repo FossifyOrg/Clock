@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Eenvoudige Klok</string>
     <string name="app_launcher_name">Klok</string>
     <string name="time_zone">Tijdzone</string>
     <string name="vibrate">Trillen</string>
@@ -46,6 +45,4 @@
     <string name="increase_volume_gradually">Volume geleidelijk verhogen</string>
     <string name="faq_1_title">Hoe kan ik rondetijden sorteren in de stopwatch?</string>
     <string name="faq_1_text">Klik op een van de kolommen om de rondetijden te sorteren op basis van die kolom. Klik nogmaals op dezelfde kolom om de sorteervolgorde om te keren.</string>
-    <string name="stopwatch">Stopwatch</string>
-    <string name="timer">Timer</string>
 </resources>

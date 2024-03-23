@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Yksinkertainen kello</string>
     <string name="app_launcher_name">Kello</string>
     <string name="time_zone">Aikavyöhyke</string>
     <string name="vibrate">Värinä</string>

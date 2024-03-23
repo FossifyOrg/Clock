@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="@dimen/activity_margin">
 
-    <com.simplemobiletools.commons.views.MyTextInputLayout
+    <org.fossify.commons.views.MyTextInputLayout
         android:id="@+id/edit_time_zone_title_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,9 +22,9 @@
             android:singleLine="true"
             android:textSize="@dimen/normal_text_size" />
 
-    </com.simplemobiletools.commons.views.MyTextInputLayout>
+    </org.fossify.commons.views.MyTextInputLayout>
 
-    <com.simplemobiletools.commons.views.MyTextInputLayout
+    <org.fossify.commons.views.MyTextInputLayout
         android:id="@+id/edit_time_zone_label_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,5 +40,5 @@
             android:textSize="@dimen/normal_text_size"
             tools:text="GMT-11:00 Midway" />
 
-    </com.simplemobiletools.commons.views.MyTextInputLayout>
+    </org.fossify.commons.views.MyTextInputLayout>
 </LinearLayout>

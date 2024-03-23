@@ -1,3 +1,4 @@
 <resources>
-    <string name="package_name">com.simplemobiletools.clock</string>
+    <string name="package_name" translatable="false">org.fossify.clock</string>
+    <string name="app_name" translatable="false">Fossify Clock</string>
 </resources>

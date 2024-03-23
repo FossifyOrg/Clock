@@ -1,13 +1,13 @@
 [versions]
 #jetbrains
-kotlin = "1.9.0"
+kotlin = "1.9.22"
 #KSP
-ksp = "1.9.0-1.0.12"
+ksp = "1.9.22-1.0.17"
 #AndroidX
 androidx-constraintlayout = "2.1.4"
-androidx-lifecycle = "2.6.1"
-androidx-preference = "1.2.0"
-androidx-work = "2.8.1"
+androidx-lifecycle = "2.7.0"
+androidx-preference = "1.2.1"
+androidx-work = "2.9.0"
 #AutoFitTextView
 autofittextview = "0.2.1"
 #Eventbus
@@ -17,13 +17,13 @@ kotlinx-coroutines = "1.7.3"
 #NumberPicker
 numberpicker = "2.4.13"
 #Room
-room = "2.6.0-beta01"
-#Simple tools
-simple-commons = "c573613da9"
+room = "2.6.1"
+#Fossify
+commons = "5381db38e6"
 #Stetho
 stetho = "1.6.0"
 #Gradle
-gradlePlugins-agp = "8.1.1"
+gradlePlugins-agp = "8.3.1"
 #build
 app-build-compileSDKVersion = "34"
 app-build-targetSDK = "34"
@@ -31,9 +31,9 @@ app-build-minimumSDK = "23"
 app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
-app-version-appId = "com.simplemobiletools.clock"
-app-version-versionCode = "42"
-app-version-versionName = "5.11.2"
+app-version-appId = "org.fossify.clock"
+app-version-versionCode = "1"
+app-version-versionName = "1.0.0"
 [libraries]
 #AndroidX
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
@@ -55,8 +55,8 @@ numberpicker = { module = "io.github.ShawnLin013:number-picker", version.ref = "
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-#Simple Mobile Tools
-simple-tools-commons = { module = "com.github.SimpleMobileTools:Simple-Commons", version.ref = "simple-commons" }
+#Fossify
+fossify-commons = { module = "org.fossify:commons", version.ref = "commons" }
 #Stetho
 stetho = { module = "com.facebook.stetho:stetho", version.ref = "stetho" }
 [bundles]

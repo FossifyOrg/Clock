@@ -1,2 +1,0 @@
-* Correction de quelques problèmes liés aux alarmes
- * Amélioration de l'interface utilisateur, de la traduction et de la stabilité

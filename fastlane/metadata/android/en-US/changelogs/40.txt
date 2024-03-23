@@ -1,2 +1,0 @@
- * Fixed some alarm related glitches
- * Added some UI, translation and stability improvements

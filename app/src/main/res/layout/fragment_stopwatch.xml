@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.simplemobiletools.commons.views.MyTextView
+    <org.fossify.commons.views.MyTextView
         android:id="@+id/stopwatch_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.simplemobiletools.commons.views.MyRecyclerView
+    <org.fossify.commons.views.MyRecyclerView
         android:id="@+id/stopwatch_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -64,7 +64,7 @@
         android:clipToPadding="false"
         android:overScrollMode="ifContentScrolls"
         android:scrollbars="vertical"
-        app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager"
+        app:layoutManager="org.fossify.commons.views.MyLinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/stopwatch_play_pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +98,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/stopwatch_play_pause" />
 
-    <com.simplemobiletools.commons.views.MyTextView
+    <org.fossify.commons.views.MyTextView
         android:id="@+id/stopwatch_lap"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/stopwatch_button_small_size"

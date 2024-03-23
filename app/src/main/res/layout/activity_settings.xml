@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.simplemobiletools.commons.views.MyTextView
+                <org.fossify.commons.views.MyTextView
                     android:id="@+id/settings_color_customization_label"
                     style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.simplemobiletools.commons.views.MyTextView
+                <org.fossify.commons.views.MyTextView
                     android:id="@+id/settings_widget_color_customization_label"
                     style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.simplemobiletools.commons.views.MyTextView
+                <org.fossify.commons.views.MyTextView
                     android:id="@+id/settings_purchase_thank_you_label"
                     style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.simplemobiletools.commons.views.MyAppCompatCheckbox
+                <org.fossify.commons.views.MyAppCompatCheckbox
                     android:id="@+id/settings_use_english"
                     style="@style/SettingsCheckboxStyle"
                     android:layout_width="match_parent"
@@ -116,14 +116,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.simplemobiletools.commons.views.MyTextView
+                <org.fossify.commons.views.MyTextView
                     android:id="@+id/settings_language_label"
                     style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/language" />
 
-                <com.simplemobiletools.commons.views.MyTextView
+                <org.fossify.commons.views.MyTextView
                     android:id="@+id/settings_language"
                     style="@style/SettingsTextValueStyle"
                     android:layout_width="wrap_content"
@@ -139,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.simplemobiletools.commons.views.MyAppCompatCheckbox
+                <org.fossify.commons.views.MyAppCompatCheckbox
                     android:id="@+id/settings_prevent_phone_from_sleeping"
                     style="@style/SettingsCheckboxStyle"
                     android:layout_width="match_parent"
@@ -154,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.simplemobiletools.commons.views.MyAppCompatCheckbox
+                <org.fossify.commons.views.MyAppCompatCheckbox
                     android:id="@+id/settings_sunday_first"
                     style="@style/SettingsCheckboxStyle"
                     android:layout_width="match_parent"
@@ -180,14 +180,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.simplemobiletools.commons.views.MyTextView
+                <org.fossify.commons.views.MyTextView
                     android:id="@+id/settings_alarm_max_reminder_label"
                     style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/max_reminder_duration" />
 
-                <com.simplemobiletools.commons.views.MyTextView
+                <org.fossify.commons.views.MyTextView
                     android:id="@+id/settings_alarm_max_reminder"
                     style="@style/SettingsTextValueStyle"
                     android:layout_width="match_parent"
@@ -203,7 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.simplemobiletools.commons.views.MyAppCompatCheckbox
+                <org.fossify.commons.views.MyAppCompatCheckbox
                     android:id="@+id/settings_increase_volume_gradually"
                     style="@style/SettingsCheckboxStyle"
                     android:layout_width="match_parent"
@@ -218,7 +218,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.simplemobiletools.commons.views.MyAppCompatCheckbox
+                <org.fossify.commons.views.MyAppCompatCheckbox
                     android:id="@+id/settings_use_same_snooze"
                     style="@style/SettingsCheckboxStyle"
                     android:layout_width="match_parent"
@@ -233,14 +233,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.simplemobiletools.commons.views.MyTextView
+                <org.fossify.commons.views.MyTextView
                     android:id="@+id/settings_snooze_time_label"
                     style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/snooze_time" />
 
-                <com.simplemobiletools.commons.views.MyTextView
+                <org.fossify.commons.views.MyTextView
                     android:id="@+id/settings_snooze_time"
                     style="@style/SettingsTextValueStyle"
                     android:layout_width="match_parent"
@@ -267,14 +267,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.simplemobiletools.commons.views.MyTextView
+                <org.fossify.commons.views.MyTextView
                     android:id="@+id/settings_timer_max_reminder_label"
                     style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/max_reminder_duration" />
 
-                <com.simplemobiletools.commons.views.MyTextView
+                <org.fossify.commons.views.MyTextView
                     android:id="@+id/settings_timer_max_reminder"
                     style="@style/SettingsTextValueStyle"
                     android:layout_width="match_parent"

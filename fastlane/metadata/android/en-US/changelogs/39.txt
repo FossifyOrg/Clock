@@ -1,4 +1,0 @@
- * Allow dismissing upcoming alarms early
- * Fixed wrong alarm being shown as next in some cases
- * Fixed duplicate alarm sound on some devices
- * Added some UI, translation and stability improvements

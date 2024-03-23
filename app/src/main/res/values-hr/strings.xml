@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Jednostavni sat</string>
     <string name="app_launcher_name">Sat</string>
     <string name="time_zone">Vremenska zona</string>
     <string name="vibrate">Vibriraj</string>
     <string name="no_days_selected">Nije odabran nijedan dan</string>
     <string name="clock">Sat</string>
-    <string name="timer">Timer</string>
     <string name="stopwatch">Štoperica</string>
     <string name="start_stopwatch">Pokreni štopericu</string>
     <string name="lap">Runda</string>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="timer">टाइमर</string>
-    <string name="app_name">Fossify Clock</string>
     <string name="app_launcher_name">घड़ी</string>
     <string name="time_zone">समय क्षेत्र</string>
     <string name="vibrate">कंपन</string>

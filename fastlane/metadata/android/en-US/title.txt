@@ -1,1 +1,1 @@
-Simple Clock
+Fossify Clock
