@@ -1,4 +1,0 @@
-* Possibilité d'annuler les alarmes à venir plus tôt
- * Correction de la mauvaise alarme affichée comme prochaine dans certains cas
- * Correction de la duplication du son de l'alarme sur certains appareils
- * Amélioration de l'interface utilisateur, de la traduction et de la stabilité

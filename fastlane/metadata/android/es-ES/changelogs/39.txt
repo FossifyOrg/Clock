@@ -1,4 +1,0 @@
-* Permitir descartar alarmas próximas antes de tiempo
- * Corregida la alarma incorrecta que aparecía como siguiente en algunos casos.
- * Corregido el sonido de alarma duplicado en algunos dispositivos
- * Se han añadido algunas mejoras en la interfaz de usuario, la traducción y la estabilidad

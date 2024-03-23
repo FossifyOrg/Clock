@@ -1,2 +1,0 @@
-* Use Material You theme by default on Android 12+
- * Added some UI, translation and stability improvements

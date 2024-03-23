@@ -1,2 +1,0 @@
-* Cambiados los colores por defecto del widget digital a texto blanco sobre fondo transparente.
- * Añadidas algunas mejoras de estabilidad y traducción
