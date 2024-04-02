@@ -1,7 +1,9 @@
 # Fossify Clock
 <img alt="Logo" src="graphics/icon.webp" width="120" />
-
-<a href="https://apt.izzysoft.de/fdroid/index/apk/org.fossify.clock"><img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height=80/></a>
+<div align="center">
+<a href="https://github.com/FossifyOrg/Clock/releases/latest"><img src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png" alt="Get it on GitHub" height=80/></a><a href="https://apt.izzysoft.de/fdroid/index/apk/org.fossify.clock"><img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height=80/></a>
+    
+<a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/FossifyOrg/Clock"><img src="https://raw.githubusercontent.com/ImranR98/Obtainium/main/assets/graphics/badge_obtainium.png" alt="Get it on Obtainium" height=54/></a></div>
 
 Introducing Fossify Clock – the ultimate timekeeping companion designed to enhance your daily routines and promote better sleep habits. With a multitude of functions tailored to your needs, Fossify Clock seamlessly integrates into your life, offering unparalleled convenience and versatility.
 
