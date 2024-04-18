@@ -12,14 +12,6 @@
         android:title="@string/settings"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/export_alarms"
-        android:title="@string/export_alarms"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/import_alarms"
-        android:title="@string/import_alarms"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/about"
         android:icon="@drawable/ic_info_vector"
         android:title="@string/about"

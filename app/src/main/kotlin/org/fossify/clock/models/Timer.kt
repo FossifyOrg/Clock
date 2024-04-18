@@ -3,6 +3,7 @@ package org.fossify.clock.models
 import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import org.json.JSONObject
 
 @Entity(tableName = "timers")
 @Keep
@@ -17,7 +18,22 @@ data class Timer(
     var createdAt: Long,
     var channelId: String? = null,
     var oneShot: Boolean = false,
-)
+) {
+    @Keep
+    fun toJSON(): String {
+        val jsonObject = JSONObject()
+        jsonObject.put("id", id)
+        jsonObject.put("state", state)
+        jsonObject.put("vibrate", vibrate)
+        jsonObject.put("soundUri", soundUri)
+        jsonObject.put("soundTitle", soundTitle)
+        jsonObject.put("label", label)
+        jsonObject.put("createdAt", createdAt)
+        jsonObject.put("channelId", channelId)
+        jsonObject.put("oneShot", oneShot)
+        return jsonObject.toString()
+    }
+}
 
 @Keep
 data class ObfuscatedTimer(

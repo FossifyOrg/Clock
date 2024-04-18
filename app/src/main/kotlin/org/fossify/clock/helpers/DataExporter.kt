@@ -1,12 +1,15 @@
 package org.fossify.clock.helpers
 
 import org.fossify.clock.models.Alarm
+import org.fossify.clock.models.Timer
 import org.fossify.commons.helpers.ExportResult
 import java.io.OutputStream
 
-object AlarmsExporter {
-    fun exportAlarms(
+object DataExporter {
+
+    fun exportData(
         alarms: ArrayList<Alarm>,
+        timers: List<Timer>,
         outputStream: OutputStream?,
         callback: (result: ExportResult) -> Unit,
     ) {
@@ -16,10 +19,13 @@ object AlarmsExporter {
         }
 
         val alarmsToExport = alarmsToJSON(alarms)
+        val timersToExport = timersToJSON(timers)
+
+        val dataToExport = "{\"alarms\": $alarmsToExport, \"timers\": $timersToExport"
 
         try {
             outputStream.bufferedWriter().use { out ->
-                out.write(alarmsToExport)
+                out.write(dataToExport)
             }
             callback.invoke(ExportResult.EXPORT_OK)
         } catch (e: Exception) {
@@ -27,6 +33,7 @@ object AlarmsExporter {
         }
     }
 
+    // Replace with a generic later
     private fun alarmsToJSON(alarms: List<Alarm>?): String {
         if (alarms.isNullOrEmpty()) {
             return "[]"
@@ -40,4 +47,16 @@ object AlarmsExporter {
         return "[${jsonAlarms.joinToString(",")}]"
     }
 
+    private fun timersToJSON(timers: List<Timer>?): String {
+        if (timers.isNullOrEmpty()) {
+            return "[]"
+        }
+
+        val jsonTimers = mutableListOf<String>()
+        for (timer in timers) {
+            jsonTimers.add(timer.toJSON())
+        }
+
+        return "[${jsonTimers.joinToString(",")}]"
+    }
 }

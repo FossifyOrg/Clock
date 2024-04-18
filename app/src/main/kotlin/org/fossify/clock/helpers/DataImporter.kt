@@ -8,7 +8,7 @@ import org.json.JSONObject
 
 import java.io.File
 
-class AlarmsImporter(
+class DataImporter(
     private val activity: Activity,
     private val dbHelper: DBHelper,
 ) {
@@ -16,7 +16,7 @@ class AlarmsImporter(
         IMPORT_FAIL, IMPORT_OK
     }
 
-    fun importAlarms(path: String): ImportResult {
+    fun importData(path: String): ImportResult {
         return try {
             val inputStream = File(path).inputStream()
             val jsonString = inputStream.bufferedReader().use { it.readText().trimEnd() }

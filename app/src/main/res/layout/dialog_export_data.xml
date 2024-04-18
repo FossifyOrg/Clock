@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/export_alarms_holder"
+        android:id="@+id/export_data_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -14,7 +14,7 @@
         android:paddingRight="@dimen/activity_margin">
 
         <org.fossify.commons.views.MyTextView
-            android:id="@+id/export_alarms_folder_label"
+            android:id="@+id/export_data_folder_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
@@ -22,7 +22,7 @@
             android:textSize="@dimen/smaller_text_size" />
 
         <org.fossify.commons.views.MyTextView
-            android:id="@+id/export_alarms_folder"
+            android:id="@+id/export_data_folder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/small_margin"
@@ -32,13 +32,13 @@
             android:paddingBottom="@dimen/activity_margin" />
 
         <org.fossify.commons.views.MyTextInputLayout
-            android:id="@+id/export_alarms_hint"
+            android:id="@+id/export_data_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/filename_without_json">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/export_alarms_filename"
+                android:id="@+id/export_data_filename"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_margin"

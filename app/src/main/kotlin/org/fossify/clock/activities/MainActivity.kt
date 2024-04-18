@@ -1,16 +1,13 @@
 package org.fossify.clock.activities
 
 import android.annotation.SuppressLint
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
-import android.net.Uri
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.Toast
 import me.grantland.widget.AutofitHelper
 import org.fossify.clock.BuildConfig
 import org.fossify.clock.R
@@ -22,21 +19,12 @@ import org.fossify.commons.databinding.BottomTablayoutItemBinding
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.*
 import org.fossify.commons.models.FAQItem
-import org.fossify.clock.dialogs.ExportAlarmsDialog
-import org.fossify.commons.dialogs.FilePickerDialog
-import java.io.FileOutputStream
-import java.io.OutputStream
 
 class MainActivity : SimpleActivity() {
     private var storedTextColor = 0
     private var storedBackgroundColor = 0
     private var storedPrimaryColor = 0
     private val binding: ActivityMainBinding by viewBinding(ActivityMainBinding::inflate)
-
-    private companion object {
-        private const val PICK_IMPORT_SOURCE_INTENT = 11
-        private const val PICK_EXPORT_FILE_INTENT = 21
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
@@ -142,8 +130,6 @@ class MainActivity : SimpleActivity() {
                 R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
                 R.id.about -> launchAbout()
-                R.id.export_alarms -> tryExportAlarms()
-                R.id.import_alarms -> tryImportAlarms()
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true
@@ -153,8 +139,6 @@ class MainActivity : SimpleActivity() {
     private fun refreshMenuItems() {
         binding.mainToolbar.menu.apply {
             findItem(R.id.sort).isVisible = binding.viewPager.currentItem == TAB_ALARM
-            findItem(R.id.export_alarms).isVisible = binding.viewPager.currentItem == TAB_ALARM
-            findItem(R.id.import_alarms).isVisible = binding.viewPager.currentItem == TAB_ALARM
             findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
         }
     }
@@ -187,13 +171,6 @@ class MainActivity : SimpleActivity() {
         when {
             requestCode == PICK_AUDIO_FILE_INTENT_ID && resultCode == RESULT_OK && resultData != null -> {
                 storeNewAlarmSound(resultData)
-            }
-            requestCode == PICK_EXPORT_FILE_INTENT && resultCode == RESULT_OK && resultData != null && resultData.data != null -> {
-                val outputStream = contentResolver.openOutputStream(resultData.data!!)
-                exportAlarmsTo(outputStream)
-            }
-            requestCode == PICK_IMPORT_SOURCE_INTENT && resultCode == RESULT_OK && resultData != null && resultData.data != null -> {
-                tryImportAlarmsFromFile(resultData.data!!)
             }
         }
     }
@@ -319,119 +296,5 @@ class MainActivity : SimpleActivity() {
         }
 
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
-    }
-
-    private fun exportAlarmsTo(outputStream: OutputStream?) {
-        ensureBackgroundThread {
-            val alarms = dbHelper.getAlarms()
-            if (alarms.isEmpty()) {
-                toast(org.fossify.commons.R.string.no_entries_for_exporting)
-            } else {
-                AlarmsExporter.exportAlarms(alarms, outputStream) {
-                    toast(
-                        when (it) {
-                            ExportResult.EXPORT_OK -> org.fossify.commons.R.string.exporting_successful
-                            else -> org.fossify.commons.R.string.exporting_failed
-                        }
-                    )
-                }
-            }
-        }
-    }
-
-    private fun tryExportAlarms() {
-        if (isQPlus()) {
-            ExportAlarmsDialog(this, config.lastAlarmsExportPath, true) { file ->
-                Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
-                    type = "application/json"
-                    putExtra(Intent.EXTRA_TITLE, file.name)
-                    addCategory(Intent.CATEGORY_OPENABLE)
-
-                    try {
-                        startActivityForResult(this, PICK_EXPORT_FILE_INTENT)
-                    } catch (e: ActivityNotFoundException) {
-                        toast(org.fossify.commons.R.string.system_service_disabled, Toast.LENGTH_LONG)
-                    } catch (e: Exception) {
-                        showErrorToast(e)
-                    }
-                }
-            }
-        } else {
-            handlePermission(PERMISSION_WRITE_STORAGE) { isAllowed ->
-                if (isAllowed) {
-                    ExportAlarmsDialog(this, config.lastAlarmsExportPath, false) { file ->
-                        getFileOutputStream(file.toFileDirItem(this), true) { out ->
-                            exportAlarmsTo(out)
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private fun tryImportAlarms() {
-        if (isQPlus()) {
-            Intent(Intent.ACTION_GET_CONTENT).apply {
-                addCategory(Intent.CATEGORY_OPENABLE)
-                type = "application/json"
-
-                try {
-                    startActivityForResult(this, PICK_IMPORT_SOURCE_INTENT)
-                } catch (e: ActivityNotFoundException) {
-                    toast(org.fossify.commons.R.string.system_service_disabled, Toast.LENGTH_LONG)
-                } catch (e: Exception) {
-                    showErrorToast(e)
-                }
-            }
-        } else {
-            handlePermission(PERMISSION_READ_STORAGE) { isAllowed ->
-                if (isAllowed) {
-                    pickFileToImportAlarms()
-                }
-            }
-        }
-    }
-
-    private fun pickFileToImportAlarms() {
-        FilePickerDialog(this) {
-            importAlarms(it)
-        }
-    }
-
-    private fun tryImportAlarmsFromFile(uri: Uri) {
-        when (uri.scheme) {
-            "file" -> importAlarms(uri.path!!)
-            "content" -> {
-                val tempFile = getTempFile("alarms", "alarms.json")
-                if (tempFile == null) {
-                    toast(org.fossify.commons.R.string.unknown_error_occurred)
-                    return
-                }
-
-                try {
-                    val inputStream = contentResolver.openInputStream(uri)
-                    val out = FileOutputStream(tempFile)
-                    inputStream!!.copyTo(out)
-                    importAlarms(tempFile.absolutePath)
-                } catch (e: Exception) {
-                    showErrorToast(e)
-                }
-            }
-
-            else -> toast(org.fossify.commons.R.string.invalid_file_format)
-        }
-    }
-
-    private fun importAlarms(path: String) {
-        ensureBackgroundThread {
-            val result = AlarmsImporter(this, DBHelper.dbInstance!!).importAlarms(path)
-            toast(
-                when (result) {
-                    AlarmsImporter.ImportResult.IMPORT_OK ->
-                    org.fossify.commons.R.string.importing_successful
-                    AlarmsImporter.ImportResult.IMPORT_FAIL -> org.fossify.commons.R.string.no_items_found
-                }
-            )
-        }
     }
 }

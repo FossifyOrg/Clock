@@ -1,16 +1,22 @@
 package org.fossify.clock.activities
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import org.fossify.clock.databinding.ActivitySettingsBinding
+import org.fossify.clock.dialogs.ExportDataDialog
 import org.fossify.clock.extensions.config
-import org.fossify.clock.helpers.DEFAULT_MAX_ALARM_REMINDER_SECS
-import org.fossify.clock.helpers.DEFAULT_MAX_TIMER_REMINDER_SECS
+import org.fossify.clock.extensions.dbHelper
+import org.fossify.clock.extensions.timerDb
+import org.fossify.clock.extensions.timerHelper
+import org.fossify.clock.helpers.*
+import org.fossify.commons.R
+import org.fossify.clock.R as CR
 import org.fossify.commons.extensions.*
-import org.fossify.commons.helpers.IS_CUSTOMIZING_COLORS
-import org.fossify.commons.helpers.MINUTE_SECONDS
-import org.fossify.commons.helpers.NavigationIcon
-import org.fossify.commons.helpers.isTiramisuPlus
+import org.fossify.commons.helpers.*
+import java.io.OutputStream
 import java.util.Locale
 import kotlin.system.exitProcess
 
@@ -42,6 +48,7 @@ class SettingsActivity : SimpleActivity() {
         setupTimerMaxReminder()
         setupIncreaseVolumeGradually()
         setupCustomizeWidgetColors()
+        setupExportData()
         updateTextColors(binding.settingsHolder)
 
         arrayOf(
@@ -170,4 +177,132 @@ class SettingsActivity : SimpleActivity() {
             }
         }
     }
+
+    private fun setupExportData() {
+        binding.settingsExportDataHolder.setOnClickListener {
+            tryExportData()
+        }
+    }
+
+    private val exportActivityResultLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
+            try {
+                val outputStream = uri?.let { contentResolver.openOutputStream(it) }
+                if (outputStream != null) {
+                    exportDataTo(outputStream)
+                } else {
+                    toast(CR.string.exporting_aborted_by_user)
+                }
+            } catch (e: Exception) {
+                showErrorToast(e)
+            }
+    }
+
+    private fun exportDataTo(outputStream: OutputStream?) {
+        ensureBackgroundThread {
+            val alarms = dbHelper.getAlarms()
+            val timers = timerDb.getTimers()
+            if (alarms.isEmpty()) {
+                toast(R.string.no_entries_for_exporting)
+            } else {
+                DataExporter.exportData(alarms, timers, outputStream) {
+                    toast(
+                        when (it) {
+                            ExportResult.EXPORT_OK -> R.string.exporting_successful
+                            else -> R.string.exporting_failed
+                        }
+                    )
+                }
+            }
+        }
+    }
+
+    private fun tryExportData() {
+        if (isQPlus()) {
+            ExportDataDialog(this, config.lastDataExportPath, true) { file ->
+                Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
+                    putExtra(Intent.EXTRA_TITLE, file.name)
+                    addCategory(Intent.CATEGORY_OPENABLE)
+
+
+                    try {
+                        exportActivityResultLauncher.launch(file.name)
+                    } catch (e: ActivityNotFoundException) {
+                        toast(R.string.system_service_disabled, Toast.LENGTH_LONG)
+                    } catch (e: Exception) {
+                        showErrorToast(e)
+                    }
+
+
+                }
+            }
+        } else {
+            handlePermission(PERMISSION_WRITE_STORAGE) { isAllowed ->
+                if (isAllowed) {
+                    ExportDataDialog(this, config.lastDataExportPath, false) { file ->
+                        getFileOutputStream(file.toFileDirItem(this), true) { out ->
+                            exportDataTo(out)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+//    private fun tryImportData() {
+//        if (isQPlus()) {
+//            Intent(Intent.ACTION_GET_CONTENT).apply {
+//                addCategory(Intent.CATEGORY_OPENABLE)
+//                type = "application/json"
+//            }
+//        } else {
+//            handlePermission(PERMISSION_READ_STORAGE) { isAllowed ->
+//                if (isAllowed) {
+//                    pickFileToImportData()
+//                }
+//            }
+//        }
+//    }
+//
+//    private fun pickFileToImportData() {
+//        FilePickerDialog(this) {
+//            importData(it)
+//        }
+//    }
+//
+//    private fun tryImportDataFromFile(uri: Uri) {
+//        when (uri.scheme) {
+//            "file" -> importData(uri.path!!)
+//            "content" -> {
+//                val tempFile = getTempFile("fossify_clock_data", "fossify_clock_data.json")
+//                if (tempFile == null) {
+//                    toast(R.string.unknown_error_occurred)
+//                    return
+//                }
+//
+//                try {
+//                    val inputStream = contentResolver.openInputStream(uri)
+//                    val out = FileOutputStream(tempFile)
+//                    inputStream!!.copyTo(out)
+//                    importData(tempFile.absolutePath)
+//                } catch (e: Exception) {
+//                    showErrorToast(e)
+//                }
+//            }
+//
+//            else -> toast(R.string.invalid_file_format)
+//        }
+//    }
+//
+//    private fun importData(path: String) {
+//        ensureBackgroundThread {
+//            val result = AlarmsImporter(this, DBHelper.dbInstance!!).importAlarms(path)
+//            toast(
+//                when (result) {
+//                    AlarmsImporter.ImportResult.IMPORT_OK ->
+//                        R.string.importing_successful
+//                    AlarmsImporter.ImportResult.IMPORT_FAIL -> R.string.no_items_found
+//                }
+//            )
+//        }
+//    }
 }

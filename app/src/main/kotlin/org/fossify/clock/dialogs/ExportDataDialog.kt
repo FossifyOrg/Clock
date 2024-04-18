@@ -6,12 +6,12 @@ import org.fossify.commons.dialogs.FilePickerDialog
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.clock.R
-import org.fossify.clock.databinding.DialogExportAlarmsBinding
+import org.fossify.clock.databinding.DialogExportDataBinding
 import org.fossify.clock.extensions.config
-import org.fossify.clock.helpers.ALARMS_EXPORT_EXTENSION
+import org.fossify.clock.helpers.DATA_EXPORT_EXTENSION
 import java.io.File
 
-class ExportAlarmsDialog(
+class ExportDataDialog(
     val activity: BaseSimpleActivity,
     val path: String,
     val hidePath: Boolean,
@@ -21,17 +21,17 @@ class ExportAlarmsDialog(
     private val config = activity.config
 
     init {
-        val view = DialogExportAlarmsBinding.inflate(activity.layoutInflater, null, false).apply {
-            exportAlarmsFolder.text = activity.humanizePath(realPath)
-            exportAlarmsFilename.setText("${activity.getString(R.string.export_alarms)}_${activity.getCurrentFormattedDateTime()}")
+        val view = DialogExportDataBinding.inflate(activity.layoutInflater, null, false).apply {
+            exportDataFolder.text = activity.humanizePath(realPath)
+            exportDataFilename.setText("${activity.getString(R.string.settings_export_data)}_${activity.getCurrentFormattedDateTime()}")
 
             if (hidePath) {
-                exportAlarmsFolderLabel.beGone()
-                exportAlarmsFolder.beGone()
+                exportDataFolderLabel.beGone()
+                exportDataFolder.beGone()
             } else {
-                exportAlarmsFolder.setOnClickListener {
+                exportDataFolder.setOnClickListener {
                     FilePickerDialog(activity, realPath, false, showFAB = true) {
-                        exportAlarmsFolder.text = activity.humanizePath(it)
+                        exportDataFolder.text = activity.humanizePath(it)
                         realPath = it
                     }
                 }
@@ -42,21 +42,21 @@ class ExportAlarmsDialog(
             .setPositiveButton(org.fossify.commons.R.string.ok, null)
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(view.root, this, R.string.export_alarms) { alertDialog ->
-                    alertDialog.showKeyboard(view.exportAlarmsFilename)
+                activity.setupDialogStuff(view.root, this, R.string.settings_export_data) { alertDialog ->
+                    alertDialog.showKeyboard(view.exportDataFilename)
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                        val filename = view.exportAlarmsFilename.value
+                        val filename = view.exportDataFilename.value
                         when {
                             filename.isEmpty() -> activity.toast(org.fossify.commons.R.string.empty_name)
                             filename.isAValidFilename() -> {
-                                val file = File(realPath, "$filename$ALARMS_EXPORT_EXTENSION")
+                                val file = File(realPath, "$filename$DATA_EXPORT_EXTENSION")
                                 if (!hidePath && file.exists()) {
                                     activity.toast(org.fossify.commons.R.string.name_taken)
                                     return@setOnClickListener
                                 }
 
                                 ensureBackgroundThread {
-                                    config.lastAlarmsExportPath = file.absolutePath.getParentPath()
+                                    config.lastDataExportPath = file.absolutePath.getParentPath()
                                     callback(file)
                                     alertDialog.dismiss()
                                 }
