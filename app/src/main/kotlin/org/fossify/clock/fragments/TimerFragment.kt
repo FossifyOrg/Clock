@@ -10,17 +10,20 @@ import androidx.fragment.app.Fragment
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.adapters.TimerAdapter
 import org.fossify.clock.databinding.FragmentTimerBinding
+import org.fossify.clock.dialogs.ChangeTimerSortDialog
 import org.fossify.clock.dialogs.EditTimerDialog
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.createNewTimer
 import org.fossify.clock.extensions.timerHelper
 import org.fossify.clock.helpers.DisabledItemChangeAnimator
+import org.fossify.clock.helpers.SORT_BY_TIMER_DURATION
 import org.fossify.clock.models.Timer
 import org.fossify.clock.models.TimerEvent
 import org.fossify.commons.extensions.getProperBackgroundColor
 import org.fossify.commons.extensions.getProperTextColor
 import org.fossify.commons.extensions.hideKeyboard
 import org.fossify.commons.extensions.updateTextColors
+import org.fossify.commons.helpers.SORT_BY_DATE_CREATED
 import org.fossify.commons.models.AlarmSound
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -85,16 +88,27 @@ class TimerFragment : Fragment() {
         refreshTimers()
     }
 
+    fun showSortingDialog() {
+        ChangeTimerSortDialog(activity as SimpleActivity) {
+            refreshTimers()
+        }
+    }
+
     private fun refreshTimers(scrollToLatest: Boolean = false) {
         activity?.timerHelper?.getTimers { timers ->
+            var sortedTimers: List<Timer> = timers
+            when (requireContext().config.timerSort) {
+                SORT_BY_TIMER_DURATION -> sortedTimers = timers.sortedBy { it.seconds }
+                SORT_BY_DATE_CREATED -> sortedTimers = timers.sortedBy { it.id }
+            }
             activity?.runOnUiThread {
-                timerAdapter.submitList(timers) {
+                timerAdapter.submitList(sortedTimers) {
                     view?.post {
                         if (timerPositionToScrollTo != INVALID_POSITION && timerAdapter.itemCount > timerPositionToScrollTo) {
                             binding.timersList.scrollToPosition(timerPositionToScrollTo)
                             timerPositionToScrollTo = INVALID_POSITION
                         } else if (scrollToLatest) {
-                            binding.timersList.scrollToPosition(timers.lastIndex)
+                            binding.timersList.scrollToPosition(sortedTimers.lastIndex)
                         }
                     }
                 }

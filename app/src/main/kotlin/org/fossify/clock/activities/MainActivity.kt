@@ -129,7 +129,11 @@ class MainActivity : SimpleActivity() {
     private fun setupOptionsMenu() {
         binding.mainToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.sort -> getViewPagerAdapter()?.showAlarmSortDialog()
+                R.id.sort -> when (binding.viewPager.currentItem) {
+                    TAB_ALARM -> getViewPagerAdapter()?.showAlarmSortDialog()
+                    TAB_TIMER -> getViewPagerAdapter()?.showTimerSortDialog()
+                }
+
                 R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
                 R.id.about -> launchAbout()
@@ -141,7 +145,7 @@ class MainActivity : SimpleActivity() {
 
     private fun refreshMenuItems() {
         binding.mainToolbar.menu.apply {
-            findItem(R.id.sort).isVisible = binding.viewPager.currentItem == TAB_ALARM
+            findItem(R.id.sort).isVisible = binding.viewPager.currentItem == TAB_ALARM || binding.viewPager.currentItem == TAB_TIMER
             findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
         }
     }
