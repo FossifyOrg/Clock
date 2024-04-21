@@ -50,16 +50,10 @@
     <string name="timer_tab">Timer tab</string>
     <string name="show_seconds">Show seconds</string>
     <string name="increase_volume_gradually">Increase volume gradually</string>
-    <string name="settings_export_and_import">Export and import</string>
-    <string name="settings_import_data">Import data</string>
-    <string name="settings_import_data_subtitle">Import app data (Alarms and Timers)</string>
-    <string name="settings_export_data">Export data</string>
-    <string name="settings_export_data_subtitle">Export app data (Alarms and Timers)</string>
-    <string name="exporting_aborted">Exporting aborted</string>
-    <string name="importing_aborted">Importing aborted</string>
+    <string name="settings_import_data">Import alarms and timers</string>
+    <string name="settings_export_data">Export alarms and timers</string>
     <string name="alarms_import_failed">Importing alarms failed</string>
     <string name="timers_import_failed">Importing timers failed</string>
-    <string name="import_incomplete">Partial import due to wrong data</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>

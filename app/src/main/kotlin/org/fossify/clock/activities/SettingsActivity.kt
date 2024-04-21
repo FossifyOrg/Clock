@@ -198,8 +198,6 @@ class SettingsActivity : SimpleActivity() {
             val outputStream = uri?.let { contentResolver.openOutputStream(it) }
             if (outputStream != null) {
                 exportDataTo(outputStream)
-            } else {
-                toast(CR.string.exporting_aborted)
             }
         } catch (e: Exception) {
             showErrorToast(e)
@@ -207,10 +205,12 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private val importActivityResultLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        if (uri != null) {
-            tryImportDataFromFile(uri)
-        } else {
-            toast(CR.string.importing_aborted)
+        try {
+            if (uri != null) {
+                tryImportDataFromFile(uri)
+            }
+        } catch (e: Exception) {
+            showErrorToast(e)
         }
     }
 
@@ -326,7 +326,7 @@ class SettingsActivity : SimpleActivity() {
                     DataImporter.ImportResult.IMPORT_OK ->
                         R.string.importing_successful
 
-                    DataImporter.ImportResult.IMPORT_INCOMPLETE -> CR.string.import_incomplete
+                    DataImporter.ImportResult.IMPORT_INCOMPLETE -> R.string.importing_some_entries_failed
                     DataImporter.ImportResult.ALARMS_IMPORT_FAIL -> CR.string.alarms_import_failed
                     DataImporter.ImportResult.TIMERS_IMPORT_FAIL -> CR.string.timers_import_failed
                     DataImporter.ImportResult.IMPORT_FAIL -> R.string.no_items_found
