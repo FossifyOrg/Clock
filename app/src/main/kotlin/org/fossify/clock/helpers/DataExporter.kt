@@ -1,15 +1,16 @@
 package org.fossify.clock.helpers
 
-import org.fossify.clock.models.Alarm
-import org.fossify.clock.models.Timer
+import org.fossify.clock.interfaces.JSONConvertible
 import org.fossify.commons.helpers.ExportResult
+import org.json.JSONArray
+import org.json.JSONObject
 import java.io.OutputStream
 
 object DataExporter {
 
     fun exportData(
-        alarms: ArrayList<Alarm>,
-        timers: List<Timer>,
+        alarms: List<JSONConvertible>,
+        timers: List<JSONConvertible>,
         outputStream: OutputStream?,
         callback: (result: ExportResult) -> Unit,
     ) {
@@ -18,14 +19,17 @@ object DataExporter {
             return
         }
 
-        val alarmsToExport = alarmsToJSON(alarms)
-        val timersToExport = timersToJSON(timers)
+        val alarmsJsonArray = toJsonArray(alarms)
+        val timersJsonArray = toJsonArray(timers)
 
-        val dataToExport = "{\"alarms\": $alarmsToExport, \"timers\": $timersToExport"
+        val jsonObject = JSONObject().apply {
+            put("alarms", alarmsJsonArray)
+            put("timers", timersJsonArray)
+        }
 
         try {
             outputStream.bufferedWriter().use { out ->
-                out.write(dataToExport)
+                out.write(jsonObject.toString())
             }
             callback.invoke(ExportResult.EXPORT_OK)
         } catch (e: Exception) {
@@ -33,30 +37,15 @@ object DataExporter {
         }
     }
 
-    // Replace with a generic later
-    private fun alarmsToJSON(alarms: List<Alarm>?): String {
-        if (alarms.isNullOrEmpty()) {
-            return "[]"
+    private fun toJsonArray(list: List<JSONConvertible>): JSONArray {
+        return if (list.isEmpty()) {
+            JSONArray()
+        } else {
+            JSONArray().apply {
+                list.forEach { item ->
+                    put(JSONObject(item.toJSON()))
+                }
+            }
         }
-
-        val jsonAlarms = mutableListOf<String>()
-        for (alarm in alarms) {
-            jsonAlarms.add(alarm.toJSON())
-        }
-
-        return "[${jsonAlarms.joinToString(",")}]"
-    }
-
-    private fun timersToJSON(timers: List<Timer>?): String {
-        if (timers.isNullOrEmpty()) {
-            return "[]"
-        }
-
-        val jsonTimers = mutableListOf<String>()
-        for (timer in timers) {
-            jsonTimers.add(timer.toJSON())
-        }
-
-        return "[${jsonTimers.joinToString(",")}]"
     }
 }

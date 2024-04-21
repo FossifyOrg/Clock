@@ -1,6 +1,7 @@
 package org.fossify.clock.models
 
 import androidx.annotation.Keep
+import org.fossify.clock.interfaces.JSONConvertible
 import org.json.JSONObject
 
 @Keep
@@ -14,20 +15,52 @@ data class Alarm(
     var soundUri: String,
     var label: String,
     var oneShot: Boolean = false,
-) {
-    @Keep
-    fun toJSON(): String {
+) : JSONConvertible {
+    override fun toJSON(): String {
         val jsonObject = JSONObject()
         jsonObject.put("id", id)
         jsonObject.put("timeInMinutes", timeInMinutes)
         jsonObject.put("days", days)
-        jsonObject.put("isEnabled", isEnabled)
         jsonObject.put("vibrate", vibrate)
         jsonObject.put("soundTitle", soundTitle)
         jsonObject.put("soundUri", soundUri)
         jsonObject.put("label", label)
-        jsonObject.put("oneShot", oneShot)
         return jsonObject.toString()
+    }
+
+    companion object {
+        fun parseFromJSON(jsonObject: JSONObject): Alarm? {
+
+            if (!jsonObject.has("id") ||
+                !jsonObject.has("timeInMinutes") ||
+                !jsonObject.has("days") ||
+                !jsonObject.has("vibrate") ||
+                !jsonObject.has("soundTitle") ||
+                !jsonObject.has("soundUri") ||
+                !jsonObject.has("label")
+            ) {
+                return null
+            }
+
+            val id = jsonObject.getInt("id")
+            val timeInMinutes = jsonObject.getInt("timeInMinutes")
+            val days = jsonObject.getInt("days")
+            val vibrate = jsonObject.getBoolean("vibrate")
+            val soundTitle = jsonObject.getString("soundTitle")
+            val soundUri = jsonObject.getString("soundUri")
+            val label = jsonObject.getString("label")
+
+            return Alarm(
+                id,
+                timeInMinutes,
+                days,
+                false,
+                vibrate,
+                soundTitle,
+                soundUri,
+                label
+            )
+        }
     }
 }
 

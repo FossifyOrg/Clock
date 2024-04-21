@@ -2,6 +2,7 @@ package org.fossify.clock.activities
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -10,15 +11,16 @@ import org.fossify.clock.dialogs.ExportDataDialog
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.timerDb
-import org.fossify.clock.extensions.timerHelper
 import org.fossify.clock.helpers.*
 import org.fossify.commons.R
-import org.fossify.clock.R as CR
+import org.fossify.commons.dialogs.FilePickerDialog
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.*
+import java.io.FileOutputStream
 import java.io.OutputStream
 import java.util.Locale
 import kotlin.system.exitProcess
+import org.fossify.clock.R as CR
 
 class SettingsActivity : SimpleActivity() {
     private val binding: ActivitySettingsBinding by viewBinding(ActivitySettingsBinding::inflate)
@@ -49,6 +51,7 @@ class SettingsActivity : SimpleActivity() {
         setupIncreaseVolumeGradually()
         setupCustomizeWidgetColors()
         setupExportData()
+        setupImportData()
         updateTextColors(binding.settingsHolder)
 
         arrayOf(
@@ -184,17 +187,31 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupImportData() {
+        binding.settingsImportDataHolder.setOnClickListener {
+            tryImportData()
+        }
+    }
+
     private val exportActivityResultLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
-            try {
-                val outputStream = uri?.let { contentResolver.openOutputStream(it) }
-                if (outputStream != null) {
-                    exportDataTo(outputStream)
-                } else {
-                    toast(CR.string.exporting_aborted_by_user)
-                }
-            } catch (e: Exception) {
-                showErrorToast(e)
+        try {
+            val outputStream = uri?.let { contentResolver.openOutputStream(it) }
+            if (outputStream != null) {
+                exportDataTo(outputStream)
+            } else {
+                toast(CR.string.exporting_aborted)
             }
+        } catch (e: Exception) {
+            showErrorToast(e)
+        }
+    }
+
+    private val importActivityResultLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        if (uri != null) {
+            tryImportDataFromFile(uri)
+        } else {
+            toast(CR.string.importing_aborted)
+        }
     }
 
     private fun exportDataTo(outputStream: OutputStream?) {
@@ -248,61 +265,73 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-//    private fun tryImportData() {
-//        if (isQPlus()) {
-//            Intent(Intent.ACTION_GET_CONTENT).apply {
-//                addCategory(Intent.CATEGORY_OPENABLE)
-//                type = "application/json"
-//            }
-//        } else {
-//            handlePermission(PERMISSION_READ_STORAGE) { isAllowed ->
-//                if (isAllowed) {
-//                    pickFileToImportData()
-//                }
-//            }
-//        }
-//    }
-//
-//    private fun pickFileToImportData() {
-//        FilePickerDialog(this) {
-//            importData(it)
-//        }
-//    }
-//
-//    private fun tryImportDataFromFile(uri: Uri) {
-//        when (uri.scheme) {
-//            "file" -> importData(uri.path!!)
-//            "content" -> {
-//                val tempFile = getTempFile("fossify_clock_data", "fossify_clock_data.json")
-//                if (tempFile == null) {
-//                    toast(R.string.unknown_error_occurred)
-//                    return
-//                }
-//
-//                try {
-//                    val inputStream = contentResolver.openInputStream(uri)
-//                    val out = FileOutputStream(tempFile)
-//                    inputStream!!.copyTo(out)
-//                    importData(tempFile.absolutePath)
-//                } catch (e: Exception) {
-//                    showErrorToast(e)
-//                }
-//            }
-//
-//            else -> toast(R.string.invalid_file_format)
-//        }
-//    }
-//
-//    private fun importData(path: String) {
-//        ensureBackgroundThread {
-//            val result = AlarmsImporter(this, DBHelper.dbInstance!!).importAlarms(path)
-//            toast(
-//                when (result) {
-//                    AlarmsImporter.ImportResult.IMPORT_OK ->
-//                        R.string.importing_successful
-//                    AlarmsImporter.ImportResult.IMPORT_FAIL -> R.string.no_items_found
-//                }
-//            )
-//        }
-//    }
+    private fun tryImportData() {
+        if (isQPlus()) {
+            Intent(Intent.ACTION_GET_CONTENT).apply {
+                addCategory(Intent.CATEGORY_OPENABLE)
+                type = "application/json"
+
+                try {
+                    importActivityResultLauncher.launch(type)
+                } catch (e: ActivityNotFoundException) {
+                    toast(R.string.system_service_disabled, Toast.LENGTH_LONG)
+                } catch (e: Exception) {
+                    showErrorToast(e)
+                }
+            }
+        } else {
+            handlePermission(PERMISSION_READ_STORAGE) { isAllowed ->
+                if (isAllowed) {
+                    pickFileToImportData()
+                }
+            }
+        }
+    }
+
+    private fun pickFileToImportData() {
+        FilePickerDialog(this) {
+            importData(it)
+        }
+    }
+
+    private fun tryImportDataFromFile(uri: Uri) {
+        when (uri.scheme) {
+            "file" -> importData(uri.path!!)
+            "content" -> {
+                val tempFile = getTempFile("fossify_clock_data", "fossify_clock_data.json")
+                if (tempFile == null) {
+                    toast(R.string.unknown_error_occurred)
+                    return
+                }
+
+                try {
+                    val inputStream = contentResolver.openInputStream(uri)
+                    val out = FileOutputStream(tempFile)
+                    inputStream!!.copyTo(out)
+                    importData(tempFile.absolutePath)
+                } catch (e: Exception) {
+                    showErrorToast(e)
+                }
+            }
+
+            else -> toast(R.string.invalid_file_format)
+        }
+    }
+
+    private fun importData(path: String) {
+        ensureBackgroundThread {
+            val result = DataImporter(this, DBHelper.dbInstance!!, TimerHelper(this)).importData(path)
+            toast(
+                when (result) {
+                    DataImporter.ImportResult.IMPORT_OK ->
+                        R.string.importing_successful
+
+                    DataImporter.ImportResult.IMPORT_INCOMPLETE -> CR.string.import_incomplete
+                    DataImporter.ImportResult.ALARMS_IMPORT_FAIL -> CR.string.alarms_import_failed
+                    DataImporter.ImportResult.TIMERS_IMPORT_FAIL -> CR.string.timers_import_failed
+                    DataImporter.ImportResult.IMPORT_FAIL -> R.string.no_items_found
+                }
+            )
+        }
+    }
 }

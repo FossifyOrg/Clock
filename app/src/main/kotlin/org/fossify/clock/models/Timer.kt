@@ -3,6 +3,7 @@ package org.fossify.clock.models
 import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import org.fossify.clock.interfaces.JSONConvertible
 import org.json.JSONObject
 
 @Entity(tableName = "timers")
@@ -18,20 +19,53 @@ data class Timer(
     var createdAt: Long,
     var channelId: String? = null,
     var oneShot: Boolean = false,
-) {
-    @Keep
-    fun toJSON(): String {
+) : JSONConvertible {
+    override fun toJSON(): String {
         val jsonObject = JSONObject()
         jsonObject.put("id", id)
-        jsonObject.put("state", state)
+        jsonObject.put("seconds", seconds)
         jsonObject.put("vibrate", vibrate)
         jsonObject.put("soundUri", soundUri)
         jsonObject.put("soundTitle", soundTitle)
         jsonObject.put("label", label)
         jsonObject.put("createdAt", createdAt)
-        jsonObject.put("channelId", channelId)
         jsonObject.put("oneShot", oneShot)
         return jsonObject.toString()
+    }
+
+    companion object {
+        fun parseFromJSON(jsonObject: JSONObject): Timer? {
+
+            if (!jsonObject.has("id") ||
+                !jsonObject.has("seconds") ||
+                !jsonObject.has("vibrate") ||
+                !jsonObject.has("soundUri") ||
+                !jsonObject.has("soundTitle") ||
+                !jsonObject.has("label") ||
+                !jsonObject.has("createdAt")
+            ) {
+                return null
+            }
+
+            val id = jsonObject.getInt("id")
+            val second = jsonObject.getInt("seconds")
+            val vibrate = jsonObject.getBoolean("vibrate")
+            val soundUri = jsonObject.getString("soundUri")
+            val soundTitle = jsonObject.getString("soundTitle")
+            val label = jsonObject.getString("label")
+            val createdAt = jsonObject.getLong("createdAt")
+
+            return Timer(
+                id,
+                second,
+                TimerState.Idle,
+                vibrate,
+                soundUri,
+                soundTitle,
+                label,
+                createdAt
+            )
+        }
     }
 }
 
