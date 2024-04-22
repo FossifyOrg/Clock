@@ -54,13 +54,16 @@ class DataImporter(
 
 
     private fun insertAlarmsFromJSON(jsonArray: JSONArray): Int {
+        val existingAlarms = dbHelper.getAlarms()
         var insertedCount = 0
         for (i in 0 until jsonArray.length()) {
             val jsonObject = jsonArray.getJSONObject(i)
             if (Alarm.parseFromJSON(jsonObject) != null) {
                 val alarm = Alarm.parseFromJSON(jsonObject) as Alarm
-                if (dbHelper.insertAlarm(alarm) != -1) {
-                    insertedCount++
+                if (!isAlarmAlreadyInserted(alarm, existingAlarms)) {
+                    if (dbHelper.insertAlarm(alarm) != -1) {
+                        insertedCount++
+                    }
                 }
             }
         }
@@ -73,14 +76,50 @@ class DataImporter(
             val jsonObject = jsonArray.getJSONObject(i)
             if (Timer.parseFromJSON(jsonObject) != null) {
                 val timer = Timer.parseFromJSON(jsonObject) as Timer
-                timerHelper.insertOrUpdateTimer(timer) { id ->
-                    if (id != -1L) {
-                        insertedCount++
+                timerHelper.getTimers { existingTimers ->
+                    timer.id = existingTimers.last().id?.plus(1)
+                    if (!isTimerAlreadyInserted(timer, existingTimers)) {
+                        timerHelper.insertOrUpdateTimer(timer) { id ->
+                            if (id != -1L) {
+                                insertedCount++
+                            }
+                        }
                     }
                 }
             }
         }
         return insertedCount
+    }
+
+    private fun isAlarmAlreadyInserted(alarm: Alarm, existingAlarms: List<Alarm>): Boolean {
+        for (existingAlarm in existingAlarms) {
+            if (alarm.timeInMinutes == existingAlarm.timeInMinutes &&
+                alarm.days == existingAlarm.days &&
+                alarm.vibrate == existingAlarm.vibrate &&
+                alarm.soundTitle == existingAlarm.soundTitle &&
+                alarm.soundUri == existingAlarm.soundUri &&
+                alarm.label == existingAlarm.label &&
+                alarm.oneShot == existingAlarm.oneShot
+            ) {
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun isTimerAlreadyInserted(timer: Timer, existingTimers: List<Timer>): Boolean {
+        for (existingTimer in existingTimers) {
+            if (timer.seconds == existingTimer.seconds &&
+                timer.vibrate == existingTimer.vibrate &&
+                timer.soundUri == existingTimer.soundUri &&
+                timer.soundTitle == existingTimer.soundTitle &&
+                timer.label == existingTimer.label &&
+                timer.createdAt == existingTimer.createdAt
+            ) {
+                return true
+            }
+        }
+        return false
     }
 }
 
