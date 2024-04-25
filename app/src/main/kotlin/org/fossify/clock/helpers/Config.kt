@@ -57,6 +57,10 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(ALARMS_SORT_BY, SORT_BY_CREATION_ORDER)
         set(alarmSort) = prefs.edit().putInt(ALARMS_SORT_BY, alarmSort).apply()
 
+    var alarmsCustomSorting: String
+        get() = prefs.getString(ALARMS_CUSTOM_SORTING, "")!!
+        set(alarmsCustomSorting) = prefs.edit().putString(ALARMS_CUSTOM_SORTING, alarmsCustomSorting).apply()
+
     var timerSort: Int
         get() = prefs.getInt(TIMERS_SORT_BY, SORT_BY_CREATION_ORDER)
         set(timerSort) = prefs.edit().putInt(TIMERS_SORT_BY, timerSort).apply()
