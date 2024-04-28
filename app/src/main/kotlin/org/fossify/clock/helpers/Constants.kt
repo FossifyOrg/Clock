@@ -26,6 +26,7 @@ const val INCREASE_VOLUME_GRADUALLY = "increase_volume_gradually"
 const val ALARMS_SORT_BY = "alarms_sort_by"
 const val ALARMS_CUSTOM_SORTING = "alarms_custom_sorting"
 const val TIMERS_SORT_BY = "timers_sort_by"
+const val TIMERS_CUSTOM_SORTING = "timers_custom_sorting"
 const val STOPWATCH_LAPS_SORT_BY = "stopwatch_laps_sort_by"
 const val WAS_INITIAL_WIDGET_SET_UP = "was_initial_widget_set_up"
 

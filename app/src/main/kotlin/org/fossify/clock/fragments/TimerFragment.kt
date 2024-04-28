@@ -22,6 +22,7 @@ import org.fossify.commons.extensions.getProperBackgroundColor
 import org.fossify.commons.extensions.getProperTextColor
 import org.fossify.commons.extensions.hideKeyboard
 import org.fossify.commons.extensions.updateTextColors
+import org.fossify.commons.helpers.SORT_BY_CUSTOM
 import org.fossify.commons.helpers.SORT_BY_DATE_CREATED
 import org.fossify.commons.models.AlarmSound
 import org.greenrobot.eventbus.EventBus
@@ -83,6 +84,24 @@ class TimerFragment : Fragment() {
             when (requireContext().config.timerSort) {
                 SORT_BY_TIMER_DURATION -> timers.sortBy { it.seconds }
                 SORT_BY_DATE_CREATED -> timers.sortBy { it.id }
+                SORT_BY_CUSTOM -> {
+                    val customTimersSortOrderString = activity?.config?.timersCustomSorting
+                    if (customTimersSortOrderString == "") {
+                        timers.sortBy { it.id }
+                    } else {
+                        val customTimersSortOrder: List<Int> = customTimersSortOrderString?.split(", ")?.map { it.toInt() }!!
+                        val timersIdValueMap = timers.associateBy { it.id }
+
+                        val sortedTimers: ArrayList<Timer> = ArrayList()
+                        customTimersSortOrder.map { id ->
+                            if (timersIdValueMap[id] != null) {
+                                sortedTimers.add(timersIdValueMap[id] as Timer)
+                            }
+                        }
+
+                        timers = (sortedTimers + timers.filter { it !in sortedTimers }) as ArrayList<Timer>
+                    }
+                }
             }
             activity?.runOnUiThread {
                 val currAdapter = binding.timersList.adapter

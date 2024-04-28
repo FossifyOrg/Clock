@@ -8,11 +8,13 @@ import org.fossify.clock.helpers.SORT_BY_TIMER_DURATION
 import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
+import org.fossify.commons.helpers.SORT_BY_CUSTOM
 
 class ChangeTimerSortDialog(val activity: BaseSimpleActivity, val callback: () -> Unit) {
     private val binding = DialogChangeTimerSortBinding.inflate(activity.layoutInflater).apply {
         val activeRadioButton = when (activity.config.timerSort) {
             SORT_BY_TIMER_DURATION -> sortingDialogRadioTimerDuration
+            SORT_BY_CUSTOM -> sortingDialogRadioCustom
             else -> sortingDialogRadioCreationOrder
         }
         activeRadioButton.isChecked = true
@@ -30,6 +32,7 @@ class ChangeTimerSortDialog(val activity: BaseSimpleActivity, val callback: () -
     private fun dialogConfirmed() {
         val sort = when (binding.sortingDialogRadioSorting.checkedRadioButtonId) {
             R.id.sorting_dialog_radio_timer_duration -> SORT_BY_TIMER_DURATION
+            R.id.sorting_dialog_radio_custom -> SORT_BY_CUSTOM
             else -> SORT_BY_CREATION_ORDER
         }
 
