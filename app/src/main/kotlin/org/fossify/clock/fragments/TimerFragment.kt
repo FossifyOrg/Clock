@@ -15,7 +15,6 @@ import org.fossify.clock.dialogs.EditTimerDialog
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.createNewTimer
 import org.fossify.clock.extensions.timerHelper
-import org.fossify.clock.helpers.DisabledItemChangeAnimator
 import org.fossify.clock.helpers.SORT_BY_TIMER_DURATION
 import org.fossify.clock.models.Timer
 import org.fossify.clock.models.TimerEvent
@@ -30,10 +29,8 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 class TimerFragment : Fragment() {
-    private val INVALID_POSITION = -1
+    private var timers = ArrayList<Timer>()
     private lateinit var binding: FragmentTimerBinding
-    private lateinit var timerAdapter: TimerAdapter
-    private var timerPositionToScrollTo = INVALID_POSITION
     private var currentEditAlarmDialog: EditTimerDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +45,7 @@ class TimerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentTimerBinding.inflate(inflater, container, false).apply {
-            timersList.itemAnimator = DisabledItemChangeAnimator()
+            requireContext().updateTextColors(timerFragment)
             timerAdd.setOnClickListener {
                 activity?.run {
                     hideKeyboard()
@@ -57,7 +54,6 @@ class TimerFragment : Fragment() {
             }
         }
 
-        initOrUpdateAdapter()
         refreshTimers()
 
         // the initial timer is created asynchronously at first launch, make sure we show it once created
@@ -70,21 +66,8 @@ class TimerFragment : Fragment() {
         return binding.root
     }
 
-    private fun initOrUpdateAdapter() {
-        if (this::timerAdapter.isInitialized) {
-            timerAdapter.updatePrimaryColor()
-            timerAdapter.updateBackgroundColor(requireContext().getProperBackgroundColor())
-            timerAdapter.updateTextColor(requireContext().getProperTextColor())
-        } else {
-            timerAdapter = TimerAdapter(requireActivity() as SimpleActivity, binding.timersList, ::refreshTimers, ::openEditTimer)
-            binding.timersList.adapter = timerAdapter
-        }
-    }
-
     override fun onResume() {
         super.onResume()
-        requireContext().updateTextColors(binding.root)
-        initOrUpdateAdapter()
         refreshTimers()
     }
 
@@ -94,22 +77,27 @@ class TimerFragment : Fragment() {
         }
     }
 
-    private fun refreshTimers(scrollToLatest: Boolean = false) {
-        activity?.timerHelper?.getTimers { timers ->
-            var sortedTimers: List<Timer> = timers
+    private fun refreshTimers() {
+        activity?.timerHelper?.getTimers { timersFromDB ->
+            timers = timersFromDB
             when (requireContext().config.timerSort) {
-                SORT_BY_TIMER_DURATION -> sortedTimers = timers.sortedBy { it.seconds }
-                SORT_BY_DATE_CREATED -> sortedTimers = timers.sortedBy { it.id }
+                SORT_BY_TIMER_DURATION -> timers.sortBy { it.seconds }
+                SORT_BY_DATE_CREATED -> timers.sortBy { it.id }
             }
             activity?.runOnUiThread {
-                timerAdapter.submitList(sortedTimers) {
-                    view?.post {
-                        if (timerPositionToScrollTo != INVALID_POSITION && timerAdapter.itemCount > timerPositionToScrollTo) {
-                            binding.timersList.scrollToPosition(timerPositionToScrollTo)
-                            timerPositionToScrollTo = INVALID_POSITION
-                        } else if (scrollToLatest) {
-                            binding.timersList.scrollToPosition(sortedTimers.lastIndex)
-                        }
+                val currAdapter = binding.timersList.adapter
+                if (currAdapter == null) {
+                    TimerAdapter(activity as SimpleActivity, timers, binding.timersList) {
+                        openEditTimer(it as Timer)
+                    }.apply {
+                        binding.timersList.adapter = this
+                    }
+                } else {
+                    (currAdapter as TimerAdapter).apply {
+                        updatePrimaryColor()
+                        updateBackgroundColor(requireContext().getProperBackgroundColor())
+                        updateTextColor(requireContext().getProperTextColor())
+                        updateItems(this@TimerFragment.timers)
                     }
                 }
             }
@@ -123,21 +111,6 @@ class TimerFragment : Fragment() {
 
     fun updateAlarmSound(alarmSound: AlarmSound) {
         currentEditAlarmDialog?.updateAlarmSound(alarmSound)
-    }
-
-    fun updatePosition(timerId: Int) {
-        activity?.timerHelper?.getTimers { timers ->
-            val position = timers.indexOfFirst { it.id == timerId }
-            if (position != INVALID_POSITION) {
-                activity?.runOnUiThread {
-                    if (timerAdapter.itemCount > position) {
-                        binding.timersList.scrollToPosition(position)
-                    } else {
-                        timerPositionToScrollTo = position
-                    }
-                }
-            }
-        }
     }
 
     private fun openEditTimer(timer: Timer) {
