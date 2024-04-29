@@ -77,7 +77,11 @@ class DataImporter(
             if (Timer.parseFromJSON(jsonObject) != null) {
                 val timer = Timer.parseFromJSON(jsonObject) as Timer
                 timerHelper.getTimers { existingTimers ->
-                    timer.id = existingTimers.last().id?.plus(1)
+                    timer.id = if (existingTimers.isNotEmpty()) {
+                        existingTimers.last().id?.plus(1)
+                    } else {
+                        1
+                    }
                     if (!isTimerAlreadyInserted(timer, existingTimers)) {
                         timerHelper.insertOrUpdateTimer(timer) { id ->
                             if (id != -1L) {
