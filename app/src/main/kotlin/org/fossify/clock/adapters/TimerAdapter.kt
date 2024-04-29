@@ -69,9 +69,13 @@ class TimerAdapter(
 
     override fun getItemKeyPosition(key: Int) = timers.indexOfFirst { it.id == key }
 
-    override fun onActionModeCreated() {}
+    override fun onActionModeCreated() {
+        notifyDataSetChanged()
+    }
 
-    override fun onActionModeDestroyed() {}
+    override fun onActionModeDestroyed() {
+        notifyDataSetChanged()
+    }
 
     override fun onRowClear(myViewHolder: ViewHolder?) {}
 
@@ -115,7 +119,7 @@ class TimerAdapter(
         ItemTimerBinding.bind(view).apply {
             val isSelected = selectedKeys.contains(timer.id)
             timerHolder.isSelected = isSelected
-            timerDragHandle.beVisibleIf(activity.config.timerSort == SORT_BY_CUSTOM)
+            timerDragHandle.beVisibleIf(selectedKeys.isNotEmpty())
             timerDragHandle.applyColorFilter(textColor)
             timerDragHandle.setOnTouchListener { _, event ->
                 if (event.action == MotionEvent.ACTION_DOWN) {
@@ -186,6 +190,9 @@ class TimerAdapter(
         timers.swap(fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
         saveAlarmsCustomOrder(timers)
+        if (activity.config.timerSort != SORT_BY_CUSTOM) {
+            activity.config.timerSort = SORT_BY_CUSTOM
+        }
     }
 
     private fun saveAlarmsCustomOrder(alarms: ArrayList<Timer>) {

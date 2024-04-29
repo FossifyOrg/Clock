@@ -1,7 +1,6 @@
 package org.fossify.clock.adapters
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.Menu
 import android.view.MotionEvent
 import android.view.View
@@ -34,9 +33,9 @@ class AlarmsAdapter(
 ) : MyRecyclerViewAdapter(activity, recyclerView, itemClick), ItemTouchHelperContract {
 
     private var startReorderDragListener: StartReorderDragListener
+
     init {
         setupDragListener(true)
-
         val touchHelper = ItemTouchHelper(ItemMoveCallback(this))
         touchHelper.attachToRecyclerView(recyclerView)
 
@@ -69,9 +68,13 @@ class AlarmsAdapter(
 
     override fun getItemKeyPosition(key: Int) = alarms.indexOfFirst { it.id == key }
 
-    override fun onActionModeCreated() {}
+    override fun onActionModeCreated() {
+        notifyDataSetChanged()
+    }
 
-    override fun onActionModeDestroyed() {}
+    override fun onActionModeDestroyed() {
+        notifyDataSetChanged()
+    }
 
     override fun onRowClear(myViewHolder: ViewHolder?) {}
 
@@ -116,7 +119,7 @@ class AlarmsAdapter(
         val isSelected = selectedKeys.contains(alarm.id)
         ItemAlarmBinding.bind(view).apply {
             alarmHolder.isSelected = isSelected
-            alarmDragHandle.beVisibleIf(activity.config.alarmSort == SORT_BY_CUSTOM)
+            alarmDragHandle.beVisibleIf(selectedKeys.isNotEmpty())
             alarmDragHandle.applyColorFilter(textColor)
             alarmDragHandle.setOnTouchListener { _, event ->
                 if (event.action == MotionEvent.ACTION_DOWN) {
@@ -175,6 +178,9 @@ class AlarmsAdapter(
         alarms.swap(fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
         saveAlarmsCustomOrder(alarms)
+        if (activity.config.alarmSort != SORT_BY_CUSTOM) {
+            activity.config.alarmSort = SORT_BY_CUSTOM
+        }
     }
 
     private fun saveAlarmsCustomOrder(alarms: ArrayList<Alarm>) {
