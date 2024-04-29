@@ -240,7 +240,6 @@ class SettingsActivity : SimpleActivity() {
                     putExtra(Intent.EXTRA_TITLE, file.name)
                     addCategory(Intent.CATEGORY_OPENABLE)
 
-
                     try {
                         exportActivityResultLauncher.launch(file.name)
                     } catch (e: ActivityNotFoundException) {
@@ -248,8 +247,6 @@ class SettingsActivity : SimpleActivity() {
                     } catch (e: Exception) {
                         showErrorToast(e)
                     }
-
-
                 }
             }
         } else {
