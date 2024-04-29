@@ -16,8 +16,6 @@ class DataImporter(
 
     enum class ImportResult {
         IMPORT_INCOMPLETE,
-        ALARMS_IMPORT_FAIL,
-        TIMERS_IMPORT_FAIL,
         IMPORT_FAIL,
         IMPORT_OK
     }
@@ -34,15 +32,9 @@ class DataImporter(
             val importedTimers = insertTimersFromJSON(timersFromJson)
 
             if (importedAlarms > 0 || importedTimers > 0) {
-                if (importedAlarms < alarmsFromJson.length() || importedTimers < timersFromJson.length()) {
-                    ImportResult.IMPORT_INCOMPLETE
-                } else {
-                    ImportResult.IMPORT_OK
-                }
-            } else if (importedAlarms == 0) {
-                ImportResult.ALARMS_IMPORT_FAIL
-            } else if (importedTimers == 0) {
-                ImportResult.TIMERS_IMPORT_FAIL
+                ImportResult.IMPORT_OK
+            } else if (importedAlarms == 0 && importedTimers == 0) {
+                ImportResult.IMPORT_INCOMPLETE
             } else {
                 ImportResult.IMPORT_FAIL
             }

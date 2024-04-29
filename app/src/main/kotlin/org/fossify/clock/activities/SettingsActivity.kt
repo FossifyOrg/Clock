@@ -20,7 +20,6 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 import java.util.Locale
 import kotlin.system.exitProcess
-import org.fossify.clock.R as CR
 
 class SettingsActivity : SimpleActivity() {
     private val binding: ActivitySettingsBinding by viewBinding(ActivitySettingsBinding::inflate)
@@ -323,9 +322,7 @@ class SettingsActivity : SimpleActivity() {
                     DataImporter.ImportResult.IMPORT_OK ->
                         R.string.importing_successful
 
-                    DataImporter.ImportResult.IMPORT_INCOMPLETE -> R.string.importing_some_entries_failed
-                    DataImporter.ImportResult.ALARMS_IMPORT_FAIL -> CR.string.alarms_import_failed
-                    DataImporter.ImportResult.TIMERS_IMPORT_FAIL -> CR.string.timers_import_failed
+                    DataImporter.ImportResult.IMPORT_INCOMPLETE -> R.string.no_new_entries_for_importing
                     DataImporter.ImportResult.IMPORT_FAIL -> R.string.no_items_found
                 }
             )
