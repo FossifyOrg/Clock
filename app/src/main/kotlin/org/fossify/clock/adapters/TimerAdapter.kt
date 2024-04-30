@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import me.grantland.widget.AutofitHelper
 import org.fossify.clock.R
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.databinding.ItemTimerBinding
@@ -131,7 +130,6 @@ class TimerAdapter(
             timerLabel.setHintTextColor(textColor.adjustAlpha(0.7f))
             timerLabel.text = timer.label
 
-            AutofitHelper.create(timerTime)
             timerTime.setTextColor(textColor)
             timerTime.text = when (timer.state) {
                 is TimerState.Finished -> 0.getFormattedDuration()
