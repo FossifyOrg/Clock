@@ -5,7 +5,7 @@
     <string name="vibrate">Trillen</string>
     <string name="no_days_selected">Geen dagen geselecteerd</string>
     <string name="clock">Klok</string>
-    <string name="start_stopwatch">Stopwatch starten</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Ronde</string>
     <string name="stopwatch_stopped">Stopwatch is gestopt</string>
     <string name="timer_stopped">Timer is gestopt</string>
@@ -37,12 +37,12 @@
         <item quantity="one">%d timer loopt</item>
         <item quantity="other">%d timers lopen</item>
     </plurals>
-    <string name="clock_tab">Tab Klok</string>
-    <string name="alarm_tab">Tab Wekker</string>
-    <string name="stopwatch_tab">Tab Stopwatch</string>
-    <string name="timer_tab">Tab Timers</string>
-    <string name="show_seconds">Seconden tonen</string>
-    <string name="increase_volume_gradually">Volume geleidelijk verhogen</string>
+    <string name="clock_tab">Klok tabblad</string>
+    <string name="alarm_tab">Wekker tabblad</string>
+    <string name="stopwatch_tab">Stopwatch tabblad</string>
+    <string name="timer_tab">Timers tabblad</string>
+    <string name="show_seconds">Toon seconden</string>
+    <string name="increase_volume_gradually">Verhoog volume geleidelijk</string>
     <string name="faq_1_title">Hoe kan ik rondetijden sorteren in de stopwatch?</string>
     <string name="faq_1_text">Klik op een van de kolommen om de rondetijden te sorteren op basis van die kolom. Klik nogmaals op dezelfde kolom om de sorteervolgorde om te keren.</string>
     <string name="stopwatch">Stopwatch</string>
