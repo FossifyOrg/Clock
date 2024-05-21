@@ -4,7 +4,7 @@ Fossify Clock ist der ultimative Begleiter für die Zeitmessung, der deine tägl
 Erlebe die Macht des vielseitigen Zeitmanagements mit Fossify Clock. Ob als Uhren-Widget, Wecker oder Stoppuhr – mit dieser App kannst du deine täglichen Aktivitäten regulieren und deinen Lebensstil verbessern.
 
 ⏰ FUNKTIONSREICHER ALARM:
-Mit den umfassenden Alarmfunktionen von Fossify Clock wachst du erfrischt auf. Stelle mehrere Alarme mit Optionen wie Tagesauswahl, Vibration, benutzerdefinierte Beschriftung und Klingeltonanpassung ein. Genieße die schrittweise Erhöhung der Lautstärke und eine anpassbare Schlummertaste für ein angenehmes Aufwachen. Dank der benutzerfreundlichen Oberfläche war es noch nie so einfach, Alarme einzurichten.
+Mit den umfassenden Alarmfunktionen von Fossify Clock wachst du erfrischt auf. Stelle mehrere Alarme mit Optionen wie Tagesauswahl, Vibration, benutzerdefinierte Beschriftung und Klingeltonanpassung ein. Genieße die schrittweise Erhöhung der Lautstärke und eine anpassbare Schlummertaste für ein angenehmes Aufwachen. Dank der bedienfreundlichen Oberfläche war es noch nie so einfach, Alarme einzurichten.
 
 ⏱️ PRAKTISCHE STOPPUHR:
 Mit der Stoppuhrfunktion von Fossify Clock kannst du deine Aktivitäten genau verfolgen. Messe mühelos längere Zeiträume oder einzelne Runden. Du kannst deine Runden auch in aufsteigender oder absteigender Reihenfolge sortieren.
@@ -16,7 +16,7 @@ Mit der vielseitigen Timer-Funktion von Fossify Clock behältst du den Überblic
 Verändere deinen Startbildschirm mit dem anpassbaren Uhren-Widget von Fossify Clock. Passe Textfarbe, Hintergrundfarbe und Transparenz an. Wähle zwischen analoger oder digitaler Uhr, um deinen Stil zu unterstreichen und die wichtigsten Zeitinformationen auf einen Blick zu sehen.
 
 🎨 ANPASSBARE OBERFLÄCHE UND FARBSCHEMAS:
-Genieße ein individuelles Erlebnis mit dem Material Design und den dunklen Farbschemas von Fossify Clock. Passe die App mit anpassbaren Farben und Farbschemas an deine Vorlieben an, um die Benutzerfreundlichkeit zu verbessern und die Augen zu entlasten, besonders in schwach beleuchteten Umgebungen.
+Genieße ein individuelles Erlebnis mit dem Material Design und den dunklen Farbschemas von Fossify Clock. Passe die App mit anpassbaren Farben und Farbschemas an deine Vorlieben an, um die Bedienfreundlichkeit zu verbessern und die Augen zu entlasten, besonders in schwach beleuchteten Umgebungen.
 
 🔒 PRIVATSPHÄRE STEHT AN ERSTER STELLE:
 Du kannst sicher sein, dass deine Privatsphäre durch den Offline-Betrieb von Fossify Clock geschützt ist. Erlebe ein Maximum an Privatsphäre, Sicherheit und Stabilität, ohne auf Funktionalität oder Komfort verzichten zu müssen.
