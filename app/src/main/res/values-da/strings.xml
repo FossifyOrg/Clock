@@ -18,4 +18,8 @@
     <string name="show_seconds">Vis sekunder</string>
     <string name="faq_1_title">Hvordan kan jeg ændre sortering af mellemtider i stopuret?</string>
     <string name="faq_1_text">Klik på den kolonne der skal sorteres efter. Med flere klik kan du skifte mellem stigende og faldende rækkefølge.</string>
+    <string name="clock">Ur</string>
+    <string name="start_stopwatch">Start stopur</string>
+    <string name="clock_and_date">Klokketslet og dato</string>
+    <string name="stopwatch">Stopur</string>
 </resources>

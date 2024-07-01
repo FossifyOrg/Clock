@@ -1,0 +1,1 @@
+Praktická aplikace hodin s otevřeným zdrojovým kódem a základními funkcemi.
