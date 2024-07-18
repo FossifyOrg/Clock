@@ -1,0 +1,1 @@
+Nützliche, schlanke, quelloffene Uhr-App mit grundlegenden Funktionen.
