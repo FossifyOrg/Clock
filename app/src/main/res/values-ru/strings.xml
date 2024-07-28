@@ -15,7 +15,7 @@
     <string name="time_expired">Время истекло</string>
     <string name="clock_and_date">Часы и дата</string>
     <string name="use_text_shadow">Использовать затенение текста</string>
-    <string name="swipe_right_to_dismiss">Свайп вправо — отключить, влево — отложить.</string>
+    <string name="swipe_right_to_dismiss">Смахивание вправо — отключить, влево — отложить.</string>
     <string name="sort_by_creation_order">Порядок создания</string>
     <string name="sort_by_alarm_time">Время будильника</string>
     <string name="sort_by_day_and_alarm_time">Дата и время будильника</string>
