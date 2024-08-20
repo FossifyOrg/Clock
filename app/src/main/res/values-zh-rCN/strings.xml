@@ -2,7 +2,7 @@
 <resources>
     <string name="app_launcher_name">时钟</string>
     <string name="time_zone">时区</string>
-    <string name="vibrate">震动</string>
+    <string name="vibrate">振动</string>
     <string name="no_days_selected">未选择哪一天</string>
     <string name="clock">时钟</string>
     <string name="timer">定时器</string>
