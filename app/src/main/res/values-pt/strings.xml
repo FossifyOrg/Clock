@@ -37,7 +37,7 @@
     <plurals name="timer_notification_msg">
         <item quantity="one">%d temporizador em curso</item>
         <item quantity="many">%d temporizadores em curso</item>
-        <item quantity="other">%d temporizadores em curso</item>
+        <item quantity="other"></item>
     </plurals>
     <string name="clock_tab">Relógio</string>
     <string name="alarm_tab">Alarme</string>
