@@ -13,7 +13,7 @@
     <string name="time_expired">Tijd verstreken</string>
     <string name="clock_and_date">Klok en datum</string>
     <string name="use_text_shadow">Tekstschaduw gebruiken</string>
-    <string name="swipe_right_to_dismiss">Veeg naar rechts voor uitzetten, of naar links voor uitstellen.</string>
+    <string name="swipe_right_to_dismiss">Veeg naar rechts om te sluiten, of naar links om te sluimeren.</string>
     <string name="sort_by_creation_order">Aanmaakvolgorde</string>
     <string name="sort_by_alarm_time">Wektijd</string>
     <string name="sort_by_day_and_alarm_time">Dag en tijd</string>
