@@ -18,17 +18,17 @@
     <string name="sort_by_day_and_alarm_time">曜日とアラーム時刻</string>
     <string name="analogue_clock">アナログ時計</string>
     <string name="digital_clock">デジタル時計</string>
-    <string name="alarm_dismissed">アラームが破棄されました</string>
+    <string name="alarm_dismissed">アラームを消去しました</string>
     <string name="no_alarms_found">アラームが見つかりません</string>
     <string name="add_alarm">アラームを追加</string>
     <string name="no_timers_found">タイマーが見つかりません</string>
     <string name="add_timer">タイマーを追加</string>
     <string name="upcoming_alarm">今後のアラーム</string>
-    <string name="timers_notification_msg">タイマーが作動中</string>
-    <string name="timer_single_notification_label_msg">タイマー %s が作動中</string>
+    <string name="timers_notification_msg">タイマーが作動しています</string>
+    <string name="timer_single_notification_label_msg">タイマー %s が作動しています</string>
     <string name="new_timer">新しいタイマー</string>
     <plurals name="timer_notification_msg">
-        <item quantity="other">%d 個のタイマーが作動中</item>
+        <item quantity="other">%d個のタイマーが作動しています</item>
     </plurals>
     <string name="clock_tab">時計</string>
     <string name="alarm_tab">アラーム</string>
@@ -38,4 +38,12 @@
     <string name="increase_volume_gradually">音量を徐々に大きくする</string>
     <string name="faq_1_title">ストップウォッチのタブでラップタイムの並べ替えを行うにはどうすればよいですか？</string>
     <string name="faq_1_text">特定の列をタップすると、その列でラップタイムが並べ替えられます。さらにもう一度タップすると、昇順と降順の切り替えを行えます。</string>
+    <string name="clock">時計</string>
+    <string name="stopwatch">ストップウォッチ</string>
+    <string name="start_stopwatch">ストップウォッチを開始</string>
+    <string name="select_alarm_to_dismiss">消去するアラームを選択してください</string>
+    <string name="alarm_created">アラームを作成しました</string>
+    <string name="alarm_snoozed">%sまでスヌーズ中のアラーム</string>
+    <string name="early_alarm_dismissal">アラームを事前に消去</string>
+    <string name="select_timer_to_dismiss">消去するタイマーを選択してください</string>
 </resources>

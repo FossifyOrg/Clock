@@ -12,7 +12,7 @@
     <string name="stopwatch_stopped">Секундомер остановлен</string>
     <string name="timer_stopped">Таймер остановлен</string>
     <string name="max_reminder_duration">Максимальная длительность напоминания</string>
-    <string name="time_expired">Время вышло</string>
+    <string name="time_expired">Время истекло</string>
     <string name="clock_and_date">Часы и дата</string>
     <string name="use_text_shadow">Использовать затенение текста</string>
     <string name="swipe_right_to_dismiss">Смахивание вправо — отключить, влево — отложить.</string>
@@ -48,5 +48,5 @@
     <string name="show_seconds">Показывать секунды</string>
     <string name="increase_volume_gradually">Нарастание громкости</string>
     <string name="faq_1_title">Как я могу изменить сортировку кругов во вкладке секундомера?</string>
-    <string name="faq_1_text">Просто нажмите на любую из колонок, и круги отсортируются по этой колонке. Дополнительными нажатиями можно переключаться между сортировкой по возрастанию и по убыванию.</string>
+    <string name="faq_1_text">Просто нажмите на любой из столбцов, и круги отсортируются по этому столбцу. Дополнительными нажатиями можно переключаться между сортировкой по возрастанию и по убыванию.</string>
 </resources>
