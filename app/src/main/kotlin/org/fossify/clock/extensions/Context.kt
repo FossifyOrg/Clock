@@ -100,34 +100,13 @@ fun Context.createNewTimer(): Timer {
 }
 
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
-    val calendar = Calendar.getInstance()
-    calendar.firstDayOfWeek = Calendar.MONDAY
-
-    val nextAlarmDay = Calendar.getInstance()
-
-    if (alarm.days == TODAY_BIT) {
-        
-    } else if (alarm.days == TOMORROW_BIT) {
-        nextAlarmDay.add(Calendar.DAY_OF_MONTH, 1)
-    } else {
-        for (i in 0..8) {
-            val currentDay = (nextAlarmDay.get(Calendar.DAY_OF_WEEK) + 5) % 7
-            val isCorrectDay = alarm.days and 2.0.pow(currentDay).toInt() != 0
-            if (isCorrectDay && (i > 0 || alarm.timeInMinutes > getCurrentDayMinutes())) {
-                break
-            } else {
-                nextAlarmDay.add(Calendar.DAY_OF_MONTH, 1)
-            }
-        }
-    }
-    nextAlarmDay.set(Calendar.HOUR, alarm.timeInMinutes / 60)
-    nextAlarmDay.set(Calendar.MINUTE, alarm.timeInMinutes % 60)
-    nextAlarmDay.set(Calendar.SECOND, 0)
-    val triggerInSeconds = (nextAlarmDay.getTimeInMillis() - calendar.getTimeInMillis()) / 1000;
-    setupAlarmClock(alarm, triggerInSeconds)
+    val triggerTime = getTimeOfNextAlarm(alarm.timeInMinutes, alarm.days)
+    setupAlarmClock(alarm, triggerTime)
 
     if (showToast) {
-        showRemainingTimeMessage(triggerInSeconds / 60)
+        val now = Calendar.getInstance()
+        val triggerInMillis = triggerTime.timeInMillis - now.timeInMillis
+        showRemainingTimeMessage((triggerInMillis / (1000 * 60)).toInt())
     }
 }
 
@@ -136,9 +115,10 @@ fun Context.showRemainingTimeMessage(totalMinutes: Int) {
     toast(fullString, Toast.LENGTH_LONG)
 }
 
-fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
+fun Context.setupAlarmClock(alarm: Alarm, triggerTime: Calendar) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    val targetMS = System.currentTimeMillis() + triggerInSeconds * 1000
+
+    val targetMS = triggerTime.timeInMillis
     try {
         AlarmManagerCompat.setAlarmClock(alarmManager, targetMS, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
 
@@ -271,27 +251,18 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
             return@getEnabledAlarms
         }
 
+
         val nextAlarmList = enabledAlarms
-            .mapNotNull { getTimeUntilNextAlarm(it.timeInMinutes, it.days) }
+            .map { getTimeOfNextAlarm(it.timeInMinutes, it.days) }
 
-        if (nextAlarmList.isEmpty()) {
+        val closestAlarmTime = nextAlarmList.minOrNull()
+
+        if (closestAlarmTime == null) {
             callback("")
+            return@getEnabledAlarms
         }
 
-        var closestAlarmTime = Int.MAX_VALUE
-        nextAlarmList.forEach { time ->
-            if (time < closestAlarmTime) {
-                closestAlarmTime = time
-            }
-        }
-
-        if (closestAlarmTime == Int.MAX_VALUE) {
-            callback("")
-        }
-
-        val calendar = Calendar.getInstance().apply { firstDayOfWeek = Calendar.MONDAY }
-        calendar.add(Calendar.MINUTE, closestAlarmTime)
-        val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
+        val dayOfWeekIndex = (closestAlarmTime.get(Calendar.DAY_OF_WEEK) + 5) % 7
         val dayOfWeek = resources.getStringArray(org.fossify.commons.R.array.week_days_short)[dayOfWeekIndex]
         val pattern = if (DateFormat.is24HourFormat(this)) {
             "HH:mm"
@@ -299,7 +270,7 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
             "h:mm a"
         }
 
-        val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(calendar.time)
+        val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(closestAlarmTime.time)
         callback("$dayOfWeek $formattedTime")
     }
 }
