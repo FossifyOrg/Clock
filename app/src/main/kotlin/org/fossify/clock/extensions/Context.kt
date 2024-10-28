@@ -102,38 +102,32 @@ fun Context.createNewTimer(): Timer {
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
     val calendar = Calendar.getInstance()
     calendar.firstDayOfWeek = Calendar.MONDAY
-    val currentTimeInMinutes = getCurrentDayMinutes()
+
+    val nextAlarmDay = Calendar.getInstance()
 
     if (alarm.days == TODAY_BIT) {
-        val triggerInMinutes = alarm.timeInMinutes - currentTimeInMinutes
-        setupAlarmClock(alarm, triggerInMinutes * 60 - calendar.get(Calendar.SECOND))
-
-        if (showToast) {
-            showRemainingTimeMessage(triggerInMinutes)
-        }
+        
     } else if (alarm.days == TOMORROW_BIT) {
-        val triggerInMinutes = alarm.timeInMinutes - currentTimeInMinutes + DAY_MINUTES
-        setupAlarmClock(alarm, triggerInMinutes * 60 - calendar.get(Calendar.SECOND))
-
-        if (showToast) {
-            showRemainingTimeMessage(triggerInMinutes)
-        }
+        nextAlarmDay.add(Calendar.DAY_OF_MONTH, 1)
     } else {
-        for (i in 0..7) {
-            val currentDay = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
+        for (i in 0..8) {
+            val currentDay = (nextAlarmDay.get(Calendar.DAY_OF_WEEK) + 5) % 7
             val isCorrectDay = alarm.days and 2.0.pow(currentDay).toInt() != 0
-            if (isCorrectDay && (alarm.timeInMinutes > currentTimeInMinutes || i > 0)) {
-                val triggerInMinutes = alarm.timeInMinutes - currentTimeInMinutes + (i * DAY_MINUTES)
-                setupAlarmClock(alarm, triggerInMinutes * 60 - calendar.get(Calendar.SECOND))
-
-                if (showToast) {
-                    showRemainingTimeMessage(triggerInMinutes)
-                }
+            if (isCorrectDay && (i > 0 || alarm.timeInMinutes > getCurrentDayMinutes())) {
                 break
             } else {
-                calendar.add(Calendar.DAY_OF_MONTH, 1)
+                nextAlarmDay.add(Calendar.DAY_OF_MONTH, 1)
             }
         }
+    }
+    nextAlarmDay.set(Calendar.HOUR, alarm.timeInMinutes / 60)
+    nextAlarmDay.set(Calendar.MINUTE, alarm.timeInMinutes % 60)
+    nextAlarmDay.set(Calendar.SECOND, 0)
+    val triggerInSeconds = (nextAlarmDay.getTimeInMillis() - calendar.getTimeInMillis()) / 1000;
+    setupAlarmClock(alarm, triggerInSeconds)
+
+    if (showToast) {
+        showRemainingTimeMessage(triggerInSeconds / 60)
     }
 }
 
