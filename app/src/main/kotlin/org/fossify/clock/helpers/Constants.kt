@@ -227,9 +227,11 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar {
     nextAlarmTime.firstDayOfWeek = Calendar.MONDAY
 
     val hour = alarmTimeInMinutes / 60
-    nextAlarmTime.set(Calendar.HOUR, hour)
+    val minute = alarmTimeInMinutes % 60
+
     nextAlarmTime.set(Calendar.AM_PM, if (hour >= 13) Calendar.PM else Calendar.AM)
-    nextAlarmTime.set(Calendar.MINUTE, alarmTimeInMinutes % 60)
+    nextAlarmTime.set(Calendar.HOUR, hour % 12)
+    nextAlarmTime.set(Calendar.MINUTE, minute)
     nextAlarmTime.set(Calendar.SECOND, 0)
     nextAlarmTime.set(Calendar.MILLISECOND, 0)
 
