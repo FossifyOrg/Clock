@@ -267,26 +267,22 @@ class ReminderActivity : SimpleActivity() {
 
     private fun snoozeAlarm(overrideSnoozeDuration: Int? = null) {
         destroyEffects()
-        val now = Calendar.getInstance()
         if (overrideSnoozeDuration != null) {
-            now.add(Calendar.MINUTE, overrideSnoozeDuration)
-            setupAlarmClock(alarm!!, now)
-            wasAlarmSnoozed = true
-            finishActivity()
+            snoozeAlarm { add(Calendar.MINUTE, overrideSnoozeDuration) }
         } else if (config.useSameSnooze) {
-            now.add(Calendar.MINUTE, config.snoozeTime)
-            setupAlarmClock(alarm!!, now)
-            wasAlarmSnoozed = true
-            finishActivity()
+            snoozeAlarm { add(Calendar.MINUTE, config.snoozeTime) }
         } else {
             showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { finishActivity() }) {
                 config.snoozeTime = it / MINUTE_SECONDS
-                now.add(Calendar.SECOND, it)
-                setupAlarmClock(alarm!!, now)
-                wasAlarmSnoozed = true
-                finishActivity()
+                snoozeAlarm { add(Calendar.SECOND, it) }
             }
         }
+    }
+
+    private fun snoozeAlarm(block: Calendar.() -> Unit) {
+        setupAlarmClock(alarm!!, block.run { Calendar.getInstance() })
+        wasAlarmSnoozed = true
+        finishActivity()
     }
 
     private fun finishActivity() {
