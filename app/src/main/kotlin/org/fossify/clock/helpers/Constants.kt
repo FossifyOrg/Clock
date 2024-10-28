@@ -229,8 +229,7 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar {
     val hour = alarmTimeInMinutes / 60
     val minute = alarmTimeInMinutes % 60
 
-    nextAlarmTime.set(Calendar.AM_PM, if (hour >= 13) Calendar.PM else Calendar.AM)
-    nextAlarmTime.set(Calendar.HOUR, hour % 12)
+    nextAlarmTime.set(Calendar.HOUR_OF_DAY, hour)
     nextAlarmTime.set(Calendar.MINUTE, minute)
     nextAlarmTime.set(Calendar.SECOND, 0)
     nextAlarmTime.set(Calendar.MILLISECOND, 0)
@@ -238,7 +237,7 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar {
     if (days == TODAY_BIT) {
         val now = Calendar.getInstance()
         if (nextAlarmTime < now) {
-            nextAlarmTime.add(Calendar.DAY_OF_MONTH, 7)
+            nextAlarmTime.add(Calendar.WEEK_OF_YEAR, 1)
         }
     } else if (days == TOMORROW_BIT) {
         nextAlarmTime.add(Calendar.DAY_OF_MONTH, 1)
