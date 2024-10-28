@@ -23,6 +23,7 @@ import org.fossify.commons.helpers.MINUTE_SECONDS
 import org.fossify.commons.helpers.SILENT
 import org.fossify.commons.helpers.isOreoMr1Plus
 import org.fossify.commons.helpers.isOreoPlus
+import java.util.Calendar
 
 class ReminderActivity : SimpleActivity() {
     companion object {
@@ -266,18 +267,22 @@ class ReminderActivity : SimpleActivity() {
 
     private fun snoozeAlarm(overrideSnoozeDuration: Int? = null) {
         destroyEffects()
+        val now = Calendar.getInstance()
         if (overrideSnoozeDuration != null) {
-            setupAlarmClock(alarm!!, overrideSnoozeDuration * MINUTE_SECONDS)
+            now.add(Calendar.MINUTE, overrideSnoozeDuration)
+            setupAlarmClock(alarm!!, now)
             wasAlarmSnoozed = true
             finishActivity()
         } else if (config.useSameSnooze) {
-            setupAlarmClock(alarm!!, config.snoozeTime * MINUTE_SECONDS)
+            now.add(Calendar.MINUTE, config.snoozeTime)
+            setupAlarmClock(alarm!!, now)
             wasAlarmSnoozed = true
             finishActivity()
         } else {
             showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { finishActivity() }) {
                 config.snoozeTime = it / MINUTE_SECONDS
-                setupAlarmClock(alarm!!, it)
+                now.add(Calendar.SECOND, it)
+                setupAlarmClock(alarm!!, now)
                 wasAlarmSnoozed = true
                 finishActivity()
             }

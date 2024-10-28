@@ -222,29 +222,36 @@ fun getAllTimeZones() = arrayListOf(
     MyTimeZone(89, "GMT+13:00 Tongatapu", "Pacific/Tongatapu")
 )
 
-fun getTimeUntilNextAlarm(alarmTimeInMinutes: Int, days: Int): Int? {
-    val calendar = Calendar.getInstance()
-    calendar.firstDayOfWeek = Calendar.MONDAY
-    val currentTimeInMinutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
-    val currentDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY
+fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar {
+    val nextAlarmTime = Calendar.getInstance()
+    nextAlarmTime.firstDayOfWeek = Calendar.MONDAY
 
-    var minTimeDifferenceInMinutes = Int.MAX_VALUE
+    val hour = alarmTimeInMinutes / 60
+    nextAlarmTime.set(Calendar.HOUR, hour)
+    nextAlarmTime.set(Calendar.AM_PM, if (hour >= 13) Calendar.PM else Calendar.AM)
+    nextAlarmTime.set(Calendar.MINUTE, alarmTimeInMinutes % 60)
+    nextAlarmTime.set(Calendar.SECOND, 0)
+    nextAlarmTime.set(Calendar.MILLISECOND, 0)
 
-    for (i in 0..6) {
-        val alarmDayOfWeek = (currentDayOfWeek + i) % 7
-        if (isAlarmEnabledForDay(alarmDayOfWeek, days)) {
-            val timeDifferenceInMinutes = getTimeDifferenceInMinutes(currentTimeInMinutes, alarmTimeInMinutes, i)
-            if (timeDifferenceInMinutes < minTimeDifferenceInMinutes) {
-                minTimeDifferenceInMinutes = timeDifferenceInMinutes
+    if (days == TODAY_BIT) {
+        val now = Calendar.getInstance()
+        if (nextAlarmTime < now) {
+            nextAlarmTime.add(Calendar.DAY_OF_MONTH, 7)
+        }
+    } else if (days == TOMORROW_BIT) {
+        nextAlarmTime.add(Calendar.DAY_OF_MONTH, 1)
+    } else {
+        val now = Calendar.getInstance()
+        for (i in 0..8) {
+            val currentDay = (nextAlarmTime.get(Calendar.DAY_OF_WEEK) + 5) % 7
+            if (isAlarmEnabledForDay(currentDay, days) && now < nextAlarmTime) {
+                break
+            } else {
+                nextAlarmTime.add(Calendar.DAY_OF_MONTH, 1)
             }
         }
     }
-
-    return if (minTimeDifferenceInMinutes != Int.MAX_VALUE) {
-        minTimeDifferenceInMinutes
-    } else {
-        null
-    }
+    return nextAlarmTime
 }
 
 fun isAlarmEnabledForDay(day: Int, alarmDays: Int) = alarmDays.isBitSet(day)
