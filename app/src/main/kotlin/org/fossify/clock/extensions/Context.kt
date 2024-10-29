@@ -251,9 +251,10 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
             return@getEnabledAlarms
         }
 
-
+        val now = Calendar.getInstance()
         val nextAlarmList = enabledAlarms
             .map { getTimeOfNextAlarm(it.timeInMinutes, it.days) }
+            .filter { it > now }
 
         val closestAlarmTime = nextAlarmList.minOrNull()
 
