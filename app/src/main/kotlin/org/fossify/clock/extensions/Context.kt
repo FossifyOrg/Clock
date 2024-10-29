@@ -100,7 +100,7 @@ fun Context.createNewTimer(): Timer {
 }
 
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
-    val triggerTime = getTimeOfNextAlarm(alarm.timeInMinutes, alarm.days)
+    val triggerTime = getTimeOfNextAlarm(alarm.timeInMinutes, alarm.days) ?: return
     setupAlarmClock(alarm, triggerTime)
 
     if (showToast) {
@@ -253,7 +253,7 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
 
         val now = Calendar.getInstance()
         val nextAlarmList = enabledAlarms
-            .map { getTimeOfNextAlarm(it.timeInMinutes, it.days) }
+            .mapNotNull { getTimeOfNextAlarm(it.timeInMinutes, it.days) }
             .filter { it > now }
 
         val closestAlarmTime = nextAlarmList.minOrNull()
