@@ -253,13 +253,3 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar {
 }
 
 fun isAlarmEnabledForDay(day: Int, alarmDays: Int) = alarmDays.isBitSet(day)
-
-fun getTimeDifferenceInMinutes(currentTimeInMinutes: Int, alarmTimeInMinutes: Int, daysUntilAlarm: Int): Int {
-    val minutesInADay = 24 * 60
-    val minutesUntilAlarm = daysUntilAlarm * minutesInADay + alarmTimeInMinutes
-    return if (minutesUntilAlarm > currentTimeInMinutes) {
-        minutesUntilAlarm - currentTimeInMinutes
-    } else {
-        minutesInADay - (currentTimeInMinutes - minutesUntilAlarm)
-    }
-}
