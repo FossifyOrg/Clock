@@ -111,14 +111,14 @@ fun formatTime(showSeconds: Boolean, use24HourFormat: Boolean, hours: Int, minut
 fun getTomorrowBit(): Int {
     val calendar = Calendar.getInstance()
     calendar.add(Calendar.DAY_OF_WEEK, 1)
-    val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
-    return 2.0.pow(dayOfWeek).toInt()
+    val day = calendar.get(Calendar.DAY_OF_WEEK)
+    return getBitForCalendarDay(day)
 }
 
 fun getTodayBit(): Int {
     val calendar = Calendar.getInstance()
-    val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
-    return 2.0.pow(dayOfWeek).toInt()
+    val day = calendar.get(Calendar.DAY_OF_WEEK)
+    return getBitForCalendarDay(day)
 }
 
 fun getBitForCalendarDay(day: Int): Int {
