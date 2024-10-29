@@ -235,10 +235,7 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar {
     nextAlarmTime.set(Calendar.MILLISECOND, 0)
 
     if (days == TODAY_BIT) {
-        val now = Calendar.getInstance()
-        if (nextAlarmTime < now) {
-            nextAlarmTime.add(Calendar.WEEK_OF_YEAR, 1)
-        }
+        // do nothing, alarm is today
     } else if (days == TOMORROW_BIT) {
         nextAlarmTime.add(Calendar.DAY_OF_MONTH, 1)
     } else {
