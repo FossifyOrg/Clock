@@ -222,7 +222,7 @@ fun getAllTimeZones() = arrayListOf(
     MyTimeZone(89, "GMT+13:00 Tongatapu", "Pacific/Tongatapu")
 )
 
-fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar {
+fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
     val nextAlarmTime = Calendar.getInstance()
     nextAlarmTime.firstDayOfWeek = Calendar.MONDAY
 
@@ -250,5 +250,5 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar {
             nextAlarmTime.add(Calendar.DAY_OF_MONTH, 1)
         }
     }
-    throw RuntimeException("Failed to getTimeOfNextAlarm")
+    return null
 }
