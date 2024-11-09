@@ -234,21 +234,25 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
     nextAlarmTime.set(Calendar.SECOND, 0)
     nextAlarmTime.set(Calendar.MILLISECOND, 0)
 
-    if (days == TODAY_BIT) {
-        // do nothing, alarm is today
-        return nextAlarmTime
-    }
-    if (days == TOMORROW_BIT) {
-        return nextAlarmTime.apply { add(Calendar.DAY_OF_MONTH, 1) }
-    }
-    val now = Calendar.getInstance()
-    for (i in 0..8) {
-        val currentDay = (nextAlarmTime.get(Calendar.DAY_OF_WEEK) + 5) % 7
-        if (days.isBitSet(currentDay) && now < nextAlarmTime) {
-            return nextAlarmTime
-        } else {
-            nextAlarmTime.add(Calendar.DAY_OF_MONTH, 1)
+    return when (days) {
+        TODAY_BIT -> {
+            // do nothing, alarm is today
+            nextAlarmTime
+        }
+        TOMORROW_BIT -> {
+            nextAlarmTime.apply { add(Calendar.DAY_OF_MONTH, 1) }
+        }
+        else -> {
+            val now = Calendar.getInstance()
+            repeat(8) {
+                val currentDay = (nextAlarmTime.get(Calendar.DAY_OF_WEEK) + 5) % 7
+                if (days.isBitSet(currentDay) && now < nextAlarmTime) {
+                    return nextAlarmTime
+                } else {
+                    nextAlarmTime.add(Calendar.DAY_OF_MONTH, 1)
+                }
+            }
+            null
         }
     }
-    return null
 }
