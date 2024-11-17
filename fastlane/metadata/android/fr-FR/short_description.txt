@@ -1,1 +1,1 @@
-Application horloge pratique, légère et open source avec des fonctionnalités essentielles.
+Application horloge pratique, légère et open source avec leurs fonctionnalités essentielles.
