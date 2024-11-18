@@ -1,1 +1,1 @@
-Handige, lichtgewicht, open-source klok-app met alle essentiële functies.
+Handige, lichtgewicht opensource klok met alle essentiële functies.
