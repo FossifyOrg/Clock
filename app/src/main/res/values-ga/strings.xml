@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="max_reminder_duration">Fad uasta meabhrúcháin</string>
+    <string name="time_expired">Am caite</string>
+    <string name="alarm_snoozed">Aláram snoozed ag %s</string>
+    <string name="alarm_dismissed">Aláram briste</string>
+    <string name="select_timer_to_dismiss">Roghnaigh uaineadóir le díbhe</string>
+    <string name="select_alarm_to_dismiss">Roghnaigh aláram le díbhe</string>
+    <string name="alarm_created">Aláram cruthaithe</string>
+    <string name="no_alarms_found">Níor aimsíodh aláraim ar bith</string>
+    <string name="add_alarm">Cuir aláram leis</string>
+    <string name="no_timers_found">Níor aimsíodh amadóirí ar bith</string>
+    <string name="add_timer">Cuir uaineadóir leis</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">Tá an t-amadóir %d ag rith</item>
+        <item quantity="two">Tá %d amadóir ag rith</item>
+        <item quantity="few">Tá %d amadóir ag rith</item>
+        <item quantity="many">Tá %d amadóir ag rith</item>
+        <item quantity="other">Tá %d amadóir ag rith</item>
+    </plurals>
+    <string name="app_launcher_name">Clog</string>
+    <string name="time_zone">Crios ama</string>
+    <string name="vibrate">Creathadh</string>
+    <string name="no_days_selected">Níl aon lá roghnaithe</string>
+    <string name="clock">Clog</string>
+    <string name="timer">Uaireanta</string>
+    <string name="stopwatch">StopwatchName</string>
+    <string name="start_stopwatch">Tosaigh stopuaireadóir</string>
+    <string name="lap">Lap</string>
+    <string name="stopwatch_stopped">Stop an uaireadóir</string>
+    <string name="timer_stopped">Cuireadh stop leis an uaineadóir</string>
+    <string name="clock_and_date">Clog agus dáta</string>
+    <string name="use_text_shadow">Úsáid scáth téacs</string>
+    <string name="swipe_right_to_dismiss">Svaidhpeáil ar dheis chun Díbhe, nó ar chlé go Snooze.</string>
+    <string name="sort_by_creation_order">Ordú cruthaithe</string>
+    <string name="sort_by_alarm_time">Am aláraim</string>
+    <string name="sort_by_day_and_alarm_time">Am Lae agus Aláraim</string>
+    <string name="analogue_clock">Clog analógach</string>
+    <string name="digital_clock">Clog digiteach</string>
+    <string name="upcoming_alarm">Aláram atá le teacht</string>
+    <string name="early_alarm_dismissal">Dífhostú aláraim luath</string>
+    <string name="timers_notification_msg">Amadóirí ag rith</string>
+    <string name="timer_single_notification_label_msg">Tá an t- amadóir do %s ag rith</string>
+    <string name="new_timer">Amadóir Nua</string>
+    <string name="clock_tab">Cluaisín clog</string>
+    <string name="alarm_tab">Cluaisín aláraim</string>
+    <string name="stopwatch_tab">Cluaisín Stopwatch</string>
+    <string name="timer_tab">Cluaisín uaineadóra</string>
+    <string name="show_seconds">Taispeáin soicindí</string>
+    <string name="increase_volume_gradually">Méadaigh an toirt de réir a chéile</string>
+    <string name="faq_1_title">Conas is féidir liom sórtáil lap a athrú ag an táb stopwatch?</string>
+    <string name="faq_1_text">Just a cliceáil ar aon cheann de na colúin, a dhéanamh ar an laps a shórtáil ag an gcolún a thugtar. Le cad a tharlaíonn nuair breise is féidir leat scoránaigh idir dul suas agus sórtáil íslitheach.</string>
+</resources>
