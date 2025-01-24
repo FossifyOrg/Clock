@@ -45,7 +45,7 @@
     <string name="show_seconds">Mostrar segundos</string>
     <string name="increase_volume_gradually">Aumentar volumen gradualmente</string>
     <string name="faq_1_title">¿Cómo puedo cambiar el orden de las vueltas en la pestaña de cronómetro?</string>
-    <string name="faq_1_text">Solo toca cualquiera de las columnas, eso hará que las vueltas sean ordenados por la columna seleccionada. Con toques adicionales, puedes cambiar entre ordenar ascendente o descendentemente.</string>
+    <string name="faq_1_text">Solo toca cualquiera de las columnas, eso hará que las vueltas sean ordenados por la columna seleccionada. Con toques adicionales, puedes cambiar entre ordenación ascendente y descendente.</string>
     <string name="add_timer">Añadir un temporizador</string>
     <string name="add_alarm">Añadir una alarma</string>
 </resources>
