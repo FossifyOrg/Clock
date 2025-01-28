@@ -86,7 +86,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
             })
         }
         context?.getEnabledAlarms { enabledAlarms ->
-            if (enabledAlarms.isNullOrEmpty()) {
+            if (enabledAlarms.isEmpty()) {
                 val removedAlarms = mutableListOf<Alarm>()
                 alarms.forEach {
                     if (it.days == TODAY_BIT && it.isEnabled && it.timeInMinutes <= getCurrentDayMinutes()) {
@@ -95,6 +95,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                             if (it.oneShot) {
                                 it.isEnabled = false
                                 context?.dbHelper?.deleteAlarms(arrayListOf(it))
+                                // TODO: Fix race condition. `alarms.removeAll(removedAlarms)` could be called before this
                                 removedAlarms.add(it)
                             } else {
                                 context?.dbHelper?.updateAlarmEnabledState(it.id, false)

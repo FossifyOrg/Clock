@@ -100,7 +100,7 @@ fun Context.createNewTimer(): Timer {
 }
 
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
-    val triggerTime = getTimeOfNextAlarm(alarm.timeInMinutes, alarm.days) ?: return
+    val triggerTime = getTimeOfNextAlarm(alarm) ?: return
     setupAlarmClock(alarm, triggerTime)
 
     if (showToast) {
@@ -246,14 +246,14 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
 
 fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
     getEnabledAlarms { enabledAlarms ->
-        if (enabledAlarms.isNullOrEmpty()) {
+        if (enabledAlarms.isEmpty()) {
             callback("")
             return@getEnabledAlarms
         }
 
         val now = Calendar.getInstance()
         val nextAlarmList = enabledAlarms
-            .mapNotNull { getTimeOfNextAlarm(it.timeInMinutes, it.days) }
+            .mapNotNull(::getTimeOfNextAlarm)
             .filter { it > now }
 
         val closestAlarmTime = nextAlarmList.minOrNull()
@@ -276,7 +276,7 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
     }
 }
 
-fun Context.getEnabledAlarms(callback: (result: List<Alarm>?) -> Unit) {
+fun Context.getEnabledAlarms(callback: (result: List<Alarm>) -> Unit) {
     ensureBackgroundThread {
         val alarms = dbHelper.getEnabledAlarms()
         Handler(Looper.getMainLooper()).post {
@@ -286,9 +286,12 @@ fun Context.getEnabledAlarms(callback: (result: List<Alarm>?) -> Unit) {
 }
 
 fun Context.rescheduleEnabledAlarms() {
-    dbHelper.getEnabledAlarms().forEach {
-        if (it.days != TODAY_BIT || it.timeInMinutes > getCurrentDayMinutes()) {
-            scheduleNextAlarm(it, false)
+    getEnabledAlarms { alarms ->
+        val now = Calendar.getInstance();
+        alarms.forEach {
+            if (getTimeOfNextAlarm(it)?.after(now) == true) {
+                scheduleNextAlarm(it, false)
+            }
         }
     }
 }
@@ -325,7 +328,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
     if (isOreoPlus()) {
         try {
             notificationManager.deleteNotificationChannel(channelId)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
 
         val audioAttributes = AudioAttributes.Builder()
