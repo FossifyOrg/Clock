@@ -15,6 +15,7 @@ import android.os.PowerManager
 import android.text.SpannableString
 import android.text.format.DateFormat
 import android.text.style.RelativeSizeSpan
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.app.NotificationCompat
@@ -286,10 +287,15 @@ fun Context.getEnabledAlarms(callback: (result: List<Alarm>) -> Unit) {
 }
 
 fun Context.rescheduleEnabledAlarms() {
+    Log.d("rescheduleEnabledAlarms", "Rescheduling enabled alarms.")
     getEnabledAlarms { alarms ->
         val now = Calendar.getInstance();
         alarms.forEach {
-            if (getTimeOfNextAlarm(it)?.after(now) == true) {
+            val nextTime = getTimeOfNextAlarm(it)
+            val isInFuture = nextTime?.after(now)
+            Log.d("rescheduleEnabledAlarms", "Alarm: ${it.label}, nextTIme: ${nextTime?.time}, isInFuture: $isInFuture")
+            if (isInFuture == true) {
+                Log.d("rescheduleEnabledAlarms", "Scheduling: $it");
                 scheduleNextAlarm(it, false)
             }
         }
