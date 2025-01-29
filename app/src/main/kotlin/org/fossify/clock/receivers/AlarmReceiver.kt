@@ -23,7 +23,7 @@ import org.fossify.commons.helpers.isOreoPlus
 class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        context.rescheduleEnabledAlarms();
+        Thread(context::rescheduleEnabledAlarms).start()
 
         val id = intent.getIntExtra(ALARM_ID, -1)
         val alarm = context.dbHelper.getAlarmWithId(id) ?: return
