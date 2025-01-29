@@ -1,6 +1,7 @@
 package org.fossify.clock.helpers
 
 import org.fossify.clock.extensions.isBitSet
+import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.MyTimeZone
 import org.fossify.commons.helpers.*
 import java.util.Calendar
@@ -221,6 +222,10 @@ fun getAllTimeZones() = arrayListOf(
     MyTimeZone(88, "GMT+13:00 Auckland", "Pacific/Auckland"),
     MyTimeZone(89, "GMT+13:00 Tongatapu", "Pacific/Tongatapu")
 )
+
+fun getTimeOfNextAlarm(alarm: Alarm): Calendar? {
+    return getTimeOfNextAlarm(alarm.timeInMinutes, alarm.days)
+}
 
 fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
     val nextAlarmTime = Calendar.getInstance()

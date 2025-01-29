@@ -100,7 +100,7 @@ fun Context.createNewTimer(): Timer {
 }
 
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
-    val triggerTime = getTimeOfNextAlarm(alarm.timeInMinutes, alarm.days) ?: return
+    val triggerTime = getTimeOfNextAlarm(alarm) ?: return
     setupAlarmClock(alarm, triggerTime)
 
     if (showToast) {
@@ -253,7 +253,7 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
 
         val now = Calendar.getInstance()
         val nextAlarmList = enabledAlarms
-            .mapNotNull { getTimeOfNextAlarm(it.timeInMinutes, it.days) }
+            .mapNotNull(::getTimeOfNextAlarm)
             .filter { it > now }
 
         val closestAlarmTime = nextAlarmList.minOrNull()
@@ -325,7 +325,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
     if (isOreoPlus()) {
         try {
             notificationManager.deleteNotificationChannel(channelId)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
 
         val audioAttributes = AudioAttributes.Builder()
@@ -351,10 +351,8 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         }
     }
 
-    val title = if (timer.label.isEmpty()) {
+    val title = timer.label.ifEmpty {
         getString(R.string.timer)
-    } else {
-        timer.label
     }
 
     val reminderActivityIntent = getReminderActivityIntent()
