@@ -354,10 +354,8 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         }
     }
 
-    val title = if (timer.label.isEmpty()) {
+    val title = timer.label.ifEmpty {
         getString(R.string.timer)
-    } else {
-        timer.label
     }
 
     val reminderActivityIntent = getReminderActivityIntent()
