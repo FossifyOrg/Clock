@@ -36,4 +36,5 @@
     <string name="increase_volume_gradually">הגבר את עוצמת הקול בהדרגה</string>
     <string name="faq_1_title">כיצד אוכל לשנות את מיון ההקפה בכרטיסיית שעון העצר\?</string>
     <string name="faq_1_text">פשוט לחץ על כל אחת מהעמודות, זה יגרום להקפות להיות ממוינות לפי העמודה הנתונה. בלחיצות נוספות תוכל לעבור בין מיון עולה ויורד.</string>
+    <string name="clock">שעון</string>
 </resources>
