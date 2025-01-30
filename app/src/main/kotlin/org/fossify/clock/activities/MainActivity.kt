@@ -179,9 +179,9 @@ class MainActivity : SimpleActivity() {
     private fun storeNewAlarmSound(resultData: Intent) {
         val newAlarmSound = storeNewYourAlarmSound(resultData)
 
-        when (getTabIndex(binding.viewPager.currentItem)) {
-            TAB_ALARM -> getViewPagerAdapter()?.updateAlarmTabAlarmSound(newAlarmSound)
-            TAB_TIMER -> getViewPagerAdapter()?.updateTimerTabAlarmSound(newAlarmSound)
+        when (binding.viewPager.currentItem) {
+            TAB_ALARM_INDEX -> getViewPagerAdapter()?.updateAlarmTabAlarmSound(newAlarmSound)
+            TAB_TIMER_INDEX -> getViewPagerAdapter()?.updateTimerTabAlarmSound(newAlarmSound)
         }
     }
 
