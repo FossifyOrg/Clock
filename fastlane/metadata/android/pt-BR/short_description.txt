@@ -1,0 +1,1 @@
+Um app de relógio de código aberto, útil, leve e com funções essenciais.
