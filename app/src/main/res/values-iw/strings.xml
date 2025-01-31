@@ -7,7 +7,7 @@
     <string name="timer">טיימר</string>
     <string name="stopwatch">סטופר</string>
     <string name="lap">הקפה</string>
-    <string name="stopwatch_stopped">שעון העצר הופסק</string>
+    <string name="stopwatch_stopped">הסטופר הופסק</string>
     <string name="timer_stopped">הטיימר הופסק</string>
     <string name="max_reminder_duration">משך תזכורת מקסימלי</string>
     <string name="time_expired">הזמן פג</string>
@@ -15,8 +15,8 @@
     <string name="use_text_shadow">השתמש בצל טקסט</string>
     <string name="swipe_right_to_dismiss">החלק ימינה כדי לסגור, או שמאלה כדי להשהות.</string>
     <string name="sort_by_creation_order">סדר יצירה</string>
-    <string name="sort_by_alarm_time">התראה זמן</string>
-    <string name="sort_by_day_and_alarm_time">התראה יום ושעה</string>
+    <string name="sort_by_alarm_time">זמן השעון המעורר</string>
+    <string name="sort_by_day_and_alarm_time">יום וזמן השעון המעורר</string>
     <string name="analogue_clock">שעון אנלוגי</string>
     <string name="digital_clock">שעון דיגיטלי</string>
     <string name="timers_notification_msg">‏טיימר פועל</string>
@@ -29,12 +29,22 @@
         <item quantity="other">%d טיימרים פועלים</item>
     </plurals>
     <string name="clock_tab">לשונית שעון</string>
-    <string name="alarm_tab">לשונית התראות</string>
-    <string name="stopwatch_tab">לשונית שעון עצר</string>
+    <string name="alarm_tab">לשונית שעון מעורר</string>
+    <string name="stopwatch_tab">לשונית סטופר</string>
     <string name="timer_tab">לשונית טיימר</string>
     <string name="show_seconds">הצג שניות</string>
     <string name="increase_volume_gradually">הגבר את עוצמת הקול בהדרגה</string>
-    <string name="faq_1_title">כיצד אוכל לשנות את מיון ההקפה בכרטיסיית שעון העצר\?</string>
+    <string name="faq_1_title">כיצד אוכל לשנות את מיון ההקפה בכרטיסיית הסטופר?</string>
     <string name="faq_1_text">פשוט לחץ על כל אחת מהעמודות, זה יגרום להקפות להיות ממוינות לפי העמודה הנתונה. בלחיצות נוספות תוכל לעבור בין מיון עולה ויורד.</string>
     <string name="clock">שעון</string>
+    <string name="start_stopwatch">הפעל סטופר</string>
+    <string name="alarm_created">נוצר שעון מעורר</string>
+    <string name="select_alarm_to_dismiss">בחר שעון מעורר לביטול</string>
+    <string name="select_timer_to_dismiss">בחר טיימר לביטול</string>
+    <string name="alarm_dismissed">שעון מעורר בוטל</string>
+    <string name="alarm_snoozed">שעון מעורר נדחה ב%s</string>
+    <string name="no_alarms_found">לא נמצאו שעונים מעוררים</string>
+    <string name="add_alarm">הוסף שעון מעורר</string>
+    <string name="add_timer">הוסף טיימר</string>
+    <string name="no_timers_found">לא נמצאו טיימרים</string>
 </resources>
