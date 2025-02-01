@@ -321,7 +321,7 @@
 
             <RelativeLayout
                 android:id="@+id/settings_export_data_holder"
-                style="@style/SettingsHolderTextViewStyle"
+                style="@style/SettingsHolderTextViewOneLinerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -335,7 +335,7 @@
 
             <RelativeLayout
                 android:id="@+id/settings_import_data_holder"
-                style="@style/SettingsHolderTextViewStyle"
+                style="@style/SettingsHolderTextViewOneLinerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
