@@ -1,48 +1,57 @@
 package org.fossify.clock.dialogs
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AlertDialog
-import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.commons.dialogs.FilePickerDialog
-import org.fossify.commons.extensions.*
-import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.clock.R
 import org.fossify.clock.databinding.DialogExportDataBinding
 import org.fossify.clock.extensions.config
 import org.fossify.clock.helpers.DATA_EXPORT_EXTENSION
+import org.fossify.commons.activities.BaseSimpleActivity
+import org.fossify.commons.extensions.beGone
+import org.fossify.commons.extensions.getAlertDialogBuilder
+import org.fossify.commons.extensions.getCurrentFormattedDateTime
+import org.fossify.commons.extensions.getParentPath
+import org.fossify.commons.extensions.humanizePath
+import org.fossify.commons.extensions.internalStoragePath
+import org.fossify.commons.extensions.isAValidFilename
+import org.fossify.commons.extensions.setupDialogStuff
+import org.fossify.commons.extensions.showKeyboard
+import org.fossify.commons.extensions.toast
+import org.fossify.commons.extensions.value
+import org.fossify.commons.helpers.ensureBackgroundThread
 import java.io.File
 
+@SuppressLint("SetTextI18n")
 class ExportDataDialog(
-    val activity: BaseSimpleActivity,
-    val path: String,
-    val hidePath: Boolean,
-    callback: (file: File) -> Unit,
+    private val activity: BaseSimpleActivity,
+    private val path: String,
+    private val callback: (file: File) -> Unit,
 ) {
+
+    companion object {
+        private const val EXPORT_FILE_NAME = "alarms_and_timers"
+    }
+
     private var realPath = path.ifEmpty { activity.internalStoragePath }
     private val config = activity.config
 
     init {
         val view = DialogExportDataBinding.inflate(activity.layoutInflater, null, false).apply {
             exportDataFolder.text = activity.humanizePath(realPath)
-            exportDataFilename.setText("${activity.getString(R.string.settings_export_data)}_${activity.getCurrentFormattedDateTime()}")
-
-            if (hidePath) {
-                exportDataFolderLabel.beGone()
-                exportDataFolder.beGone()
-            } else {
-                exportDataFolder.setOnClickListener {
-                    FilePickerDialog(activity, realPath, false, showFAB = true) {
-                        exportDataFolder.text = activity.humanizePath(it)
-                        realPath = it
-                    }
-                }
-            }
+            exportDataFilename.setText("${EXPORT_FILE_NAME}_${activity.getCurrentFormattedDateTime()}")
+            exportDataFolderLabel.beGone()
+            exportDataFolder.beGone()
         }
 
         activity.getAlertDialogBuilder()
             .setPositiveButton(org.fossify.commons.R.string.ok, null)
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(view.root, this, R.string.settings_export_data) { alertDialog ->
+                activity.setupDialogStuff(
+                    view = view.root,
+                    dialog = this,
+                    titleId = R.string.settings_export_data
+                ) { alertDialog ->
                     alertDialog.showKeyboard(view.exportDataFilename)
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         val filename = view.exportDataFilename.value
@@ -50,7 +59,7 @@ class ExportDataDialog(
                             filename.isEmpty() -> activity.toast(org.fossify.commons.R.string.empty_name)
                             filename.isAValidFilename() -> {
                                 val file = File(realPath, "$filename$DATA_EXPORT_EXTENSION")
-                                if (!hidePath && file.exists()) {
+                                if (file.exists()) {
                                     activity.toast(org.fossify.commons.R.string.name_taken)
                                     return@setOnClickListener
                                 }

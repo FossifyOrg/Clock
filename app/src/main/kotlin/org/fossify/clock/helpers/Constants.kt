@@ -91,6 +91,17 @@ val DAY_BIT_MAP = mapOf(
     Calendar.SATURDAY to SATURDAY_BIT,
 )
 
+// Import/export
+const val EXPORT_BACKUP_MIME_TYPE = "application/json"
+val IMPORT_BACKUP_MIME_TYPES = buildList {
+    add("application/json")
+    if (!isPiePlus()) {
+        // Workaround for https://github.com/FossifyOrg/Messages/issues/88
+        add("application/octet-stream")
+    }
+}
+
+
 fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
 
 fun getPassedSeconds(): Int {

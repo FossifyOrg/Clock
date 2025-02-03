@@ -15,28 +15,27 @@ import org.fossify.clock.extensions.timerDb
 import org.fossify.clock.helpers.DBHelper
 import org.fossify.clock.helpers.DEFAULT_MAX_ALARM_REMINDER_SECS
 import org.fossify.clock.helpers.DEFAULT_MAX_TIMER_REMINDER_SECS
-import org.fossify.clock.helpers.DataExporter
-import org.fossify.clock.helpers.DataImporter
+import org.fossify.clock.helpers.EXPORT_BACKUP_MIME_TYPE
+import org.fossify.clock.helpers.ExportHelper
+import org.fossify.clock.helpers.IMPORT_BACKUP_MIME_TYPES
+import org.fossify.clock.helpers.ImportHelper
 import org.fossify.clock.helpers.TAB_ALARM
 import org.fossify.clock.helpers.TAB_CLOCK
 import org.fossify.clock.helpers.TAB_STOPWATCH
 import org.fossify.clock.helpers.TAB_TIMER
 import org.fossify.clock.helpers.TimerHelper
-import org.fossify.commons.dialogs.FilePickerDialog
+import org.fossify.clock.models.AlarmTimerBackup
 import org.fossify.commons.dialogs.RadioGroupDialog
 import org.fossify.commons.extensions.beGoneIf
 import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.formatMinutesToTimeString
 import org.fossify.commons.extensions.formatSecondsToTimeString
 import org.fossify.commons.extensions.getCustomizeColorsString
-import org.fossify.commons.extensions.getFileOutputStream
 import org.fossify.commons.extensions.getProperPrimaryColor
-import org.fossify.commons.extensions.getTempFile
 import org.fossify.commons.extensions.isOrWasThankYouInstalled
 import org.fossify.commons.extensions.launchPurchaseThankYouIntent
 import org.fossify.commons.extensions.showErrorToast
 import org.fossify.commons.extensions.showPickSecondsDialog
-import org.fossify.commons.extensions.toFileDirItem
 import org.fossify.commons.extensions.toast
 import org.fossify.commons.extensions.updateTextColors
 import org.fossify.commons.extensions.viewBinding
@@ -44,20 +43,47 @@ import org.fossify.commons.helpers.ExportResult
 import org.fossify.commons.helpers.IS_CUSTOMIZING_COLORS
 import org.fossify.commons.helpers.MINUTE_SECONDS
 import org.fossify.commons.helpers.NavigationIcon
-import org.fossify.commons.helpers.PERMISSION_READ_STORAGE
-import org.fossify.commons.helpers.PERMISSION_WRITE_STORAGE
 import org.fossify.commons.helpers.TAB_LAST_USED
 import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.helpers.isQPlus
 import org.fossify.commons.helpers.isTiramisuPlus
 import org.fossify.commons.models.RadioItem
-import java.io.FileOutputStream
-import java.io.OutputStream
+import java.io.IOException
 import java.util.Locale
 import kotlin.system.exitProcess
 
 class SettingsActivity : SimpleActivity() {
     private val binding: ActivitySettingsBinding by viewBinding(ActivitySettingsBinding::inflate)
+    private val exportActivityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.CreateDocument(EXPORT_BACKUP_MIME_TYPE)) { uri ->
+            if (uri == null) {
+                toast(org.fossify.commons.R.string.unknown_error_occurred)
+                return@registerForActivityResult
+            }
+
+            ensureBackgroundThread {
+                try {
+                    exportDataTo(uri)
+                } catch (e: IOException) {
+                    showErrorToast(e)
+                }
+            }
+        }
+
+    private val importActivityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            if (uri == null) {
+                toast(org.fossify.commons.R.string.unknown_error_occurred)
+                return@registerForActivityResult
+            }
+
+            ensureBackgroundThread {
+                try {
+                    importData(uri)
+                } catch (e: Exception) {
+                    showErrorToast(e)
+                }
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
@@ -263,144 +289,64 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private val exportActivityResultLauncher =
-        registerForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
-            try {
-                val outputStream = uri?.let { contentResolver.openOutputStream(it) }
-                if (outputStream != null) {
-                    exportDataTo(outputStream)
-                }
-            } catch (e: Exception) {
-                showErrorToast(e)
-            }
-        }
-
-    private val importActivityResultLauncher =
-        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-            try {
-                if (uri != null) {
-                    tryImportDataFromFile(uri)
-                }
-            } catch (e: Exception) {
-                showErrorToast(e)
-            }
-        }
-
-    private fun exportDataTo(outputStream: OutputStream?) {
-        ensureBackgroundThread {
-            val alarms = dbHelper.getAlarms()
-            val timers = timerDb.getTimers()
-            if (alarms.isEmpty()) {
-                toast(org.fossify.commons.R.string.no_entries_for_exporting)
-            } else {
-                DataExporter.exportData(alarms, timers, outputStream) {
-                    toast(
-                        when (it) {
-                            ExportResult.EXPORT_OK -> org.fossify.commons.R.string.exporting_successful
-                            else -> org.fossify.commons.R.string.exporting_failed
-                        }
-                    )
-                }
+    private fun exportDataTo(outputUri: Uri) {
+        val alarms = dbHelper.getAlarms()
+        val timers = timerDb.getTimers()
+        if (alarms.isEmpty()) {
+            toast(org.fossify.commons.R.string.no_entries_for_exporting)
+        } else {
+            ExportHelper(this).exportData(
+                backup = AlarmTimerBackup(alarms, timers),
+                outputUri = outputUri,
+            ) {
+                toast(
+                    when (it) {
+                        ExportResult.EXPORT_OK -> org.fossify.commons.R.string.exporting_successful
+                        else -> org.fossify.commons.R.string.exporting_failed
+                    }
+                )
             }
         }
     }
 
     private fun tryExportData() {
-        if (isQPlus()) {
-            ExportDataDialog(this, config.lastDataExportPath, true) { file ->
-                Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
-                    putExtra(Intent.EXTRA_TITLE, file.name)
-                    addCategory(Intent.CATEGORY_OPENABLE)
-
-                    try {
-                        exportActivityResultLauncher.launch(file.name)
-                    } catch (e: ActivityNotFoundException) {
-                        toast(
-                            org.fossify.commons.R.string.system_service_disabled,
-                            Toast.LENGTH_LONG
-                        )
-                    } catch (e: Exception) {
-                        showErrorToast(e)
-                    }
-                }
-            }
-        } else {
-            handlePermission(PERMISSION_WRITE_STORAGE) { isAllowed ->
-                if (isAllowed) {
-                    ExportDataDialog(this, config.lastDataExportPath, false) { file ->
-                        getFileOutputStream(file.toFileDirItem(this), true) { out ->
-                            exportDataTo(out)
-                        }
-                    }
-                }
+        ExportDataDialog(this, config.lastDataExportPath) { file ->
+            try {
+                exportActivityResultLauncher.launch(file.name)
+            } catch (e: ActivityNotFoundException) {
+                toast(
+                    id = org.fossify.commons.R.string.system_service_disabled,
+                    length = Toast.LENGTH_LONG
+                )
+            } catch (e: Exception) {
+                showErrorToast(e)
             }
         }
     }
 
     private fun tryImportData() {
-        if (isQPlus()) {
-            Intent(Intent.ACTION_GET_CONTENT).apply {
-                addCategory(Intent.CATEGORY_OPENABLE)
-                type = "application/json"
-
-                try {
-                    importActivityResultLauncher.launch(type)
-                } catch (e: ActivityNotFoundException) {
-                    toast(org.fossify.commons.R.string.system_service_disabled, Toast.LENGTH_LONG)
-                } catch (e: Exception) {
-                    showErrorToast(e)
-                }
-            }
-        } else {
-            handlePermission(PERMISSION_READ_STORAGE) { isAllowed ->
-                if (isAllowed) {
-                    pickFileToImportData()
-                }
-            }
+        try {
+            importActivityResultLauncher.launch(IMPORT_BACKUP_MIME_TYPES.toTypedArray())
+        } catch (e: ActivityNotFoundException) {
+            toast(org.fossify.commons.R.string.system_service_disabled, Toast.LENGTH_LONG)
+        } catch (e: Exception) {
+            showErrorToast(e)
         }
     }
 
-    private fun pickFileToImportData() {
-        FilePickerDialog(this) {
-            importData(it)
-        }
-    }
+    private fun importData(uri: Uri) {
+        val result = ImportHelper(
+            context = this,
+            dbHelper = DBHelper.dbInstance!!,
+            timerHelper = TimerHelper(this)
+        ).importData(uri)
 
-    private fun tryImportDataFromFile(uri: Uri) {
-        when (uri.scheme) {
-            "file" -> importData(uri.path!!)
-            "content" -> {
-                val tempFile = getTempFile("fossify_clock_data", "fossify_clock_data.json")
-                if (tempFile == null) {
-                    toast(org.fossify.commons.R.string.unknown_error_occurred)
-                    return
-                }
-
-                try {
-                    val inputStream = contentResolver.openInputStream(uri)
-                    val out = FileOutputStream(tempFile)
-                    inputStream!!.copyTo(out)
-                    importData(tempFile.absolutePath)
-                } catch (e: Exception) {
-                    showErrorToast(e)
-                }
+        toast(
+            when (result) {
+                ImportHelper.ImportResult.IMPORT_OK -> org.fossify.commons.R.string.importing_successful
+                ImportHelper.ImportResult.IMPORT_INCOMPLETE -> org.fossify.commons.R.string.no_new_entries_for_importing
+                ImportHelper.ImportResult.IMPORT_FAIL -> org.fossify.commons.R.string.no_items_found
             }
-
-            else -> toast(org.fossify.commons.R.string.invalid_file_format)
-        }
-    }
-
-    private fun importData(path: String) {
-        ensureBackgroundThread {
-            val result =
-                DataImporter(this, DBHelper.dbInstance!!, TimerHelper(this)).importData(path)
-            toast(
-                when (result) {
-                    DataImporter.ImportResult.IMPORT_OK -> org.fossify.commons.R.string.importing_successful
-                    DataImporter.ImportResult.IMPORT_INCOMPLETE -> org.fossify.commons.R.string.no_new_entries_for_importing
-                    DataImporter.ImportResult.IMPORT_FAIL -> org.fossify.commons.R.string.no_items_found
-                }
-            )
-        }
+        )
     }
 }
