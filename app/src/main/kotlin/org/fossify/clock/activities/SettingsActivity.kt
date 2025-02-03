@@ -26,7 +26,9 @@ import org.fossify.clock.helpers.TAB_TIMER
 import org.fossify.clock.helpers.TimerHelper
 import org.fossify.clock.models.AlarmTimerBackup
 import org.fossify.commons.dialogs.RadioGroupDialog
+import org.fossify.commons.extensions.beGone
 import org.fossify.commons.extensions.beGoneIf
+import org.fossify.commons.extensions.beVisible
 import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.formatMinutesToTimeString
 import org.fossify.commons.extensions.formatSecondsToTimeString
@@ -156,9 +158,13 @@ class SettingsActivity : SimpleActivity() {
 
     private fun setupLanguage() {
         binding.settingsLanguage.text = Locale.getDefault().displayLanguage
-        binding.settingsLanguageHolder.beVisibleIf(isTiramisuPlus())
-        binding.settingsLanguageHolder.setOnClickListener {
-            launchChangeAppLanguageIntent()
+        if (isTiramisuPlus()) {
+            binding.settingsLanguageHolder.beVisible()
+            binding.settingsLanguageHolder.setOnClickListener {
+                launchChangeAppLanguageIntent()
+            }
+        } else {
+            binding.settingsLanguageHolder.beGone()
         }
     }
 

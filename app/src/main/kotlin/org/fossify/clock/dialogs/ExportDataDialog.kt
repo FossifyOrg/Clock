@@ -24,7 +24,7 @@ import java.io.File
 @SuppressLint("SetTextI18n")
 class ExportDataDialog(
     private val activity: BaseSimpleActivity,
-    private val path: String,
+    path: String,
     private val callback: (file: File) -> Unit,
 ) {
 
@@ -32,7 +32,7 @@ class ExportDataDialog(
         private const val EXPORT_FILE_NAME = "alarms_and_timers"
     }
 
-    private var realPath = path.ifEmpty { activity.internalStoragePath }
+    private val realPath = path.ifEmpty { activity.internalStoragePath }
     private val config = activity.config
 
     init {
