@@ -57,11 +57,7 @@ class SettingsActivity : SimpleActivity() {
     private val binding: ActivitySettingsBinding by viewBinding(ActivitySettingsBinding::inflate)
     private val exportActivityResultLauncher =
         registerForActivityResult(ActivityResultContracts.CreateDocument(EXPORT_BACKUP_MIME_TYPE)) { uri ->
-            if (uri == null) {
-                toast(org.fossify.commons.R.string.unknown_error_occurred)
-                return@registerForActivityResult
-            }
-
+            if (uri == null) return@registerForActivityResult
             ensureBackgroundThread {
                 try {
                     exportDataTo(uri)
@@ -73,11 +69,7 @@ class SettingsActivity : SimpleActivity() {
 
     private val importActivityResultLauncher =
         registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
-            if (uri == null) {
-                toast(org.fossify.commons.R.string.unknown_error_occurred)
-                return@registerForActivityResult
-            }
-
+            if (uri == null) return@registerForActivityResult
             ensureBackgroundThread {
                 try {
                     importData(uri)
