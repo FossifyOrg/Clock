@@ -7,11 +7,9 @@ import org.fossify.clock.databinding.DialogExportDataBinding
 import org.fossify.clock.extensions.config
 import org.fossify.clock.helpers.DATA_EXPORT_EXTENSION
 import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.commons.extensions.beGone
 import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.getCurrentFormattedDateTime
 import org.fossify.commons.extensions.getParentPath
-import org.fossify.commons.extensions.humanizePath
 import org.fossify.commons.extensions.internalStoragePath
 import org.fossify.commons.extensions.isAValidFilename
 import org.fossify.commons.extensions.setupDialogStuff
@@ -37,10 +35,7 @@ class ExportDataDialog(
 
     init {
         val view = DialogExportDataBinding.inflate(activity.layoutInflater, null, false).apply {
-            exportDataFolder.text = activity.humanizePath(realPath)
             exportDataFilename.setText("${EXPORT_FILE_NAME}_${activity.getCurrentFormattedDateTime()}")
-            exportDataFolderLabel.beGone()
-            exportDataFolder.beGone()
         }
 
         activity.getAlertDialogBuilder()
