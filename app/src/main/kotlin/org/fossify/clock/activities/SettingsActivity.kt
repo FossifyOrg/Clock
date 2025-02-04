@@ -290,7 +290,7 @@ class SettingsActivity : SimpleActivity() {
     private fun exportDataTo(outputUri: Uri) {
         val alarms = dbHelper.getAlarms()
         val timers = timerDb.getTimers()
-        if (alarms.isEmpty()) {
+        if (alarms.isEmpty() && timers.isEmpty()) {
             toast(org.fossify.commons.R.string.no_entries_for_exporting)
         } else {
             ExportHelper(this).exportData(
