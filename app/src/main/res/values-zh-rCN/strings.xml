@@ -46,4 +46,6 @@
     <string name="increase_volume_gradually">音量渐增</string>
     <string name="faq_1_title">秒表页面分段的排序如何更改?</string>
     <string name="faq_1_text">只要点击任一栏位，就会依据选定的栏位做排序。再多点一下，还能切换递增或者递减顺序。</string>
+    <string name="settings_export_data">导出闹钟和定时器</string>
+    <string name="settings_import_data">导入闹钟和定时器</string>
 </resources>
