@@ -48,4 +48,6 @@
     <string name="add_timer">Afegeix un temporitzador</string>
     <string name="clock">Rellotge</string>
     <string name="add_alarm">Afegeix una alarma</string>
+    <string name="settings_export_data">Exporta alarmes i temporitzadors</string>
+    <string name="settings_import_data">Importa alarmes i temporitzadors</string>
 </resources>
