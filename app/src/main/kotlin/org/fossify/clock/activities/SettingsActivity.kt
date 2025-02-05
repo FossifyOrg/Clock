@@ -1,36 +1,95 @@
 package org.fossify.clock.activities
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import org.fossify.clock.R
 import org.fossify.clock.databinding.ActivitySettingsBinding
+import org.fossify.clock.dialogs.ExportDataDialog
 import org.fossify.clock.extensions.config
+import org.fossify.clock.extensions.dbHelper
+import org.fossify.clock.extensions.timerDb
+import org.fossify.clock.helpers.DBHelper
 import org.fossify.clock.helpers.DEFAULT_MAX_ALARM_REMINDER_SECS
 import org.fossify.clock.helpers.DEFAULT_MAX_TIMER_REMINDER_SECS
+import org.fossify.clock.helpers.EXPORT_BACKUP_MIME_TYPE
+import org.fossify.clock.helpers.ExportHelper
+import org.fossify.clock.helpers.IMPORT_BACKUP_MIME_TYPES
+import org.fossify.clock.helpers.ImportHelper
 import org.fossify.clock.helpers.TAB_ALARM
 import org.fossify.clock.helpers.TAB_CLOCK
 import org.fossify.clock.helpers.TAB_STOPWATCH
 import org.fossify.clock.helpers.TAB_TIMER
+import org.fossify.clock.helpers.TimerHelper
+import org.fossify.clock.models.AlarmTimerBackup
 import org.fossify.commons.dialogs.RadioGroupDialog
-import org.fossify.commons.extensions.*
+import org.fossify.commons.extensions.beGone
+import org.fossify.commons.extensions.beGoneIf
+import org.fossify.commons.extensions.beVisible
+import org.fossify.commons.extensions.beVisibleIf
+import org.fossify.commons.extensions.formatMinutesToTimeString
+import org.fossify.commons.extensions.formatSecondsToTimeString
+import org.fossify.commons.extensions.getCustomizeColorsString
+import org.fossify.commons.extensions.getProperPrimaryColor
+import org.fossify.commons.extensions.isOrWasThankYouInstalled
+import org.fossify.commons.extensions.launchPurchaseThankYouIntent
+import org.fossify.commons.extensions.showErrorToast
+import org.fossify.commons.extensions.showPickSecondsDialog
+import org.fossify.commons.extensions.toast
+import org.fossify.commons.extensions.updateTextColors
+import org.fossify.commons.extensions.viewBinding
+import org.fossify.commons.helpers.ExportResult
 import org.fossify.commons.helpers.IS_CUSTOMIZING_COLORS
 import org.fossify.commons.helpers.MINUTE_SECONDS
-import org.fossify.commons.helpers.TAB_LAST_USED
 import org.fossify.commons.helpers.NavigationIcon
+import org.fossify.commons.helpers.TAB_LAST_USED
+import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.helpers.isTiramisuPlus
 import org.fossify.commons.models.RadioItem
+import java.io.IOException
 import java.util.Locale
 import kotlin.system.exitProcess
 
 class SettingsActivity : SimpleActivity() {
     private val binding: ActivitySettingsBinding by viewBinding(ActivitySettingsBinding::inflate)
+    private val exportActivityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.CreateDocument(EXPORT_BACKUP_MIME_TYPE)) { uri ->
+            if (uri == null) return@registerForActivityResult
+            ensureBackgroundThread {
+                try {
+                    exportDataTo(uri)
+                } catch (e: IOException) {
+                    showErrorToast(e)
+                }
+            }
+        }
+
+    private val importActivityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            if (uri == null) return@registerForActivityResult
+            ensureBackgroundThread {
+                try {
+                    importData(uri)
+                } catch (e: Exception) {
+                    showErrorToast(e)
+                }
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        updateMaterialActivityViews(binding.settingsCoordinator, binding.settingsHolder, useTransparentNavigation = true, useTopSearchMenu = false)
+        updateMaterialActivityViews(
+            mainCoordinatorLayout = binding.settingsCoordinator,
+            nestedView = binding.settingsHolder,
+            useTransparentNavigation = true,
+            useTopSearchMenu = false
+        )
         setupMaterialScrollListener(binding.settingsNestedScrollview, binding.settingsToolbar)
     }
 
@@ -51,6 +110,8 @@ class SettingsActivity : SimpleActivity() {
         setupTimerMaxReminder()
         setupIncreaseVolumeGradually()
         setupCustomizeWidgetColors()
+        setupExportData()
+        setupImportData()
         updateTextColors(binding.settingsHolder)
 
         arrayOf(
@@ -89,9 +150,13 @@ class SettingsActivity : SimpleActivity() {
 
     private fun setupLanguage() {
         binding.settingsLanguage.text = Locale.getDefault().displayLanguage
-        binding.settingsLanguageHolder.beVisibleIf(isTiramisuPlus())
-        binding.settingsLanguageHolder.setOnClickListener {
-            launchChangeAppLanguageIntent()
+        if (isTiramisuPlus()) {
+            binding.settingsLanguageHolder.beVisible()
+            binding.settingsLanguageHolder.setOnClickListener {
+                launchChangeAppLanguageIntent()
+            }
+        } else {
+            binding.settingsLanguageHolder.beGone()
         }
     }
 
@@ -192,11 +257,13 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun updateAlarmMaxReminderText() {
-        binding.settingsAlarmMaxReminder.text = formatSecondsToTimeString(config.alarmMaxReminderSecs)
+        binding.settingsAlarmMaxReminder.text =
+            formatSecondsToTimeString(config.alarmMaxReminderSecs)
     }
 
     private fun updateTimerMaxReminderText() {
-        binding.settingsTimerMaxReminder.text = formatSecondsToTimeString(config.timerMaxReminderSecs)
+        binding.settingsTimerMaxReminder.text =
+            formatSecondsToTimeString(config.timerMaxReminderSecs)
     }
 
     private fun setupCustomizeWidgetColors() {
@@ -206,5 +273,78 @@ class SettingsActivity : SimpleActivity() {
                 startActivity(this)
             }
         }
+    }
+
+    private fun setupExportData() {
+        binding.settingsExportDataHolder.setOnClickListener {
+            tryExportData()
+        }
+    }
+
+    private fun setupImportData() {
+        binding.settingsImportDataHolder.setOnClickListener {
+            tryImportData()
+        }
+    }
+
+    private fun exportDataTo(outputUri: Uri) {
+        val alarms = dbHelper.getAlarms()
+        val timers = timerDb.getTimers()
+        if (alarms.isEmpty() && timers.isEmpty()) {
+            toast(org.fossify.commons.R.string.no_entries_for_exporting)
+        } else {
+            ExportHelper(this).exportData(
+                backup = AlarmTimerBackup(alarms, timers),
+                outputUri = outputUri,
+            ) {
+                toast(
+                    when (it) {
+                        ExportResult.EXPORT_OK -> org.fossify.commons.R.string.exporting_successful
+                        else -> org.fossify.commons.R.string.exporting_failed
+                    }
+                )
+            }
+        }
+    }
+
+    private fun tryExportData() {
+        ExportDataDialog(this, config.lastDataExportPath) { file ->
+            try {
+                exportActivityResultLauncher.launch(file.name)
+            } catch (e: ActivityNotFoundException) {
+                toast(
+                    id = org.fossify.commons.R.string.system_service_disabled,
+                    length = Toast.LENGTH_LONG
+                )
+            } catch (e: Exception) {
+                showErrorToast(e)
+            }
+        }
+    }
+
+    private fun tryImportData() {
+        try {
+            importActivityResultLauncher.launch(IMPORT_BACKUP_MIME_TYPES.toTypedArray())
+        } catch (e: ActivityNotFoundException) {
+            toast(org.fossify.commons.R.string.system_service_disabled, Toast.LENGTH_LONG)
+        } catch (e: Exception) {
+            showErrorToast(e)
+        }
+    }
+
+    private fun importData(uri: Uri) {
+        val result = ImportHelper(
+            context = this,
+            dbHelper = DBHelper.dbInstance!!,
+            timerHelper = TimerHelper(this)
+        ).importData(uri)
+
+        toast(
+            when (result) {
+                ImportHelper.ImportResult.IMPORT_OK -> org.fossify.commons.R.string.importing_successful
+                ImportHelper.ImportResult.IMPORT_INCOMPLETE -> org.fossify.commons.R.string.no_new_entries_for_importing
+                ImportHelper.ImportResult.IMPORT_FAIL -> org.fossify.commons.R.string.no_items_found
+            }
+        )
     }
 }
