@@ -1,8 +1,11 @@
 [versions]
 #jetbrains
 kotlin = "1.9.22"
+kotlinxSerializationJson = "1.6.0"
 #KSP
 ksp = "1.9.22-1.0.17"
+#Detekt
+detekt = "1.23.3"
 #AndroidX
 androidx-constraintlayout = "2.1.4"
 androidx-lifecycle = "2.7.0"
@@ -48,6 +51,8 @@ autofittextview = { module = "me.grantland:autofittextview", version.ref = "auto
 #EventBus
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 #KotlinX
+#Kotlin
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 #NumberPicker
 numberpicker = { module = "io.github.ShawnLin013:number-picker", version.ref = "numberpicker" }
@@ -72,4 +77,6 @@ lifecycle = [
 [plugins]
 android = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

@@ -13,10 +13,7 @@ import org.fossify.clock.BuildConfig
 import org.fossify.clock.R
 import org.fossify.clock.adapters.ViewPagerAdapter
 import org.fossify.clock.databinding.ActivityMainBinding
-import org.fossify.clock.extensions.config
-import org.fossify.clock.extensions.getEnabledAlarms
-import org.fossify.clock.extensions.rescheduleEnabledAlarms
-import org.fossify.clock.extensions.updateWidgets
+import org.fossify.clock.extensions.*
 import org.fossify.clock.helpers.*
 import org.fossify.commons.databinding.BottomTablayoutItemBinding
 import org.fossify.commons.extensions.*
@@ -142,7 +139,7 @@ class MainActivity : SimpleActivity() {
 
     private fun refreshMenuItems() {
         binding.mainToolbar.menu.apply {
-            findItem(R.id.sort).isVisible = binding.viewPager.currentItem == TAB_ALARM
+            findItem(R.id.sort).isVisible = binding.viewPager.currentItem == getTabIndex(TAB_ALARM)
             findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
         }
     }
@@ -150,7 +147,7 @@ class MainActivity : SimpleActivity() {
     override fun onNewIntent(intent: Intent) {
         if (intent.extras?.containsKey(OPEN_TAB) == true) {
             val tabToOpen = intent.getIntExtra(OPEN_TAB, TAB_CLOCK)
-            binding.viewPager.setCurrentItem(tabToOpen, false)
+            binding.viewPager.setCurrentItem(getTabIndex(tabToOpen), false)
             if (tabToOpen == TAB_TIMER) {
                 val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
                 (binding.viewPager.adapter as ViewPagerAdapter).updateTimerPosition(timerId)
@@ -172,8 +169,10 @@ class MainActivity : SimpleActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
         super.onActivityResult(requestCode, resultCode, resultData)
-        if (requestCode == PICK_AUDIO_FILE_INTENT_ID && resultCode == RESULT_OK && resultData != null) {
-            storeNewAlarmSound(resultData)
+        when {
+            requestCode == PICK_AUDIO_FILE_INTENT_ID && resultCode == RESULT_OK && resultData != null -> {
+                storeNewAlarmSound(resultData)
+            }
         }
     }
 
@@ -181,8 +180,8 @@ class MainActivity : SimpleActivity() {
         val newAlarmSound = storeNewYourAlarmSound(resultData)
 
         when (binding.viewPager.currentItem) {
-            TAB_ALARM -> getViewPagerAdapter()?.updateAlarmTabAlarmSound(newAlarmSound)
-            TAB_TIMER -> getViewPagerAdapter()?.updateTimerTabAlarmSound(newAlarmSound)
+            TAB_ALARM_INDEX -> getViewPagerAdapter()?.updateAlarmTabAlarmSound(newAlarmSound)
+            TAB_TIMER_INDEX -> getViewPagerAdapter()?.updateTimerTabAlarmSound(newAlarmSound)
         }
     }
 
@@ -200,7 +199,7 @@ class MainActivity : SimpleActivity() {
             refreshMenuItems()
         }
 
-        val tabToOpen = intent.getIntExtra(OPEN_TAB, config.lastUsedViewPagerPage)
+        val tabToOpen = intent.getIntExtra(OPEN_TAB, config.defaultTab)
         intent.removeExtra(OPEN_TAB)
         if (tabToOpen == TAB_TIMER) {
             val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
@@ -212,7 +211,7 @@ class MainActivity : SimpleActivity() {
         }
 
         binding.viewPager.offscreenPageLimit = TABS_COUNT - 1
-        binding.viewPager.currentItem = tabToOpen
+        binding.viewPager.currentItem = getTabIndex(tabToOpen)
     }
 
     private fun setupTabs() {
@@ -306,6 +305,16 @@ class MainActivity : SimpleActivity() {
             config.firstDayOfWeek = 6
             // revert old setting to not run this code anymore
             config.isSundayFirst = false
+        }
+    }
+
+    private fun getTabIndex(tabId: Int): Int {
+        return when (tabId) {
+            TAB_CLOCK -> TAB_CLOCK_INDEX
+            TAB_ALARM -> TAB_ALARM_INDEX
+            TAB_STOPWATCH -> TAB_STOPWATCH_INDEX
+            TAB_TIMER -> TAB_TIMER_INDEX
+            else -> config.lastUsedViewPagerPage
         }
     }
 }

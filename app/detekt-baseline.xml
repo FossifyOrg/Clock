@@ -1,0 +1,334 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ComplexCondition:IntentHandlerActivity.kt$IntentHandlerActivity$existingTimer != null &amp;&amp; skipUi &amp;&amp; (existingTimer.state is TimerState.Idle || (existingTimer.state is TimerState.Finished &amp;&amp; !existingTimer.oneShot))</ID>
+    <ID>CyclomaticComplexMethod:IntentHandlerActivity.kt$IntentHandlerActivity$private fun Intent.dismissAlarm()</ID>
+    <ID>CyclomaticComplexMethod:IntentHandlerActivity.kt$IntentHandlerActivity$private fun Intent.setNewAlarm()</ID>
+    <ID>EmptyCatchBlock:Context.kt${ }</ID>
+    <ID>EmptyCatchBlock:ReminderActivity.kt$ReminderActivity${ }</ID>
+    <ID>EmptyFunctionBlock:AlarmsAdapter.kt$AlarmsAdapter${}</ID>
+    <ID>EmptyFunctionBlock:StopwatchAdapter.kt$StopwatchAdapter${}</ID>
+    <ID>EmptyFunctionBlock:TimeZonesAdapter.kt$TimeZonesAdapter${}</ID>
+    <ID>EmptyFunctionBlock:TimerAdapter.kt$TimerAdapter${}</ID>
+    <ID>EmptyFunctionBlock:WidgetAnalogueConfigureActivity.kt$WidgetAnalogueConfigureActivity.&lt;no name provided&gt;${}</ID>
+    <ID>EmptyFunctionBlock:WidgetDigitalConfigureActivity.kt$WidgetDigitalConfigureActivity.&lt;no name provided&gt;${}</ID>
+    <ID>LongMethod:Constants.kt$fun getAllTimeZones()</ID>
+    <ID>LongMethod:Context.kt$fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification</ID>
+    <ID>LongMethod:IntentHandlerActivity.kt$IntentHandlerActivity$private fun Intent.dismissAlarm()</ID>
+    <ID>LongMethod:IntentHandlerActivity.kt$IntentHandlerActivity$private fun Intent.setNewAlarm()</ID>
+    <ID>LongMethod:ReminderActivity.kt$ReminderActivity$@SuppressLint("ClickableViewAccessibility") private fun setupAlarmButtons()</ID>
+    <ID>MagicNumber:AlarmReceiver.kt$AlarmReceiver$1000L</ID>
+    <ID>MagicNumber:AlarmsAdapter.kt$AlarmsAdapter$60</ID>
+    <ID>MagicNumber:App.kt$App$1000L</ID>
+    <ID>MagicNumber:App.kt$App.&lt;no name provided&gt;$1000</ID>
+    <ID>MagicNumber:ClockFragment.kt$ClockFragment$1000L</ID>
+    <ID>MagicNumber:ClockFragment.kt$ClockFragment$24</ID>
+    <ID>MagicNumber:ClockFragment.kt$ClockFragment$3600</ID>
+    <ID>MagicNumber:ClockFragment.kt$ClockFragment$60</ID>
+    <ID>MagicNumber:Config.kt$Config$300</ID>
+    <ID>MagicNumber:Constants.kt$10</ID>
+    <ID>MagicNumber:Constants.kt$1000</ID>
+    <ID>MagicNumber:Constants.kt$11</ID>
+    <ID>MagicNumber:Constants.kt$12</ID>
+    <ID>MagicNumber:Constants.kt$13</ID>
+    <ID>MagicNumber:Constants.kt$14</ID>
+    <ID>MagicNumber:Constants.kt$15</ID>
+    <ID>MagicNumber:Constants.kt$16</ID>
+    <ID>MagicNumber:Constants.kt$17</ID>
+    <ID>MagicNumber:Constants.kt$18</ID>
+    <ID>MagicNumber:Constants.kt$19</ID>
+    <ID>MagicNumber:Constants.kt$20</ID>
+    <ID>MagicNumber:Constants.kt$21</ID>
+    <ID>MagicNumber:Constants.kt$22</ID>
+    <ID>MagicNumber:Constants.kt$23</ID>
+    <ID>MagicNumber:Constants.kt$24</ID>
+    <ID>MagicNumber:Constants.kt$25</ID>
+    <ID>MagicNumber:Constants.kt$26</ID>
+    <ID>MagicNumber:Constants.kt$27</ID>
+    <ID>MagicNumber:Constants.kt$28</ID>
+    <ID>MagicNumber:Constants.kt$29</ID>
+    <ID>MagicNumber:Constants.kt$3</ID>
+    <ID>MagicNumber:Constants.kt$30</ID>
+    <ID>MagicNumber:Constants.kt$31</ID>
+    <ID>MagicNumber:Constants.kt$32</ID>
+    <ID>MagicNumber:Constants.kt$33</ID>
+    <ID>MagicNumber:Constants.kt$34</ID>
+    <ID>MagicNumber:Constants.kt$35</ID>
+    <ID>MagicNumber:Constants.kt$36</ID>
+    <ID>MagicNumber:Constants.kt$37</ID>
+    <ID>MagicNumber:Constants.kt$38</ID>
+    <ID>MagicNumber:Constants.kt$39</ID>
+    <ID>MagicNumber:Constants.kt$4</ID>
+    <ID>MagicNumber:Constants.kt$40</ID>
+    <ID>MagicNumber:Constants.kt$41</ID>
+    <ID>MagicNumber:Constants.kt$42</ID>
+    <ID>MagicNumber:Constants.kt$43</ID>
+    <ID>MagicNumber:Constants.kt$44</ID>
+    <ID>MagicNumber:Constants.kt$45</ID>
+    <ID>MagicNumber:Constants.kt$46</ID>
+    <ID>MagicNumber:Constants.kt$47</ID>
+    <ID>MagicNumber:Constants.kt$48</ID>
+    <ID>MagicNumber:Constants.kt$49</ID>
+    <ID>MagicNumber:Constants.kt$5</ID>
+    <ID>MagicNumber:Constants.kt$50</ID>
+    <ID>MagicNumber:Constants.kt$51</ID>
+    <ID>MagicNumber:Constants.kt$52</ID>
+    <ID>MagicNumber:Constants.kt$53</ID>
+    <ID>MagicNumber:Constants.kt$54</ID>
+    <ID>MagicNumber:Constants.kt$55</ID>
+    <ID>MagicNumber:Constants.kt$56</ID>
+    <ID>MagicNumber:Constants.kt$57</ID>
+    <ID>MagicNumber:Constants.kt$58</ID>
+    <ID>MagicNumber:Constants.kt$59</ID>
+    <ID>MagicNumber:Constants.kt$6</ID>
+    <ID>MagicNumber:Constants.kt$60</ID>
+    <ID>MagicNumber:Constants.kt$61</ID>
+    <ID>MagicNumber:Constants.kt$62</ID>
+    <ID>MagicNumber:Constants.kt$63</ID>
+    <ID>MagicNumber:Constants.kt$64</ID>
+    <ID>MagicNumber:Constants.kt$65</ID>
+    <ID>MagicNumber:Constants.kt$66</ID>
+    <ID>MagicNumber:Constants.kt$67</ID>
+    <ID>MagicNumber:Constants.kt$68</ID>
+    <ID>MagicNumber:Constants.kt$69</ID>
+    <ID>MagicNumber:Constants.kt$7</ID>
+    <ID>MagicNumber:Constants.kt$70</ID>
+    <ID>MagicNumber:Constants.kt$71</ID>
+    <ID>MagicNumber:Constants.kt$72</ID>
+    <ID>MagicNumber:Constants.kt$73</ID>
+    <ID>MagicNumber:Constants.kt$74</ID>
+    <ID>MagicNumber:Constants.kt$75</ID>
+    <ID>MagicNumber:Constants.kt$76</ID>
+    <ID>MagicNumber:Constants.kt$77</ID>
+    <ID>MagicNumber:Constants.kt$78</ID>
+    <ID>MagicNumber:Constants.kt$79</ID>
+    <ID>MagicNumber:Constants.kt$8</ID>
+    <ID>MagicNumber:Constants.kt$80</ID>
+    <ID>MagicNumber:Constants.kt$81</ID>
+    <ID>MagicNumber:Constants.kt$82</ID>
+    <ID>MagicNumber:Constants.kt$83</ID>
+    <ID>MagicNumber:Constants.kt$84</ID>
+    <ID>MagicNumber:Constants.kt$85</ID>
+    <ID>MagicNumber:Constants.kt$86</ID>
+    <ID>MagicNumber:Constants.kt$87</ID>
+    <ID>MagicNumber:Constants.kt$88</ID>
+    <ID>MagicNumber:Constants.kt$89</ID>
+    <ID>MagicNumber:Constants.kt$9</ID>
+    <ID>MagicNumber:Context.kt$0.4f</ID>
+    <ID>MagicNumber:Context.kt$1000</ID>
+    <ID>MagicNumber:Context.kt$12</ID>
+    <ID>MagicNumber:Context.kt$2</ID>
+    <ID>MagicNumber:Context.kt$24</ID>
+    <ID>MagicNumber:Context.kt$3</ID>
+    <ID>MagicNumber:Context.kt$3600</ID>
+    <ID>MagicNumber:Context.kt$5</ID>
+    <ID>MagicNumber:Context.kt$500</ID>
+    <ID>MagicNumber:Context.kt$60</ID>
+    <ID>MagicNumber:Context.kt$7</ID>
+    <ID>MagicNumber:DBHelper.kt$DBHelper$420</ID>
+    <ID>MagicNumber:DBHelper.kt$DBHelper$540</ID>
+    <ID>MagicNumber:DismissAlarmReceiver.kt$DismissAlarmReceiver$5</ID>
+    <ID>MagicNumber:DismissAlarmReceiver.kt$DismissAlarmReceiver$7</ID>
+    <ID>MagicNumber:EditAlarmDialog.kt$EditAlarmDialog$3</ID>
+    <ID>MagicNumber:EditAlarmDialog.kt$EditAlarmDialog$4</ID>
+    <ID>MagicNumber:EditAlarmDialog.kt$EditAlarmDialog$5</ID>
+    <ID>MagicNumber:EditAlarmDialog.kt$EditAlarmDialog$6</ID>
+    <ID>MagicNumber:EditAlarmDialog.kt$EditAlarmDialog$60</ID>
+    <ID>MagicNumber:EditTimerDialog.kt$EditTimerDialog$10</ID>
+    <ID>MagicNumber:EditTimerDialog.kt$EditTimerDialog$60</ID>
+    <ID>MagicNumber:IntentHandlerActivity.kt$IntentHandlerActivity$11</ID>
+    <ID>MagicNumber:IntentHandlerActivity.kt$IntentHandlerActivity$12</ID>
+    <ID>MagicNumber:IntentHandlerActivity.kt$IntentHandlerActivity$23</ID>
+    <ID>MagicNumber:IntentHandlerActivity.kt$IntentHandlerActivity$59</ID>
+    <ID>MagicNumber:IntentHandlerActivity.kt$IntentHandlerActivity$60</ID>
+    <ID>MagicNumber:Long.kt$100</ID>
+    <ID>MagicNumber:Long.kt$1000</ID>
+    <ID>MagicNumber:Long.kt$1000F</ID>
+    <ID>MagicNumber:MainActivity.kt$MainActivity$3</ID>
+    <ID>MagicNumber:MyTimePickerDialogDialog.kt$MyTimePickerDialogDialog$3600</ID>
+    <ID>MagicNumber:MyTimePickerDialogDialog.kt$MyTimePickerDialogDialog$60</ID>
+    <ID>MagicNumber:ReminderActivity.kt$ReminderActivity$0.1f</ID>
+    <ID>MagicNumber:ReminderActivity.kt$ReminderActivity$0.2f</ID>
+    <ID>MagicNumber:ReminderActivity.kt$ReminderActivity$1000L</ID>
+    <ID>MagicNumber:ReminderActivity.kt$ReminderActivity$2000L</ID>
+    <ID>MagicNumber:ReminderActivity.kt$ReminderActivity$500</ID>
+    <ID>MagicNumber:ReminderActivity.kt$ReminderActivity$50f</ID>
+    <ID>MagicNumber:ReminderActivity.kt$ReminderActivity$7</ID>
+    <ID>MagicNumber:Stopwatch.kt$Stopwatch.&lt;no name provided&gt;$10</ID>
+    <ID>MagicNumber:StopwatchService.kt$StopwatchService.&lt;no name provided&gt;$500L</ID>
+    <ID>MagicNumber:TimeZonesAdapter.kt$TimeZonesAdapter$1000</ID>
+    <ID>MagicNumber:TimerAdapter.kt$TimerAdapter$0.7f</ID>
+    <ID>MagicNumber:TimerFragment.kt$TimerFragment$1000</ID>
+    <ID>MagicNumber:ViewPagerAdapter.kt$ViewPagerAdapter$3</ID>
+    <ID>MagicNumber:WidgetAnalogueConfigureActivity.kt$WidgetAnalogueConfigureActivity$100</ID>
+    <ID>MagicNumber:WidgetDigitalConfigureActivity.kt$WidgetDigitalConfigureActivity$100</ID>
+    <ID>MaxLineLength:AlarmReceiver.kt$AlarmReceiver$NotificationChannel(ALARM_NOTIFICATION_CHANNEL_ID, "Alarm", NotificationManager.IMPORTANCE_HIGH)</ID>
+    <ID>MaxLineLength:AlarmReceiver.kt$AlarmReceiver$oldNotificationChannelCleanup(notificationManager)</ID>
+    <ID>MaxLineLength:AlarmReceiver.kt$AlarmReceiver$val</ID>
+    <ID>MaxLineLength:ClockFragment.kt$ClockFragment$binding.clockTime.textSize = resources.getDimension(R.dimen.clock_text_size_smaller) / resources.displayMetrics.density</ID>
+    <ID>MaxLineLength:ClockFragment.kt$ClockFragment$val timeZones = requireContext().getAllTimeZonesModified().filter { selectedTimeZoneIDs.contains(it.id) } as ArrayList&lt;MyTimeZone&gt;</ID>
+    <ID>MaxLineLength:Config.kt$Config$set(increaseVolumeGradually) = prefs.edit().putBoolean(INCREASE_VOLUME_GRADUALLY, increaseVolumeGradually).apply()</ID>
+    <ID>MaxLineLength:Context.kt$.</ID>
+    <ID>MaxLineLength:Context.kt$AlarmManagerCompat.setExactAndAllowWhileIdle(alarmManager, 0, dismissalTriggerTime, getEarlyAlarmDismissalIntent(alarm))</ID>
+    <ID>MaxLineLength:Context.kt$PendingIntent.getActivity(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)</ID>
+    <ID>MaxLineLength:Context.kt$PendingIntent.getService(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)</ID>
+    <ID>MaxLineLength:Context.kt$fun Context.getModifiedTimeZoneTitle(id: Int)</ID>
+    <ID>MaxLineLength:Context.kt$return PendingIntent.getActivity(this, OPEN_ALARMS_TAB_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)</ID>
+    <ID>MaxLineLength:Context.kt$return PendingIntent.getActivity(this, OPEN_STOPWATCH_TAB_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)</ID>
+    <ID>MaxLineLength:Context.kt$return PendingIntent.getActivity(this, REMINDER_ACTIVITY_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)</ID>
+    <ID>MaxLineLength:Context.kt$return PendingIntent.getActivity(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)</ID>
+    <ID>MaxLineLength:Context.kt$return PendingIntent.getBroadcast(this, EARLY_ALARM_DISMISSAL_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)</ID>
+    <ID>MaxLineLength:Context.kt$return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)</ID>
+    <ID>MaxLineLength:Context.kt$return PendingIntent.getBroadcast(this, alarmId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)</ID>
+    <ID>MaxLineLength:Context.kt$return PendingIntent.getBroadcast(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)</ID>
+    <ID>MaxLineLength:Context.kt$val dayBits = arrayListOf(MONDAY_BIT, TUESDAY_BIT, WEDNESDAY_BIT, THURSDAY_BIT, FRIDAY_BIT, SATURDAY_BIT, SUNDAY_BIT)</ID>
+    <ID>MaxLineLength:Context.kt$val fullString = String.format(getString(org.fossify.commons.R.string.time_remaining), formatMinutesToTimeString(totalMinutes))</ID>
+    <ID>MaxLineLength:DBHelper.kt$DBHelper$"$COL_IS_ENABLED INTEGER, $COL_VIBRATE INTEGER, $COL_SOUND_TITLE TEXT, $COL_SOUND_URI TEXT, $COL_LABEL TEXT, $COL_ONE_SHOT INTEGER)"</ID>
+    <ID>MaxLineLength:DBHelper.kt$DBHelper$"CREATE TABLE IF NOT EXISTS $ALARMS_TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_TIME_IN_MINUTES INTEGER, $COL_DAYS INTEGER, "</ID>
+    <ID>MaxLineLength:DBHelper.kt$DBHelper$val alarm = Alarm(id, timeInMinutes, days, isEnabled, vibrate, soundTitle, soundUri, label, oneShot)</ID>
+    <ID>MaxLineLength:DBHelper.kt$DBHelper$val cols = arrayOf(COL_ID, COL_TIME_IN_MINUTES, COL_DAYS, COL_IS_ENABLED, COL_VIBRATE, COL_SOUND_TITLE, COL_SOUND_URI, COL_LABEL, COL_ONE_SHOT)</ID>
+    <ID>MaxLineLength:EditAlarmDialog.kt$EditAlarmDialog$SelectAlarmSoundDialog</ID>
+    <ID>MaxLineLength:EditAlarmDialog.kt$EditAlarmDialog$class</ID>
+    <ID>MaxLineLength:EditAlarmDialog.kt$EditAlarmDialog$val dayLetters = activity.resources.getStringArray(org.fossify.commons.R.array.week_day_letters).toList() as ArrayList&lt;String&gt;</ID>
+    <ID>MaxLineLength:EditTimeZoneDialog.kt$EditTimeZoneDialog$.</ID>
+    <ID>MaxLineLength:IntentHandlerActivity.kt$IntentHandlerActivity$&amp;&amp;</ID>
+    <ID>MaxLineLength:IntentHandlerActivity.kt$IntentHandlerActivity$alarms = alarms.filter { it.timeInMinutes / 60 == hour || it.timeInMinutes / 60 == hour + 12 }</ID>
+    <ID>MaxLineLength:IntentHandlerActivity.kt$IntentHandlerActivity$it.timeInMinutes == timeInMinutes &amp;&amp; (it.days.isBitSet(dayBitToLookFor) || it.days == dayToLookFor)</ID>
+    <ID>MaxLineLength:Long.kt$val seconds = TimeUnit.MILLISECONDS.toSeconds(this) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(this))</ID>
+    <ID>MaxLineLength:MainActivity.kt$MainActivity$(drawable as LayerDrawable).findDrawableByLayerId(R.id.shortcut_stopwatch_background).applyColorFilter(appIconColor)</ID>
+    <ID>MaxLineLength:MainActivity.kt$MainActivity$binding.mainTabsHolder.getTabAt(binding.viewPager.currentItem)?.icon?.applyColorFilter(getProperPrimaryColor())</ID>
+    <ID>MaxLineLength:MainActivity.kt$MainActivity$binding.mainTabsHolder.newTab().setCustomView(org.fossify.commons.R.layout.bottom_tablayout_item)</ID>
+    <ID>MaxLineLength:MainActivity.kt$MainActivity$faqItems.add(FAQItem(org.fossify.commons.R.string.faq_2_title_commons, org.fossify.commons.R.string.faq_2_text_commons))</ID>
+    <ID>MaxLineLength:MainActivity.kt$MainActivity$faqItems.add(FAQItem(org.fossify.commons.R.string.faq_6_title_commons, org.fossify.commons.R.string.faq_6_text_commons))</ID>
+    <ID>MaxLineLength:MainActivity.kt$MainActivity$findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)</ID>
+    <ID>MaxLineLength:MainActivity.kt$MainActivity$updateMaterialActivityViews(binding.mainCoordinator, binding.mainHolder, useTransparentNavigation = false, useTopSearchMenu = false)</ID>
+    <ID>MaxLineLength:MyAnalogueTimeWidgetProvider.kt$MyAnalogueTimeWidgetProvider$override</ID>
+    <ID>MaxLineLength:MyAnalogueTimeWidgetProvider.kt$MyAnalogueTimeWidgetProvider$val pendingIntent = PendingIntent.getActivity(context, OPEN_APP_INTENT_ID, this, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)</ID>
+    <ID>MaxLineLength:MyDigitalTimeWidgetProvider.kt$MyDigitalTimeWidgetProvider$override</ID>
+    <ID>MaxLineLength:MyDigitalTimeWidgetProvider.kt$MyDigitalTimeWidgetProvider$val pendingIntent = PendingIntent.getActivity(context, OPEN_APP_INTENT_ID, this, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)</ID>
+    <ID>MaxLineLength:MyTimePickerDialogDialog.kt$MyTimePickerDialogDialog$class</ID>
+    <ID>MaxLineLength:ReminderActivity.kt$ReminderActivity$arrayOf(binding.reminderSnooze, binding.reminderDraggableBackground, binding.reminderDraggable, binding.reminderDismiss)</ID>
+    <ID>MaxLineLength:ReminderActivity.kt$ReminderActivity$binding.reminderStop.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getProperPrimaryColor())</ID>
+    <ID>MaxLineLength:ReminderActivity.kt$ReminderActivity$binding.reminderText.text = if (isAlarmReminder) getFormattedTime(getPassedSeconds(), false, false) else getString(R.string.time_expired)</ID>
+    <ID>MaxLineLength:ReminderActivity.kt$ReminderActivity$scheduleVolumeIncrease(MIN_ALARM_VOLUME_FOR_INCREASING_ALARMS.toFloat(), initialAlarmVolume!!.toFloat(), 0)</ID>
+    <ID>MaxLineLength:SelectAlarmDialog.kt$SelectAlarmDialog$binding.dialogSelectAlarmRadio.addView(radioButton, RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))</ID>
+    <ID>MaxLineLength:SelectAlarmDialog.kt$SelectAlarmDialog$setColors(activity.getProperTextColor(), activity.getProperPrimaryColor(), activity.getProperBackgroundColor())</ID>
+    <ID>MaxLineLength:SelectTimeZonesAdapter.kt$SelectTimeZonesAdapter$class</ID>
+    <ID>MaxLineLength:SettingsActivity.kt$SettingsActivity$binding.settingsUseEnglishHolder.beVisibleIf((config.wasUseEnglishToggled || Locale.getDefault().language != "en") &amp;&amp; !isTiramisuPlus())</ID>
+    <ID>MaxLineLength:SettingsActivity.kt$SettingsActivity$updateMaterialActivityViews(binding.settingsCoordinator, binding.settingsHolder, useTransparentNavigation = true, useTopSearchMenu = false)</ID>
+    <ID>MaxLineLength:StopwatchAdapter.kt$StopwatchAdapter$class</ID>
+    <ID>MaxLineLength:StopwatchFragment.kt$StopwatchFragment$if (state == Stopwatch.State.RUNNING) org.fossify.commons.R.drawable.ic_pause_vector else org.fossify.commons.R.drawable.ic_play_vector</ID>
+    <ID>MaxLineLength:StopwatchFragment.kt$StopwatchFragment$stopwatchPlayPause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, properPrimaryColor)</ID>
+    <ID>MaxLineLength:StopwatchFragment.kt$StopwatchFragment$var bitmap = requireContext().resources.getColoredBitmap(R.drawable.ic_sorting_triangle_vector, requireContext().getProperPrimaryColor())</ID>
+    <ID>MaxLineLength:TimeZonesAdapter.kt$TimeZonesAdapter$class</ID>
+    <ID>MaxLineLength:TimerAdapter.kt$TimerAdapter$is TimerState.Finished -&gt; EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))</ID>
+    <ID>MaxLineLength:TimerAdapter.kt$TimerAdapter$is TimerState.Idle -&gt; EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))</ID>
+    <ID>MaxLineLength:TimerAdapter.kt$TimerAdapter$is TimerState.Running -&gt; EventBus.getDefault().post(TimerEvent.Pause(timer.id!!, state.tick))</ID>
+    <ID>MaxLineLength:TimerAdapter.kt$TimerAdapter$val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished</ID>
+    <ID>MaxLineLength:TimerFragment.kt$TimerFragment$if</ID>
+    <ID>MaxLineLength:TimerFragment.kt$TimerFragment$timerAdapter = TimerAdapter(requireActivity() as SimpleActivity, binding.timersList, ::refreshTimers, ::openEditTimer)</ID>
+    <ID>MaxLineLength:TimerService.kt$TimerService$else -&gt; resources.getQuantityString(R.plurals.timer_notification_msg, runningTimers.size, runningTimers.size)</ID>
+    <ID>MaxLineLength:TimerService.kt$TimerService$firstTimer.label.isNotEmpty() -&gt; getString(R.string.timer_single_notification_label_msg, firstTimer.label)</ID>
+    <ID>MaxLineLength:TimerService.kt$TimerService$startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!))</ID>
+    <ID>MaxLineLength:TimerService.kt$TimerService$startForeground(TIMER_RUNNING_NOTIF_ID, notification(getString(R.string.app_name), getString(R.string.timers_notification_msg), INVALID_TIMER_ID))</ID>
+    <ID>MaxLineLength:WidgetAnalogueConfigureActivity.kt$WidgetAnalogueConfigureActivity$if</ID>
+    <ID>MaxLineLength:WidgetDigitalConfigureActivity.kt$WidgetDigitalConfigureActivity$if</ID>
+    <ID>NestedBlockDepth:AlarmReceiver.kt$AlarmReceiver$override fun onReceive(context: Context, intent: Intent)</ID>
+    <ID>NestedBlockDepth:Context.kt$fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean)</ID>
+    <ID>NestedBlockDepth:DBHelper.kt$DBHelper$fun getAlarms(): ArrayList&lt;Alarm&gt;</ID>
+    <ID>NestedBlockDepth:IntentHandlerActivity.kt$IntentHandlerActivity$private fun Intent.dismissAlarm()</ID>
+    <ID>NestedBlockDepth:IntentHandlerActivity.kt$IntentHandlerActivity$private fun Intent.setNewAlarm()</ID>
+    <ID>ReturnCount:Context.kt$fun Context.firstDayOrder(bitMask: Int): Int</ID>
+    <ID>SwallowedException:Config.kt$Config$e: Exception</ID>
+    <ID>SwallowedException:Context.kt$e: Exception</ID>
+    <ID>SwallowedException:Converters.kt$Converters$e: Exception</ID>
+    <ID>SwallowedException:DBHelper.kt$DBHelper$e: Exception</ID>
+    <ID>SwallowedException:IntentHandlerActivity.kt$IntentHandlerActivity$e: Exception</ID>
+    <ID>SwallowedException:ReminderActivity.kt$ReminderActivity$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:AlarmReceiver.kt$AlarmReceiver$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:App.kt$App$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:Config.kt$Config$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:Context.kt$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:Converters.kt$Converters$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:DBHelper.kt$DBHelper$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:IntentHandlerActivity.kt$IntentHandlerActivity$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:ReminderActivity.kt$ReminderActivity$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:StopwatchService.kt$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:TimerService.kt$TimerService$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:TimerService.kt$e: Exception</ID>
+    <ID>TooGenericExceptionThrown:ViewPagerAdapter.kt$ViewPagerAdapter$throw RuntimeException("Trying to fetch unknown fragment id $position")</ID>
+    <ID>TooManyFunctions:AlarmFragment.kt$AlarmFragment : FragmentToggleAlarmInterface</ID>
+    <ID>TooManyFunctions:AlarmsAdapter.kt$AlarmsAdapter : MyRecyclerViewAdapter</ID>
+    <ID>TooManyFunctions:Constants.kt$org.fossify.clock.helpers.Constants.kt</ID>
+    <ID>TooManyFunctions:Context.kt$org.fossify.clock.extensions.Context.kt</ID>
+    <ID>TooManyFunctions:DBHelper.kt$DBHelper : SQLiteOpenHelper</ID>
+    <ID>TooManyFunctions:IntentHandlerActivity.kt$IntentHandlerActivity : SimpleActivity</ID>
+    <ID>TooManyFunctions:MainActivity.kt$MainActivity : SimpleActivity</ID>
+    <ID>TooManyFunctions:ReminderActivity.kt$ReminderActivity : SimpleActivity</ID>
+    <ID>TooManyFunctions:SettingsActivity.kt$SettingsActivity : SimpleActivity</ID>
+    <ID>TooManyFunctions:StopwatchAdapter.kt$StopwatchAdapter : MyRecyclerViewAdapter</ID>
+    <ID>TooManyFunctions:StopwatchFragment.kt$StopwatchFragment : Fragment</ID>
+    <ID>TooManyFunctions:TimeZonesAdapter.kt$TimeZonesAdapter : MyRecyclerViewAdapter</ID>
+    <ID>TooManyFunctions:TimerAdapter.kt$TimerAdapter : MyRecyclerViewListAdapter</ID>
+    <ID>TooManyFunctions:ViewPagerAdapter.kt$ViewPagerAdapter : FragmentStatePagerAdapter</ID>
+    <ID>UnusedParameter:AlarmFragment.kt$AlarmFragment$event: AlarmEvent.Refresh</ID>
+    <ID>UnusedParameter:MyDigitalTimeWidgetProvider.kt$MyDigitalTimeWidgetProvider$context: Context</ID>
+    <ID>UnusedParameter:StopwatchService.kt$StopwatchService$event: StopwatchStopService</ID>
+    <ID>UnusedParameter:TimerFragment.kt$TimerFragment$event: TimerEvent.Refresh</ID>
+    <ID>UnusedParameter:TimerService.kt$TimerService$event: TimerEvent.Refresh</ID>
+    <ID>UnusedParameter:TimerService.kt$TimerService$event: TimerStopService</ID>
+    <ID>UnusedPrivateMember:App.kt$App$@OnLifecycleEvent(Lifecycle.Event.ON_START) private fun onAppForegrounded()</ID>
+    <ID>UnusedPrivateMember:App.kt$App$@OnLifecycleEvent(Lifecycle.Event.ON_STOP) private fun onAppBackgrounded()</ID>
+    <ID>VariableNaming:ClockFragment.kt$ClockFragment$private val ONE_SECOND = 1000L</ID>
+    <ID>VariableNaming:DBHelper.kt$DBHelper$private val ALARMS_TABLE_NAME = "contacts" // wrong table name, ignore it</ID>
+    <ID>VariableNaming:DBHelper.kt$DBHelper$private val COL_DAYS = "days"</ID>
+    <ID>VariableNaming:DBHelper.kt$DBHelper$private val COL_ID = "id"</ID>
+    <ID>VariableNaming:DBHelper.kt$DBHelper$private val COL_IS_ENABLED = "is_enabled"</ID>
+    <ID>VariableNaming:DBHelper.kt$DBHelper$private val COL_LABEL = "label"</ID>
+    <ID>VariableNaming:DBHelper.kt$DBHelper$private val COL_ONE_SHOT = "one_shot"</ID>
+    <ID>VariableNaming:DBHelper.kt$DBHelper$private val COL_SOUND_TITLE = "sound_title"</ID>
+    <ID>VariableNaming:DBHelper.kt$DBHelper$private val COL_SOUND_URI = "sound_uri"</ID>
+    <ID>VariableNaming:DBHelper.kt$DBHelper$private val COL_TIME_IN_MINUTES = "time_in_minutes"</ID>
+    <ID>VariableNaming:DBHelper.kt$DBHelper$private val COL_VIBRATE = "vibrate"</ID>
+    <ID>VariableNaming:Long.kt$val MSFormat = if (useLongerMSFormat) "%03d" else "%01d"</ID>
+    <ID>VariableNaming:TimerFragment.kt$TimerFragment$private val INVALID_POSITION = -1</ID>
+    <ID>WildcardImport:AlarmFragment.kt$import org.fossify.clock.extensions.*</ID>
+    <ID>WildcardImport:AlarmFragment.kt$import org.fossify.clock.helpers.*</ID>
+    <ID>WildcardImport:AlarmReceiver.kt$import org.fossify.clock.extensions.*</ID>
+    <ID>WildcardImport:AlarmsAdapter.kt$import org.fossify.clock.extensions.*</ID>
+    <ID>WildcardImport:App.kt$import org.fossify.clock.extensions.*</ID>
+    <ID>WildcardImport:ClockFragment.kt$import org.fossify.clock.extensions.*</ID>
+    <ID>WildcardImport:Constants.kt$import org.fossify.commons.helpers.*</ID>
+    <ID>WildcardImport:Context.kt$import android.app.*</ID>
+    <ID>WildcardImport:Context.kt$import org.fossify.clock.helpers.*</ID>
+    <ID>WildcardImport:Context.kt$import org.fossify.clock.receivers.*</ID>
+    <ID>WildcardImport:Context.kt$import org.fossify.commons.extensions.*</ID>
+    <ID>WildcardImport:Context.kt$import org.fossify.commons.helpers.*</ID>
+    <ID>WildcardImport:DBHelper.kt$import org.fossify.commons.helpers.*</ID>
+    <ID>WildcardImport:DismissAlarmReceiver.kt$import org.fossify.clock.extensions.*</ID>
+    <ID>WildcardImport:EditAlarmDialog.kt$import org.fossify.clock.extensions.*</ID>
+    <ID>WildcardImport:EditAlarmDialog.kt$import org.fossify.commons.extensions.*</ID>
+    <ID>WildcardImport:EditTimerDialog.kt$import org.fossify.clock.extensions.*</ID>
+    <ID>WildcardImport:EditTimerDialog.kt$import org.fossify.commons.extensions.*</ID>
+    <ID>WildcardImport:IntentHandlerActivity.kt$import org.fossify.clock.extensions.*</ID>
+    <ID>WildcardImport:IntentHandlerActivity.kt$import org.fossify.clock.helpers.*</ID>
+    <ID>WildcardImport:IntentHandlerActivity.kt$import org.fossify.clock.models.*</ID>
+    <ID>WildcardImport:MainActivity.kt$import org.fossify.clock.helpers.*</ID>
+    <ID>WildcardImport:MainActivity.kt$import org.fossify.commons.extensions.*</ID>
+    <ID>WildcardImport:MainActivity.kt$import org.fossify.commons.helpers.*</ID>
+    <ID>WildcardImport:MyDigitalTimeWidgetProvider.kt$import android.graphics.*</ID>
+    <ID>WildcardImport:ReminderActivity.kt$import android.os.*</ID>
+    <ID>WildcardImport:ReminderActivity.kt$import org.fossify.clock.extensions.*</ID>
+    <ID>WildcardImport:ReminderActivity.kt$import org.fossify.commons.extensions.*</ID>
+    <ID>WildcardImport:SelectAlarmDialog.kt$import org.fossify.commons.extensions.*</ID>
+    <ID>WildcardImport:SettingsActivity.kt$import org.fossify.commons.extensions.*</ID>
+    <ID>WildcardImport:SplashActivity.kt$import org.fossify.clock.helpers.*</ID>
+    <ID>WildcardImport:StopwatchFragment.kt$import org.fossify.commons.extensions.*</ID>
+    <ID>WildcardImport:TimerAdapter.kt$import org.fossify.commons.extensions.*</ID>
+    <ID>WildcardImport:TimerDao.kt$import androidx.room.*</ID>
+    <ID>WildcardImport:ViewPagerAdapter.kt$import org.fossify.clock.helpers.*</ID>
+    <ID>WildcardImport:WidgetAnalogueConfigureActivity.kt$import org.fossify.commons.extensions.*</ID>
+    <ID>WildcardImport:WidgetDigitalConfigureActivity.kt$import org.fossify.commons.extensions.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

@@ -14,7 +14,7 @@
     <string name="time_expired">El temps ha caducat</string>
     <string name="clock_and_date">Rellotge i data</string>
     <string name="use_text_shadow">Utilitza l\'ombra del text</string>
-    <string name="swipe_right_to_dismiss">Feu lliscar el dit cap a la dreta per ignorar, cap a l\'esquerra per posposar.</string>
+    <string name="swipe_right_to_dismiss">Feu lliscar el dit cap a la dreta per a ignorar, cap a l\'esquerra per a posposar.</string>
     <string name="sort_by_creation_order">Ordre de creació</string>
     <string name="sort_by_alarm_time">Hora d\'alarma</string>
     <string name="sort_by_day_and_alarm_time">Dia i hora d\'alarma</string>
@@ -34,6 +34,7 @@
     <string name="new_timer">Temporitzador nou</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">%d temporitzador en marxa</item>
+        <item quantity="many">%d temporitzadors en marxa</item>
         <item quantity="other">%d temporitzadors en marxa</item>
     </plurals>
     <string name="clock_tab">Pestanya del rellotge</string>

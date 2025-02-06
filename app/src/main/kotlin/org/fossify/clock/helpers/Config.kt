@@ -107,6 +107,10 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(WAS_INITIAL_WIDGET_SET_UP, false)
         set(wasInitialWidgetSetUp) = prefs.edit().putBoolean(WAS_INITIAL_WIDGET_SET_UP, wasInitialWidgetSetUp).apply()
 
+    var lastDataExportPath: String
+        get() = prefs.getString(LAST_DATA_EXPORT_PATH, "")!!
+        set(lastDataExportPath) = prefs.edit().putString(LAST_DATA_EXPORT_PATH, lastDataExportPath).apply()
+
     var firstDayOfWeek: Int
         get() {
             val defaultFirstDayOfWeek = Calendar.getInstance(Locale.getDefault()).firstDayOfWeek
