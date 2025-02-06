@@ -47,4 +47,6 @@
     </plurals>
     <string name="show_seconds">Montri sekundojn</string>
     <string name="increase_volume_gradually">Grade plilaŭtiĝi</string>
+    <string name="settings_import_data">Importi alarmojn kaj tempomezurilojn</string>
+    <string name="settings_export_data">Eksporti alarmojn kaj tempomezurilojn</string>
 </resources>
