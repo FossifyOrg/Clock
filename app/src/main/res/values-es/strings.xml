@@ -48,4 +48,6 @@
     <string name="faq_1_text">Solo toca cualquiera de las columnas, eso hará que las vueltas sean ordenados por la columna seleccionada. Con toques adicionales, puedes cambiar entre ordenación ascendente y descendente.</string>
     <string name="add_timer">Añadir un temporizador</string>
     <string name="add_alarm">Añadir una alarma</string>
+    <string name="settings_import_data">Importar alarmas y temporizadores</string>
+    <string name="settings_export_data">Exportar alarmas y temporizadores</string>
 </resources>
