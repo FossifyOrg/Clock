@@ -37,14 +37,16 @@
         <item quantity="one">%d отброяване е включено</item>
         <item quantity="other">%d отброявания са включени</item>
     </plurals>
-    <string name="clock_tab">Часовник</string>
-    <string name="alarm_tab">Будилник</string>
-    <string name="stopwatch_tab">Секундомер</string>
-    <string name="timer_tab">Отброяване</string>
+    <string name="clock_tab">Раздел Часовник</string>
+    <string name="alarm_tab">Раздел Будилник</string>
+    <string name="stopwatch_tab">Раздел Секундомер</string>
+    <string name="timer_tab">Раздел Отброяване</string>
     <string name="show_seconds">Показване на секундите</string>
     <string name="increase_volume_gradually">Постепенно усилване на звука</string>
     <string name="faq_1_title">Как да променя сортирането на обиколките на секундомера?</string>
     <string name="faq_1_text">Просто докоснете на някоя от колоните, така ще сортирате по нея. С допълнителни докосвания можете да превключвате между възходящо и низходящо сортиране.</string>
     <string name="add_timer">Добавяне на отброяване</string>
     <string name="add_alarm">Добавяне на будилник</string>
+    <string name="settings_export_data">Изнасяне на будилници и отброявания</string>
+    <string name="settings_import_data">Внасяне на будилници и отброявания</string>
 </resources>
