@@ -1,0 +1,32 @@
+Fossify erlojua aurkezten dugu: zure eguneroko ohiturak hobetzeko eta lo egiteko ohitura hobeak sustatzeko diseinatutako denbora-konpainia bikaina. Zure beharretara egokitutako funtzio ugarirekin, Fossify erlojua ezin hobeto integratzen da zure bizitzan, erosotasun eta aldakortasun paregabeak eskainiz.
+
+ FUNTZUN ANITZEKO kronometroa:
+Bizi ezazu denbora-kudeaketa polifazetikoa Fossify Clock-ekin. Erlojuaren widget gisa jardutetik iratzargailu eta kronometro gisa funtzionatzera, aplikazio hau zure eguneroko jarduerak erregulatzeko eta zure bizimodu orokorra hobetzeko tresna erabilgarria da.
+
+ EZAUGARRI ABERATSEKO ALARMA:
+Esnatu freskatu Fossify erlojuaren alarma-funtzio osoekin. Ezarri alarma anitz egun hautatzeko aukerarekin, bibrazio-aldaketa, etiketa pertsonalizatuak eta dei-tonuak pertsonalizatzea. Gozatu bolumena pixkanaka handitzea eta errepikatzeko botoi pertsonalizagarria esnatzeko esperientzia atsegina izateko. Erabiltzaile-interfazearekin, alarmak konfiguratzea ez da inoiz erraza izan.
+
+️ KRONOMETRO ZEHATZA:
+Jarraitu zure jarduerei zehaztasunez Fossify erlojuaren kronometroaren funtzioa erabiliz. Neurtu denbora luzeagoak edo banakako itzuliak esfortzurik gabe. Zure itzuliak goranzko edo beheranzko ordenan ere ordena ditzakezu.
+
+ TENPORIZATOREAREN FUNTZIONALITATEA:
+Egon zure zereginen gainean Fossify erlojuaren tenporizadore-funtzio polifazetikoarekin. Pertsonalizatu dei-tonuen hobespenak, aldatu bibrazioak eta pausatu atzerako kontaketa zure beharretara egokitzeko. Sukalde-lanetako tarteak, ikasketa saioak kudeatzen edo atsedenaldi puntualak ziurtatzen ari zaren ala ez, Fossify erlojuak zehaztasun eta erraztasunarekin estali zaitu.
+
+🌈 ERLOUAREN TREPETA PERTSONALIZATZEKO EZAUGARRIEKIN:
+Eraldatu zure hasierako pantaila Fossify erlojuaren erloju trepeta pertsonalizagarriarekin. Doitu testuaren kolorea, atzeko planoaren kolorea eta gardentasuna. Aukeratu erloju analogikoa edo digitala zure estilora egokitzeko eta erraz eskura ezazu orduko funtsezko informazioa begiratu batean.
+
+🎨 INTERFAZE ETA GAI PERTSONALIZAGARRIAK:
+Gozatu esperientzia pertsonalizatua Fossify erlojuaren materialaren diseinuarekin eta gai iluneko aukerekin. Egokitu aplikazioa zure hobespenetara kolore eta gai pertsonalizatuekin, erabilgarritasuna hobetuz eta begien nekea murriztuz, batez ere argi gutxiko inguruneetan.
+
+🔒 PRIBATUTASUNA-LEHEN HURBILKETA:
+Lasai egon zure pribatutasuna Fossify erlojuaren lineaz kanpoko funtzionamenduarekin babestuta dagoela. Bizi ezazu pribatutasun, segurtasun eta egonkortasun handiena funtzionaltasunari edo erosotasunari uko egin gabe.
+
+🌐 IRAGARKI GABE ETA ITURRI IREKIA:
+Esan agur iragarki intrusiboei eta beharrezkoak ez diren baimenei. Fossify erlojua iragarkirik gabekoa da, guztiz kode irekikoa, eta zure denbora-esperientziaren kontrol osoa ematen dizu.
+
+Hobetu zure denbora kudeatzeko trebetasunak, optimizatu zure errutinak eta lehenetsi lo hobeago Fossify erlojuarekin. Deskargatu orain eta hartu zure denbora inoiz ez bezala kontrolatu.
+
+Arakatu Fossify aplikazio gehiago: https://www.fossify.org
+Iturburu irekiko kodea: https://www.github.com/FossifyOrg
+Sartu komunitatean Reddit-en: https://www.reddit.com/r/Fossify
+Konektatu Telegram-en: https://t.me/Fossify
