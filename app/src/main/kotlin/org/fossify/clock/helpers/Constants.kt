@@ -28,6 +28,7 @@ const val STOPWATCH_LAPS_SORT_BY = "stopwatch_laps_sort_by"
 const val WAS_INITIAL_WIDGET_SET_UP = "was_initial_widget_set_up"
 const val DATA_EXPORT_EXTENSION = ".json"
 const val LAST_DATA_EXPORT_PATH = "last_alarms_export_path"
+const val FIRST_DAY_OF_WEEK = "first_day_of_week"
 
 const val TABS_COUNT = 4
 const val EDITED_TIME_ZONE_SEPARATOR = ":"
@@ -126,16 +127,18 @@ fun formatTime(showSeconds: Boolean, use24HourFormat: Boolean, hours: Int, minut
     }
 }
 
+fun getDayNumber(calendarDay: Int): Int = (calendarDay + 5) % 7
+
 fun getTomorrowBit(): Int {
     val calendar = Calendar.getInstance()
     calendar.add(Calendar.DAY_OF_WEEK, 1)
-    val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
+    val dayOfWeek = getDayNumber(calendar.get(Calendar.DAY_OF_WEEK))
     return 2.0.pow(dayOfWeek).toInt()
 }
 
 fun getTodayBit(): Int {
     val calendar = Calendar.getInstance()
-    val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
+    val dayOfWeek = getDayNumber(calendar.get(Calendar.DAY_OF_WEEK))
     return 2.0.pow(dayOfWeek).toInt()
 }
 
