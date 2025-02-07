@@ -14,6 +14,8 @@ import org.fossify.clock.databinding.FragmentClockBinding
 import org.fossify.clock.dialogs.AddTimeZonesDialog
 import org.fossify.clock.dialogs.EditTimeZoneDialog
 import org.fossify.clock.extensions.*
+import org.fossify.clock.helpers.FORMAT_12H_WITH_SECONDS
+import org.fossify.clock.helpers.FORMAT_24H_WITH_SECONDS
 import org.fossify.clock.helpers.getPassedSeconds
 import org.fossify.clock.models.MyTimeZone
 import org.fossify.commons.extensions.beVisibleIf
@@ -61,7 +63,7 @@ class ClockFragment : Fragment() {
         binding.apply {
             requireContext().updateTextColors(clockFragment)
             clockTime.setTextColor(requireContext().getProperTextColor())
-            val clockFormat = if (requireActivity().config.use24HourFormat) "HH:mm:ss" else "K:mm:ss a"
+            val clockFormat = if (requireActivity().config.use24HourFormat) FORMAT_24H_WITH_SECONDS else FORMAT_12H_WITH_SECONDS
             clockTime.format24Hour = clockFormat
             clockTime.format12Hour = clockFormat
             clockFab.setOnClickListener {

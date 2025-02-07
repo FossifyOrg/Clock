@@ -82,6 +82,12 @@ const val TOMORROW_BIT = -2
 const val STOPWATCH_SHORTCUT_ID = "stopwatch_shortcut_id"
 const val STOPWATCH_TOGGLE_ACTION = "org.fossify.clock.TOGGLE_STOPWATCH"
 
+// time formatting
+const val FORMAT_12H = "h:mm a"
+const val FORMAT_24H = "HH:mm"
+const val FORMAT_12H_WITH_SECONDS = "h:mm:ss a"
+const val FORMAT_24H_WITH_SECONDS = "HH:mm:ss"
+
 val DAY_BIT_MAP = mapOf(
     Calendar.SUNDAY to SUNDAY_BIT,
     Calendar.MONDAY to MONDAY_BIT,

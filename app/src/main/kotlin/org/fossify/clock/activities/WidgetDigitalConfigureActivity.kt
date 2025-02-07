@@ -10,6 +10,8 @@ import android.os.Bundle
 import android.widget.SeekBar
 import org.fossify.clock.databinding.WidgetConfigDigitalBinding
 import org.fossify.clock.extensions.config
+import org.fossify.clock.helpers.FORMAT_12H
+import org.fossify.clock.helpers.FORMAT_24H
 import org.fossify.clock.helpers.MyDigitalTimeWidgetProvider
 import org.fossify.clock.helpers.SIMPLE_PHONE
 import org.fossify.commons.dialogs.ColorPickerDialog
@@ -85,7 +87,7 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
 
         updateTextColor()
 
-        val clockFormat = if (config.use24HourFormat) "HH:mm" else "K:mm a"
+        val clockFormat = if (config.use24HourFormat) FORMAT_24H else FORMAT_12H
         binding.configDigitalTime.format24Hour = clockFormat
         binding.configDigitalTime.format12Hour = clockFormat
     }
