@@ -40,7 +40,7 @@ class MainActivity : SimpleActivity() {
         initFragments()
         setupTabs()
         updateWidgets()
-        setFirstDayOfTheWeek()
+        migrateFirstDayOfWeek()
 
         getEnabledAlarms { enabledAlarms ->
             if (enabledAlarms.isNullOrEmpty()) {
@@ -299,7 +299,8 @@ class MainActivity : SimpleActivity() {
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
     }
 
-    private fun setFirstDayOfTheWeek() {
+    @Deprecated("Remove this method in future releases")
+    private fun migrateFirstDayOfWeek() {
         // check existing config.isSundayFirst to migrate setting value
         if (config.isSundayFirst) {
             config.firstDayOfWeek = 6
