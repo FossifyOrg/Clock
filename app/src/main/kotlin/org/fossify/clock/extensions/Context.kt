@@ -300,9 +300,9 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
         val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
         val dayOfWeek = resources.getStringArray(org.fossify.commons.R.array.week_days_short)[dayOfWeekIndex]
         val pattern = if (config.use24HourFormat) {
-            "HH:mm"
+            FORMAT_24H
         } else {
-            "h:mm a"
+            FORMAT_12H
         }
 
         val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(calendar.time)
