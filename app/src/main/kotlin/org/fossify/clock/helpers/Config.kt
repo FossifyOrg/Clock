@@ -11,6 +11,8 @@ import org.fossify.commons.extensions.getDefaultAlarmSound
 import org.fossify.commons.extensions.getDefaultAlarmTitle
 import org.fossify.commons.helpers.BaseConfig
 import org.fossify.commons.helpers.SORT_DESCENDING
+import java.util.Calendar
+import java.util.Locale
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {
@@ -108,4 +110,15 @@ class Config(context: Context) : BaseConfig(context) {
     var wasInitialWidgetSetUp: Boolean
         get() = prefs.getBoolean(WAS_INITIAL_WIDGET_SET_UP, false)
         set(wasInitialWidgetSetUp) = prefs.edit().putBoolean(WAS_INITIAL_WIDGET_SET_UP, wasInitialWidgetSetUp).apply()
+
+    var lastDataExportPath: String
+        get() = prefs.getString(LAST_DATA_EXPORT_PATH, "")!!
+        set(lastDataExportPath) = prefs.edit().putString(LAST_DATA_EXPORT_PATH, lastDataExportPath).apply()
+
+    var firstDayOfWeek: Int
+        get() {
+            val defaultFirstDayOfWeek = Calendar.getInstance(Locale.getDefault()).firstDayOfWeek
+            return prefs.getInt(FIRST_DAY_OF_WEEK, getDayNumber(defaultFirstDayOfWeek))
+        }
+        set(firstDayOfWeek) = prefs.edit().putInt(FIRST_DAY_OF_WEEK, firstDayOfWeek).apply()
 }

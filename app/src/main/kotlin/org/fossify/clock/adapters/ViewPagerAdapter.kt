@@ -34,15 +34,15 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     override fun getCount() = TABS_COUNT
 
     private fun getFragment(position: Int) = when (position) {
-        0 -> ClockFragment()
-        1 -> AlarmFragment()
-        2 -> StopwatchFragment()
-        3 -> TimerFragment()
+        TAB_CLOCK_INDEX -> ClockFragment()
+        TAB_ALARM_INDEX -> AlarmFragment()
+        TAB_STOPWATCH_INDEX -> StopwatchFragment()
+        TAB_TIMER_INDEX -> TimerFragment()
         else -> throw RuntimeException("Trying to fetch unknown fragment id $position")
     }
 
     fun showAlarmSortDialog() {
-        (fragments[TAB_ALARM] as? AlarmFragment)?.showSortingDialog()
+        (fragments[TAB_ALARM_INDEX] as? AlarmFragment)?.showSortingDialog()
     }
 
     fun showTimerSortDialog() {
@@ -50,18 +50,18 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     }
 
     fun updateClockTabAlarm() {
-        (fragments[TAB_CLOCK] as? ClockFragment)?.updateAlarm()
+        (fragments[TAB_CLOCK_INDEX] as? ClockFragment)?.updateAlarm()
     }
 
     fun updateAlarmTabAlarmSound(alarmSound: AlarmSound) {
-        (fragments[TAB_ALARM] as? AlarmFragment)?.updateAlarmSound(alarmSound)
+        (fragments[TAB_ALARM_INDEX] as? AlarmFragment)?.updateAlarmSound(alarmSound)
     }
 
     fun updateTimerTabAlarmSound(alarmSound: AlarmSound) {
-        (fragments[TAB_TIMER] as? TimerFragment)?.updateAlarmSound(alarmSound)
+        (fragments[TAB_TIMER_INDEX] as? TimerFragment)?.updateAlarmSound(alarmSound)
     }
 
     fun startStopWatch() {
-        (fragments[TAB_STOPWATCH] as? StopwatchFragment)?.startStopWatch()
+        (fragments[TAB_STOPWATCH_INDEX] as? StopwatchFragment)?.startStopWatch()
     }
 }
