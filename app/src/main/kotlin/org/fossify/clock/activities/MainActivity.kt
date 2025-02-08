@@ -13,7 +13,10 @@ import org.fossify.clock.BuildConfig
 import org.fossify.clock.R
 import org.fossify.clock.adapters.ViewPagerAdapter
 import org.fossify.clock.databinding.ActivityMainBinding
-import org.fossify.clock.extensions.*
+import org.fossify.clock.extensions.config
+import org.fossify.clock.extensions.getEnabledAlarms
+import org.fossify.clock.extensions.rescheduleEnabledAlarms
+import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.helpers.*
 import org.fossify.commons.databinding.BottomTablayoutItemBinding
 import org.fossify.commons.extensions.*
@@ -152,6 +155,10 @@ class MainActivity : SimpleActivity() {
         if (intent.extras?.containsKey(OPEN_TAB) == true) {
             val tabToOpen = intent.getIntExtra(OPEN_TAB, TAB_CLOCK)
             binding.viewPager.setCurrentItem(getTabIndex(tabToOpen), false)
+            if (tabToOpen == TAB_TIMER) {
+                val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
+                (binding.viewPager.adapter as ViewPagerAdapter).updateTimerPosition(timerId)
+            }
             if (tabToOpen == TAB_STOPWATCH) {
                 if (intent.getBooleanExtra(TOGGLE_STOPWATCH, false)) {
                     (binding.viewPager.adapter as ViewPagerAdapter).startStopWatch()
@@ -201,6 +208,10 @@ class MainActivity : SimpleActivity() {
 
         val tabToOpen = intent.getIntExtra(OPEN_TAB, config.defaultTab)
         intent.removeExtra(OPEN_TAB)
+        if (tabToOpen == TAB_TIMER) {
+            val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
+            viewPagerAdapter.updateTimerPosition(timerId)
+        }
 
         if (tabToOpen == TAB_STOPWATCH) {
             config.toggleStopwatch = intent.getBooleanExtra(TOGGLE_STOPWATCH, false)

@@ -8,9 +8,9 @@ import org.fossify.commons.helpers.ensureBackgroundThread
 class TimerHelper(val context: Context) {
     private val timerDao = context.timerDb
 
-    fun getTimers(callback: (timers: ArrayList<Timer>) -> Unit) {
+    fun getTimers(callback: (timers: List<Timer>) -> Unit) {
         ensureBackgroundThread {
-            callback.invoke(timerDao.getTimers() as ArrayList<Timer>)
+            callback.invoke(timerDao.getTimers())
         }
     }
 

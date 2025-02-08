@@ -61,6 +61,10 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         (fragments[TAB_TIMER_INDEX] as? TimerFragment)?.updateAlarmSound(alarmSound)
     }
 
+    fun updateTimerPosition(timerId: Int) {
+        (fragments[TAB_TIMER] as? TimerFragment)?.updatePosition(timerId)
+    }
+
     fun startStopWatch() {
         (fragments[TAB_STOPWATCH_INDEX] as? StopwatchFragment)?.startStopWatch()
     }
