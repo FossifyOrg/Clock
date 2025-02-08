@@ -10,6 +10,7 @@ import org.fossify.clock.R
 import org.fossify.clock.databinding.ActivitySettingsBinding
 import org.fossify.clock.dialogs.ExportDataDialog
 import org.fossify.clock.extensions.config
+import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.timerDb
 import org.fossify.clock.helpers.DBHelper
@@ -101,6 +102,7 @@ class SettingsActivity : SimpleActivity() {
         setupCustomizeColors()
         setupUseEnglish()
         setupLanguage()
+        setupHourFormat()
         setupDefaultTab()
         setupPreventPhoneFromSleeping()
         setupStartWeekOn()
@@ -175,6 +177,15 @@ class SettingsActivity : SimpleActivity() {
                 config.defaultTab = it as Int
                 binding.settingsDefaultTab.text = getDefaultTabText()
             }
+        }
+    }
+
+    private fun setupHourFormat() = binding.apply {
+        settingsHourFormat.isChecked = config.use24HourFormat
+        settingsHourFormatHolder.setOnClickListener {
+            settingsHourFormat.toggle()
+            config.use24HourFormat = settingsHourFormat.isChecked
+            updateWidgets()
         }
     }
 

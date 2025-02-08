@@ -247,7 +247,7 @@ fun Context.updateAnalogueWidgets() {
 }
 
 fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean, makeAmPmSmaller: Boolean): SpannableString {
-    val use24HourFormat = DateFormat.is24HourFormat(this)
+    val use24HourFormat = config.use24HourFormat
     val hours = (passedSeconds / 3600) % 24
     val minutes = (passedSeconds / 60) % 60
     val seconds = passedSeconds % 60
@@ -299,10 +299,10 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
         calendar.add(Calendar.MINUTE, closestAlarmTime)
         val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
         val dayOfWeek = resources.getStringArray(org.fossify.commons.R.array.week_days_short)[dayOfWeekIndex]
-        val pattern = if (DateFormat.is24HourFormat(this)) {
-            "HH:mm"
+        val pattern = if (config.use24HourFormat) {
+            FORMAT_24H
         } else {
-            "h:mm a"
+            FORMAT_12H
         }
 
         val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(calendar.time)
