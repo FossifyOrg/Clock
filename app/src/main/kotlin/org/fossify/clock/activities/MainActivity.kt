@@ -131,8 +131,8 @@ class MainActivity : SimpleActivity() {
         binding.mainToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.sort -> when (binding.viewPager.currentItem) {
-                    TAB_ALARM -> getViewPagerAdapter()?.showAlarmSortDialog()
-                    TAB_TIMER -> getViewPagerAdapter()?.showTimerSortDialog()
+                    TAB_ALARM_INDEX -> getViewPagerAdapter()?.showAlarmSortDialog()
+                    TAB_TIMER_INDEX -> getViewPagerAdapter()?.showTimerSortDialog()
                 }
 
                 R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()

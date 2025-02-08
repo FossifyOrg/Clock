@@ -46,7 +46,7 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     }
 
     fun showTimerSortDialog() {
-        (fragments[TAB_TIMER] as? TimerFragment)?.showSortingDialog()
+        (fragments[TAB_TIMER_INDEX] as? TimerFragment)?.showSortingDialog()
     }
 
     fun updateClockTabAlarm() {
