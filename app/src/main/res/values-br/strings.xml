@@ -1,2 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_launcher_name">Horolaj</string>
+    <string name="vibrate">Froumal</string>
+    <string name="no_days_selected">Deiziad ebet diuzet</string>
+    <string name="clock">Horolaj</string>
+    <string name="timer">Munuter</string>
+    <string name="stopwatch">Padventer</string>
+    <string name="start_stopwatch">Loc\'hañ ar padventer</string>
+    <string name="lap">Tro</string>
+    <string name="stopwatch_stopped">Paouezet eo bet ar padventer</string>
+    <string name="timer_stopped">Paouezet eo bet ar munuter</string>
+    <string name="max_reminder_duration">Pad hirañ an adc\'halv</string>
+    <string name="time_expired">Amzer dremenet</string>
+    <string name="clock_and_date">Horolaj ha deiziad</string>
+    <string name="use_text_shadow">Arverañ skeud an destenn</string>
+    <string name="sort_by_creation_order">Urzh ar c\'hrouadur</string>
+    <string name="sort_by_alarm_time">Eur an arfroù</string>
+    <string name="sort_by_day_and_alarm_time">Deiz hag eur an arfroù</string>
+    <string name="analogue_clock">Horolaj analogel</string>
+    <string name="digital_clock">Horolaj niverel</string>
+    <string name="alarm_dismissed">Arfroù argaset</string>
+    <string name="select_timer_to_dismiss">Diuzañ ar munuter da argas</string>
+    <string name="select_alarm_to_dismiss">Diuzañ an arfroù da argas</string>
+    <string name="alarm_created">Arfroù krouet</string>
+    <string name="time_zone">Gwerzhid-eur</string>
+    <string name="swipe_right_to_dismiss">Lakait ho piz da riklañ d\'an tu dehou evit argas pe d\'an tu kleiz evit daleañ.</string>
+</resources>
