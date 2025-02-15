@@ -47,4 +47,6 @@
     <string name="increase_volume_gradually">Sesi kademeli olarak artır</string>
     <string name="faq_1_title">Kronometre sekmesinde tur sıralamayı nasıl değiştirebilirim?</string>
     <string name="faq_1_text">Sütunların herhangi birine tıklayarak, turların belirtilen sütuna göre sıralanmasını sağlayabilirsiniz. Ek tıklamalarla, artan ve azalan sıralama arasında geçiş yapabilirsiniz.</string>
+    <string name="settings_export_data">Alarmları ve zamanlayıcıları dışa aktar</string>
+    <string name="settings_import_data">Alarmları ve zamanlayıcıları içe aktar</string>
 </resources>
