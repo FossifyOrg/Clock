@@ -3,6 +3,7 @@ package org.fossify.clock.activities
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
@@ -53,6 +54,7 @@ class ReminderActivity : SimpleActivity() {
         showOverLockscreen()
         updateTextColors(binding.root)
         updateStatusbarColor(getProperBackgroundColor())
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
 
         val id = intent.getIntExtra(ALARM_ID, -1)
         isAlarmReminder = id != -1
