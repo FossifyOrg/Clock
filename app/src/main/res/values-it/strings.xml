@@ -48,4 +48,6 @@
     <string name="increase_volume_gradually">Incrementa il volume gradualmente</string>
     <string name="faq_1_title">Come posso cambiare l\'ordinamento dei giri nel cronometro?</string>
     <string name="faq_1_text">Premendo una volta su qualsiasi colonna, i giri verranno ordinati per tale colonna. Premendo nuovamente si potrà cambiare il tipo di ordinamento, ascendente o discendente.</string>
+    <string name="settings_import_data">Importa sveglie e timer</string>
+    <string name="settings_export_data">Esporta sveglie e timer</string>
 </resources>

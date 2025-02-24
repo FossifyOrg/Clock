@@ -46,4 +46,6 @@
     <string name="sort_by_day_and_alarm_time">日期與鬧鐘時間</string>
     <string name="analogue_clock">類比時鐘</string>
     <string name="digital_clock">數位時鐘</string>
+    <string name="settings_export_data">匯出鬧鐘與計時器</string>
+    <string name="settings_import_data">匯入鬧鐘與計時器</string>
 </resources>
