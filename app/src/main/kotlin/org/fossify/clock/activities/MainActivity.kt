@@ -13,7 +13,10 @@ import org.fossify.clock.BuildConfig
 import org.fossify.clock.R
 import org.fossify.clock.adapters.ViewPagerAdapter
 import org.fossify.clock.databinding.ActivityMainBinding
-import org.fossify.clock.extensions.*
+import org.fossify.clock.extensions.config
+import org.fossify.clock.extensions.getEnabledAlarms
+import org.fossify.clock.extensions.rescheduleEnabledAlarms
+import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.helpers.*
 import org.fossify.commons.databinding.BottomTablayoutItemBinding
 import org.fossify.commons.extensions.*
@@ -127,7 +130,11 @@ class MainActivity : SimpleActivity() {
     private fun setupOptionsMenu() {
         binding.mainToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.sort -> getViewPagerAdapter()?.showAlarmSortDialog()
+                R.id.sort -> when (binding.viewPager.currentItem) {
+                    TAB_ALARM_INDEX -> getViewPagerAdapter()?.showAlarmSortDialog()
+                    TAB_TIMER_INDEX -> getViewPagerAdapter()?.showTimerSortDialog()
+                }
+
                 R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
                 R.id.about -> launchAbout()
@@ -139,7 +146,7 @@ class MainActivity : SimpleActivity() {
 
     private fun refreshMenuItems() {
         binding.mainToolbar.menu.apply {
-            findItem(R.id.sort).isVisible = binding.viewPager.currentItem == getTabIndex(TAB_ALARM)
+            findItem(R.id.sort).isVisible = binding.viewPager.currentItem == getTabIndex(TAB_ALARM) || binding.viewPager.currentItem == getTabIndex(TAB_TIMER)
             findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
         }
     }
