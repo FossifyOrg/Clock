@@ -52,4 +52,5 @@
     <string name="faq_1_text">Just a cliceáil ar aon cheann de na colúin, a dhéanamh ar an laps a shórtáil ag an gcolún a thugtar. Le cad a tharlaíonn nuair breise is féidir leat scoránaigh idir dul suas agus sórtáil íslitheach.</string>
     <string name="settings_import_data">Iompórtáil aláraim agus amadóirí</string>
     <string name="settings_export_data">Easpórtáil aláraim agus amadóirí</string>
+    <string name="sort_by_timer_duration">Fad an lasc ama</string>
 </resources>
