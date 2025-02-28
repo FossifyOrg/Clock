@@ -102,7 +102,7 @@ class TimerFragment : Fragment() {
         }
     }
 
-    private fun refreshTimers(scrollToLatest: Boolean = false) {
+    private fun getSortedTimers(callback: (List<Timer>) -> Unit) {
         activity?.timerHelper?.getTimers { timers ->
             val sortedTimers = when (requireContext().config.timerSort) {
                 SORT_BY_TIMER_DURATION -> timers.sortedBy { it.seconds }
@@ -111,14 +111,21 @@ class TimerFragment : Fragment() {
             }
 
             activity?.runOnUiThread {
-                timerAdapter.submitList(sortedTimers) {
-                    view?.post {
-                        if (timerPositionToScrollTo != INVALID_POSITION && timerAdapter.itemCount > timerPositionToScrollTo) {
-                            binding.timersList.scrollToPosition(timerPositionToScrollTo)
-                            timerPositionToScrollTo = INVALID_POSITION
-                        } else if (scrollToLatest) {
-                            binding.timersList.scrollToPosition(sortedTimers.lastIndex)
-                        }
+                callback(sortedTimers)
+            }
+        }
+    }
+
+    private fun refreshTimers() {
+        getSortedTimers { timers ->
+            timerAdapter.submitList(timers.toMutableList()) {
+                view?.post {
+                    if (
+                        timerPositionToScrollTo != INVALID_POSITION &&
+                        timerAdapter.itemCount > timerPositionToScrollTo
+                    ) {
+                        binding.timersList.smoothScrollToPosition(timerPositionToScrollTo)
+                        timerPositionToScrollTo = INVALID_POSITION
                     }
                 }
             }
@@ -135,15 +142,13 @@ class TimerFragment : Fragment() {
     }
 
     fun updatePosition(timerId: Int) {
-        activity?.timerHelper?.getTimers { timers ->
+        getSortedTimers { timers ->
             val position = timers.indexOfFirst { it.id == timerId }
             if (position != INVALID_POSITION) {
-                activity?.runOnUiThread {
-                    if (timerAdapter.itemCount > position) {
-                        binding.timersList.scrollToPosition(position)
-                    } else {
-                        timerPositionToScrollTo = position
-                    }
+                if (timerAdapter.itemCount > position) {
+                    binding.timersList.smoothScrollToPosition(position)
+                } else {
+                    timerPositionToScrollTo = position
                 }
             }
         }
