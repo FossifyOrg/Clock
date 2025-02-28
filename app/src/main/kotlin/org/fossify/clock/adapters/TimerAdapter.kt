@@ -16,7 +16,12 @@ import org.fossify.clock.models.TimerEvent
 import org.fossify.clock.models.TimerState
 import org.fossify.commons.adapters.MyRecyclerViewListAdapter
 import org.fossify.commons.dialogs.PermissionRequiredDialog
-import org.fossify.commons.extensions.*
+import org.fossify.commons.extensions.adjustAlpha
+import org.fossify.commons.extensions.applyColorFilter
+import org.fossify.commons.extensions.beInvisibleIf
+import org.fossify.commons.extensions.getColoredDrawableWithColor
+import org.fossify.commons.extensions.getFormattedDuration
+import org.fossify.commons.extensions.openNotificationSettings
 import org.fossify.commons.views.MyRecyclerView
 import org.greenrobot.eventbus.EventBus
 
@@ -41,6 +46,24 @@ class TimerAdapter(
 
     init {
         setupDragListener(true)
+        setHasStableIds(true)
+    }
+
+    override fun getItemId(position: Int): Long {
+        return getItem(position).id!!.toLong()
+    }
+
+    override fun submitList(list: MutableList<Timer>?, commitCallback: Runnable?) {
+        val layoutManager = recyclerView.layoutManager!!
+        val recyclerViewState = layoutManager.onSaveInstanceState()
+        super.submitList(list) {
+            layoutManager.onRestoreInstanceState(recyclerViewState)
+            commitCallback?.run()
+        }
+    }
+
+    override fun submitList(list: MutableList<Timer>?) {
+        submitList(list, null)
     }
 
     override fun getActionMenuId() = R.menu.cab_alarms
