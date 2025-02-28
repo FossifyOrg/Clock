@@ -49,4 +49,5 @@
     <string name="clock">Kell</string>
     <string name="settings_export_data">Ekspordi äratusi ja taimereid</string>
     <string name="settings_import_data">Impordi äratusi ja taimereid</string>
+    <string name="sort_by_timer_duration">Taimeri kestus</string>
 </resources>
