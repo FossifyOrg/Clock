@@ -50,4 +50,5 @@
     <string name="faq_1_text">Stačí kliknout na některý sloupec. To aktivuje řazení podle daného sloupce. Dalšími kliknutími na daný sloupec můžete přepínat mezi vzestupným a sestupným pořadím.</string>
     <string name="settings_import_data">Importovat budíky a časovače</string>
     <string name="settings_export_data">Exportovat budíky a časovače</string>
+    <string name="sort_by_timer_duration">Trvání časovače</string>
 </resources>
