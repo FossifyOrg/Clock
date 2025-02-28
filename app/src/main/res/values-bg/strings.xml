@@ -49,4 +49,5 @@
     <string name="add_alarm">Добавяне на будилник</string>
     <string name="settings_export_data">Изнасяне на будилници и отброявания</string>
     <string name="settings_import_data">Внасяне на будилници и отброявания</string>
+    <string name="sort_by_timer_duration">Продължителност на отброяването</string>
 </resources>
