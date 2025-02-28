@@ -98,7 +98,9 @@ class TimerFragment : Fragment() {
 
     fun showSortingDialog() {
         ChangeTimerSortDialog(activity as SimpleActivity) {
-            refreshTimers()
+            refreshTimers(
+                animate = false // disable sorting animations for now.
+            )
         }
     }
 
@@ -116,16 +118,26 @@ class TimerFragment : Fragment() {
         }
     }
 
-    private fun refreshTimers() {
+    private fun refreshTimers(animate: Boolean = true) {
         getSortedTimers { timers ->
-            timerAdapter.submitList(timers.toMutableList()) {
-                view?.post {
-                    if (
-                        timerPositionToScrollTo != INVALID_POSITION &&
-                        timerAdapter.itemCount > timerPositionToScrollTo
-                    ) {
-                        binding.timersList.smoothScrollToPosition(timerPositionToScrollTo)
-                        timerPositionToScrollTo = INVALID_POSITION
+            with(binding.timersList) {
+                val originalAnimator = itemAnimator
+                if (!animate) {
+                    itemAnimator = null
+                }
+
+                timerAdapter.submitList(timers.toMutableList()) {
+                    view?.post {
+                        if (timerPositionToScrollTo != INVALID_POSITION &&
+                            timerAdapter.itemCount > timerPositionToScrollTo
+                        ) {
+                            smoothScrollToPosition(timerPositionToScrollTo)
+                            timerPositionToScrollTo = INVALID_POSITION
+                        }
+
+                        if (!animate) {
+                            itemAnimator = originalAnimator
+                        }
                     }
                 }
             }
