@@ -68,10 +68,12 @@ class AlarmsAdapter(
 
     override fun getItemKeyPosition(key: Int) = alarms.indexOfFirst { it.id == key }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onActionModeCreated() {
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onActionModeDestroyed() {
         notifyDataSetChanged()
     }
@@ -94,6 +96,7 @@ class AlarmsAdapter(
 
     override fun getItemCount() = alarms.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateItems(newItems: ArrayList<Alarm>) {
         alarms = newItems
         notifyDataSetChanged()
