@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_launcher_name">Đồng hồ</string>
-    <string name="no_days_selected">Không có ngày nào được chọn</string>
+    <string name="no_days_selected">Chưa chọn ngày nào</string>
     <string name="stopwatch_stopped">Đồng hồ bấm giờ đã bị dừng</string>
     <string name="swipe_right_to_dismiss">Vuốt sang phải để Loại bỏ hoặc sang trái để Tạm ẩn.</string>
     <string name="time_zone">Múi giờ</string>
@@ -23,7 +23,7 @@
     <string name="digital_clock">Đồng hồ kỹ thuật số</string>
     <string name="faq_1_text">Chỉ cần nhấn vào bất kỳ cột nào, điều đó sẽ làm cho các vòng được sắp xếp theo cột đã cho. Với những lần nhấn bổ sung, bạn có thể chuyển đổi giữa sắp xếp tăng dần và giảm dần.</string>
     <string name="select_timer_to_dismiss">Chọn hẹn giờ để loại bỏ</string>
-    <string name="alarm_dismissed">Đã loại bỏ báo thức</string>
+    <string name="alarm_dismissed">Đã bỏ qua báo thức</string>
     <string name="select_alarm_to_dismiss">Chọn báo thức để loại bỏ</string>
     <string name="alarm_created">Đã tạo báo thức</string>
     <string name="alarm_snoozed">Đã tạm ẩn báo thức %s</string>
@@ -40,7 +40,7 @@
         <item quantity="other">%d bộ hẹn giờ đang chạy</item>
     </plurals>
     <string name="clock_tab">Danh mục đồng hồ</string>
-    <string name="alarm_tab">Danh mục báo thức</string>
+    <string name="alarm_tab">Tab báo thức</string>
     <string name="stopwatch_tab">Danh mục đếm giờ</string>
     <string name="timer_tab">Danh mục hẹn giờ</string>
     <string name="show_seconds">Hiển thị giây</string>

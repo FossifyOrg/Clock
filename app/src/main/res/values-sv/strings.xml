@@ -23,7 +23,7 @@
     <string name="alarm_dismissed">Alarmet har avvisats</string>
     <string name="select_timer_to_dismiss">Välj timer att avfärda</string>
     <string name="select_alarm_to_dismiss">Välj alarm att avfärda</string>
-    <string name="alarm_created">Alarm skapat</string>
+    <string name="alarm_created">Alarmet har skapats</string>
     <string name="alarm_snoozed">Alarmet snoozar %s</string>
     <string name="no_alarms_found">Inga alarm hittades</string>
     <string name="add_alarm">Lägg till alarm</string>
@@ -46,4 +46,5 @@
     <string name="increase_volume_gradually">Höj volymen gradvis</string>
     <string name="faq_1_title">Hur kan jag ändra sortering av varv i fliken stoppur\?</string>
     <string name="faq_1_text">Klicka bara på någon av kolumnerna för att sortera varven efter den aktuella kolumnen. Med ytterligare klick kan du växla mellan stigande och fallande sortering.</string>
+    <string name="timer">Timer</string>
 </resources>

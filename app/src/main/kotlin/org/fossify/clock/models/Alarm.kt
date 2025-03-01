@@ -3,6 +3,7 @@ package org.fossify.clock.models
 import androidx.annotation.Keep
 
 @Keep
+@kotlinx.serialization.Serializable
 data class Alarm(
     var id: Int,
     var timeInMinutes: Int,

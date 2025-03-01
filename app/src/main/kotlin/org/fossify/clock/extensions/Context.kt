@@ -247,7 +247,7 @@ fun Context.updateAnalogueWidgets() {
 }
 
 fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean, makeAmPmSmaller: Boolean): SpannableString {
-    val use24HourFormat = DateFormat.is24HourFormat(this)
+    val use24HourFormat = config.use24HourFormat
     val hours = (passedSeconds / 3600) % 24
     val minutes = (passedSeconds / 60) % 60
     val seconds = passedSeconds % 60
@@ -299,10 +299,10 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
         calendar.add(Calendar.MINUTE, closestAlarmTime)
         val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
         val dayOfWeek = resources.getStringArray(org.fossify.commons.R.array.week_days_short)[dayOfWeekIndex]
-        val pattern = if (DateFormat.is24HourFormat(this)) {
-            "HH:mm"
+        val pattern = if (config.use24HourFormat) {
+            FORMAT_24H
         } else {
-            "h:mm a"
+            FORMAT_12H
         }
 
         val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(calendar.time)
@@ -548,20 +548,24 @@ fun Context.getAlarmSelectedDaysString(bitMask: Int): String {
     }
 }
 
+fun Context.orderDaysList(days: List<Int>): List<Int> {
+    if (config.firstDayOfWeek > 0) {
+        val range = (config.firstDayOfWeek..6).toList() + (0..<config.firstDayOfWeek).toList()
+        return days.slice(range)
+    } else {
+        return days
+    }
+}
+
 fun Context.firstDayOrder(bitMask: Int): Int {
     if (bitMask == TODAY_BIT) return -2
     if (bitMask == TOMORROW_BIT) return -1
 
-    val dayBits = arrayListOf(MONDAY_BIT, TUESDAY_BIT, WEDNESDAY_BIT, THURSDAY_BIT, FRIDAY_BIT, SATURDAY_BIT, SUNDAY_BIT)
+    val dayBits = orderDaysList(arrayListOf(MONDAY_BIT, TUESDAY_BIT, WEDNESDAY_BIT, THURSDAY_BIT, FRIDAY_BIT, SATURDAY_BIT, SUNDAY_BIT))
 
-    val sundayFirst = baseConfig.isSundayFirst
-    if (sundayFirst) {
-        dayBits.moveLastItemToFront()
-    }
-
-    dayBits.forEach { bit ->
+    dayBits.forEachIndexed { i, bit ->
         if (bitMask and bit != 0) {
-            return if (bit == SUNDAY_BIT && sundayFirst) 0 else bit
+            return i
         }
     }
 
