@@ -50,4 +50,5 @@
     <string name="faq_1_text">Premendo una volta su qualsiasi colonna, i giri verranno ordinati per tale colonna. Premendo nuovamente si potrà cambiare il tipo di ordinamento, ascendente o discendente.</string>
     <string name="settings_import_data">Importa sveglie e timer</string>
     <string name="settings_export_data">Esporta sveglie e timer</string>
+    <string name="sort_by_timer_duration">Durata del timer</string>
 </resources>
