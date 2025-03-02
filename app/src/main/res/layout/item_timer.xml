@@ -8,14 +8,13 @@
     android:background="?selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="@drawable/selector">
+    android:foreground="@drawable/selector"
+    android:paddingHorizontal="@dimen/activity_margin"
+    android:paddingVertical="@dimen/normal_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/activity_margin"
-        android:paddingTop="@dimen/medium_margin"
-        android:paddingBottom="@dimen/activity_margin">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/timer_time"
@@ -38,7 +37,7 @@
             android:maxLines="1"
             android:textSize="@dimen/bigger_text_size"
             app:layout_constraintEnd_toEndOf="@id/timer_time"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/timer_time"
             app:layout_constraintTop_toBottomOf="@id/timer_time"
             tools:text="Cook rice" />
 
@@ -68,9 +67,22 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="@dimen/activity_margin"
             android:src="@drawable/ic_play_vector"
+            app:layout_constraintBottom_toBottomOf="@id/timer_drag_handle"
+            app:layout_constraintEnd_toStartOf="@id/timer_drag_handle"
+            app:layout_constraintStart_toEndOf="@id/timer_reset"
+            app:layout_constraintTop_toTopOf="@id/timer_drag_handle" />
+
+        <ImageView
+            android:id="@+id/timer_drag_handle"
+            android:layout_width="@dimen/drag_handle_size"
+            android:layout_height="@dimen/drag_handle_size"
+            android:contentDescription="@string/reorder_by_dragging"
+            android:padding="@dimen/medium_margin"
+            android:src="@drawable/ic_drag_handle_vector"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/timer_reset"
+            app:layout_constraintStart_toEndOf="@id/timer_play_pause"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

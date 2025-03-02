@@ -1,5 +1,6 @@
 package org.fossify.clock.adapters
 
+import android.annotation.SuppressLint
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
@@ -52,6 +53,7 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
 
     override fun getItemCount() = laps.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateItems(newItems: ArrayList<Lap>) {
         lastLapId = 0
         laps = newItems.clone() as ArrayList<Lap>

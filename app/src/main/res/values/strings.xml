@@ -33,6 +33,7 @@
     <string name="add_timer">Add timer</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
     <string name="early_alarm_dismissal">Early alarm dismissal</string>
+    <string name="reorder_by_dragging">Reorder items by dragging</string>
 
     <!-- Timer -->
     <string name="timers_notification_msg">Timers are running</string>

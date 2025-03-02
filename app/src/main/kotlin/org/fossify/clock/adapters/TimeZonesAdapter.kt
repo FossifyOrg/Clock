@@ -1,5 +1,6 @@
 package org.fossify.clock.adapters
 
+import android.annotation.SuppressLint
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
@@ -67,12 +68,14 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
 
     override fun getItemCount() = timeZones.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateItems(newItems: ArrayList<MyTimeZone>) {
         timeZones = newItems
         notifyDataSetChanged()
         finishActMode()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateTimes() {
         notifyDataSetChanged()
     }
