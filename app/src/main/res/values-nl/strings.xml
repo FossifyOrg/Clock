@@ -49,4 +49,5 @@
     <string name="timer">Timer</string>
     <string name="settings_import_data">Wekkers en timers importeren</string>
     <string name="settings_export_data">Wekkers en timers exporteren</string>
+    <string name="sort_by_timer_duration">Tijd</string>
 </resources>
