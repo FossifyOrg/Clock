@@ -47,4 +47,6 @@
     <string name="faq_1_text">Klik op een van de kolommen om de rondetijden te sorteren op basis van die kolom. Klik nogmaals op dezelfde kolom om de sorteervolgorde om te keren.</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="timer">Timer</string>
+    <string name="settings_import_data">Wekkers en timers importeren</string>
+    <string name="settings_export_data">Wekkers en timers exporteren</string>
 </resources>

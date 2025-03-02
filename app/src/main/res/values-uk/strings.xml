@@ -49,4 +49,6 @@
     <string name="increase_volume_gradually">Поступово підвищувати гучність</string>
     <string name="faq_1_title">Як я можу відсортувати інтервали часу у вкладці секундоміра?</string>
     <string name="faq_1_text">Просто натисність на будь-якій з колонок, так ви відсортуєте інтервали за значеннями у даній колонці. Додатково натиснувши, ви зміните сортування за зростанням чи спаданням.</string>
+    <string name="settings_import_data">Імпортувати будильники та таймери</string>
+    <string name="settings_export_data">Експортувати будильники та таймери</string>
 </resources>
