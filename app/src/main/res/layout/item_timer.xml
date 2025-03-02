@@ -8,14 +8,13 @@
     android:background="?selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="@drawable/selector">
+    android:foreground="@drawable/selector"
+    android:paddingHorizontal="@dimen/activity_margin"
+    android:paddingVertical="@dimen/normal_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/activity_margin"
-        android:paddingTop="@dimen/medium_margin"
-        android:paddingBottom="@dimen/activity_margin">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/timer_time"
@@ -38,7 +37,8 @@
             android:maxLines="1"
             android:textSize="@dimen/bigger_text_size"
             app:layout_constraintEnd_toEndOf="@id/timer_time"
-            app:layout_constraintStart_toStartOf="@id/timer_time"            app:layout_constraintTop_toBottomOf="@id/timer_time"
+            app:layout_constraintStart_toStartOf="@id/timer_time"
+            app:layout_constraintTop_toBottomOf="@id/timer_time"
             tools:text="Cook rice" />
 
         <ImageView
