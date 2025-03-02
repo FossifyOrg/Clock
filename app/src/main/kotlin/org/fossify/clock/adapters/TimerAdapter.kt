@@ -176,6 +176,7 @@ class TimerAdapter(
             timerLabel.setTextColor(textColor)
             timerLabel.setHintTextColor(textColor.adjustAlpha(0.7f))
             timerLabel.text = timer.label
+            timerLabel.beVisibleIf(timer.label.isNotEmpty())
 
             AutofitHelper.create(timerTime)
             timerTime.setTextColor(textColor)
