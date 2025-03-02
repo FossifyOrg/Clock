@@ -49,4 +49,5 @@
     <string name="faq_1_text">Sütunların herhangi birine tıklayarak, turların belirtilen sütuna göre sıralanmasını sağlayabilirsiniz. Ek tıklamalarla, artan ve azalan sıralama arasında geçiş yapabilirsiniz.</string>
     <string name="settings_export_data">Alarmları ve zamanlayıcıları dışa aktar</string>
     <string name="settings_import_data">Alarmları ve zamanlayıcıları içe aktar</string>
+    <string name="sort_by_timer_duration">Zamanlayıcı süresi</string>
 </resources>
