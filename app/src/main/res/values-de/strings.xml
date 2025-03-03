@@ -47,4 +47,7 @@
     <string name="faq_1_text">Einfach auf eine der Spalten klicken, das wird die Sortierung entsprechend der Spalte anpassen. Weitere Klicks schalten zwischen auf- und absteigender Sortierung um.</string>
     <string name="timer_tab">Timer</string>
     <string name="timer">Timer</string>
+    <string name="settings_import_data">Alarme und Timer importieren</string>
+    <string name="settings_export_data">Alarme und Timer exportieren</string>
+    <string name="sort_by_timer_duration">Timer-Zeitdauer</string>
 </resources>

@@ -10,7 +10,7 @@
     <string name="lap">Varv</string>
     <string name="stopwatch_stopped">Stoppuret har stoppats</string>
     <string name="timer_stopped">Timern har stoppats</string>
-    <string name="max_reminder_duration">Maximal påminnelsevaraktighet</string>
+    <string name="max_reminder_duration">Maximal påminnelselängd</string>
     <string name="time_expired">Tiden har löpt ut</string>
     <string name="clock_and_date">Klocka och datum</string>
     <string name="use_text_shadow">Använd textskugga</string>
@@ -44,7 +44,10 @@
     <string name="timer_tab">Fliken Timer</string>
     <string name="show_seconds">Visa sekunder</string>
     <string name="increase_volume_gradually">Höj volymen gradvis</string>
-    <string name="faq_1_title">Hur kan jag ändra sortering av varv i fliken stoppur\?</string>
+    <string name="faq_1_title">Hur kan jag ändra sorteringen av varv på fliken Stoppur?</string>
     <string name="faq_1_text">Klicka bara på någon av kolumnerna för att sortera varven efter den aktuella kolumnen. Med ytterligare klick kan du växla mellan stigande och fallande sortering.</string>
     <string name="timer">Timer</string>
+    <string name="settings_import_data">Importera alarm och timers</string>
+    <string name="settings_export_data">Exportera alarm och timers</string>
+    <string name="sort_by_timer_duration">Timerlängd</string>
 </resources>
