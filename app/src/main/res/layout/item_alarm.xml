@@ -34,7 +34,7 @@
         android:maxLines="1"
         android:paddingHorizontal="@dimen/tiny_margin"
         android:textSize="@dimen/bigger_text_size"
-        app:layout_constraintEnd_toEndOf="@id/alarm_switch"
+        app:layout_constraintEnd_toStartOf="@id/alarm_switch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/alarm_time"
         tools:text="Mon, Tue, Wed, Thu, Fri" />
@@ -48,7 +48,7 @@
         android:maxLines="1"
         android:paddingHorizontal="@dimen/tiny_margin"
         android:textSize="@dimen/bigger_text_size"
-        app:layout_constraintEnd_toEndOf="@id/alarm_switch"
+        app:layout_constraintEnd_toStartOf="@id/alarm_switch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/alarm_days"
         tools:text="Good morning!" />
