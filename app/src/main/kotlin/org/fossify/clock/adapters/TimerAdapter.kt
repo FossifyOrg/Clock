@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import me.grantland.widget.AutofitHelper
 import org.fossify.clock.R
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.databinding.ItemTimerBinding
@@ -19,7 +18,10 @@ import org.fossify.clock.extensions.secondsToMillis
 import org.fossify.clock.extensions.swap
 import org.fossify.clock.models.Timer
 import org.fossify.clock.models.TimerEvent
-import org.fossify.clock.models.TimerState
+import org.fossify.clock.models.TimerState.Finished
+import org.fossify.clock.models.TimerState.Idle
+import org.fossify.clock.models.TimerState.Paused
+import org.fossify.clock.models.TimerState.Running
 import org.fossify.commons.adapters.MyRecyclerViewAdapter
 import org.fossify.commons.adapters.MyRecyclerViewListAdapter
 import org.fossify.commons.dialogs.PermissionRequiredDialog
@@ -144,8 +146,12 @@ class TimerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(getItem(position), true, true) { itemView, _ ->
-            setupView(itemView, getItem(position), holder)
+        holder.bindView(
+            item = getItem(position),
+            allowSingleClick = true,
+            allowLongClick = true
+        ) { itemView, _ ->
+            setupView(view = itemView, timer = getItem(position), holder = holder)
         }
         bindViewHolder(holder)
     }
@@ -180,10 +186,10 @@ class TimerAdapter(
 
             timerTime.setTextColor(textColor)
             timerTime.text = when (timer.state) {
-                is TimerState.Finished -> 0.getFormattedDuration()
-                is TimerState.Idle -> timer.seconds.getFormattedDuration()
-                is TimerState.Paused -> timer.state.tick.getFormattedDuration()
-                is TimerState.Running -> timer.state.tick.getFormattedDuration()
+                is Finished -> 0.getFormattedDuration()
+                is Idle -> timer.seconds.getFormattedDuration()
+                is Paused -> timer.state.tick.getFormattedDuration()
+                is Running -> timer.state.tick.getFormattedDuration()
             }
 
             timerReset.applyColorFilter(textColor)
@@ -193,32 +199,52 @@ class TimerAdapter(
 
             timerPlayPause.applyColorFilter(textColor)
             timerPlayPause.setOnClickListener {
-                (activity as SimpleActivity).handleNotificationPermission { granted ->
-                    if (granted) {
-                        when (val state = timer.state) {
-                            is TimerState.Idle -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
-                            is TimerState.Paused -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, state.tick))
-                            is TimerState.Running -> EventBus.getDefault().post(TimerEvent.Pause(timer.id!!, state.tick))
-                            is TimerState.Finished -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
-                        }
-                    } else {
-                        PermissionRequiredDialog(
-                            activity,
-                            org.fossify.commons.R.string.allow_notifications_reminders,
-                            { activity.openNotificationSettings() })
-                    }
-                }
+                toggleTimer(timer)
             }
 
             val state = timer.state
-            val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished
+            val resetPossible = state is Running || state is Paused || state is Finished
             timerReset.beInvisibleIf(!resetPossible)
-            val drawableId = if (state is TimerState.Running) {
-                org.fossify.commons.R.drawable.ic_pause_vector
+            timerPlayPause.setImageDrawable(
+                simpleActivity.resources.getColoredDrawableWithColor(
+                    drawableId = if (state is Running) {
+                        org.fossify.commons.R.drawable.ic_pause_vector
+                    } else {
+                        org.fossify.commons.R.drawable.ic_play_vector
+                    },
+                    color = textColor
+                )
+            )
+        }
+    }
+
+    private fun toggleTimer(timer: Timer) {
+        (activity as SimpleActivity).handleNotificationPermission { granted ->
+            if (granted) {
+                when (val state = timer.state) {
+                    is Idle -> EventBus.getDefault().post(
+                        TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis)
+                    )
+
+                    is Paused -> EventBus.getDefault().post(
+                        TimerEvent.Start(timer.id!!, state.tick)
+                    )
+
+                    is Running -> EventBus.getDefault().post(
+                        TimerEvent.Pause(timer.id!!, state.tick)
+                    )
+
+                    is Finished -> EventBus.getDefault().post(
+                        TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis)
+                    )
+                }
             } else {
-                org.fossify.commons.R.drawable.ic_play_vector
+                PermissionRequiredDialog(
+                    activity = activity,
+                    textId = org.fossify.commons.R.string.allow_notifications_reminders,
+                    positiveActionCallback = { activity.openNotificationSettings() }
+                )
             }
-            timerPlayPause.setImageDrawable(simpleActivity.resources.getColoredDrawableWithColor(drawableId, textColor))
         }
     }
 
@@ -244,6 +270,7 @@ class TimerAdapter(
 
     private fun saveAlarmsCustomOrder(alarms: ArrayList<Timer>) {
         val timersCustomSortingIds = alarms.map { it.id }
-        simpleActivity.config.timersCustomSorting = timersCustomSortingIds.joinToString { it.toString() }
+        simpleActivity.config.timersCustomSorting =
+            timersCustomSortingIds.joinToString { it.toString() }
     }
 }
