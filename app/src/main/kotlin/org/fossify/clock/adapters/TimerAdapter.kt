@@ -178,7 +178,6 @@ class TimerAdapter(
             timerLabel.text = timer.label
             timerLabel.beVisibleIf(timer.label.isNotEmpty())
 
-            AutofitHelper.create(timerTime)
             timerTime.setTextColor(textColor)
             timerTime.text = when (timer.state) {
                 is TimerState.Finished -> 0.getFormattedDuration()

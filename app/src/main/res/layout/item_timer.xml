@@ -12,14 +12,19 @@
     android:paddingHorizontal="@dimen/activity_margin"
     android:paddingVertical="@dimen/normal_margin">
 
-    <TextView
+    <org.fossify.clock.views.AutoFitTextView
         android:id="@+id/timer_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:autoSizeMaxTextSize="@dimen/timer_text_size"
+        android:autoSizeMinTextSize="@dimen/extra_big_text_size"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
         android:gravity="center_vertical"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:textSize="@dimen/timer_text_size"
+        app:layout_constraintBottom_toTopOf="@id/timer_label"
         app:layout_constraintEnd_toStartOf="@id/timer_reset"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,6 +39,7 @@
         android:maxLines="1"
         android:textSize="@dimen/bigger_text_size"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/timer_time"
         app:layout_constraintStart_toStartOf="@id/timer_time"
         app:layout_constraintTop_toBottomOf="@id/timer_time"
@@ -49,10 +55,10 @@
         android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_reset_vector"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/timer_play_pause"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/timer_play_pause"
         app:layout_constraintStart_toEndOf="@id/timer_time"
-        app:layout_constraintTop_toTopOf="@id/timer_play_pause"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
     <ImageView
@@ -62,10 +68,10 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="@dimen/activity_margin"
         android:src="@drawable/ic_play_vector"
-        app:layout_constraintBottom_toBottomOf="@id/timer_drag_handle"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/timer_drag_handle"
         app:layout_constraintStart_toEndOf="@id/timer_reset"
-        app:layout_constraintTop_toTopOf="@id/timer_drag_handle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/timer_drag_handle"
@@ -79,6 +85,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/timer_play_pause"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
