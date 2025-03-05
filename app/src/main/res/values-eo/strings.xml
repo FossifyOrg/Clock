@@ -1,3 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    </resources>
+    <string name="app_launcher_name">Horloĝo</string>
+    <string name="vibrate">Vibri</string>
+    <string name="time_zone">Horzono</string>
+    <string name="timer">Tempomezurilo</string>
+    <string name="stopwatch">Halthorloĝo</string>
+    <string name="start_stopwatch">Ŝalti halthorloĝon</string>
+    <string name="stopwatch_stopped">La halthorloĝo estis haltigita</string>
+    <string name="lap">Rondiro</string>
+    <string name="clock_and_date">Horloĝo kaj dato</string>
+    <string name="use_text_shadow">Uzi tekstombron</string>
+    <string name="swipe_right_to_dismiss">Glitu dekstre por malŝalti aŭ maldekstre por daŭrigi.</string>
+    <string name="sort_by_creation_order">Ordo de kreo</string>
+    <string name="sort_by_alarm_time">Alarmhoro</string>
+    <string name="sort_by_day_and_alarm_time">Tago kaj alarmhoro</string>
+    <string name="analogue_clock">Analoga horloĝo</string>
+    <string name="digital_clock">Cifereca horloĝo</string>
+    <string name="alarm_dismissed">Alarmo malŝatita</string>
+    <string name="select_timer_to_dismiss">Selektu tempomezurilon por malŝalti</string>
+    <string name="select_alarm_to_dismiss">Selektu alarmon por malŝalti</string>
+    <string name="alarm_created">Alarmo kreita</string>
+    <string name="alarm_snoozed">Alarmo daŭrigita por %s</string>
+    <string name="no_alarms_found">Neniu alarmo trovita</string>
+    <string name="add_alarm">Aldoni alarmon</string>
+    <string name="no_timers_found">Neniu tempomezurilo trovita</string>
+    <string name="add_timer">Aldoni tempomezurilon</string>
+    <string name="upcoming_alarm">Venonta alarmo</string>
+    <string name="early_alarm_dismissal">Frua malŝalto de alarmo</string>
+    <string name="timers_notification_msg">Tempomezuriloj plenumiĝas</string>
+    <string name="faq_1_title">Kiel mi povas ŝanĝi la ordigon de rondiroj ĉe la halthorloĝa langeto?</string>
+    <string name="faq_1_text">Simple klaku al iu kolumno, kaj la rondiroj ordiĝos laŭ ĝi. Per pliaj klakoj eblas ŝanĝiĝi inter grandiĝanta kaj malgrandiĝanta ordigoj.</string>
+    <string name="no_days_selected">Neniu tago selektita</string>
+    <string name="max_reminder_duration">Maksimuma daŭro de memorigo</string>
+    <string name="time_expired">Tempo elĉerpita</string>
+    <string name="timer_stopped">La tempomezurilo estis haltigita</string>
+    <string name="timer_single_notification_label_msg">Tempomezurilo por %s plenumiĝas</string>
+    <string name="clock_tab">Horloĝa langeto</string>
+    <string name="stopwatch_tab">Halthorloĝa langeto</string>
+    <string name="new_timer">Nova tempomezurilo</string>
+    <string name="timer_tab">Tempomezurila langeto</string>
+    <string name="alarm_tab">Alarma langeto</string>
+    <string name="clock">Horloĝo</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d tempomezurilo plenumiĝas</item>
+        <item quantity="other">%d tempomezuriloj plenumiĝas</item>
+    </plurals>
+    <string name="show_seconds">Montri sekundojn</string>
+    <string name="increase_volume_gradually">Grade plilaŭtiĝi</string>
+    <string name="settings_import_data">Importi alarmojn kaj tempomezurilojn</string>
+    <string name="settings_export_data">Eksporti alarmojn kaj tempomezurilojn</string>
+    <string name="sort_by_timer_duration">Daŭro de tempomezurilo</string>
+</resources>
