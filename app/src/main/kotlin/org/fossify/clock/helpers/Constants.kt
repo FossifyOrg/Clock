@@ -24,6 +24,9 @@ const val ALARM_LAST_CONFIG = "alarm_last_config"
 const val TIMER_LAST_CONFIG = "timer_last_config"
 const val INCREASE_VOLUME_GRADUALLY = "increase_volume_gradually"
 const val ALARMS_SORT_BY = "alarms_sort_by"
+const val ALARMS_CUSTOM_SORTING = "alarms_custom_sorting"
+const val TIMERS_SORT_BY = "timers_sort_by"
+const val TIMERS_CUSTOM_SORTING = "timers_custom_sorting"
 const val STOPWATCH_LAPS_SORT_BY = "stopwatch_laps_sort_by"
 const val WAS_INITIAL_WIDGET_SET_UP = "was_initial_widget_set_up"
 const val DATA_EXPORT_EXTENSION = ".json"
@@ -70,10 +73,11 @@ const val SORT_BY_LAP = 1
 const val SORT_BY_LAP_TIME = 2
 const val SORT_BY_TOTAL_TIME = 4
 
-// alarm sorting
+// alarm and timer sorting
 const val SORT_BY_CREATION_ORDER = 0
 const val SORT_BY_ALARM_TIME = 1
 const val SORT_BY_DATE_AND_TIME = 2
+const val SORT_BY_TIMER_DURATION = 3
 
 const val TODAY_BIT = -1
 const val TOMORROW_BIT = -2
@@ -188,6 +192,7 @@ fun getAllTimeZones() = arrayListOf(
     MyTimeZone(28, "GMT-01:00 Cape Verde", "Atlantic/Cape_Verde"),
     MyTimeZone(29, "GMT+00:00 Casablanca", "Africa/Casablanca"),
     MyTimeZone(30, "GMT+00:00 Greenwich Mean Time", "Etc/Greenwich"),
+    MyTimeZone(90, "GMT+00:00 London", "Europe/London"),
     MyTimeZone(31, "GMT+01:00 Amsterdam", "Europe/Amsterdam"),
     MyTimeZone(32, "GMT+01:00 Belgrade", "Europe/Belgrade"),
     MyTimeZone(33, "GMT+01:00 Brussels", "Europe/Brussels"),
