@@ -3,14 +3,12 @@ package org.fossify.clock.activities
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.*
 import android.provider.AlarmClock
-import android.util.Log
 import android.view.MotionEvent
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
@@ -231,8 +229,7 @@ class ReminderActivity : SimpleActivity() {
         super.onConfigurationChanged(newConfig)
         setupAlarmButtons()
     }
-
-
+    
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         if (intent?.action == AlarmClock.ACTION_SNOOZE_ALARM) {
