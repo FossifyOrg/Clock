@@ -229,7 +229,7 @@ class ReminderActivity : SimpleActivity() {
         super.onConfigurationChanged(newConfig)
         setupAlarmButtons()
     }
-    
+
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         if (intent?.action == AlarmClock.ACTION_SNOOZE_ALARM) {
