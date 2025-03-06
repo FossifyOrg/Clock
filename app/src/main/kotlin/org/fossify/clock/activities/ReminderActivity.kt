@@ -4,11 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.*
 import android.provider.AlarmClock
+import android.util.Log
 import android.view.MotionEvent
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
@@ -54,7 +56,6 @@ class ReminderActivity : SimpleActivity() {
         showOverLockscreen()
         updateTextColors(binding.root)
         updateStatusbarColor(getProperBackgroundColor())
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
 
         val id = intent.getIntExtra(ALARM_ID, -1)
         isAlarmReminder = id != -1
@@ -225,6 +226,12 @@ class ReminderActivity : SimpleActivity() {
             audioManager?.setStreamVolume(AudioManager.STREAM_ALARM, this, 0)
         }
     }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        setupAlarmButtons()
+    }
+
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
