@@ -11,6 +11,8 @@ import org.fossify.commons.extensions.getDefaultAlarmSound
 import org.fossify.commons.extensions.getDefaultAlarmTitle
 import org.fossify.commons.helpers.BaseConfig
 import org.fossify.commons.helpers.SORT_DESCENDING
+import java.util.Calendar
+import java.util.Locale
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {
@@ -56,6 +58,18 @@ class Config(context: Context) : BaseConfig(context) {
     var alarmSort: Int
         get() = prefs.getInt(ALARMS_SORT_BY, SORT_BY_CREATION_ORDER)
         set(alarmSort) = prefs.edit().putInt(ALARMS_SORT_BY, alarmSort).apply()
+
+    var alarmsCustomSorting: String
+        get() = prefs.getString(ALARMS_CUSTOM_SORTING, "")!!
+        set(alarmsCustomSorting) = prefs.edit().putString(ALARMS_CUSTOM_SORTING, alarmsCustomSorting).apply()
+
+    var timerSort: Int
+        get() = prefs.getInt(TIMERS_SORT_BY, SORT_BY_CREATION_ORDER)
+        set(timerSort) = prefs.edit().putInt(TIMERS_SORT_BY, timerSort).apply()
+
+    var timersCustomSorting: String
+        get() = prefs.getString(TIMERS_CUSTOM_SORTING, "")!!
+        set(timersCustomSorting) = prefs.edit().putString(TIMERS_CUSTOM_SORTING, timersCustomSorting).apply()
 
     var alarmMaxReminderSecs: Int
         get() = prefs.getInt(ALARM_MAX_REMINDER_SECS, DEFAULT_MAX_ALARM_REMINDER_SECS)
@@ -104,4 +118,15 @@ class Config(context: Context) : BaseConfig(context) {
     var wasInitialWidgetSetUp: Boolean
         get() = prefs.getBoolean(WAS_INITIAL_WIDGET_SET_UP, false)
         set(wasInitialWidgetSetUp) = prefs.edit().putBoolean(WAS_INITIAL_WIDGET_SET_UP, wasInitialWidgetSetUp).apply()
+
+    var lastDataExportPath: String
+        get() = prefs.getString(LAST_DATA_EXPORT_PATH, "")!!
+        set(lastDataExportPath) = prefs.edit().putString(LAST_DATA_EXPORT_PATH, lastDataExportPath).apply()
+
+    var firstDayOfWeek: Int
+        get() {
+            val defaultFirstDayOfWeek = Calendar.getInstance(Locale.getDefault()).firstDayOfWeek
+            return prefs.getInt(FIRST_DAY_OF_WEEK, getDayNumber(defaultFirstDayOfWeek))
+        }
+        set(firstDayOfWeek) = prefs.edit().putInt(FIRST_DAY_OF_WEEK, firstDayOfWeek).apply()
 }
