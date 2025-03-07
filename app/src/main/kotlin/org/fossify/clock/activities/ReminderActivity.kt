@@ -3,6 +3,7 @@ package org.fossify.clock.activities
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
@@ -223,6 +224,11 @@ class ReminderActivity : SimpleActivity() {
         initialAlarmVolume?.apply {
             audioManager?.setStreamVolume(AudioManager.STREAM_ALARM, this, 0)
         }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        setupAlarmButtons()
     }
 
     override fun onNewIntent(intent: Intent?) {
