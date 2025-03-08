@@ -48,4 +48,7 @@
     <string name="increase_volume_gradually">Augmenter progressivement le volume</string>
     <string name="faq_1_title">Comment puis-je modifier le tri des tours dans l\'onglet chronomètre \?</string>
     <string name="faq_1_text">Cliquez simplement sur l’une des colonnes afin de trier les tours selon la colonne donnée. Par des clics supplémentaires, vous basculerez entre les tris croissant et décroissant.</string>
+    <string name="sort_by_timer_duration">Durée du timer</string>
+    <string name="settings_export_data">Exporter des alarmes et des timers</string>
+    <string name="settings_import_data">Importer des alarmes et des timers</string>
 </resources>
