@@ -116,17 +116,20 @@ fun Context.showRemainingTimeMessage(totalMinutes: Int) {
 }
 
 fun Context.setupAlarmClock(alarm: Alarm, triggerTime: Calendar) {
+    setupAlarmClock(alarm, triggerTime.timeInMillis)
+}
+
+private fun Context.setupAlarmClock(alarm: Alarm, triggerTimeMillis: Long) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-    val targetMS = triggerTime.timeInMillis
     try {
-        AlarmManagerCompat.setAlarmClock(alarmManager, targetMS, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
+        AlarmManagerCompat.setAlarmClock(alarmManager, triggerTimeMillis, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
 
         // show a notification to allow dismissing the alarm 10 minutes before it actually triggers
-        val dismissalTriggerTime = if (targetMS - System.currentTimeMillis() < 10.minutes.inWholeMilliseconds) {
+        val dismissalTriggerTime = if (triggerTimeMillis - System.currentTimeMillis() < 10.minutes.inWholeMilliseconds) {
             System.currentTimeMillis() + 500
         } else {
-            targetMS - 10.minutes.inWholeMilliseconds
+            triggerTimeMillis - 10.minutes.inWholeMilliseconds
         }
         AlarmManagerCompat.setExactAndAllowWhileIdle(alarmManager, 0, dismissalTriggerTime, getEarlyAlarmDismissalIntent(alarm))
     } catch (e: Exception) {
