@@ -7,7 +7,6 @@ import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.hideNotification
 import org.fossify.clock.extensions.setupAlarmClock
 import org.fossify.clock.helpers.ALARM_ID
-import org.fossify.commons.helpers.MINUTE_SECONDS
 import java.util.Calendar
 
 class SnoozeService : IntentService("Snooze") {
