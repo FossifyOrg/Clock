@@ -49,4 +49,7 @@
     <string name="increase_volume_gradually">Нарастание громкости</string>
     <string name="faq_1_title">Как я могу изменить сортировку кругов во вкладке секундомера?</string>
     <string name="faq_1_text">Просто нажмите на любой из столбцов, и круги отсортируются по этому столбцу. Дополнительными нажатиями можно переключаться между сортировкой по возрастанию и по убыванию.</string>
+    <string name="settings_export_data">Экспорт таймеров и будильников</string>
+    <string name="settings_import_data">Импорт таймеров и будильников</string>
+    <string name="sort_by_timer_duration">Длительность таймера</string>
 </resources>

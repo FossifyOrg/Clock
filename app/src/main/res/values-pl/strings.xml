@@ -49,4 +49,7 @@
     <string name="increase_volume_gradually">Zwiększaj głośność stopniowo</string>
     <string name="faq_1_title">Jak mogę zmienić sortowanie okrążeń w karcie stopera\?</string>
     <string name="faq_1_text">Po prostu naciśnij dowolną kolumnę, co spowoduje, że okrążenia zostaną posortowane według danej kolumny. Za pomocą dodatkowych naciśnięć możesz przełączać się między sortowaniem rosnącym i malejącym.</string>
+    <string name="settings_export_data">Eksportuj alarmy i minutniki</string>
+    <string name="settings_import_data">Importuj alarmy i minutniki</string>
+    <string name="sort_by_timer_duration">Czas trwania minutnika</string>
 </resources>

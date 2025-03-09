@@ -47,4 +47,7 @@
     <string name="faq_1_title">Kuidas ma saan stopperis muuta ringiaegade sortimist\?</string>
     <string name="faq_1_text">Klõpsi veerul ja sellega määrad, et sortimine toimub selle veeru alusel. Mitme klõpsuga saad vahetada, kas sortimine toimub kasvavas või kahanevas suunas.</string>
     <string name="clock">Kell</string>
+    <string name="settings_export_data">Ekspordi äratusi ja taimereid</string>
+    <string name="settings_import_data">Impordi äratusi ja taimereid</string>
+    <string name="sort_by_timer_duration">Taimeri kestus</string>
 </resources>
