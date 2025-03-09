@@ -1,8 +1,16 @@
 package org.fossify.clock.helpers
 
 import org.fossify.clock.extensions.isBitSet
+import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.MyTimeZone
-import org.fossify.commons.helpers.*
+import org.fossify.commons.helpers.FRIDAY_BIT
+import org.fossify.commons.helpers.MONDAY_BIT
+import org.fossify.commons.helpers.SATURDAY_BIT
+import org.fossify.commons.helpers.SUNDAY_BIT
+import org.fossify.commons.helpers.THURSDAY_BIT
+import org.fossify.commons.helpers.TUESDAY_BIT
+import org.fossify.commons.helpers.WEDNESDAY_BIT
+import org.fossify.commons.helpers.isPiePlus
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
@@ -125,7 +133,13 @@ fun getPassedSeconds(): Int {
     return ((calendar.timeInMillis + offset) / 1000).toInt()
 }
 
-fun formatTime(showSeconds: Boolean, use24HourFormat: Boolean, hours: Int, minutes: Int, seconds: Int): String {
+fun formatTime(
+    showSeconds: Boolean,
+    use24HourFormat: Boolean,
+    hours: Int,
+    minutes: Int,
+    seconds: Int,
+): String {
     val hoursFormat = if (use24HourFormat) "%02d" else "%01d"
     var format = "$hoursFormat:%02d"
 
@@ -254,39 +268,33 @@ fun getAllTimeZones() = arrayListOf(
     MyTimeZone(89, "GMT+13:00 Tongatapu", "Pacific/Tongatapu")
 )
 
-fun getTimeUntilNextAlarm(alarmTimeInMinutes: Int, days: Int): Int? {
-    val calendar = Calendar.getInstance()
-    calendar.firstDayOfWeek = Calendar.MONDAY
-    val currentTimeInMinutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
-    val currentDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY
-
-    var minTimeDifferenceInMinutes = Int.MAX_VALUE
-
-    for (i in 0..6) {
-        val alarmDayOfWeek = (currentDayOfWeek + i) % 7
-        if (isAlarmEnabledForDay(alarmDayOfWeek, days)) {
-            val timeDifferenceInMinutes = getTimeDifferenceInMinutes(currentTimeInMinutes, alarmTimeInMinutes, i)
-            if (timeDifferenceInMinutes < minTimeDifferenceInMinutes) {
-                minTimeDifferenceInMinutes = timeDifferenceInMinutes
-            }
-        }
-    }
-
-    return if (minTimeDifferenceInMinutes != Int.MAX_VALUE) {
-        minTimeDifferenceInMinutes
-    } else {
-        null
-    }
+fun getTimeOfNextAlarm(alarm: Alarm): Calendar? {
+    return getTimeOfNextAlarm(alarm.timeInMinutes, alarm.days)
 }
 
-fun isAlarmEnabledForDay(day: Int, alarmDays: Int) = alarmDays.isBitSet(day)
+fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
+    val nextAlarmTime = Calendar.getInstance().apply {
+        firstDayOfWeek = Calendar.MONDAY // why is this here? seems unnecessary
+        set(Calendar.HOUR_OF_DAY, alarmTimeInMinutes / 60)
+        set(Calendar.MINUTE, alarmTimeInMinutes % 60)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }
 
-fun getTimeDifferenceInMinutes(currentTimeInMinutes: Int, alarmTimeInMinutes: Int, daysUntilAlarm: Int): Int {
-    val minutesInADay = 24 * 60
-    val minutesUntilAlarm = daysUntilAlarm * minutesInADay + alarmTimeInMinutes
-    return if (minutesUntilAlarm > currentTimeInMinutes) {
-        minutesUntilAlarm - currentTimeInMinutes
-    } else {
-        minutesInADay - (currentTimeInMinutes - minutesUntilAlarm)
+    return when (days) {
+        TODAY_BIT -> nextAlarmTime // do nothing, alarm is today
+        TOMORROW_BIT -> nextAlarmTime.apply { add(Calendar.DAY_OF_MONTH, 1) }
+        else -> {
+            val now = Calendar.getInstance()
+            repeat(8) {
+                val currentDay = (nextAlarmTime.get(Calendar.DAY_OF_WEEK) + 5) % 7
+                if (days.isBitSet(currentDay) && now < nextAlarmTime) {
+                    return nextAlarmTime
+                } else {
+                    nextAlarmTime.add(Calendar.DAY_OF_MONTH, 1)
+                }
+            }
+            null
+        }
     }
 }
