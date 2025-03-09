@@ -35,6 +35,8 @@ import org.fossify.commons.helpers.*
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import kotlin.math.ceil
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
@@ -104,13 +106,25 @@ fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
     if (showToast) {
         val now = Calendar.getInstance()
         val triggerInMillis = triggerTimeMillis - now.timeInMillis
-        showRemainingTimeMessage((triggerInMillis / (1000 * 60)).toInt())
+        showRemainingTimeMessage(triggerInMillis)
     }
 }
 
-fun Context.showRemainingTimeMessage(totalMinutes: Int) {
-    val fullString = String.format(getString(org.fossify.commons.R.string.time_remaining), formatMinutesToTimeString(totalMinutes))
-    toast(fullString, Toast.LENGTH_LONG)
+fun Context.showRemainingTimeMessage(triggerInMillis: Long) {
+    val totalSeconds = triggerInMillis.milliseconds.inWholeSeconds.toInt()
+    val remainingTime = if (totalSeconds >= MINUTE_SECONDS) {
+        val roundedMinutes = ceil(totalSeconds / MINUTE_SECONDS.toFloat()).toInt()
+        formatMinutesToTimeString(roundedMinutes)
+    } else {
+        formatSecondsToTimeString(totalSeconds)
+    }
+
+    toast(
+        msg = String.format(
+            getString(org.fossify.commons.R.string.time_remaining), remainingTime
+        ),
+        length = Toast.LENGTH_LONG
+    )
 }
 
 fun Context.setupAlarmClock(alarm: Alarm, triggerTimeMillis: Long) {
