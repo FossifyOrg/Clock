@@ -285,11 +285,11 @@ class ReminderActivity : SimpleActivity() {
         }
     }
 
-    private fun scheduleSnoozedAlarm(snoozeTime: Int) {
+    private fun scheduleSnoozedAlarm(snoozeMinutes: Int) {
         setupAlarmClock(
             alarm = alarm!!,
             triggerTimeMillis = Calendar.getInstance()
-                .apply { add(Calendar.MINUTE, snoozeTime) }
+                .apply { add(Calendar.MINUTE, snoozeMinutes) }
                 .timeInMillis
         )
 
