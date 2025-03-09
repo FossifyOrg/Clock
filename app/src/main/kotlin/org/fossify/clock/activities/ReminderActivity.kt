@@ -273,21 +273,23 @@ class ReminderActivity : SimpleActivity() {
 
     private fun snoozeAlarm(overrideSnoozeDuration: Int? = null) {
         destroyEffects()
-        val snoozeMinutes = overrideSnoozeDuration
-            ?: if (config.useSameSnooze) {
-                config.snoozeTime
-            } else {
-                showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { finishActivity() }) {
-                    config.snoozeTime = it / MINUTE_SECONDS
-                    snoozeAlarm(config.snoozeTime)
-                }
-                return
+        if (overrideSnoozeDuration != null) {
+            scheduleSnoozedAlarm(overrideSnoozeDuration)
+        } else if (config.useSameSnooze) {
+            scheduleSnoozedAlarm(config.snoozeTime)
+        } else {
+            showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { finishActivity() }) {
+                config.snoozeTime = it / MINUTE_SECONDS
+                scheduleSnoozedAlarm(config.snoozeTime)
             }
+        }
+    }
 
+    private fun scheduleSnoozedAlarm(snoozeTime: Int) {
         setupAlarmClock(
             alarm = alarm!!,
             triggerTimeMillis = Calendar.getInstance()
-                .apply { add(Calendar.MINUTE, snoozeMinutes) }
+                .apply { add(Calendar.MINUTE, snoozeTime) }
                 .timeInMillis
         )
 
