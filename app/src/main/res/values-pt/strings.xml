@@ -48,4 +48,7 @@
     <string name="faq_1_title">Como posso alterar a ordem das voltas no Cronómetro\?</string>
     <string name="faq_1_text">Basta clicar em qualquer uma das colunas e isso fará com que as voltas sejam ordenadas pela coluna especificada. Com cliques adicionais, pode alternar a ordem de entre crescente e decrescente.</string>
     <string name="early_alarm_dismissal">Descartar alarme cedo</string>
+    <string name="sort_by_timer_duration">Duração do temporizador</string>
+    <string name="settings_import_data">Importar alarmes e temporizadores</string>
+    <string name="settings_export_data">Exportar alarmes e temporizadores</string>
 </resources>
