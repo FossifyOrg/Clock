@@ -13,7 +13,6 @@ import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
 import android.text.SpannableString
-import android.text.format.DateFormat
 import android.text.style.RelativeSizeSpan
 import android.widget.Toast
 import androidx.core.app.AlarmManagerCompat
@@ -36,7 +35,6 @@ import org.fossify.commons.helpers.*
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import kotlin.math.pow
 import kotlin.time.Duration.Companion.minutes
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
@@ -100,12 +98,12 @@ fun Context.createNewTimer(): Timer {
 }
 
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
-    val triggerTime = getTimeOfNextAlarm(alarm) ?: return
-    setupAlarmClock(alarm, triggerTime)
+    val triggerTimeMillis = getTimeOfNextAlarm(alarm)?.timeInMillis ?: return
+    setupAlarmClock(alarm = alarm, triggerTimeMillis = triggerTimeMillis)
 
     if (showToast) {
         val now = Calendar.getInstance()
-        val triggerInMillis = triggerTime.timeInMillis - now.timeInMillis
+        val triggerInMillis = triggerTimeMillis - now.timeInMillis
         showRemainingTimeMessage((triggerInMillis / (1000 * 60)).toInt())
     }
 }
@@ -115,11 +113,7 @@ fun Context.showRemainingTimeMessage(totalMinutes: Int) {
     toast(fullString, Toast.LENGTH_LONG)
 }
 
-fun Context.setupAlarmClock(alarm: Alarm, triggerTime: Calendar) {
-    setupAlarmClock(alarm, triggerTime.timeInMillis)
-}
-
-private fun Context.setupAlarmClock(alarm: Alarm, triggerTimeMillis: Long) {
+fun Context.setupAlarmClock(alarm: Alarm, triggerTimeMillis: Long) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
     try {

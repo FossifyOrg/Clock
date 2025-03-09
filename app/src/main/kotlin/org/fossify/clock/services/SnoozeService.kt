@@ -14,6 +14,11 @@ class SnoozeService : IntentService("Snooze") {
         val id = intent!!.getIntExtra(ALARM_ID, -1)
         val alarm = dbHelper.getAlarmWithId(id) ?: return
         hideNotification(id)
-        setupAlarmClock(alarm, Calendar.getInstance().apply { add(Calendar.MINUTE, config.snoozeTime) })
+        setupAlarmClock(
+            alarm = alarm,
+            triggerTimeMillis = Calendar.getInstance()
+                .apply { add(Calendar.MINUTE, config.snoozeTime) }
+                .timeInMillis
+        )
     }
 }

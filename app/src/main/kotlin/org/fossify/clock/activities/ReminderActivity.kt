@@ -283,7 +283,14 @@ class ReminderActivity : SimpleActivity() {
                 }
                 return
             }
-        setupAlarmClock(alarm!!, Calendar.getInstance().apply { add(Calendar.MINUTE, snoozeMinutes) })
+
+        setupAlarmClock(
+            alarm = alarm!!,
+            triggerTimeMillis = Calendar.getInstance()
+                .apply { add(Calendar.MINUTE, snoozeMinutes) }
+                .timeInMillis
+        )
+
         wasAlarmSnoozed = true
         finishActivity()
     }
