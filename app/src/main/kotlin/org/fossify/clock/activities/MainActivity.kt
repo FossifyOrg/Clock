@@ -45,13 +45,7 @@ class MainActivity : SimpleActivity() {
         updateWidgets()
         migrateFirstDayOfWeek()
 
-        getEnabledAlarms { enabledAlarms ->
-            if (enabledAlarms.isNullOrEmpty()) {
-                ensureBackgroundThread {
-                    rescheduleEnabledAlarms()
-                }
-            }
-        }
+        rescheduleEnabledAlarms()
     }
 
     override fun onResume() {

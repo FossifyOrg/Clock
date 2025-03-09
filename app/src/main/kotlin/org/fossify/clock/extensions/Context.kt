@@ -14,6 +14,7 @@ import android.os.Looper
 import android.os.PowerManager
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.app.NotificationCompat
@@ -257,7 +258,7 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
 
 fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
     getEnabledAlarms { enabledAlarms ->
-        if (enabledAlarms.isNullOrEmpty()) {
+        if (enabledAlarms.isEmpty()) {
             callback("")
             return@getEnabledAlarms
         }
@@ -286,7 +287,7 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
     }
 }
 
-fun Context.getEnabledAlarms(callback: (result: List<Alarm>?) -> Unit) {
+fun Context.getEnabledAlarms(callback: (result: List<Alarm>) -> Unit) {
     ensureBackgroundThread {
         val alarms = dbHelper.getEnabledAlarms()
         Handler(Looper.getMainLooper()).post {
@@ -296,9 +297,17 @@ fun Context.getEnabledAlarms(callback: (result: List<Alarm>?) -> Unit) {
 }
 
 fun Context.rescheduleEnabledAlarms() {
-    dbHelper.getEnabledAlarms().forEach {
-        if (it.days != TODAY_BIT || it.timeInMinutes > getCurrentDayMinutes()) {
-            scheduleNextAlarm(it, false)
+    Log.d("rescheduleEnabledAlarms", "Rescheduling enabled alarms.")
+    getEnabledAlarms { alarms ->
+        val now = Calendar.getInstance();
+        alarms.forEach {
+            val nextTime = getTimeOfNextAlarm(it)
+            val isInFuture = nextTime?.after(now)
+            Log.d("rescheduleEnabledAlarms", "Alarm: ${it.label}, nextTIme: ${nextTime?.time}, isInFuture: $isInFuture")
+            if (isInFuture == true) {
+                Log.d("rescheduleEnabledAlarms", "Scheduling: $it");
+                scheduleNextAlarm(it, false)
+            }
         }
     }
 }
