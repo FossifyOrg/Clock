@@ -254,7 +254,6 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
             .filter { it > now }
 
         val closestAlarmTime = nextAlarmList.minOrNull()
-
         if (closestAlarmTime == null) {
             callback("")
             return@getEnabledAlarms

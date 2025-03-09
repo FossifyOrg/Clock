@@ -3,7 +3,14 @@ package org.fossify.clock.helpers
 import org.fossify.clock.extensions.isBitSet
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.MyTimeZone
-import org.fossify.commons.helpers.*
+import org.fossify.commons.helpers.FRIDAY_BIT
+import org.fossify.commons.helpers.MONDAY_BIT
+import org.fossify.commons.helpers.SATURDAY_BIT
+import org.fossify.commons.helpers.SUNDAY_BIT
+import org.fossify.commons.helpers.THURSDAY_BIT
+import org.fossify.commons.helpers.TUESDAY_BIT
+import org.fossify.commons.helpers.WEDNESDAY_BIT
+import org.fossify.commons.helpers.isPiePlus
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
@@ -126,7 +133,13 @@ fun getPassedSeconds(): Int {
     return ((calendar.timeInMillis + offset) / 1000).toInt()
 }
 
-fun formatTime(showSeconds: Boolean, use24HourFormat: Boolean, hours: Int, minutes: Int, seconds: Int): String {
+fun formatTime(
+    showSeconds: Boolean,
+    use24HourFormat: Boolean,
+    hours: Int,
+    minutes: Int,
+    seconds: Int,
+): String {
     val hoursFormat = if (use24HourFormat) "%02d" else "%01d"
     var format = "$hoursFormat:%02d"
 
@@ -260,25 +273,17 @@ fun getTimeOfNextAlarm(alarm: Alarm): Calendar? {
 }
 
 fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
-    val nextAlarmTime = Calendar.getInstance()
-    nextAlarmTime.firstDayOfWeek = Calendar.MONDAY
-
-    val hour = alarmTimeInMinutes / 60
-    val minute = alarmTimeInMinutes % 60
-
-    nextAlarmTime.set(Calendar.HOUR_OF_DAY, hour)
-    nextAlarmTime.set(Calendar.MINUTE, minute)
-    nextAlarmTime.set(Calendar.SECOND, 0)
-    nextAlarmTime.set(Calendar.MILLISECOND, 0)
+    val nextAlarmTime = Calendar.getInstance().apply {
+        firstDayOfWeek = Calendar.MONDAY // why is this here? seems unnecessary
+        set(Calendar.HOUR_OF_DAY, alarmTimeInMinutes / 60)
+        set(Calendar.MINUTE, alarmTimeInMinutes % 60)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }
 
     return when (days) {
-        TODAY_BIT -> {
-            // do nothing, alarm is today
-            nextAlarmTime
-        }
-        TOMORROW_BIT -> {
-            nextAlarmTime.apply { add(Calendar.DAY_OF_MONTH, 1) }
-        }
+        TODAY_BIT -> nextAlarmTime // do nothing, alarm is today
+        TOMORROW_BIT -> nextAlarmTime.apply { add(Calendar.DAY_OF_MONTH, 1) }
         else -> {
             val now = Calendar.getInstance()
             repeat(8) {
