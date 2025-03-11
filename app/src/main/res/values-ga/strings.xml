@@ -26,7 +26,7 @@
     <string name="timer">Uaireanta</string>
     <string name="stopwatch">StopwatchName</string>
     <string name="start_stopwatch">Tosaigh stopuaireadóir</string>
-    <string name="lap">Lap</string>
+    <string name="lap">Babhta</string>
     <string name="stopwatch_stopped">Stop an uaireadóir</string>
     <string name="timer_stopped">Cuireadh stop leis an uaineadóir</string>
     <string name="clock_and_date">Clog agus dáta</string>
@@ -50,4 +50,7 @@
     <string name="increase_volume_gradually">Méadaigh an toirt de réir a chéile</string>
     <string name="faq_1_title">Conas is féidir liom sórtáil lap a athrú ag an táb stopwatch?</string>
     <string name="faq_1_text">Just a cliceáil ar aon cheann de na colúin, a dhéanamh ar an laps a shórtáil ag an gcolún a thugtar. Le cad a tharlaíonn nuair breise is féidir leat scoránaigh idir dul suas agus sórtáil íslitheach.</string>
+    <string name="settings_import_data">Iompórtáil aláraim agus amadóirí</string>
+    <string name="settings_export_data">Easpórtáil aláraim agus amadóirí</string>
+    <string name="sort_by_timer_duration">Fad an lasc ama</string>
 </resources>

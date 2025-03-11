@@ -3,6 +3,7 @@ package org.fossify.clock.activities
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
@@ -225,6 +226,11 @@ class ReminderActivity : SimpleActivity() {
         }
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        setupAlarmButtons()
+    }
+
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         if (intent?.action == AlarmClock.ACTION_SNOOZE_ALARM) {
@@ -268,19 +274,25 @@ class ReminderActivity : SimpleActivity() {
     private fun snoozeAlarm(overrideSnoozeDuration: Int? = null) {
         destroyEffects()
         if (overrideSnoozeDuration != null) {
-            snoozeAlarm { add(Calendar.MINUTE, overrideSnoozeDuration) }
+            scheduleSnoozedAlarm(overrideSnoozeDuration)
         } else if (config.useSameSnooze) {
-            snoozeAlarm { add(Calendar.MINUTE, config.snoozeTime) }
+            scheduleSnoozedAlarm(config.snoozeTime)
         } else {
             showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { finishActivity() }) {
                 config.snoozeTime = it / MINUTE_SECONDS
-                snoozeAlarm { add(Calendar.SECOND, it) }
+                scheduleSnoozedAlarm(config.snoozeTime)
             }
         }
     }
 
-    private fun snoozeAlarm(block: Calendar.() -> Unit) {
-        setupAlarmClock(alarm!!, block.run { Calendar.getInstance() })
+    private fun scheduleSnoozedAlarm(snoozeMinutes: Int) {
+        setupAlarmClock(
+            alarm = alarm!!,
+            triggerTimeMillis = Calendar.getInstance()
+                .apply { add(Calendar.MINUTE, snoozeMinutes) }
+                .timeInMillis
+        )
+
         wasAlarmSnoozed = true
         finishActivity()
     }

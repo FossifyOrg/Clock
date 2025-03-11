@@ -59,7 +59,20 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/normal_margin"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/alarm_drag_handle"
+        app:layout_constraintStart_toEndOf="@id/alarm_time"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/alarm_drag_handle"
+        android:layout_width="@dimen/drag_handle_size"
+        android:layout_height="@dimen/drag_handle_size"
+        android:paddingHorizontal="@dimen/medium_margin"
+        android:src="@drawable/ic_drag_handle_vector"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/alarm_switch"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

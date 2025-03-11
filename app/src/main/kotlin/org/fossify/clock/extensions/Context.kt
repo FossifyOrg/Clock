@@ -13,7 +13,6 @@ import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
 import android.text.SpannableString
-import android.text.format.DateFormat
 import android.text.style.RelativeSizeSpan
 import android.util.Log
 import android.widget.Toast
@@ -37,7 +36,8 @@ import org.fossify.commons.helpers.*
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import kotlin.math.pow
+import kotlin.math.ceil
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
@@ -101,33 +101,44 @@ fun Context.createNewTimer(): Timer {
 }
 
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
-    val triggerTime = getTimeOfNextAlarm(alarm) ?: return
-    setupAlarmClock(alarm, triggerTime)
+    val triggerTimeMillis = getTimeOfNextAlarm(alarm)?.timeInMillis ?: return
+    setupAlarmClock(alarm = alarm, triggerTimeMillis = triggerTimeMillis)
 
     if (showToast) {
         val now = Calendar.getInstance()
-        val triggerInMillis = triggerTime.timeInMillis - now.timeInMillis
-        showRemainingTimeMessage((triggerInMillis / (1000 * 60)).toInt())
+        val triggerInMillis = triggerTimeMillis - now.timeInMillis
+        showRemainingTimeMessage(triggerInMillis)
     }
 }
 
-fun Context.showRemainingTimeMessage(totalMinutes: Int) {
-    val fullString = String.format(getString(org.fossify.commons.R.string.time_remaining), formatMinutesToTimeString(totalMinutes))
-    toast(fullString, Toast.LENGTH_LONG)
+fun Context.showRemainingTimeMessage(triggerInMillis: Long) {
+    val totalSeconds = triggerInMillis.milliseconds.inWholeSeconds.toInt()
+    val remainingTime = if (totalSeconds >= MINUTE_SECONDS) {
+        val roundedMinutes = ceil(totalSeconds / MINUTE_SECONDS.toFloat()).toInt()
+        formatMinutesToTimeString(roundedMinutes)
+    } else {
+        formatSecondsToTimeString(totalSeconds)
+    }
+
+    toast(
+        msg = String.format(
+            getString(org.fossify.commons.R.string.time_remaining), remainingTime
+        ),
+        length = Toast.LENGTH_LONG
+    )
 }
 
-fun Context.setupAlarmClock(alarm: Alarm, triggerTime: Calendar) {
+fun Context.setupAlarmClock(alarm: Alarm, triggerTimeMillis: Long) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-    val targetMS = triggerTime.timeInMillis
     try {
-        AlarmManagerCompat.setAlarmClock(alarmManager, targetMS, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
+        AlarmManagerCompat.setAlarmClock(alarmManager, triggerTimeMillis, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
 
         // show a notification to allow dismissing the alarm 10 minutes before it actually triggers
-        val dismissalTriggerTime = if (targetMS - System.currentTimeMillis() < 10.minutes.inWholeMilliseconds) {
+        val dismissalTriggerTime = if (triggerTimeMillis - System.currentTimeMillis() < 10.minutes.inWholeMilliseconds) {
             System.currentTimeMillis() + 500
         } else {
-            targetMS - 10.minutes.inWholeMilliseconds
+            triggerTimeMillis - 10.minutes.inWholeMilliseconds
         }
         AlarmManagerCompat.setExactAndAllowWhileIdle(alarmManager, 0, dismissalTriggerTime, getEarlyAlarmDismissalIntent(alarm))
     } catch (e: Exception) {
@@ -222,7 +233,7 @@ fun Context.updateAnalogueWidgets() {
 }
 
 fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean, makeAmPmSmaller: Boolean): SpannableString {
-    val use24HourFormat = DateFormat.is24HourFormat(this)
+    val use24HourFormat = config.use24HourFormat
     val hours = (passedSeconds / 3600) % 24
     val minutes = (passedSeconds / 60) % 60
     val seconds = passedSeconds % 60
@@ -258,7 +269,6 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
             .filter { it > now }
 
         val closestAlarmTime = nextAlarmList.minOrNull()
-
         if (closestAlarmTime == null) {
             callback("")
             return@getEnabledAlarms
@@ -266,10 +276,10 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
 
         val dayOfWeekIndex = (closestAlarmTime.get(Calendar.DAY_OF_WEEK) + 5) % 7
         val dayOfWeek = resources.getStringArray(org.fossify.commons.R.array.week_days_short)[dayOfWeekIndex]
-        val pattern = if (DateFormat.is24HourFormat(this)) {
-            "HH:mm"
+        val pattern = if (config.use24HourFormat) {
+            FORMAT_24H
         } else {
-            "h:mm a"
+            FORMAT_12H
         }
 
         val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(closestAlarmTime.time)
@@ -521,20 +531,24 @@ fun Context.getAlarmSelectedDaysString(bitMask: Int): String {
     }
 }
 
+fun Context.orderDaysList(days: List<Int>): List<Int> {
+    if (config.firstDayOfWeek > 0) {
+        val range = (config.firstDayOfWeek..6).toList() + (0..<config.firstDayOfWeek).toList()
+        return days.slice(range)
+    } else {
+        return days
+    }
+}
+
 fun Context.firstDayOrder(bitMask: Int): Int {
     if (bitMask == TODAY_BIT) return -2
     if (bitMask == TOMORROW_BIT) return -1
 
-    val dayBits = arrayListOf(MONDAY_BIT, TUESDAY_BIT, WEDNESDAY_BIT, THURSDAY_BIT, FRIDAY_BIT, SATURDAY_BIT, SUNDAY_BIT)
+    val dayBits = orderDaysList(arrayListOf(MONDAY_BIT, TUESDAY_BIT, WEDNESDAY_BIT, THURSDAY_BIT, FRIDAY_BIT, SATURDAY_BIT, SUNDAY_BIT))
 
-    val sundayFirst = baseConfig.isSundayFirst
-    if (sundayFirst) {
-        dayBits.moveLastItemToFront()
-    }
-
-    dayBits.forEach { bit ->
+    dayBits.forEachIndexed { i, bit ->
         if (bitMask and bit != 0) {
-            return if (bit == SUNDAY_BIT && sundayFirst) 0 else bit
+            return i
         }
     }
 

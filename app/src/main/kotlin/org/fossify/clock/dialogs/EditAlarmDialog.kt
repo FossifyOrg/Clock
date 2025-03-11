@@ -34,7 +34,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val onDism
         binding.apply {
             editAlarmTime.setOnClickListener {
                 if (activity.config.isUsingSystemTheme) {
-                    val timeFormat = if (DateFormat.is24HourFormat(activity)) {
+                    val timeFormat = if (activity.config.use24HourFormat) {
                         TimeFormat.CLOCK_24H
                     } else {
                         TimeFormat.CLOCK_12H
@@ -59,7 +59,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val onDism
                         timeSetListener,
                         alarm.timeInMinutes / 60,
                         alarm.timeInMinutes % 60,
-                        DateFormat.is24HourFormat(activity)
+                        activity.config.use24HourFormat
                     ).show()
                 }
             }
@@ -92,10 +92,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val onDism
             editAlarm.setText(alarm.label)
 
             val dayLetters = activity.resources.getStringArray(org.fossify.commons.R.array.week_day_letters).toList() as ArrayList<String>
-            val dayIndexes = arrayListOf(0, 1, 2, 3, 4, 5, 6)
-            if (activity.config.isSundayFirst) {
-                dayIndexes.moveLastItemToFront()
-            }
+            val dayIndexes = activity.orderDaysList(arrayListOf(0, 1, 2, 3, 4, 5, 6))
 
             dayIndexes.forEach {
                 val pow = Math.pow(2.0, it.toDouble()).toInt()
