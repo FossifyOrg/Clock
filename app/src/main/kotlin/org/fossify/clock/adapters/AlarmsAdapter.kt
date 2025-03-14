@@ -14,7 +14,6 @@ import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getAlarmSelectedDaysString
 import org.fossify.clock.extensions.getFormattedTime
-import org.fossify.clock.extensions.scheduleNextAlarm
 import org.fossify.clock.extensions.swap
 import org.fossify.clock.helpers.TODAY_BIT
 import org.fossify.clock.helpers.TOMORROW_BIT
@@ -177,7 +176,6 @@ class AlarmsAdapter(
                                 resources.getString(org.fossify.commons.R.string.tomorrow)
                         }
                         activity.dbHelper.updateAlarm(alarm)
-                        root.context.scheduleNextAlarm(alarm, true)
                         toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
                     }
 
@@ -185,6 +183,7 @@ class AlarmsAdapter(
                         toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
                     }
 
+                    // Unreachable zombie branch. Days are always set to a non-zero value.
                     alarmSwitch.isChecked -> {
                         activity.toast(R.string.no_days_selected)
                         alarmSwitch.isChecked = false
