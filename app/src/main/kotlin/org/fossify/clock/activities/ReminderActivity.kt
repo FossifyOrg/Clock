@@ -47,6 +47,7 @@ import org.fossify.commons.helpers.isOreoPlus
 import java.util.Calendar
 import kotlin.math.max
 import kotlin.math.min
+import androidx.core.net.toUri
 
 class ReminderActivity : SimpleActivity() {
     companion object {
@@ -250,7 +251,7 @@ class ReminderActivity : SimpleActivity() {
             try {
                 mediaPlayer = MediaPlayer().apply {
                     setAudioStreamType(AudioManager.STREAM_ALARM)
-                    setDataSource(this@ReminderActivity, Uri.parse(soundUri))
+                    setDataSource(this@ReminderActivity, soundUri.toUri())
                     isLooping = true
                     prepare()
                     start()

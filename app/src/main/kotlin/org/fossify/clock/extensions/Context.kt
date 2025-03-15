@@ -1,6 +1,10 @@
 package org.fossify.clock.extensions
 
-import android.app.*
+import android.app.AlarmManager
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
@@ -8,7 +12,6 @@ import android.content.Intent
 import android.media.AudioAttributes
 import android.media.AudioManager.STREAM_ALARM
 import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
@@ -17,21 +20,73 @@ import android.text.style.RelativeSizeSpan
 import android.widget.Toast
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.app.NotificationCompat
+import androidx.core.net.toUri
 import org.fossify.clock.R
 import org.fossify.clock.activities.ReminderActivity
 import org.fossify.clock.activities.SnoozeReminderActivity
 import org.fossify.clock.activities.SplashActivity
 import org.fossify.clock.databases.AppDatabase
-import org.fossify.clock.helpers.*
+import org.fossify.clock.helpers.ALARM_ID
+import org.fossify.clock.helpers.ALARM_NOTIFICATION_CHANNEL_ID
+import org.fossify.clock.helpers.Config
+import org.fossify.clock.helpers.DBHelper
+import org.fossify.clock.helpers.EARLY_ALARM_DISMISSAL_INTENT_ID
+import org.fossify.clock.helpers.EDITED_TIME_ZONE_SEPARATOR
+import org.fossify.clock.helpers.FORMAT_12H
+import org.fossify.clock.helpers.FORMAT_24H
+import org.fossify.clock.helpers.MyAnalogueTimeWidgetProvider
+import org.fossify.clock.helpers.MyDigitalTimeWidgetProvider
+import org.fossify.clock.helpers.NOTIFICATION_ID
+import org.fossify.clock.helpers.OPEN_ALARMS_TAB_INTENT_ID
+import org.fossify.clock.helpers.OPEN_STOPWATCH_TAB_INTENT_ID
+import org.fossify.clock.helpers.OPEN_TAB
+import org.fossify.clock.helpers.REMINDER_ACTIVITY_INTENT_ID
+import org.fossify.clock.helpers.TAB_ALARM
+import org.fossify.clock.helpers.TAB_STOPWATCH
+import org.fossify.clock.helpers.TAB_TIMER
+import org.fossify.clock.helpers.TIMER_ID
+import org.fossify.clock.helpers.TODAY_BIT
+import org.fossify.clock.helpers.TOMORROW_BIT
+import org.fossify.clock.helpers.TimerHelper
+import org.fossify.clock.helpers.formatTime
+import org.fossify.clock.helpers.getAllTimeZones
+import org.fossify.clock.helpers.getCurrentDayMinutes
+import org.fossify.clock.helpers.getDefaultTimeZoneTitle
+import org.fossify.clock.helpers.getPassedSeconds
+import org.fossify.clock.helpers.getTimeOfNextAlarm
 import org.fossify.clock.interfaces.TimerDao
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.MyTimeZone
 import org.fossify.clock.models.Timer
 import org.fossify.clock.models.TimerState
-import org.fossify.clock.receivers.*
+import org.fossify.clock.receivers.AlarmReceiver
+import org.fossify.clock.receivers.DismissAlarmReceiver
+import org.fossify.clock.receivers.EarlyAlarmDismissalReceiver
+import org.fossify.clock.receivers.HideAlarmReceiver
+import org.fossify.clock.receivers.HideTimerReceiver
 import org.fossify.clock.services.SnoozeService
-import org.fossify.commons.extensions.*
-import org.fossify.commons.helpers.*
+import org.fossify.commons.extensions.formatMinutesToTimeString
+import org.fossify.commons.extensions.formatSecondsToTimeString
+import org.fossify.commons.extensions.getDefaultAlarmSound
+import org.fossify.commons.extensions.getLaunchIntent
+import org.fossify.commons.extensions.getProperPrimaryColor
+import org.fossify.commons.extensions.getSelectedDaysString
+import org.fossify.commons.extensions.grantReadUriPermission
+import org.fossify.commons.extensions.showErrorToast
+import org.fossify.commons.extensions.toInt
+import org.fossify.commons.extensions.toast
+import org.fossify.commons.helpers.EVERY_DAY_BIT
+import org.fossify.commons.helpers.FRIDAY_BIT
+import org.fossify.commons.helpers.MINUTE_SECONDS
+import org.fossify.commons.helpers.MONDAY_BIT
+import org.fossify.commons.helpers.SATURDAY_BIT
+import org.fossify.commons.helpers.SILENT
+import org.fossify.commons.helpers.SUNDAY_BIT
+import org.fossify.commons.helpers.THURSDAY_BIT
+import org.fossify.commons.helpers.TUESDAY_BIT
+import org.fossify.commons.helpers.WEDNESDAY_BIT
+import org.fossify.commons.helpers.ensureBackgroundThread
+import org.fossify.commons.helpers.isOreoPlus
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -350,7 +405,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
             setBypassDnd(true)
             enableLights(true)
             lightColor = getProperPrimaryColor()
-            setSound(Uri.parse(soundUri), audioAttributes)
+            setSound(soundUri.toUri(), audioAttributes)
 
             if (!timer.vibrate) {
                 vibrationPattern = longArrayOf(0L)
@@ -375,7 +430,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         .setDefaults(Notification.DEFAULT_LIGHTS)
         .setCategory(Notification.CATEGORY_EVENT)
         .setAutoCancel(true)
-        .setSound(Uri.parse(soundUri), STREAM_ALARM)
+        .setSound(soundUri.toUri(), STREAM_ALARM)
         .setChannelId(channelId)
         .addAction(
             org.fossify.commons.R.drawable.ic_cross_vector,
@@ -450,7 +505,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
             enableLights(true)
             lightColor = getProperPrimaryColor()
             enableVibration(alarm.vibrate)
-            setSound(Uri.parse(soundUri), audioAttributes)
+            setSound(soundUri.toUri(), audioAttributes)
             notificationManager.createNotificationChannel(this)
         }
     }
@@ -475,7 +530,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
     if (soundUri != SILENT) {
-        builder.setSound(Uri.parse(soundUri), STREAM_ALARM)
+        builder.setSound(soundUri.toUri(), STREAM_ALARM)
     }
 
     if (alarm.vibrate) {
