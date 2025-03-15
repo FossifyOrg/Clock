@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.media.AudioManager
 import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,6 +14,7 @@ import android.provider.AlarmClock
 import android.view.MotionEvent
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import androidx.core.net.toUri
 import org.fossify.clock.R
 import org.fossify.clock.databinding.ActivityReminderBinding
 import org.fossify.clock.extensions.cancelAlarmClock
@@ -47,7 +47,6 @@ import org.fossify.commons.helpers.isOreoPlus
 import java.util.Calendar
 import kotlin.math.max
 import kotlin.math.min
-import androidx.core.net.toUri
 
 class ReminderActivity : SimpleActivity() {
     companion object {
@@ -114,6 +113,7 @@ class ReminderActivity : SimpleActivity() {
 
         maxReminderDurationHandler.postDelayed({
             finishActivity()
+            cancelNotification()
         }, maxDuration * 1000L)
 
         setupButtons()
@@ -189,9 +189,7 @@ class ReminderActivity : SimpleActivity() {
                             finishActivity()
                         }
 
-                        if (isOreoPlus()) {
-                            notificationManager.cancelAll()
-                        }
+                        cancelNotification()
                     } else if (binding.reminderDraggable.x <= minDragX + 50f) {
                         if (!didVibrate) {
                             binding.reminderDraggable.performHapticFeedback()
@@ -199,9 +197,7 @@ class ReminderActivity : SimpleActivity() {
                             snoozeAlarm()
                         }
 
-                        if (isOreoPlus()) {
-                            notificationManager.cancelAll()
-                        }
+                        cancelNotification()
                     }
                 }
             }
@@ -310,7 +306,7 @@ class ReminderActivity : SimpleActivity() {
         vibrationHandler.removeCallbacksAndMessages(null)
         if (!finished) {
             finishActivity()
-            notificationManager.cancel(ALARM_NOTIF_ID)
+            cancelNotification()
         } else {
             destroyEffects()
         }
@@ -396,5 +392,9 @@ class ReminderActivity : SimpleActivity() {
             setShowWhenLocked(true)
             setTurnScreenOn(true)
         }
+    }
+
+    private fun cancelNotification() {
+        notificationManager.cancel(ALARM_NOTIF_ID)
     }
 }
