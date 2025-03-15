@@ -1,30 +1,52 @@
 package org.fossify.clock.activities
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
-import android.os.*
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.provider.AlarmClock
 import android.view.MotionEvent
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import org.fossify.clock.R
 import org.fossify.clock.databinding.ActivityReminderBinding
-import org.fossify.clock.extensions.*
+import org.fossify.clock.extensions.cancelAlarmClock
+import org.fossify.clock.extensions.config
+import org.fossify.clock.extensions.dbHelper
+import org.fossify.clock.extensions.getFormattedTime
+import org.fossify.clock.extensions.scheduleNextAlarm
+import org.fossify.clock.extensions.setupAlarmClock
+import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.ALARM_NOTIF_ID
 import org.fossify.clock.helpers.getPassedSeconds
 import org.fossify.clock.models.Alarm
-import org.fossify.commons.extensions.*
+import org.fossify.commons.extensions.applyColorFilter
+import org.fossify.commons.extensions.beGone
+import org.fossify.commons.extensions.getColoredDrawableWithColor
+import org.fossify.commons.extensions.getProperBackgroundColor
+import org.fossify.commons.extensions.getProperPrimaryColor
+import org.fossify.commons.extensions.getProperTextColor
+import org.fossify.commons.extensions.notificationManager
+import org.fossify.commons.extensions.onGlobalLayout
+import org.fossify.commons.extensions.performHapticFeedback
+import org.fossify.commons.extensions.showPickSecondsDialog
+import org.fossify.commons.extensions.updateTextColors
+import org.fossify.commons.extensions.viewBinding
 import org.fossify.commons.helpers.MINUTE_SECONDS
 import org.fossify.commons.helpers.SILENT
 import org.fossify.commons.helpers.isOreoMr1Plus
 import org.fossify.commons.helpers.isOreoPlus
 import java.util.Calendar
+import kotlin.math.max
+import kotlin.math.min
 
 class ReminderActivity : SimpleActivity() {
     companion object {
@@ -73,9 +95,22 @@ class ReminderActivity : SimpleActivity() {
         }
 
         binding.reminderTitle.text = label
-        binding.reminderText.text = if (isAlarmReminder) getFormattedTime(getPassedSeconds(), false, false) else getString(R.string.time_expired)
+        binding.reminderText.text = if (isAlarmReminder) {
+            getFormattedTime(
+                passedSeconds = getPassedSeconds(),
+                showSeconds = false,
+                makeAmPmSmaller = false
+            )
+        } else {
+            getString(R.string.time_expired)
+        }
 
-        val maxDuration = if (isAlarmReminder) config.alarmMaxReminderSecs else config.timerMaxReminderSecs
+        val maxDuration = if (isAlarmReminder) {
+            config.alarmMaxReminderSecs
+        } else {
+            config.timerMaxReminderSecs
+        }
+
         maxReminderDurationHandler.postDelayed({
             finishActivity()
         }, maxDuration * 1000L)
@@ -95,7 +130,12 @@ class ReminderActivity : SimpleActivity() {
     @SuppressLint("ClickableViewAccessibility")
     private fun setupAlarmButtons() {
         binding.reminderStop.beGone()
-        binding.reminderDraggableBackground.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulsing_animation))
+        binding.reminderDraggableBackground.startAnimation(
+            AnimationUtils.loadAnimation(
+                this,
+                R.anim.pulsing_animation
+            )
+        )
         binding.reminderDraggableBackground.applyColorFilter(getProperPrimaryColor())
 
         val textColor = getProperTextColor()
@@ -136,7 +176,11 @@ class ReminderActivity : SimpleActivity() {
                 }
 
                 MotionEvent.ACTION_MOVE -> {
-                    binding.reminderDraggable.x = Math.min(maxDragX, Math.max(minDragX, event.rawX - dragDownX))
+                    binding.reminderDraggable.x = min(
+                        a = maxDragX,
+                        b = max(minDragX, event.rawX - dragDownX)
+                    )
+
                     if (binding.reminderDraggable.x >= maxDragX - 50f) {
                         if (!didVibrate) {
                             binding.reminderDraggable.performHapticFeedback()
@@ -165,8 +209,16 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun setupTimerButtons() {
-        binding.reminderStop.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getProperPrimaryColor())
-        arrayOf(binding.reminderSnooze, binding.reminderDraggableBackground, binding.reminderDraggable, binding.reminderDismiss).forEach {
+        binding.reminderStop.background = resources.getColoredDrawableWithColor(
+            drawableId = R.drawable.circle_background_filled,
+            color = getProperPrimaryColor()
+        )
+        arrayOf(
+            binding.reminderSnooze,
+            binding.reminderDraggableBackground,
+            binding.reminderDraggable,
+            binding.reminderDismiss
+        ).forEach {
             it.beGone()
         }
 
@@ -176,14 +228,14 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun setupEffects() {
-        audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
         initialAlarmVolume = audioManager?.getStreamVolume(AudioManager.STREAM_ALARM) ?: 7
 
         val doVibrate = alarm?.vibrate ?: config.timerVibrate
         if (doVibrate && isOreoPlus()) {
             val pattern = LongArray(2) { 500 }
             vibrationHandler.postDelayed({
-                vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
                 vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
             }, 500)
         }
@@ -205,7 +257,11 @@ class ReminderActivity : SimpleActivity() {
                 }
 
                 if (config.increaseVolumeGradually) {
-                    scheduleVolumeIncrease(MIN_ALARM_VOLUME_FOR_INCREASING_ALARMS.toFloat(), initialAlarmVolume!!.toFloat(), 0)
+                    scheduleVolumeIncrease(
+                        lastVolume = MIN_ALARM_VOLUME_FOR_INCREASING_ALARMS.toFloat(),
+                        maxVolume = initialAlarmVolume!!.toFloat(),
+                        delay = 0
+                    )
                 }
             } catch (e: Exception) {
             }
@@ -278,10 +334,17 @@ class ReminderActivity : SimpleActivity() {
         } else if (config.useSameSnooze) {
             scheduleSnoozedAlarm(config.snoozeTime)
         } else {
-            showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { finishActivity() }) {
-                config.snoozeTime = it / MINUTE_SECONDS
-                scheduleSnoozedAlarm(config.snoozeTime)
-            }
+            showPickSecondsDialog(
+                curSeconds = config.snoozeTime * MINUTE_SECONDS,
+                isSnoozePicker = true,
+                cancelCallback = {
+                    finishActivity()
+                },
+                callback = {
+                    config.snoozeTime = it / MINUTE_SECONDS
+                    scheduleSnoozedAlarm(config.snoozeTime)
+                }
+            )
         }
     }
 
@@ -323,9 +386,9 @@ class ReminderActivity : SimpleActivity() {
     private fun showOverLockscreen() {
         window.addFlags(
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
-                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
-                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
-                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+                    WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
+                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
+                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
         )
 
         if (isOreoMr1Plus()) {
