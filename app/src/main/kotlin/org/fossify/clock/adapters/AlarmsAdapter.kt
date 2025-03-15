@@ -10,7 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import org.fossify.clock.R
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.databinding.ItemAlarmBinding
-import org.fossify.clock.extensions.*
+import org.fossify.clock.extensions.config
+import org.fossify.clock.extensions.dbHelper
+import org.fossify.clock.extensions.getAlarmSelectedDaysString
+import org.fossify.clock.extensions.getFormattedTime
+import org.fossify.clock.extensions.swap
 import org.fossify.clock.helpers.TODAY_BIT
 import org.fossify.clock.helpers.TOMORROW_BIT
 import org.fossify.clock.helpers.getCurrentDayMinutes
@@ -28,8 +32,11 @@ import org.fossify.commons.interfaces.StartReorderDragListener
 import org.fossify.commons.views.MyRecyclerView
 
 class AlarmsAdapter(
-    activity: SimpleActivity, var alarms: ArrayList<Alarm>, val toggleAlarmInterface: ToggleAlarmInterface,
-    recyclerView: MyRecyclerView, itemClick: (Any) -> Unit,
+    activity: SimpleActivity,
+    var alarms: ArrayList<Alarm>,
+    val toggleAlarmInterface: ToggleAlarmInterface,
+    recyclerView: MyRecyclerView,
+    itemClick: (Any) -> Unit,
 ) : MyRecyclerViewAdapter(activity, recyclerView, itemClick), ItemTouchHelperContract {
 
     private var startReorderDragListener: StartReorderDragListener
@@ -115,7 +122,9 @@ class AlarmsAdapter(
         activity.dbHelper.deleteAlarms(alarmsToRemove)
     }
 
-    private fun getSelectedItems() = alarms.filter { selectedKeys.contains(it.id) } as ArrayList<Alarm>
+    private fun getSelectedItems(): ArrayList<Alarm> {
+        return alarms.filter { selectedKeys.contains(it.id) } as ArrayList<Alarm>
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setupView(view: View, alarm: Alarm, holder: ViewHolder) {
@@ -143,35 +152,46 @@ class AlarmsAdapter(
             alarmSwitch.isChecked = alarm.isEnabled
             alarmSwitch.setColors(textColor, properPrimaryColor, backgroundColor)
             alarmSwitch.setOnClickListener {
-                if (alarm.days > 0) {
-                    if (activity.config.wasAlarmWarningShown) {
-                        toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
-                    } else {
-                        ConfirmationDialog(
-                            activity,
-                            messageId = org.fossify.commons.R.string.alarm_warning,
-                            positive = org.fossify.commons.R.string.ok,
-                            negative = 0
-                        ) {
-                            activity.config.wasAlarmWarningShown = true
+                when {
+                    alarm.days > 0 -> {
+                        if (activity.config.wasAlarmWarningShown) {
                             toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
+                        } else {
+                            ConfirmationDialog(
+                                activity = activity,
+                                messageId = org.fossify.commons.R.string.alarm_warning,
+                                positive = org.fossify.commons.R.string.ok,
+                                negative = 0
+                            ) {
+                                activity.config.wasAlarmWarningShown = true
+                                toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
+                            }
                         }
                     }
-                } else if (alarm.days == TODAY_BIT) {
-                    if (alarm.timeInMinutes <= getCurrentDayMinutes()) {
-                        alarm.days = TOMORROW_BIT
-                        alarmDays.text = resources.getString(org.fossify.commons.R.string.tomorrow)
+
+                    alarm.days == TODAY_BIT -> {
+                        if (alarm.timeInMinutes <= getCurrentDayMinutes()) {
+                            alarm.days = TOMORROW_BIT
+                            alarmDays.text =
+                                resources.getString(org.fossify.commons.R.string.tomorrow)
+                        }
+                        activity.dbHelper.updateAlarm(alarm)
+                        toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
                     }
-                    activity.dbHelper.updateAlarm(alarm)
-                    root.context.scheduleNextAlarm(alarm, true)
-                    toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
-                } else if (alarm.days == TOMORROW_BIT) {
-                    toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
-                } else if (alarmSwitch.isChecked) {
-                    activity.toast(R.string.no_days_selected)
-                    alarmSwitch.isChecked = false
-                } else {
-                    toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
+
+                    alarm.days == TOMORROW_BIT -> {
+                        toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
+                    }
+
+                    // Unreachable zombie branch. Days are always set to a non-zero value.
+                    alarmSwitch.isChecked -> {
+                        activity.toast(R.string.no_days_selected)
+                        alarmSwitch.isChecked = false
+                    }
+
+                    else -> {
+                        toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
+                    }
                 }
             }
         }
