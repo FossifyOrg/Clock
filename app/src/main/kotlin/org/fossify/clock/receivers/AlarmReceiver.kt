@@ -10,6 +10,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Handler
+import android.os.Looper
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import org.fossify.clock.R
@@ -33,11 +34,12 @@ class AlarmReceiver : BroadcastReceiver() {
         val id = intent.getIntExtra(ALARM_ID, -1)
         val alarm = context.dbHelper.getAlarmWithId(id) ?: return
 
-        context.hideNotification(EARLY_ALARM_NOTIF_ID) // hide early dismissal notification if not already dismissed
+        // Hide early dismissal notification if not already dismissed
+        context.hideNotification(EARLY_ALARM_NOTIF_ID)
 
         if (context.isScreenOn()) {
             context.showAlarmNotification(alarm)
-            Handler().postDelayed({
+            Handler(Looper.getMainLooper()).postDelayed({
                 context.hideNotification(id)
             }, context.config.alarmMaxReminderSecs * 1000L)
         } else {
@@ -58,13 +60,13 @@ class AlarmReceiver : BroadcastReceiver() {
                     }
                 }
 
-                val intent = Intent(context, ReminderActivity::class.java).apply {
+                val reminderIntent = Intent(context, ReminderActivity::class.java).apply {
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     putExtra(ALARM_ID, id)
                 }
 
                 val pendingIntent = PendingIntent.getActivity(
-                    context, 0, intent, FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
+                    context, 0, reminderIntent, FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
                 )
 
                 val builder = NotificationCompat.Builder(context, ALARM_NOTIFICATION_CHANNEL_ID)
