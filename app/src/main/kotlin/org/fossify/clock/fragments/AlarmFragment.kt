@@ -105,26 +105,8 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 }
             }
         }
-        context?.getEnabledAlarms { enabledAlarms ->
-            if (enabledAlarms.isNullOrEmpty()) {
-                val removedAlarms = mutableListOf<Alarm>()
-                alarms.forEach {
-                    if (it.days == TODAY_BIT && it.isEnabled && it.timeInMinutes <= getCurrentDayMinutes()) {
-                        it.isEnabled = false
-                        ensureBackgroundThread {
-                            if (it.oneShot) {
-                                it.isEnabled = false
-                                context?.dbHelper?.deleteAlarms(arrayListOf(it))
-                                removedAlarms.add(it)
-                            } else {
-                                context?.dbHelper?.updateAlarmEnabledState(it.id, false)
-                            }
-                        }
-                    }
-                }
-                alarms.removeAll(removedAlarms)
-            }
-        }
+
+        clearExpiredAlarms()
 
         val currAdapter = binding.alarmsList.adapter
         if (currAdapter == null) {
@@ -141,6 +123,25 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 updateItems(this@AlarmFragment.alarms)
             }
         }
+    }
+
+    private fun clearExpiredAlarms() {
+        val removedAlarms = mutableListOf<Alarm>()
+        alarms.forEach {
+            if (it.days == TODAY_BIT && it.isEnabled && it.timeInMinutes <= getCurrentDayMinutes()) {
+                it.isEnabled = false
+                ensureBackgroundThread {
+                    if (it.oneShot) {
+                        it.isEnabled = false
+                        context?.dbHelper?.deleteAlarms(arrayListOf(it))
+                        removedAlarms.add(it)
+                    } else {
+                        context?.dbHelper?.updateAlarmEnabledState(it.id, false)
+                    }
+                }
+            }
+        }
+        alarms.removeAll(removedAlarms)
     }
 
     private fun openEditAlarm(alarm: Alarm) {
