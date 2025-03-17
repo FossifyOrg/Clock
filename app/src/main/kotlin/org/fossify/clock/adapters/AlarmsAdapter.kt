@@ -33,8 +33,8 @@ import org.fossify.commons.views.MyRecyclerView
 
 class AlarmsAdapter(
     activity: SimpleActivity,
-    var alarms: ArrayList<Alarm>,
-    val toggleAlarmInterface: ToggleAlarmInterface,
+    private var alarms: ArrayList<Alarm>,
+    private val toggleAlarmInterface: ToggleAlarmInterface,
     recyclerView: MyRecyclerView,
     itemClick: (Any) -> Unit,
 ) : MyRecyclerViewAdapter(activity, recyclerView, itemClick), ItemTouchHelperContract {
