@@ -3,7 +3,11 @@ package org.fossify.clock.receivers
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import org.fossify.clock.extensions.*
+import org.fossify.clock.extensions.cancelAlarmClock
+import org.fossify.clock.extensions.disableExpiredAlarm
+import org.fossify.clock.extensions.dbHelper
+import org.fossify.clock.extensions.hideNotification
+import org.fossify.clock.extensions.scheduleNextAlarm
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.NOTIFICATION_ID
 import org.fossify.clock.models.Alarm
@@ -26,15 +30,7 @@ class DismissAlarmReceiver : BroadcastReceiver() {
             context.dbHelper.getAlarmWithId(alarmId)?.let { alarm ->
                 context.cancelAlarmClock(alarm)
                 scheduleNextAlarm(alarm, context)
-                if (alarm.days < 0) {
-                    if (alarm.oneShot) {
-                        alarm.isEnabled = false
-                        context.dbHelper.deleteAlarms(arrayListOf(alarm))
-                    } else {
-                        context.dbHelper.updateAlarmEnabledState(alarm.id, false)
-                    }
-                    context.updateWidgets()
-                }
+                context.disableExpiredAlarm(alarm)
             }
         }
     }

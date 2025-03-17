@@ -20,10 +20,10 @@ import org.fossify.clock.databinding.ActivityReminderBinding
 import org.fossify.clock.extensions.cancelAlarmClock
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
+import org.fossify.clock.extensions.disableExpiredAlarm
 import org.fossify.clock.extensions.getFormattedTime
 import org.fossify.clock.extensions.scheduleNextAlarm
 import org.fossify.clock.extensions.setupAlarmClock
-import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.ALARM_NOTIF_ID
 import org.fossify.clock.helpers.getPassedSeconds
@@ -363,15 +363,8 @@ class ReminderActivity : SimpleActivity() {
             if (alarm!!.days > 0) {
                 scheduleNextAlarm(alarm!!, false)
             }
-            if (alarm!!.days < 0) {
-                if (alarm!!.oneShot) {
-                    alarm!!.isEnabled = false
-                    dbHelper.deleteAlarms(arrayListOf(alarm!!))
-                } else {
-                    dbHelper.updateAlarmEnabledState(alarm!!.id, false)
-                }
-                updateWidgets()
-            }
+
+            disableExpiredAlarm(alarm!!)
         }
 
         finished = true
