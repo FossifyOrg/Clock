@@ -87,10 +87,10 @@ class MainActivity : SimpleActivity() {
     private fun checkShortcuts() {
         val appIconColor = config.appIconColor
         if (isNougatMR1Plus() && config.lastHandledShortcutColor != appIconColor) {
-            val launchDialpad = getLaunchStopwatchShortcut(appIconColor)
+            val stopWatchShortcutInfo = getLaunchStopwatchShortcut(appIconColor)
 
             try {
-                shortcutManager.dynamicShortcuts = listOf(launchDialpad)
+                shortcutManager.dynamicShortcuts = listOf(stopWatchShortcutInfo)
                 config.lastHandledShortcutColor = appIconColor
             } catch (ignored: Exception) {
             }
