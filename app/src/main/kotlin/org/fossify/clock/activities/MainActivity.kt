@@ -14,6 +14,8 @@ import org.fossify.clock.R
 import org.fossify.clock.adapters.ViewPagerAdapter
 import org.fossify.clock.databinding.ActivityMainBinding
 import org.fossify.clock.extensions.config
+import org.fossify.clock.extensions.getEnabledAlarms
+import org.fossify.clock.extensions.handleFullScreenNotificationsPermission
 import org.fossify.clock.extensions.rescheduleEnabledAlarms
 import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.helpers.*
@@ -45,6 +47,16 @@ class MainActivity : SimpleActivity() {
         migrateFirstDayOfWeek()
         ensureBackgroundThread {
             rescheduleEnabledAlarms()
+        }
+
+        getEnabledAlarms { enabledAlarms ->
+            if (!enabledAlarms.isNullOrEmpty()) {
+                handleFullScreenNotificationsPermission {
+                    if (!it) {
+                        toast(org.fossify.commons.R.string.notifications_disabled)
+                    }
+                }
+            }
         }
     }
 
