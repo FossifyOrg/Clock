@@ -431,7 +431,6 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         .setPriority(NotificationCompat.PRIORITY_MAX)
         .setDefaults(Notification.DEFAULT_LIGHTS)
         .setCategory(Notification.CATEGORY_EVENT)
-        .setAutoCancel(true)
         .setSound(soundUri.toUri(), STREAM_ALARM)
         .setChannelId(channelId)
         .addAction(
@@ -520,7 +519,6 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         .setContentIntent(pendingIntent)
         .setPriority(Notification.PRIORITY_HIGH)
         .setDefaults(Notification.DEFAULT_LIGHTS)
-        .setAutoCancel(true)
         .setChannelId(channelId)
         .addAction(
             org.fossify.commons.R.drawable.ic_snooze_vector,
