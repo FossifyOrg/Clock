@@ -47,4 +47,9 @@
     <string name="add_alarm">הוסף שעון מעורר</string>
     <string name="add_timer">הוסף טיימר</string>
     <string name="no_timers_found">לא נמצאו טיימרים</string>
+    <string name="sort_by_timer_duration">משך הטיימר</string>
+    <string name="settings_import_data">ייבוא התראות וטיימרים</string>
+    <string name="settings_export_data">ייצוא התראות וטיימרים</string>
+    <string name="early_alarm_dismissal">ביטול התראה מוקדם</string>
+    <string name="upcoming_alarm">התראה קרובה</string>
 </resources>
