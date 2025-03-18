@@ -56,6 +56,7 @@ import org.fossify.clock.helpers.getPassedSeconds
 import org.fossify.clock.helpers.getTimeOfNextAlarm
 import org.fossify.clock.interfaces.TimerDao
 import org.fossify.clock.models.Alarm
+import org.fossify.clock.models.AlarmEvent
 import org.fossify.clock.models.MyTimeZone
 import org.fossify.clock.models.Timer
 import org.fossify.clock.models.TimerState
@@ -87,6 +88,7 @@ import org.fossify.commons.helpers.TUESDAY_BIT
 import org.fossify.commons.helpers.WEDNESDAY_BIT
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.helpers.isOreoPlus
+import org.greenrobot.eventbus.EventBus
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -599,4 +601,18 @@ fun Context.firstDayOrder(bitMask: Int): Int {
     }
 
     return bitMask
+}
+
+fun Context.disableExpiredAlarm(alarm: Alarm) {
+    if (alarm.days < 0) {
+        if (alarm.oneShot) {
+            alarm.isEnabled = false
+            dbHelper.deleteAlarms(arrayListOf(alarm))
+        } else {
+            dbHelper.updateAlarmEnabledState(alarm.id, false)
+        }
+
+        updateWidgets()
+        EventBus.getDefault().post(AlarmEvent.Refresh)
+    }
 }

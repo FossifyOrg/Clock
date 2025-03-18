@@ -2,7 +2,7 @@ package org.fossify.clock.fragments
 
 import android.os.Bundle
 import android.os.Handler
-import android.text.format.DateFormat
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,11 @@ import org.fossify.clock.adapters.TimeZonesAdapter
 import org.fossify.clock.databinding.FragmentClockBinding
 import org.fossify.clock.dialogs.AddTimeZonesDialog
 import org.fossify.clock.dialogs.EditTimeZoneDialog
-import org.fossify.clock.extensions.*
+import org.fossify.clock.extensions.colorCompoundDrawable
+import org.fossify.clock.extensions.config
+import org.fossify.clock.extensions.getAllTimeZonesModified
+import org.fossify.clock.extensions.getClosestEnabledAlarmString
+import org.fossify.clock.extensions.getFormattedDate
 import org.fossify.clock.helpers.FORMAT_12H_WITH_SECONDS
 import org.fossify.clock.helpers.FORMAT_24H_WITH_SECONDS
 import org.fossify.clock.helpers.getPassedSeconds
@@ -29,11 +33,15 @@ class ClockFragment : Fragment() {
 
     private var passedSeconds = 0
     private var calendar = Calendar.getInstance()
-    private val updateHandler = Handler()
+    private val updateHandler = Handler(Looper.getMainLooper())
 
     private lateinit var binding: FragmentClockBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
         binding = FragmentClockBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,7 +50,8 @@ class ClockFragment : Fragment() {
         super.onResume()
         setupDateTime()
 
-        binding.clockDate.setTextColor(requireContext().getProperTextColor())
+        val safeContext = context ?: return
+        binding.clockDate.setTextColor(safeContext.getProperTextColor())
     }
 
     override fun onPause() {
@@ -60,10 +69,16 @@ class ClockFragment : Fragment() {
     }
 
     private fun setupViews() {
+        val safeContext = context ?: return
         binding.apply {
-            requireContext().updateTextColors(clockFragment)
-            clockTime.setTextColor(requireContext().getProperTextColor())
-            val clockFormat = if (requireActivity().config.use24HourFormat) FORMAT_24H_WITH_SECONDS else FORMAT_12H_WITH_SECONDS
+            safeContext.updateTextColors(clockFragment)
+            clockTime.setTextColor(safeContext.getProperTextColor())
+            val clockFormat = if (safeContext.config.use24HourFormat) {
+                FORMAT_24H_WITH_SECONDS
+            } else {
+                FORMAT_12H_WITH_SECONDS
+            }
+
             clockTime.format24Hour = clockFormat
             clockTime.format12Hour = clockFormat
             clockFab.setOnClickListener {
@@ -79,8 +94,10 @@ class ClockFragment : Fragment() {
         val minutes = (passedSeconds / 60) % 60
         val seconds = passedSeconds % 60
 
-        if (!requireActivity().config.use24HourFormat) {
-            binding.clockTime.textSize = resources.getDimension(R.dimen.clock_text_size_smaller) / resources.displayMetrics.density
+        val safeContext = context ?: return
+        if (!safeContext.config.use24HourFormat) {
+            binding.clockTime.textSize =
+                resources.getDimension(R.dimen.clock_text_size_smaller) / resources.displayMetrics.density
         }
 
         if (seconds == 0) {
@@ -104,28 +121,31 @@ class ClockFragment : Fragment() {
     }
 
     fun updateAlarm() {
-        context?.getClosestEnabledAlarmString { nextAlarm ->
+        val safeContext = context ?: return
+        safeContext.getClosestEnabledAlarmString { nextAlarm ->
             binding.apply {
                 clockAlarm.beVisibleIf(nextAlarm.isNotEmpty())
                 clockAlarm.text = nextAlarm
-                clockAlarm.colorCompoundDrawable(requireContext().getProperTextColor())
+                clockAlarm.colorCompoundDrawable(safeContext.getProperTextColor())
             }
         }
     }
 
     private fun updateTimeZones() {
-        val selectedTimeZones = context?.config?.selectedTimeZones ?: return
+        val safeContext = activity as? SimpleActivity ?: return
+        val selectedTimeZones = safeContext.config.selectedTimeZones
         binding.timeZonesList.beVisibleIf(selectedTimeZones.isNotEmpty())
         if (selectedTimeZones.isEmpty()) {
             return
         }
 
         val selectedTimeZoneIDs = selectedTimeZones.map { it.toInt() }
-        val timeZones = requireContext().getAllTimeZonesModified().filter { selectedTimeZoneIDs.contains(it.id) } as ArrayList<MyTimeZone>
+        val timeZones = safeContext.getAllTimeZonesModified()
+            .filter { selectedTimeZoneIDs.contains(it.id) } as ArrayList<MyTimeZone>
         val currAdapter = binding.timeZonesList.adapter
         if (currAdapter == null) {
-            TimeZonesAdapter(activity as SimpleActivity, timeZones, binding.timeZonesList) {
-                EditTimeZoneDialog(activity as SimpleActivity, it as MyTimeZone) {
+            TimeZonesAdapter(safeContext, timeZones, binding.timeZonesList) {
+                EditTimeZoneDialog(safeContext, it as MyTimeZone) {
                     updateTimeZones()
                 }
             }.apply {
@@ -134,15 +154,16 @@ class ClockFragment : Fragment() {
         } else {
             (currAdapter as TimeZonesAdapter).apply {
                 updatePrimaryColor()
-                updateBackgroundColor(requireContext().getProperBackgroundColor())
-                updateTextColor(requireContext().getProperTextColor())
+                updateBackgroundColor(safeContext.getProperBackgroundColor())
+                updateTextColor(safeContext.getProperTextColor())
                 updateItems(timeZones)
             }
         }
     }
 
     private fun fabClicked() {
-        AddTimeZonesDialog(activity as SimpleActivity) {
+        val safeContext = activity as? SimpleActivity ?: return
+        AddTimeZonesDialog(safeContext) {
             updateTimeZones()
         }
     }

@@ -17,6 +17,7 @@ import org.fossify.clock.R
 import org.fossify.clock.activities.ReminderActivity
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
+import org.fossify.clock.extensions.disableExpiredAlarm
 import org.fossify.clock.extensions.hideNotification
 import org.fossify.clock.extensions.isScreenOn
 import org.fossify.clock.extensions.showAlarmNotification
@@ -41,6 +42,7 @@ class AlarmReceiver : BroadcastReceiver() {
             context.showAlarmNotification(alarm)
             Handler(Looper.getMainLooper()).postDelayed({
                 context.hideNotification(id)
+                context.disableExpiredAlarm(alarm)
             }, context.config.alarmMaxReminderSecs * 1000L)
         } else {
             if (isOreoPlus()) {

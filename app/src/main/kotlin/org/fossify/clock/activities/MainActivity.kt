@@ -15,6 +15,7 @@ import org.fossify.clock.adapters.ViewPagerAdapter
 import org.fossify.clock.databinding.ActivityMainBinding
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.getEnabledAlarms
+import org.fossify.clock.extensions.handleFullScreenNotificationsPermission
 import org.fossify.clock.extensions.rescheduleEnabledAlarms
 import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.helpers.*
@@ -44,11 +45,16 @@ class MainActivity : SimpleActivity() {
         setupTabs()
         updateWidgets()
         migrateFirstDayOfWeek()
+        ensureBackgroundThread {
+            rescheduleEnabledAlarms()
+        }
 
         getEnabledAlarms { enabledAlarms ->
-            if (enabledAlarms.isNullOrEmpty()) {
-                ensureBackgroundThread {
-                    rescheduleEnabledAlarms()
+            if (!enabledAlarms.isNullOrEmpty()) {
+                handleFullScreenNotificationsPermission {
+                    if (!it) {
+                        toast(org.fossify.commons.R.string.notifications_disabled)
+                    }
                 }
             }
         }
@@ -87,10 +93,10 @@ class MainActivity : SimpleActivity() {
     private fun checkShortcuts() {
         val appIconColor = config.appIconColor
         if (isNougatMR1Plus() && config.lastHandledShortcutColor != appIconColor) {
-            val launchDialpad = getLaunchStopwatchShortcut(appIconColor)
+            val stopWatchShortcutInfo = getLaunchStopwatchShortcut(appIconColor)
 
             try {
-                shortcutManager.dynamicShortcuts = listOf(launchDialpad)
+                shortcutManager.dynamicShortcuts = listOf(stopWatchShortcutInfo)
                 config.lastHandledShortcutColor = appIconColor
             } catch (ignored: Exception) {
             }
