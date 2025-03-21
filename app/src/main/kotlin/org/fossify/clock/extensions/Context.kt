@@ -99,6 +99,9 @@ val Context.dbHelper: DBHelper get() = DBHelper.newInstance(applicationContext)
 val Context.timerDb: TimerDao get() = AppDatabase.getInstance(applicationContext).TimerDao()
 val Context.timerHelper: TimerHelper get() = TimerHelper(this)
 
+val Context.alarmManager: AlarmManager
+    get() = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
 fun Context.getFormattedDate(calendar: Calendar): String {
     val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7 // make sure index 0 means monday
     val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
@@ -194,8 +197,7 @@ fun Context.showRemainingTimeMessage(triggerInMillis: Long) {
 }
 
 fun Context.setupAlarmClock(alarm: Alarm, triggerTimeMillis: Long) {
-    val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-
+    val alarmManager = alarmManager
     try {
         AlarmManagerCompat.setAlarmClock(
             alarmManager,
@@ -282,7 +284,7 @@ fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
 }
 
 fun Context.cancelAlarmClock(alarm: Alarm) {
-    val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    val alarmManager = alarmManager
     alarmManager.cancel(getAlarmIntent(alarm))
     alarmManager.cancel(getEarlyAlarmDismissalIntent(alarm))
 }
@@ -441,7 +443,6 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent): No
         grantReadUriPermission(soundUri)
     }
 
-    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     val channelId =
         timer.channelId ?: "simple_timer_channel_${soundUri}_${System.currentTimeMillis()}"
     timerHelper.insertOrUpdateTimer(timer.copy(channelId = channelId))

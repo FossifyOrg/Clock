@@ -19,6 +19,7 @@ import org.fossify.clock.helpers.INVALID_TIMER_ID
 import org.fossify.clock.helpers.TIMER_RUNNING_NOTIF_ID
 import org.fossify.clock.models.TimerEvent
 import org.fossify.clock.models.TimerState
+import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.extensions.showErrorToast
 import org.fossify.commons.helpers.isOreoPlus
 import org.greenrobot.eventbus.EventBus
@@ -40,7 +41,14 @@ class TimerService : Service() {
         super.onStartCommand(intent, flags, startId)
         isStopping = false
         updateNotification()
-        startForeground(TIMER_RUNNING_NOTIF_ID, notification(getString(R.string.app_name), getString(R.string.timers_notification_msg), INVALID_TIMER_ID))
+        startForeground(
+            TIMER_RUNNING_NOTIF_ID,
+            notification(
+                title = getString(R.string.app_name),
+                contentText = getString(R.string.timers_notification_msg),
+                firstRunningTimerId = INVALID_TIMER_ID
+            )
+        )
         return START_NOT_STICKY
     }
 
@@ -49,15 +57,31 @@ class TimerService : Service() {
             val runningTimers = timers.filter { it.state is TimerState.Running }
             if (runningTimers.isNotEmpty()) {
                 val firstTimer = runningTimers.first()
-                val formattedDuration = (firstTimer.state as TimerState.Running).tick.getFormattedDuration()
+                val formattedDuration =
+                    (firstTimer.state as TimerState.Running).tick.getFormattedDuration()
                 val contextText = when {
-                    firstTimer.label.isNotEmpty() -> getString(R.string.timer_single_notification_label_msg, firstTimer.label)
-                    else -> resources.getQuantityString(R.plurals.timer_notification_msg, runningTimers.size, runningTimers.size)
+                    firstTimer.label.isNotEmpty() -> getString(
+                        R.string.timer_single_notification_label_msg,
+                        firstTimer.label
+                    )
+
+                    else -> resources.getQuantityString(
+                        R.plurals.timer_notification_msg,
+                        runningTimers.size,
+                        runningTimers.size
+                    )
                 }
 
                 Handler(Looper.getMainLooper()).post {
                     try {
-                        startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!))
+                        startForeground(
+                            TIMER_RUNNING_NOTIF_ID,
+                            notification(
+                                title = formattedDuration,
+                                contentText = contextText,
+                                firstRunningTimerId = firstTimer.id!!
+                            )
+                        )
                     } catch (e: Exception) {
                         showErrorToast(e)
                     }
@@ -94,10 +118,13 @@ class TimerService : Service() {
         bus.unregister(this)
     }
 
-    private fun notification(title: String, contentText: String, firstRunningTimerId: Int): Notification {
+    private fun notification(
+        title: String,
+        contentText: String,
+        firstRunningTimerId: Int,
+    ): Notification {
         val channelId = "simple_alarm_timer"
         val label = getString(R.string.timer)
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (isOreoPlus()) {
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             NotificationChannel(channelId, label, importance).apply {

@@ -1,7 +1,6 @@
 package org.fossify.clock
 
 import android.app.Application
-import android.app.NotificationManager
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
@@ -24,6 +23,7 @@ import org.fossify.clock.services.TimerStopService
 import org.fossify.clock.services.startStopwatchService
 import org.fossify.clock.services.startTimerService
 import org.fossify.commons.extensions.checkUseEnglish
+import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.extensions.showErrorToast
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -117,7 +117,6 @@ class App : Application(), LifecycleObserver {
         timerHelper.getTimer(event.timerId) { timer ->
             val pendingIntent = getOpenTimerTabIntent(event.timerId)
             val notification = getTimerNotification(timer, pendingIntent)
-            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
             try {
                 notificationManager.notify(event.timerId, notification)
