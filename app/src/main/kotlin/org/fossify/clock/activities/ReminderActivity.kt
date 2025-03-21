@@ -39,6 +39,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 class ReminderActivity : SimpleActivity() {
+
     private val swipeGuideFadeHandler = Handler(Looper.getMainLooper())
     private var alarm: Alarm? = null
     private var didVibrate = false

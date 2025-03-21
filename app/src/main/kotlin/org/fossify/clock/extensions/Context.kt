@@ -69,6 +69,7 @@ import org.fossify.commons.extensions.getLaunchIntent
 import org.fossify.commons.extensions.getProperPrimaryColor
 import org.fossify.commons.extensions.getSelectedDaysString
 import org.fossify.commons.extensions.grantReadUriPermission
+import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.extensions.showErrorToast
 import org.fossify.commons.extensions.toInt
 import org.fossify.commons.extensions.toast
@@ -99,7 +100,7 @@ val Context.timerDb: TimerDao get() = AppDatabase.getInstance(applicationContext
 val Context.timerHelper: TimerHelper get() = TimerHelper(this)
 
 fun Context.getFormattedDate(calendar: Calendar): String {
-    val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7    // make sure index 0 means monday
+    val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7 // make sure index 0 means monday
     val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
     val month = calendar.get(Calendar.MONTH)
 
@@ -131,24 +132,36 @@ fun Context.getAllTimeZonesModified(): ArrayList<MyTimeZone> {
     return timeZones
 }
 
-fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstOrNull { it.id == id }?.title ?: getDefaultTimeZoneTitle(id)
+fun Context.getModifiedTimeZoneTitle(id: Int): String {
+    return getAllTimeZonesModified()
+        .firstOrNull { it.id == id }?.title ?: getDefaultTimeZoneTitle(id)
+}
 
 fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int): Alarm {
     val defaultAlarmSound = getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
-    return Alarm(0, timeInMinutes, weekDays, false, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
+    return Alarm(
+        id = 0,
+        timeInMinutes = timeInMinutes,
+        days = weekDays,
+        isEnabled = false,
+        vibrate = false,
+        soundTitle = defaultAlarmSound.title,
+        soundUri = defaultAlarmSound.uri,
+        label = ""
+    )
 }
 
 fun Context.createNewTimer(): Timer {
     return Timer(
-        null,
-        config.timerSeconds,
-        TimerState.Idle,
-        config.timerVibrate,
-        config.timerSoundUri,
-        config.timerSoundTitle,
-        config.timerLabel ?: "",
-        System.currentTimeMillis(),
-        config.timerChannelId,
+        id = null,
+        seconds = config.timerSeconds,
+        state = TimerState.Idle,
+        vibrate = config.timerVibrate,
+        soundUri = config.timerSoundUri,
+        soundTitle = config.timerSoundTitle,
+        label = config.timerLabel ?: "",
+        createdAt = System.currentTimeMillis(),
+        channelId = config.timerChannelId,
     )
 }
 
@@ -184,15 +197,27 @@ fun Context.setupAlarmClock(alarm: Alarm, triggerTimeMillis: Long) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
     try {
-        AlarmManagerCompat.setAlarmClock(alarmManager, triggerTimeMillis, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
+        AlarmManagerCompat.setAlarmClock(
+            alarmManager,
+            triggerTimeMillis,
+            getOpenAlarmTabIntent(),
+            getAlarmIntent(alarm)
+        )
 
         // show a notification to allow dismissing the alarm 10 minutes before it actually triggers
-        val dismissalTriggerTime = if (triggerTimeMillis - System.currentTimeMillis() < 10.minutes.inWholeMilliseconds) {
-            System.currentTimeMillis() + 500
-        } else {
-            triggerTimeMillis - 10.minutes.inWholeMilliseconds
-        }
-        AlarmManagerCompat.setExactAndAllowWhileIdle(alarmManager, 0, dismissalTriggerTime, getEarlyAlarmDismissalIntent(alarm))
+        val dismissalTriggerTime =
+            if (triggerTimeMillis - System.currentTimeMillis() < 10.minutes.inWholeMilliseconds) {
+                System.currentTimeMillis() + 500
+            } else {
+                triggerTimeMillis - 10.minutes.inWholeMilliseconds
+            }
+
+        AlarmManagerCompat.setExactAndAllowWhileIdle(
+            alarmManager,
+            0,
+            dismissalTriggerTime,
+            getEarlyAlarmDismissalIntent(alarm)
+        )
     } catch (e: Exception) {
         showErrorToast(e)
     }
@@ -202,32 +227,58 @@ fun Context.getEarlyAlarmDismissalIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, EarlyAlarmDismissalReceiver::class.java).apply {
         putExtra(ALARM_ID, alarm.id)
     }
-    return PendingIntent.getBroadcast(this, EARLY_ALARM_DISMISSAL_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+
+    return PendingIntent.getBroadcast(
+        this,
+        EARLY_ALARM_DISMISSAL_INTENT_ID,
+        intent,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
 }
 
 fun Context.getOpenAlarmTabIntent(): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
     intent.putExtra(OPEN_TAB, TAB_ALARM)
-    return PendingIntent.getActivity(this, OPEN_ALARMS_TAB_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+    return PendingIntent.getActivity(
+        this,
+        OPEN_ALARMS_TAB_INTENT_ID,
+        intent,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
 }
 
 fun Context.getOpenTimerTabIntent(timerId: Int): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
     intent.putExtra(OPEN_TAB, TAB_TIMER)
     intent.putExtra(TIMER_ID, timerId)
-    return PendingIntent.getActivity(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+    return PendingIntent.getActivity(
+        this,
+        timerId,
+        intent,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
 }
 
 fun Context.getOpenStopwatchTabIntent(): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
     intent.putExtra(OPEN_TAB, TAB_STOPWATCH)
-    return PendingIntent.getActivity(this, OPEN_STOPWATCH_TAB_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+    return PendingIntent.getActivity(
+        this,
+        OPEN_STOPWATCH_TAB_INTENT_ID,
+        intent,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
 }
 
 fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, AlarmReceiver::class.java)
     intent.putExtra(ALARM_ID, alarm.id)
-    return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+    return PendingIntent.getBroadcast(
+        this,
+        alarm.id,
+        intent,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
 }
 
 fun Context.cancelAlarmClock(alarm: Alarm) {
@@ -237,8 +288,7 @@ fun Context.cancelAlarmClock(alarm: Alarm) {
 }
 
 fun Context.hideNotification(id: Int) {
-    val manager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-    manager.cancel(id)
+    notificationManager.cancel(id)
 }
 
 fun Context.hideTimerNotification(timerId: Int) = hideNotification(timerId)
@@ -250,7 +300,9 @@ fun Context.updateWidgets() {
 
 fun Context.updateDigitalWidgets() {
     val component = ComponentName(applicationContext, MyDigitalTimeWidgetProvider::class.java)
-    val widgetIds = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(component) ?: return
+    val widgetIds = AppWidgetManager.getInstance(applicationContext)
+        ?.getAppWidgetIds(component) ?: return
+
     if (widgetIds.isNotEmpty()) {
         val ids = intArrayOf(R.xml.widget_digital_clock_info)
         Intent(applicationContext, MyDigitalTimeWidgetProvider::class.java).apply {
@@ -263,7 +315,9 @@ fun Context.updateDigitalWidgets() {
 
 fun Context.updateAnalogueWidgets() {
     val component = ComponentName(applicationContext, MyAnalogueTimeWidgetProvider::class.java)
-    val widgetIds = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(component) ?: return
+    val widgetIds = AppWidgetManager.getInstance(applicationContext)
+        ?.getAppWidgetIds(component) ?: return
+
     if (widgetIds.isNotEmpty()) {
         val ids = intArrayOf(R.xml.widget_analogue_clock_info)
         Intent(applicationContext, MyAnalogueTimeWidgetProvider::class.java).apply {
@@ -274,26 +328,57 @@ fun Context.updateAnalogueWidgets() {
     }
 }
 
-fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean, makeAmPmSmaller: Boolean): SpannableString {
+fun Context.getFormattedTime(
+    passedSeconds: Int,
+    showSeconds: Boolean,
+    makeAmPmSmaller: Boolean,
+): SpannableString {
     val use24HourFormat = config.use24HourFormat
     val hours = (passedSeconds / 3600) % 24
     val minutes = (passedSeconds / 60) % 60
     val seconds = passedSeconds % 60
 
     return if (use24HourFormat) {
-        val formattedTime = formatTime(showSeconds, use24HourFormat, hours, minutes, seconds)
+        val formattedTime = formatTime(
+            showSeconds = showSeconds,
+            use24HourFormat = true,
+            hours = hours,
+            minutes = minutes,
+            seconds = seconds
+        )
         SpannableString(formattedTime)
     } else {
-        val formattedTime = formatTo12HourFormat(showSeconds, hours, minutes, seconds)
+        val formattedTime = formatTo12HourFormat(
+            showSeconds = showSeconds,
+            hours = hours,
+            minutes = minutes,
+            seconds = seconds
+        )
         val spannableTime = SpannableString(formattedTime)
         val amPmMultiplier = if (makeAmPmSmaller) 0.4f else 1f
-        spannableTime.setSpan(RelativeSizeSpan(amPmMultiplier), spannableTime.length - 3, spannableTime.length, 0)
+        spannableTime.setSpan(
+            RelativeSizeSpan(amPmMultiplier),
+            spannableTime.length - 3,
+            spannableTime.length,
+            0
+        )
         spannableTime
     }
 }
 
-fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int, seconds: Int): String {
-    val appendable = getString(if (hours >= 12) org.fossify.commons.R.string.p_m else org.fossify.commons.R.string.a_m)
+fun Context.formatTo12HourFormat(
+    showSeconds: Boolean,
+    hours: Int,
+    minutes: Int,
+    seconds: Int,
+): String {
+    val appendable = getString(
+        if (hours >= 12) {
+            org.fossify.commons.R.string.p_m
+        } else {
+            org.fossify.commons.R.string.a_m
+        }
+    )
     val newHours = if (hours == 0 || hours == 12) 12 else hours % 12
     return "${formatTime(showSeconds, false, newHours, minutes, seconds)} $appendable"
 }
@@ -317,14 +402,16 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
         }
 
         val dayOfWeekIndex = (closestAlarmTime.get(Calendar.DAY_OF_WEEK) + 5) % 7
-        val dayOfWeek = resources.getStringArray(org.fossify.commons.R.array.week_days_short)[dayOfWeekIndex]
+        val dayOfWeek =
+            resources.getStringArray(org.fossify.commons.R.array.week_days_short)[dayOfWeekIndex]
         val pattern = if (config.use24HourFormat) {
             FORMAT_24H
         } else {
             FORMAT_12H
         }
 
-        val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(closestAlarmTime.time)
+        val formattedTime =
+            SimpleDateFormat(pattern, Locale.getDefault()).format(closestAlarmTime.time)
         callback("$dayOfWeek $formattedTime")
     }
 }
@@ -355,7 +442,8 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent): No
     }
 
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-    val channelId = timer.channelId ?: "simple_timer_channel_${soundUri}_${System.currentTimeMillis()}"
+    val channelId =
+        timer.channelId ?: "simple_timer_channel_${soundUri}_${System.currentTimeMillis()}"
     timerHelper.insertOrUpdateTimer(timer.copy(channelId = channelId))
 
     if (isOreoPlus()) {
@@ -422,14 +510,24 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent): No
 fun Context.getHideTimerPendingIntent(timerId: Int): PendingIntent {
     val intent = Intent(this, HideTimerReceiver::class.java)
     intent.putExtra(TIMER_ID, timerId)
-    return PendingIntent.getBroadcast(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+    return PendingIntent.getBroadcast(
+        this,
+        timerId,
+        intent,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
 }
 
 fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, HideAlarmReceiver::class.java).apply {
         putExtra(ALARM_ID, alarm.id)
     }
-    return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+    return PendingIntent.getBroadcast(
+        this,
+        alarm.id,
+        intent,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
 }
 
 fun Context.getDismissAlarmPendingIntent(alarmId: Int, notificationId: Int): PendingIntent {
@@ -437,17 +535,37 @@ fun Context.getDismissAlarmPendingIntent(alarmId: Int, notificationId: Int): Pen
         putExtra(ALARM_ID, alarmId)
         putExtra(NOTIFICATION_ID, notificationId)
     }
-    return PendingIntent.getBroadcast(this, alarmId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+    return PendingIntent.getBroadcast(
+        this,
+        alarmId,
+        intent,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
 }
 
 fun Context.getSnoozePendingIntent(alarm: Alarm): PendingIntent {
-    val snoozeClass = if (config.useSameSnooze) SnoozeService::class.java else SnoozeReminderActivity::class.java
+    val snoozeClass = if (config.useSameSnooze) {
+        SnoozeService::class.java
+    } else {
+        SnoozeReminderActivity::class.java
+    }
+
     val intent = Intent(this, snoozeClass).setAction("Snooze")
     intent.putExtra(ALARM_ID, alarm.id)
     return if (config.useSameSnooze) {
-        PendingIntent.getService(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        PendingIntent.getService(
+            this,
+            alarm.id,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
     } else {
-        PendingIntent.getActivity(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        PendingIntent.getActivity(
+            this,
+            alarm.id,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
     }
 }
 
@@ -482,7 +600,17 @@ fun Context.firstDayOrder(bitMask: Int): Int {
     if (bitMask == TODAY_BIT) return -2
     if (bitMask == TOMORROW_BIT) return -1
 
-    val dayBits = orderDaysList(arrayListOf(MONDAY_BIT, TUESDAY_BIT, WEDNESDAY_BIT, THURSDAY_BIT, FRIDAY_BIT, SATURDAY_BIT, SUNDAY_BIT))
+    val dayBits = orderDaysList(
+        arrayListOf(
+            MONDAY_BIT,
+            TUESDAY_BIT,
+            WEDNESDAY_BIT,
+            THURSDAY_BIT,
+            FRIDAY_BIT,
+            SATURDAY_BIT,
+            SUNDAY_BIT
+        )
+    )
 
     dayBits.forEachIndexed { i, bit ->
         if (bitMask and bit != 0) {
