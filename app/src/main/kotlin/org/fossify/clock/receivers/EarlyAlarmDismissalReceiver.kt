@@ -14,6 +14,7 @@ import org.fossify.clock.extensions.getOpenAlarmTabIntent
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.EARLY_ALARM_DISMISSAL_CHANNEL_ID
 import org.fossify.clock.helpers.EARLY_ALARM_NOTIF_ID
+import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.helpers.isOreoPlus
 
 class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
@@ -29,7 +30,7 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
 
     private fun triggerEarlyDismissalNotification(context: Context, alarmId: Int) {
         context.getClosestEnabledAlarmString { alarmString ->
-            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager = context.notificationManager
             if (isOreoPlus()) {
                 NotificationChannel(
                     EARLY_ALARM_DISMISSAL_CHANNEL_ID,
@@ -48,7 +49,11 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
                 .setContentText(alarmString)
                 .setSmallIcon(R.drawable.ic_alarm_vector)
                 .setPriority(Notification.PRIORITY_LOW)
-                .addAction(0, context.getString(org.fossify.commons.R.string.dismiss), dismissIntent)
+                .addAction(
+                    0,
+                    context.getString(org.fossify.commons.R.string.dismiss),
+                    dismissIntent
+                )
                 .setContentIntent(contentIntent)
                 .setSound(null)
                 .setAutoCancel(true)

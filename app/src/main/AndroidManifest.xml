@@ -141,6 +141,14 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".services.AlarmService"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Used to notify the user that alarms are running" />
+        </service>
+
         <service android:name=".services.SnoozeService" />
 
         <service

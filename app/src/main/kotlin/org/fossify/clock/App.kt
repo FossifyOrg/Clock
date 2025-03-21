@@ -1,8 +1,6 @@
 package org.fossify.clock
 
 import android.app.Application
-import android.app.NotificationManager
-import android.content.Context
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
@@ -11,7 +9,11 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.facebook.stetho.Stetho
-import org.fossify.clock.extensions.*
+import org.fossify.clock.extensions.config
+import org.fossify.clock.extensions.getOpenTimerTabIntent
+import org.fossify.clock.extensions.getTimerNotification
+import org.fossify.clock.extensions.hideNotification
+import org.fossify.clock.extensions.timerHelper
 import org.fossify.clock.helpers.Stopwatch
 import org.fossify.clock.helpers.Stopwatch.State
 import org.fossify.clock.models.TimerEvent
@@ -21,6 +23,7 @@ import org.fossify.clock.services.TimerStopService
 import org.fossify.clock.services.startStopwatchService
 import org.fossify.clock.services.startTimerService
 import org.fossify.commons.extensions.checkUseEnglish
+import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.extensions.showErrorToast
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -66,7 +69,12 @@ class App : Application(), LifecycleObserver {
             val runningTimers = timers.filter { it.state is TimerState.Running }
             runningTimers.forEach { timer ->
                 if (countDownTimers[timer.id] == null) {
-                    EventBus.getDefault().post(TimerEvent.Start(timer.id!!, (timer.state as TimerState.Running).tick))
+                    EventBus.getDefault().post(
+                        TimerEvent.Start(
+                            timerId = timer.id!!,
+                            duration = (timer.state as TimerState.Running).tick
+                        )
+                    )
                 }
             }
         }
@@ -108,8 +116,7 @@ class App : Application(), LifecycleObserver {
     fun onMessageEvent(event: TimerEvent.Finish) {
         timerHelper.getTimer(event.timerId) { timer ->
             val pendingIntent = getOpenTimerTabIntent(event.timerId)
-            val notification = getTimerNotification(timer, pendingIntent, false)
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notification = getTimerNotification(timer, pendingIntent)
 
             try {
                 notificationManager.notify(event.timerId, notification)
@@ -127,7 +134,10 @@ class App : Application(), LifecycleObserver {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerEvent.Pause) {
         timerHelper.getTimer(event.timerId) { timer ->
-            updateTimerState(event.timerId, TimerState.Paused(event.duration, (timer.state as TimerState.Running).tick))
+            updateTimerState(
+                event.timerId,
+                TimerState.Paused(event.duration, (timer.state as TimerState.Running).tick)
+            )
             countDownTimers[event.timerId]?.cancel()
         }
     }

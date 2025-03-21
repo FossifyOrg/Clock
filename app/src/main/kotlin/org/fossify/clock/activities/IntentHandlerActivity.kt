@@ -1,8 +1,6 @@
 package org.fossify.clock.activities
 
 import android.annotation.SuppressLint
-import android.app.AlarmManager
-import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
@@ -12,9 +10,30 @@ import org.fossify.clock.R
 import org.fossify.clock.dialogs.EditAlarmDialog
 import org.fossify.clock.dialogs.EditTimerDialog
 import org.fossify.clock.dialogs.SelectAlarmDialog
-import org.fossify.clock.extensions.*
-import org.fossify.clock.helpers.*
-import org.fossify.clock.models.*
+import org.fossify.clock.extensions.alarmManager
+import org.fossify.clock.extensions.config
+import org.fossify.clock.extensions.createNewAlarm
+import org.fossify.clock.extensions.createNewTimer
+import org.fossify.clock.extensions.dbHelper
+import org.fossify.clock.extensions.getDismissAlarmPendingIntent
+import org.fossify.clock.extensions.getHideTimerPendingIntent
+import org.fossify.clock.extensions.isBitSet
+import org.fossify.clock.extensions.scheduleNextAlarm
+import org.fossify.clock.extensions.secondsToMillis
+import org.fossify.clock.extensions.timerHelper
+import org.fossify.clock.helpers.DEFAULT_ALARM_MINUTES
+import org.fossify.clock.helpers.EARLY_ALARM_NOTIF_ID
+import org.fossify.clock.helpers.TODAY_BIT
+import org.fossify.clock.helpers.TOMORROW_BIT
+import org.fossify.clock.helpers.getBitForCalendarDay
+import org.fossify.clock.helpers.getCurrentDayMinutes
+import org.fossify.clock.helpers.getTodayBit
+import org.fossify.clock.helpers.getTomorrowBit
+import org.fossify.clock.models.Alarm
+import org.fossify.clock.models.AlarmEvent
+import org.fossify.clock.models.Timer
+import org.fossify.clock.models.TimerEvent
+import org.fossify.clock.models.TimerState
 import org.fossify.commons.dialogs.PermissionRequiredDialog
 import org.fossify.commons.extensions.getDefaultAlarmSound
 import org.fossify.commons.extensions.getFilenameFromUri
@@ -24,6 +43,7 @@ import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.models.AlarmSound
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.TimeUnit
+import androidx.core.net.toUri
 
 class IntentHandlerActivity : SimpleActivity() {
     companion object {
@@ -65,7 +85,8 @@ class IntentHandlerActivity : SimpleActivity() {
     private fun Intent.setNewAlarm() {
         val hour = getIntExtra(AlarmClock.EXTRA_HOUR, 0).coerceIn(0, 23)
         val minute = getIntExtra(AlarmClock.EXTRA_MINUTES, 0).coerceIn(0, 59)
-        val days = getIntegerArrayListExtra(AlarmClock.EXTRA_DAYS) ?: getIntArrayExtra(AlarmClock.EXTRA_DAYS)?.toList()
+        val days = getIntegerArrayListExtra(AlarmClock.EXTRA_DAYS)
+            ?: getIntArrayExtra(AlarmClock.EXTRA_DAYS)?.toList()
         val message = getStringExtra(AlarmClock.EXTRA_MESSAGE)
         val ringtone = getStringExtra(AlarmClock.EXTRA_RINGTONE)
         val vibrate = getBooleanExtra(AlarmClock.EXTRA_VIBRATE, true)
@@ -81,7 +102,7 @@ class IntentHandlerActivity : SimpleActivity() {
                 AlarmSound(0, getString(org.fossify.commons.R.string.no_sound), SILENT)
             } else {
                 try {
-                    val uri = Uri.parse(it)
+                    val uri = it.toUri()
                     var filename = getFilenameFromUri(uri)
                     if (filename.isEmpty()) {
                         filename = getString(org.fossify.commons.R.string.alarm)
@@ -106,11 +127,11 @@ class IntentHandlerActivity : SimpleActivity() {
             }
             val existingAlarm = dbHelper.getAlarms().firstOrNull {
                 it.days == daysToCompare
-                    && it.vibrate == vibrate
-                    && it.soundTitle == soundToUse.title
-                    && it.soundUri == soundToUse.uri
-                    && it.label == (message ?: "")
-                    && it.timeInMinutes == timeInMinutes
+                        && it.vibrate == vibrate
+                        && it.soundTitle == soundToUse.title
+                        && it.soundUri == soundToUse.uri
+                        && it.label == (message ?: "")
+                        && it.timeInMinutes == timeInMinutes
             }
 
             if (existingAlarm != null && !existingAlarm.isEnabled) {
@@ -224,7 +245,9 @@ class IntentHandlerActivity : SimpleActivity() {
                     AlarmClock.ALARM_SEARCH_MODE_TIME -> {
                         if (hasExtra(AlarmClock.EXTRA_HOUR)) {
                             val hour = getIntExtra(AlarmClock.EXTRA_HOUR, -1).coerceIn(0, 23)
-                            alarms = alarms.filter { it.timeInMinutes / 60 == hour || it.timeInMinutes / 60 == hour + 12 }
+                            alarms = alarms.filter {
+                                it.timeInMinutes / 60 == hour || it.timeInMinutes / 60 == hour + 12
+                            }
                         }
                         if (hasExtra(AlarmClock.EXTRA_MINUTES)) {
                             val minute = getIntExtra(AlarmClock.EXTRA_MINUTES, -1).coerceIn(0, 59)
@@ -244,9 +267,9 @@ class IntentHandlerActivity : SimpleActivity() {
                     }
 
                     AlarmClock.ALARM_SEARCH_MODE_NEXT -> {
-                        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
                         val next = alarmManager.nextAlarmClock
-                        val timeInMinutes = TimeUnit.MILLISECONDS.toMinutes(next.triggerTime).toInt()
+                        val timeInMinutes =
+                            TimeUnit.MILLISECONDS.toMinutes(next.triggerTime).toInt()
                         val dayBitToLookFor = if (timeInMinutes <= getCurrentDayMinutes()) {
                             getTomorrowBit()
                         } else {
@@ -265,7 +288,12 @@ class IntentHandlerActivity : SimpleActivity() {
                     AlarmClock.ALARM_SEARCH_MODE_LABEL -> {
                         val messageToSearchFor = getStringExtra(AlarmClock.EXTRA_MESSAGE)
                         if (messageToSearchFor != null) {
-                            alarms = alarms.filter { it.label.contains(messageToSearchFor, ignoreCase = true) }
+                            alarms = alarms.filter {
+                                it.label.contains(
+                                    other = messageToSearchFor,
+                                    ignoreCase = true
+                                )
+                            }
                         }
                     }
 
@@ -280,7 +308,11 @@ class IntentHandlerActivity : SimpleActivity() {
                 EventBus.getDefault().post(AlarmEvent.Refresh)
                 finish()
             } else if (alarms.count() > 1) {
-                SelectAlarmDialog(this@IntentHandlerActivity, alarms, R.string.select_alarm_to_dismiss) {
+                SelectAlarmDialog(
+                    activity = this@IntentHandlerActivity,
+                    alarms = alarms,
+                    titleResId = R.string.select_alarm_to_dismiss
+                ) {
                     if (it != null) {
                         getDismissAlarmPendingIntent(it.id, EARLY_ALARM_NOTIF_ID).send()
                     }
@@ -344,10 +376,18 @@ class IntentHandlerActivity : SimpleActivity() {
 
     private fun startTimer(timer: Timer) {
         handleNotificationPermission { granted ->
-            val newState = TimerState.Running(timer.seconds.secondsToMillis, timer.seconds.secondsToMillis)
+            val newState = TimerState.Running(
+                duration = timer.seconds.secondsToMillis,
+                tick = timer.seconds.secondsToMillis
+            )
             val newTimer = timer.copy(state = newState)
             fun notifyAndStartTimer() {
-                EventBus.getDefault().post(TimerEvent.Start(newTimer.id!!, newTimer.seconds.secondsToMillis))
+                EventBus.getDefault().post(
+                    TimerEvent.Start(
+                        timerId = newTimer.id!!,
+                        duration = newTimer.seconds.secondsToMillis
+                    )
+                )
                 EventBus.getDefault().post(TimerEvent.Refresh)
             }
 
@@ -358,8 +398,8 @@ class IntentHandlerActivity : SimpleActivity() {
                 }
             } else {
                 PermissionRequiredDialog(
-                    this,
-                    org.fossify.commons.R.string.allow_notifications_reminders,
+                    activity = this,
+                    textId = org.fossify.commons.R.string.allow_notifications_reminders,
                     positiveActionCallback = {
                         openNotificationSettings()
                         timerHelper.insertOrUpdateTimer(newTimer) {
@@ -369,7 +409,8 @@ class IntentHandlerActivity : SimpleActivity() {
                     },
                     negativeActionCallback = {
                         finish()
-                    })
+                    }
+                )
             }
         }
     }
