@@ -133,7 +133,7 @@ class ReminderActivity : SimpleActivity() {
                         if (!didVibrate) {
                             binding.reminderDraggable.performHapticFeedback()
                             didVibrate = true
-                            finishActivity()
+                            dismissAlarmAndFinish()
                         }
                     } else if (binding.reminderDraggable.x <= minDragX + 50f) {
                         if (!didVibrate) {
@@ -156,7 +156,7 @@ class ReminderActivity : SimpleActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         when (intent?.action) {
-            AlarmClock.ACTION_DISMISS_ALARM -> finishActivity()
+            AlarmClock.ACTION_DISMISS_ALARM -> dismissAlarmAndFinish()
             AlarmClock.ACTION_SNOOZE_ALARM -> {
                 val durationMinutes = intent.getIntExtra(AlarmClock.EXTRA_ALARM_SNOOZE_DURATION, -1)
                 if (durationMinutes == -1) {
@@ -188,7 +188,7 @@ class ReminderActivity : SimpleActivity() {
                 curSeconds = config.snoozeTime * MINUTE_SECONDS,
                 isSnoozePicker = true,
                 cancelCallback = {
-                    finishActivity()
+                    dismissAlarmAndFinish()
                 },
                 callback = {
                     config.snoozeTime = it / MINUTE_SECONDS
@@ -210,10 +210,10 @@ class ReminderActivity : SimpleActivity() {
             wasAlarmSnoozed = true
         }
 
-        finishActivity()
+        dismissAlarmAndFinish()
     }
 
-    private fun finishActivity() {
+    private fun dismissAlarmAndFinish() {
         stopAlarmService()
         if (!wasAlarmSnoozed && alarm != null) {
             cancelAlarmClock(alarm!!)
