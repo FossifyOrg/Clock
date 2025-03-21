@@ -110,7 +110,7 @@ class AlarmService : Service() {
             this, 0, reminderIntent, FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
         )
 
-        val dismissIntent = applicationContext.getHideAlarmPendingIntent(alarm, channelId)
+        val dismissIntent = applicationContext.getHideAlarmPendingIntent(alarm)
         val snoozeIntent = applicationContext.getSnoozePendingIntent(alarm)
 
         return NotificationCompat.Builder(this, channelId)

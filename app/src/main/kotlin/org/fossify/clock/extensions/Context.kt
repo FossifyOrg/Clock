@@ -25,7 +25,6 @@ import org.fossify.clock.activities.SnoozeReminderActivity
 import org.fossify.clock.activities.SplashActivity
 import org.fossify.clock.databases.AppDatabase
 import org.fossify.clock.helpers.ALARM_ID
-import org.fossify.clock.helpers.ALARM_NOTIFICATION_CHANNEL_ID
 import org.fossify.clock.helpers.Config
 import org.fossify.clock.helpers.DBHelper
 import org.fossify.clock.helpers.EARLY_ALARM_DISMISSAL_INTENT_ID
@@ -242,16 +241,6 @@ fun Context.hideNotification(id: Int) {
     manager.cancel(id)
 }
 
-fun Context.deleteNotificationChannel(channelId: String) {
-    if (isOreoPlus()) {
-        try {
-            val manager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            manager.deleteNotificationChannel(channelId)
-        } catch (_: Throwable) {
-        }
-    }
-}
-
 fun Context.hideTimerNotification(timerId: Int) = hideNotification(timerId)
 
 fun Context.updateWidgets() {
@@ -436,10 +425,9 @@ fun Context.getHideTimerPendingIntent(timerId: Int): PendingIntent {
     return PendingIntent.getBroadcast(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
-fun Context.getHideAlarmPendingIntent(alarm: Alarm, channelId: String): PendingIntent {
+fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, HideAlarmReceiver::class.java).apply {
         putExtra(ALARM_ID, alarm.id)
-        putExtra(ALARM_NOTIFICATION_CHANNEL_ID, channelId)
     }
     return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
