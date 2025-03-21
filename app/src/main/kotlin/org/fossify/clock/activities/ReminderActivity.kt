@@ -155,15 +155,20 @@ class ReminderActivity : SimpleActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        if (intent?.action == AlarmClock.ACTION_SNOOZE_ALARM) {
-            val durationMinutes = intent.getIntExtra(AlarmClock.EXTRA_ALARM_SNOOZE_DURATION, -1)
-            if (durationMinutes == -1) {
-                snoozeAlarm()
-            } else {
-                snoozeAlarm(durationMinutes)
+        when (intent?.action) {
+            AlarmClock.ACTION_DISMISS_ALARM -> finishActivity()
+            AlarmClock.ACTION_SNOOZE_ALARM -> {
+                val durationMinutes = intent.getIntExtra(AlarmClock.EXTRA_ALARM_SNOOZE_DURATION, -1)
+                if (durationMinutes == -1) {
+                    snoozeAlarm()
+                } else {
+                    snoozeAlarm(durationMinutes)
+                }
             }
-        } else {
-            finishActivity()
+
+            else -> {
+                // no-op. user probably clicked the notification
+            }
         }
     }
 
