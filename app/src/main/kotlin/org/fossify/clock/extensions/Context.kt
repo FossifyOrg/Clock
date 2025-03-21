@@ -14,7 +14,6 @@ import android.media.AudioManager.STREAM_ALARM
 import android.media.RingtoneManager
 import android.os.Handler
 import android.os.Looper
-import android.os.PowerManager
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.widget.Toast
@@ -52,7 +51,6 @@ import org.fossify.clock.helpers.formatTime
 import org.fossify.clock.helpers.getAllTimeZones
 import org.fossify.clock.helpers.getCurrentDayMinutes
 import org.fossify.clock.helpers.getDefaultTimeZoneTitle
-import org.fossify.clock.helpers.getPassedSeconds
 import org.fossify.clock.helpers.getTimeOfNextAlarm
 import org.fossify.clock.interfaces.TimerDao
 import org.fossify.clock.models.Alarm
@@ -65,6 +63,7 @@ import org.fossify.clock.receivers.DismissAlarmReceiver
 import org.fossify.clock.receivers.EarlyAlarmDismissalReceiver
 import org.fossify.clock.receivers.HideAlarmReceiver
 import org.fossify.clock.receivers.HideTimerReceiver
+import org.fossify.clock.services.AlarmService
 import org.fossify.clock.services.SnoozeService
 import org.fossify.commons.extensions.formatMinutesToTimeString
 import org.fossify.commons.extensions.formatSecondsToTimeString
@@ -360,23 +359,6 @@ fun Context.rescheduleEnabledAlarms() {
     }
 }
 
-fun Context.isScreenOn() = (getSystemService(Context.POWER_SERVICE) as PowerManager).isScreenOn
-
-fun Context.showAlarmNotification(alarm: Alarm) {
-    val pendingIntent = getOpenAlarmTabIntent()
-    val notification = getAlarmNotification(pendingIntent, alarm)
-    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-    try {
-        notificationManager.notify(alarm.id, notification)
-    } catch (e: Exception) {
-        showErrorToast(e)
-    }
-
-    if (alarm.days > 0) {
-        scheduleNextAlarm(alarm, false)
-    }
-}
-
 fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification {
     var soundUri = timer.soundUri
     if (soundUri == SILENT) {
@@ -481,68 +463,6 @@ fun Context.getDismissAlarmPendingIntent(alarmId: Int, notificationId: Int): Pen
     return PendingIntent.getBroadcast(this, alarmId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
-fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): Notification {
-    val soundUri = alarm.soundUri
-    if (soundUri != SILENT) {
-        grantReadUriPermission(soundUri)
-    }
-    val channelId = "simple_alarm_channel_${soundUri}_${alarm.vibrate}"
-    val label = alarm.label.ifEmpty {
-        getString(org.fossify.commons.R.string.alarm)
-    }
-
-    if (isOreoPlus()) {
-        val audioAttributes = AudioAttributes.Builder()
-            .setUsage(AudioAttributes.USAGE_ALARM)
-            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-            .setLegacyStreamType(STREAM_ALARM)
-            .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
-            .build()
-
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val importance = NotificationManager.IMPORTANCE_HIGH
-        NotificationChannel(channelId, label, importance).apply {
-            setBypassDnd(true)
-            enableLights(true)
-            lightColor = getProperPrimaryColor()
-            enableVibration(alarm.vibrate)
-            setSound(soundUri.toUri(), audioAttributes)
-            notificationManager.createNotificationChannel(this)
-        }
-    }
-
-    val dismissIntent = getHideAlarmPendingIntent(alarm, channelId)
-    val builder = NotificationCompat.Builder(this)
-        .setContentTitle(label)
-        .setContentText(getFormattedTime(getPassedSeconds(), false, false))
-        .setSmallIcon(R.drawable.ic_alarm_vector)
-        .setContentIntent(pendingIntent)
-        .setPriority(Notification.PRIORITY_HIGH)
-        .setDefaults(Notification.DEFAULT_LIGHTS)
-        .setChannelId(channelId)
-        .addAction(
-            org.fossify.commons.R.drawable.ic_snooze_vector,
-            getString(org.fossify.commons.R.string.snooze),
-            getSnoozePendingIntent(alarm)
-        )
-        .addAction(org.fossify.commons.R.drawable.ic_cross_vector, getString(org.fossify.commons.R.string.dismiss), dismissIntent)
-        .setDeleteIntent(dismissIntent)
-        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-
-    if (soundUri != SILENT) {
-        builder.setSound(soundUri.toUri(), STREAM_ALARM)
-    }
-
-    if (alarm.vibrate) {
-        val vibrateArray = LongArray(2) { 500 }
-        builder.setVibrate(vibrateArray)
-    }
-
-    val notification = builder.build()
-    notification.flags = notification.flags or Notification.FLAG_INSISTENT
-    return notification
-}
-
 fun Context.getSnoozePendingIntent(alarm: Alarm): PendingIntent {
     val snoozeClass = if (config.useSameSnooze) SnoozeService::class.java else SnoozeReminderActivity::class.java
     val intent = Intent(this, snoozeClass).setAction("Snooze")
@@ -613,4 +533,9 @@ fun Context.disableExpiredAlarm(alarm: Alarm) {
         updateWidgets()
         EventBus.getDefault().post(AlarmEvent.Refresh)
     }
+}
+
+fun Context.stopAlarmService() {
+    val serviceIntent = Intent(this, AlarmService::class.java)
+    stopService(serviceIntent)
 }

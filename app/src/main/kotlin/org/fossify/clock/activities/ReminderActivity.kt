@@ -3,18 +3,13 @@ package org.fossify.clock.activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
-import android.media.AudioManager
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.provider.AlarmClock
 import android.view.MotionEvent
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
-import androidx.core.net.toUri
 import org.fossify.clock.R
 import org.fossify.clock.databinding.ActivityReminderBinding
 import org.fossify.clock.extensions.cancelAlarmClock
@@ -24,8 +19,8 @@ import org.fossify.clock.extensions.disableExpiredAlarm
 import org.fossify.clock.extensions.getFormattedTime
 import org.fossify.clock.extensions.scheduleNextAlarm
 import org.fossify.clock.extensions.setupAlarmClock
+import org.fossify.clock.extensions.stopAlarmService
 import org.fossify.clock.helpers.ALARM_ID
-import org.fossify.clock.helpers.ALARM_NOTIF_ID
 import org.fossify.clock.helpers.getPassedSeconds
 import org.fossify.clock.models.Alarm
 import org.fossify.commons.extensions.applyColorFilter
@@ -34,41 +29,25 @@ import org.fossify.commons.extensions.getColoredDrawableWithColor
 import org.fossify.commons.extensions.getProperBackgroundColor
 import org.fossify.commons.extensions.getProperPrimaryColor
 import org.fossify.commons.extensions.getProperTextColor
-import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.extensions.onGlobalLayout
 import org.fossify.commons.extensions.performHapticFeedback
 import org.fossify.commons.extensions.showPickSecondsDialog
 import org.fossify.commons.extensions.updateTextColors
 import org.fossify.commons.extensions.viewBinding
 import org.fossify.commons.helpers.MINUTE_SECONDS
-import org.fossify.commons.helpers.SILENT
 import org.fossify.commons.helpers.isOreoMr1Plus
-import org.fossify.commons.helpers.isOreoPlus
 import java.util.Calendar
 import kotlin.math.max
 import kotlin.math.min
 
 class ReminderActivity : SimpleActivity() {
-    companion object {
-        private const val MIN_ALARM_VOLUME_FOR_INCREASING_ALARMS = 1
-        private const val INCREASE_VOLUME_DELAY = 300L
-    }
-
-    private val increaseVolumeHandler = Handler(Looper.getMainLooper())
-    private val maxReminderDurationHandler = Handler(Looper.getMainLooper())
-    private val swipeGuideFadeHandler = Handler()
-    private val vibrationHandler = Handler(Looper.getMainLooper())
-    private var isAlarmReminder = false
-    private var didVibrate = false
-    private var wasAlarmSnoozed = false
+    private val swipeGuideFadeHandler = Handler(Looper.getMainLooper())
     private var alarm: Alarm? = null
-    private var audioManager: AudioManager? = null
-    private var mediaPlayer: MediaPlayer? = null
-    private var vibrator: Vibrator? = null
-    private var initialAlarmVolume: Int? = null
+    private var didVibrate = false
     private var dragDownX = 0f
+    private var wasAlarmSnoozed = false
+
     private val binding: ActivityReminderBinding by viewBinding(ActivityReminderBinding::inflate)
-    private var finished = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
@@ -79,9 +58,13 @@ class ReminderActivity : SimpleActivity() {
         updateStatusbarColor(getProperBackgroundColor())
 
         val id = intent.getIntExtra(ALARM_ID, -1)
-        isAlarmReminder = id != -1
-        if (id != -1) {
-            alarm = dbHelper.getAlarmWithId(id) ?: return
+        val isAlarmReminder = id != -1
+        if (isAlarmReminder) {
+            alarm = dbHelper.getAlarmWithId(id)
+            if (alarm == null) {
+                finish()
+                return
+            }
         }
 
         val label = if (isAlarmReminder) {
@@ -105,22 +88,10 @@ class ReminderActivity : SimpleActivity() {
             getString(R.string.time_expired)
         }
 
-        val maxDuration = if (isAlarmReminder) {
-            config.alarmMaxReminderSecs
-        } else {
-            config.timerMaxReminderSecs
-        }
-
-        maxReminderDurationHandler.postDelayed({
-            finishActivity()
-            cancelNotification()
-        }, maxDuration * 1000L)
-
-        setupButtons()
-        setupEffects()
+        setupButtons(isAlarmReminder)
     }
 
-    private fun setupButtons() {
+    private fun setupButtons(isAlarmReminder: Boolean) {
         if (isAlarmReminder) {
             setupAlarmButtons()
         } else {
@@ -132,10 +103,7 @@ class ReminderActivity : SimpleActivity() {
     private fun setupAlarmButtons() {
         binding.reminderStop.beGone()
         binding.reminderDraggableBackground.startAnimation(
-            AnimationUtils.loadAnimation(
-                this,
-                R.anim.pulsing_animation
-            )
+            AnimationUtils.loadAnimation(this, R.anim.pulsing_animation)
         )
         binding.reminderDraggableBackground.applyColorFilter(getProperPrimaryColor())
 
@@ -154,7 +122,7 @@ class ReminderActivity : SimpleActivity() {
             initialDraggableX = binding.reminderDraggable.left.toFloat()
         }
 
-        binding.reminderDraggable.setOnTouchListener { v, event ->
+        binding.reminderDraggable.setOnTouchListener { _, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     dragDownX = event.x
@@ -188,16 +156,12 @@ class ReminderActivity : SimpleActivity() {
                             didVibrate = true
                             finishActivity()
                         }
-
-                        cancelNotification()
                     } else if (binding.reminderDraggable.x <= minDragX + 50f) {
                         if (!didVibrate) {
                             binding.reminderDraggable.performHapticFeedback()
                             didVibrate = true
                             snoozeAlarm()
                         }
-
-                        cancelNotification()
                     }
                 }
             }
@@ -224,61 +188,6 @@ class ReminderActivity : SimpleActivity() {
         }
     }
 
-    private fun setupEffects() {
-        audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
-        initialAlarmVolume = audioManager?.getStreamVolume(AudioManager.STREAM_ALARM) ?: 7
-
-        val doVibrate = alarm?.vibrate ?: config.timerVibrate
-        if (doVibrate && isOreoPlus()) {
-            val pattern = LongArray(2) { 500 }
-            vibrationHandler.postDelayed({
-                vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
-                vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
-            }, 500)
-        }
-
-        val soundUri = if (alarm != null) {
-            alarm!!.soundUri
-        } else {
-            config.timerSoundUri
-        }
-
-        if (soundUri != SILENT) {
-            try {
-                mediaPlayer = MediaPlayer().apply {
-                    setAudioStreamType(AudioManager.STREAM_ALARM)
-                    setDataSource(this@ReminderActivity, soundUri.toUri())
-                    isLooping = true
-                    prepare()
-                    start()
-                }
-
-                if (config.increaseVolumeGradually) {
-                    scheduleVolumeIncrease(
-                        lastVolume = MIN_ALARM_VOLUME_FOR_INCREASING_ALARMS.toFloat(),
-                        maxVolume = initialAlarmVolume!!.toFloat(),
-                        delay = 0
-                    )
-                }
-            } catch (e: Exception) {
-            }
-        }
-    }
-
-    private fun scheduleVolumeIncrease(lastVolume: Float, maxVolume: Float, delay: Long) {
-        increaseVolumeHandler.postDelayed({
-            val newLastVolume = (lastVolume + 0.1f).coerceAtMost(maxVolume)
-            audioManager?.setStreamVolume(AudioManager.STREAM_ALARM, newLastVolume.toInt(), 0)
-            scheduleVolumeIncrease(newLastVolume, maxVolume, INCREASE_VOLUME_DELAY)
-        }, delay)
-    }
-
-    private fun resetVolumeToInitialValue() {
-        initialAlarmVolume?.apply {
-            audioManager?.setStreamVolume(AudioManager.STREAM_ALARM, this, 0)
-        }
-    }
-
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         setupAlarmButtons()
@@ -300,32 +209,11 @@ class ReminderActivity : SimpleActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        increaseVolumeHandler.removeCallbacksAndMessages(null)
-        maxReminderDurationHandler.removeCallbacksAndMessages(null)
         swipeGuideFadeHandler.removeCallbacksAndMessages(null)
-        vibrationHandler.removeCallbacksAndMessages(null)
-        if (!finished) {
-            finishActivity()
-            cancelNotification()
-        } else {
-            destroyEffects()
-        }
-    }
-
-    private fun destroyEffects() {
-        if (config.increaseVolumeGradually) {
-            resetVolumeToInitialValue()
-        }
-
-        mediaPlayer?.stop()
-        mediaPlayer?.release()
-        mediaPlayer = null
-        vibrator?.cancel()
-        vibrator = null
     }
 
     private fun snoozeAlarm(overrideSnoozeDuration: Int? = null) {
-        destroyEffects()
+        stopAlarmService()
         if (overrideSnoozeDuration != null) {
             scheduleSnoozedAlarm(overrideSnoozeDuration)
         } else if (config.useSameSnooze) {
@@ -346,18 +234,22 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun scheduleSnoozedAlarm(snoozeMinutes: Int) {
-        setupAlarmClock(
-            alarm = alarm!!,
-            triggerTimeMillis = Calendar.getInstance()
-                .apply { add(Calendar.MINUTE, snoozeMinutes) }
-                .timeInMillis
-        )
+        if (alarm != null) {
+            setupAlarmClock(
+                alarm = alarm!!,
+                triggerTimeMillis = Calendar.getInstance()
+                    .apply { add(Calendar.MINUTE, snoozeMinutes) }
+                    .timeInMillis
+            )
 
-        wasAlarmSnoozed = true
+            wasAlarmSnoozed = true
+        }
+
         finishActivity()
     }
 
     private fun finishActivity() {
+        stopAlarmService()
         if (!wasAlarmSnoozed && alarm != null) {
             cancelAlarmClock(alarm!!)
             if (alarm!!.days > 0) {
@@ -367,8 +259,6 @@ class ReminderActivity : SimpleActivity() {
             disableExpiredAlarm(alarm!!)
         }
 
-        finished = true
-        destroyEffects()
         finish()
         overridePendingTransition(0, 0)
     }
@@ -385,9 +275,5 @@ class ReminderActivity : SimpleActivity() {
             setShowWhenLocked(true)
             setTurnScreenOn(true)
         }
-    }
-
-    private fun cancelNotification() {
-        notificationManager.cancel(ALARM_NOTIF_ID)
     }
 }

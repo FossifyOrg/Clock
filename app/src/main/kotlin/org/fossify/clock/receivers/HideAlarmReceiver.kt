@@ -3,10 +3,10 @@ package org.fossify.clock.receivers
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import org.fossify.clock.extensions.disableExpiredAlarm
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.deleteNotificationChannel
-import org.fossify.clock.extensions.hideNotification
+import org.fossify.clock.extensions.disableExpiredAlarm
+import org.fossify.clock.extensions.stopAlarmService
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.ALARM_NOTIFICATION_CHANNEL_ID
 import org.fossify.commons.helpers.ensureBackgroundThread
@@ -16,8 +16,7 @@ class HideAlarmReceiver : BroadcastReceiver() {
         val id = intent.getIntExtra(ALARM_ID, -1)
         val channelId = intent.getStringExtra(ALARM_NOTIFICATION_CHANNEL_ID)
         channelId?.let { context.deleteNotificationChannel(channelId) }
-        context.hideNotification(id)
-
+        context.stopAlarmService()
         ensureBackgroundThread {
             val alarm = context.dbHelper.getAlarmWithId(id)
             if (alarm != null) {

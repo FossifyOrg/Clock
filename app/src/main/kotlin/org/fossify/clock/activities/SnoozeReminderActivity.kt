@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
-import org.fossify.clock.extensions.hideNotification
 import org.fossify.clock.extensions.setupAlarmClock
+import org.fossify.clock.extensions.stopAlarmService
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.commons.extensions.showPickSecondsDialog
 import org.fossify.commons.helpers.MINUTE_SECONDS
@@ -16,7 +16,7 @@ class SnoozeReminderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val id = intent.getIntExtra(ALARM_ID, -1)
         val alarm = dbHelper.getAlarmWithId(id) ?: return
-        hideNotification(id)
+        stopAlarmService()
         showPickSecondsDialog(
             curSeconds = config.snoozeTime * MINUTE_SECONDS,
             isSnoozePicker = true,
