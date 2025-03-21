@@ -24,8 +24,6 @@ import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.getPassedSeconds
 import org.fossify.clock.models.Alarm
 import org.fossify.commons.extensions.applyColorFilter
-import org.fossify.commons.extensions.beGone
-import org.fossify.commons.extensions.getColoredDrawableWithColor
 import org.fossify.commons.extensions.getProperBackgroundColor
 import org.fossify.commons.extensions.getProperPrimaryColor
 import org.fossify.commons.extensions.getProperTextColor
@@ -58,50 +56,30 @@ class ReminderActivity : SimpleActivity() {
         updateStatusbarColor(getProperBackgroundColor())
 
         val id = intent.getIntExtra(ALARM_ID, -1)
-        val isAlarmReminder = id != -1
-        if (isAlarmReminder) {
-            alarm = dbHelper.getAlarmWithId(id)
-            if (alarm == null) {
-                finish()
-                return
-            }
+        alarm = dbHelper.getAlarmWithId(id)
+        if (alarm == null) {
+            finish()
+            return
         }
 
-        val label = if (isAlarmReminder) {
-            if (alarm!!.label.isEmpty()) {
-                getString(org.fossify.commons.R.string.alarm)
-            } else {
-                alarm!!.label
-            }
+        val label = if (alarm!!.label.isEmpty()) {
+            getString(org.fossify.commons.R.string.alarm)
         } else {
-            getString(R.string.timer)
+            alarm!!.label
         }
 
         binding.reminderTitle.text = label
-        binding.reminderText.text = if (isAlarmReminder) {
-            getFormattedTime(
-                passedSeconds = getPassedSeconds(),
-                showSeconds = false,
-                makeAmPmSmaller = false
-            )
-        } else {
-            getString(R.string.time_expired)
-        }
+        binding.reminderText.text = getFormattedTime(
+            passedSeconds = getPassedSeconds(),
+            showSeconds = false,
+            makeAmPmSmaller = false
+        )
 
-        setupButtons(isAlarmReminder)
-    }
-
-    private fun setupButtons(isAlarmReminder: Boolean) {
-        if (isAlarmReminder) {
-            setupAlarmButtons()
-        } else {
-            setupTimerButtons()
-        }
+        setupAlarmButtons()
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setupAlarmButtons() {
-        binding.reminderStop.beGone()
         binding.reminderDraggableBackground.startAnimation(
             AnimationUtils.loadAnimation(this, R.anim.pulsing_animation)
         )
@@ -166,25 +144,6 @@ class ReminderActivity : SimpleActivity() {
                 }
             }
             true
-        }
-    }
-
-    private fun setupTimerButtons() {
-        binding.reminderStop.background = resources.getColoredDrawableWithColor(
-            drawableId = R.drawable.circle_background_filled,
-            color = getProperPrimaryColor()
-        )
-        arrayOf(
-            binding.reminderSnooze,
-            binding.reminderDraggableBackground,
-            binding.reminderDraggable,
-            binding.reminderDismiss
-        ).forEach {
-            it.beGone()
-        }
-
-        binding.reminderStop.setOnClickListener {
-            finishActivity()
         }
     }
 

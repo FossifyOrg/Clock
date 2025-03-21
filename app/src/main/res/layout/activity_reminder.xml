@@ -116,17 +116,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reminder_draggable" />
 
-    <ImageView
-        android:id="@+id/reminder_stop"
-        android:layout_width="@dimen/stopwatch_button_size"
-        android:layout_height="@dimen/stopwatch_button_size"
-        android:layout_marginBottom="@dimen/big_margin"
-        android:contentDescription="@string/dismiss"
-        android:padding="@dimen/normal_margin"
-        android:src="@drawable/ic_stop_vector"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

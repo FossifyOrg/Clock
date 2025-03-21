@@ -21,7 +21,6 @@ import androidx.core.app.AlarmManagerCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.net.toUri
 import org.fossify.clock.R
-import org.fossify.clock.activities.ReminderActivity
 import org.fossify.clock.activities.SnoozeReminderActivity
 import org.fossify.clock.activities.SplashActivity
 import org.fossify.clock.databases.AppDatabase
@@ -39,7 +38,6 @@ import org.fossify.clock.helpers.NOTIFICATION_ID
 import org.fossify.clock.helpers.OPEN_ALARMS_TAB_INTENT_ID
 import org.fossify.clock.helpers.OPEN_STOPWATCH_TAB_INTENT_ID
 import org.fossify.clock.helpers.OPEN_TAB
-import org.fossify.clock.helpers.REMINDER_ACTIVITY_INTENT_ID
 import org.fossify.clock.helpers.TAB_ALARM
 import org.fossify.clock.helpers.TAB_STOPWATCH
 import org.fossify.clock.helpers.TAB_TIMER
@@ -359,7 +357,7 @@ fun Context.rescheduleEnabledAlarms() {
     }
 }
 
-fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification {
+fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent): Notification {
     var soundUri = timer.soundUri
     if (soundUri == SILENT) {
         soundUri = ""
@@ -404,7 +402,6 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         getString(R.string.timer)
     }
 
-    val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
         .setContentTitle(title)
         .setContentText(getString(R.string.time_expired))
@@ -418,16 +415,8 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         .addAction(
             org.fossify.commons.R.drawable.ic_cross_vector,
             getString(org.fossify.commons.R.string.dismiss),
-            if (addDeleteIntent) {
-                reminderActivityIntent
-            } else {
-                getHideTimerPendingIntent(timer.id!!)
-            }
+            getHideTimerPendingIntent(timer.id!!)
         )
-
-    if (addDeleteIntent) {
-        builder.setDeleteIntent(reminderActivityIntent)
-    }
 
     builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
@@ -472,11 +461,6 @@ fun Context.getSnoozePendingIntent(alarm: Alarm): PendingIntent {
     } else {
         PendingIntent.getActivity(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     }
-}
-
-fun Context.getReminderActivityIntent(): PendingIntent {
-    val intent = Intent(this, ReminderActivity::class.java)
-    return PendingIntent.getActivity(this, REMINDER_ACTIVITY_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
 fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
