@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_launcher_name">Pulkstenis</string>
+    <string name="time_zone">Laika josla</string>
+    <string name="vibrate">Vibrēt</string>
+</resources>

@@ -1,0 +1,10 @@
+* Fixed some issues with alarms not going off
+* Fixed delayed/early alarms due to daylight time saving
+* Fixed issue with snooze button in landscape mode
+* Improved sorting options for alarms and timers
+* Added option to import/export alarms and timers
+* Added option to choose between 12-hour and 24-hour time format
+* Added option to choose first day of week
+* Added option to choose default tab
+* Other minor fixes and improvements
+* Added more translations
