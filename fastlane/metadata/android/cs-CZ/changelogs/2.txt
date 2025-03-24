@@ -1,0 +1,10 @@
+* Opraveny některé problémy s nefunkčními budíky
+* Opraveny zpožděné/dřívější budíky v důsledku změny letního času
+* Opraven problém s tlačítkem odložení v režimu na šířku
+* Vylepšené možnosti třídění budíků a časovačů
+* Přidána možnost importu/exportu budíků a časovačů
+* Přidána možnost volby mezi 12hodinovým a 24hodinovým formátem času
+* Přidána možnost výběru prvního dne v týdnu
+* Přidána možnost výběru výchozí karty
+* Další drobné opravy a vylepšení
+* Přidány další překlady
