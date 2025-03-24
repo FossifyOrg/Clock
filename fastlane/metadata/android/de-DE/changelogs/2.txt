@@ -1,0 +1,9 @@
+* Einige Probleme mit nicht ausgelösten Alarmen behoben
+* Verzögerte/frühe Alarme aufgrund der Sommerzeit behoben
+* Problem mit der Schlummertaste im Querformat behoben
+* Verbesserte Sortieroptionen für Alarme und Timer
+* Option zum Importieren/Exportieren von Alarmen und Timern hinzugefügt
+* Option hinzugefügt, um zwischen 12- und 24-Stunden-Zeitformat zu wählen
+* Option zur Auswahl des ersten Wochentags hinzugefügt
+* Option zur Auswahl der Standard-Registerkarte hinzugefügt
+…
