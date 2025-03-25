@@ -2,5 +2,5 @@
 <resources>
     <string name="app_launcher_name">Pulkstenis</string>
     <string name="time_zone">Laika josla</string>
-    <string name="vibrate">Vibrēt</string>
+    <string name="vibrate">Trīcēt</string>
 </resources>

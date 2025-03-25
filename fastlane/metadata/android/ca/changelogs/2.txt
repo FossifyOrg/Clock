@@ -1,0 +1,8 @@
+* Corregits problemes amb alarmes que no s'apaguen
+* Corregides les alarmes retardades/avançades a causa de l'horari d'estiu
+* Corregit un problema amb el botó de pausa en mode apaïsat
+* Millorades les opcions d'ordenació d'alarmes i temporitzadors
+* Afegida l'opció d'importar/exportar alarmes i temporitzadors
+* Afegida una opció per a triar entre el format de 12 hores i 24 hores
+* Afegida l'opció per a triar el primer dia de la setmana
+* Afegida l'opció per a triar la pestanya predetermi. [...]
