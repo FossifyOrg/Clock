@@ -175,7 +175,7 @@
 
         <receiver android:name=".receivers.DismissAlarmReceiver" />
 
-        <receiver android:name=".receivers.EarlyAlarmDismissalReceiver" />
+        <receiver android:name=".receivers.UpcomingAlarmReceiver" />
 
         <receiver
             android:name=".receivers.BootCompletedReceiver"
