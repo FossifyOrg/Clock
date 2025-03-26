@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_launcher_name">Relógio</string>
+    <string name="app_launcher_name">Clock</string>
     <string name="time_zone">Fuso horário</string>
     <string name="vibrate">Vibrar</string>
     <string name="no_days_selected">Nenhum dia selecionado</string>
@@ -48,4 +48,7 @@
     <string name="alarm_created">Alarme criado</string>
     <string name="early_alarm_dismissal">Descarte antecipado de alarme</string>
     <string name="select_timer_to_dismiss">Selecione o temporizador para descartar</string>
+    <string name="sort_by_timer_duration">Duração do temporizador</string>
+    <string name="settings_export_data">Exportar alarmes e temporizadores</string>
+    <string name="settings_import_data">Importar alarmes e temporizadores</string>
 </resources>
