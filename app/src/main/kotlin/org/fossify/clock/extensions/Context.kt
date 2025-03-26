@@ -57,7 +57,7 @@ import org.fossify.clock.models.Timer
 import org.fossify.clock.models.TimerState
 import org.fossify.clock.receivers.AlarmReceiver
 import org.fossify.clock.receivers.DismissAlarmReceiver
-import org.fossify.clock.receivers.EarlyAlarmDismissalReceiver
+import org.fossify.clock.receivers.UpcomingAlarmReceiver
 import org.fossify.clock.receivers.HideAlarmReceiver
 import org.fossify.clock.receivers.HideTimerReceiver
 import org.fossify.clock.services.AlarmService
@@ -226,7 +226,7 @@ fun Context.setupAlarmClock(alarm: Alarm, triggerTimeMillis: Long) {
 }
 
 fun Context.getEarlyAlarmDismissalIntent(alarm: Alarm): PendingIntent {
-    val intent = Intent(this, EarlyAlarmDismissalReceiver::class.java).apply {
+    val intent = Intent(this, UpcomingAlarmReceiver::class.java).apply {
         putExtra(ALARM_ID, alarm.id)
     }
 
