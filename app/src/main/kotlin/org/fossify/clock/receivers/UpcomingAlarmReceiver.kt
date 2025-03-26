@@ -17,7 +17,11 @@ import org.fossify.clock.helpers.EARLY_ALARM_NOTIF_ID
 import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.helpers.isOreoPlus
 
-class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
+/**
+ * Receiver responsible for showing a notification that allows users to skip an upcoming alarm.
+ * This notification appears 10 minutes before (hardcoded) the alarm is scheduled to trigger.
+ */
+class UpcomingAlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         val alarmId = intent.getIntExtra(ALARM_ID, -1)
@@ -25,10 +29,10 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
             return
         }
 
-        triggerEarlyDismissalNotification(context, alarmId)
+        showUpcomingAlarmNotification(context, alarmId)
     }
 
-    private fun triggerEarlyDismissalNotification(context: Context, alarmId: Int) {
+    private fun showUpcomingAlarmNotification(context: Context, alarmId: Int) {
         context.getClosestEnabledAlarmString { alarmString ->
             val notificationManager = context.notificationManager
             if (isOreoPlus()) {
@@ -42,8 +46,10 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
                     notificationManager.createNotificationChannel(this)
                 }
             }
+
             val dismissIntent = context.getDismissAlarmPendingIntent(alarmId, EARLY_ALARM_NOTIF_ID)
             val contentIntent = context.getOpenAlarmTabIntent()
+
             val notification = NotificationCompat.Builder(context)
                 .setContentTitle(context.getString(R.string.upcoming_alarm))
                 .setContentText(alarmString)
@@ -63,5 +69,4 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
             notificationManager.notify(EARLY_ALARM_NOTIF_ID, notification)
         }
     }
-
 }
