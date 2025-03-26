@@ -14,7 +14,7 @@
     <string name="time_expired">Aeg on läbi</string>
     <string name="clock_and_date">Kell ja kuupäev</string>
     <string name="use_text_shadow">Kasuta tekstivarju</string>
-    <string name="swipe_right_to_dismiss">Katkestamiseks viipa paremale, uinumiseks viipa vasakule.</string>
+    <string name="swipe_right_to_dismiss">Lõpetamiseks viipa paremale, uinumiseks viipa vasakule.</string>
     <string name="sort_by_creation_order">Loomise järjekord</string>
     <string name="sort_by_alarm_time">Äratuse aeg</string>
     <string name="sort_by_day_and_alarm_time">Päev ja äratuse aeg</string>

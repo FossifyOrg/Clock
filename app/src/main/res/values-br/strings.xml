@@ -10,11 +10,11 @@
     <string name="lap">Tro</string>
     <string name="stopwatch_stopped">Paouezet eo bet ar padventer</string>
     <string name="timer_stopped">Paouezet eo bet ar munuter</string>
-    <string name="max_reminder_duration">Pad hirañ an adc\'halv</string>
-    <string name="time_expired">Amzer dremenet</string>
+    <string name="max_reminder_duration">Padelezh hirañ an adc\'halv</string>
+    <string name="time_expired">Amzer tremenet</string>
     <string name="clock_and_date">Horolaj ha deiziad</string>
     <string name="use_text_shadow">Arverañ skeud an destenn</string>
-    <string name="sort_by_creation_order">Urzh ar c\'hrouadur</string>
+    <string name="sort_by_creation_order">Urzh ar c\'hrouidigezh</string>
     <string name="sort_by_alarm_time">Eur an arfroù</string>
     <string name="sort_by_day_and_alarm_time">Deiz hag eur an arfroù</string>
     <string name="analogue_clock">Horolaj analogel</string>
@@ -39,17 +39,18 @@
     <string name="stopwatch_tab">Ivinell padventer</string>
     <string name="timer_tab">Ivinell munuter</string>
     <string name="show_seconds">Diskouez an eilennoù</string>
-    <string name="increase_volume_gradually">Kreskaat an dregern tamm-ha-tamm</string>
+    <string name="increase_volume_gradually">Kreskaat an ampled tamm-ha-tamm</string>
     <string name="early_alarm_dismissal">Paouez un arfroù en a-raok</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">Emañ %d munuter o loc\'hañ</item>
         <item quantity="two">Emañ %d vunuter o loc\'hañ</item>
         <item quantity="few">Emañ %d munuter o loc\'hañ</item>
-        <item quantity="many">Emañ %d munuter o loc\'hañ</item>
+        <item quantity="many">Emañ %d a vunuterioù o loc\'hañ</item>
         <item quantity="other">Emañ %d munuter o loc\'hañ</item>
     </plurals>
     <string name="settings_import_data">Enporzhiañ arfreier ha munuterioù</string>
     <string name="settings_export_data">Ezporzhiañ arfreier ha munuterioù</string>
     <string name="faq_1_title">Penaos e c\'hallan cheñch urzh rummañ an troioù en ivinell padventer?</string>
-    <string name="faq_1_text">Klikit war unan eus ar bannoù evit rummañ an torioù hervez ar bann-mañ. Gant klikoù ouzhpenn e c\'hallit trec\'haoliñ etre urzh rummañ war-gresk ha war-zigresk.</string>
+    <string name="faq_1_text">Klikit war unan eus ar bannoù evit rummañ an troioù hervez ar bann-mañ. Gant klikoù ouzhpenn e c\'hallit trec\'haoliñ etre urzh rummañ war-gresk ha war-zigresk.</string>
+    <string name="sort_by_timer_duration">Padelezh ar munuter</string>
 </resources>
