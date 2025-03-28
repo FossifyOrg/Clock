@@ -19,6 +19,7 @@ import org.fossify.clock.extensions.getFormattedTime
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.getPassedSeconds
 import org.fossify.clock.models.Alarm
+import org.fossify.clock.models.AlarmEvent
 import org.fossify.commons.extensions.applyColorFilter
 import org.fossify.commons.extensions.getProperBackgroundColor
 import org.fossify.commons.extensions.getProperPrimaryColor
@@ -30,6 +31,9 @@ import org.fossify.commons.extensions.updateTextColors
 import org.fossify.commons.extensions.viewBinding
 import org.fossify.commons.helpers.MINUTE_SECONDS
 import org.fossify.commons.helpers.isOreoMr1Plus
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import kotlin.math.max
 import kotlin.math.min
 
@@ -57,10 +61,8 @@ class AlarmActivity : SimpleActivity() {
             return
         }
 
-        val label = if (alarm!!.label.isEmpty()) {
+        val label = alarm!!.label.ifEmpty {
             getString(org.fossify.commons.R.string.alarm)
-        } else {
-            alarm!!.label
         }
 
         binding.reminderTitle.text = label
@@ -166,6 +168,16 @@ class AlarmActivity : SimpleActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         swipeGuideFadeHandler.removeCallbacksAndMessages(null)
@@ -201,8 +213,7 @@ class AlarmActivity : SimpleActivity() {
             }
         }
 
-        finish()
-        overridePendingTransition(0, 0)
+        finishActivity()
     }
 
     private fun showOverLockscreen() {
@@ -217,5 +228,17 @@ class AlarmActivity : SimpleActivity() {
             setShowWhenLocked(true)
             setTurnScreenOn(true)
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onAlarmStoppedEvent(event: AlarmEvent.Stopped) {
+        if (event.alarmId == alarm?.id && !isFinishing) {
+            finishActivity()
+        }
+    }
+
+    private fun finishActivity() {
+        finish()
+        overridePendingTransition(0, 0)
     }
 }

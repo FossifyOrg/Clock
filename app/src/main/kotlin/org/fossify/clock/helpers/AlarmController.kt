@@ -120,11 +120,13 @@ class AlarmController(
      */
     fun stopAlarm(alarmId: Int, disable: Boolean = true) {
         context.stopAlarmService()
+        bus.post(AlarmEvent.Stopped(alarmId))
+
         ensureBackgroundThread {
-            val alarm = db.getAlarmWithId(alarmId) ?: return@ensureBackgroundThread
+            val alarm = db.getAlarmWithId(alarmId)
 
             // We don't reschedule alarms here.
-            if (!alarm.isRecurring() && disable) {
+            if (alarm != null && !alarm.isRecurring() && disable) {
                 context.cancelAlarmClock(alarm)
                 disableOrDeleteOneTimeAlarm(alarm)
             }
@@ -136,7 +138,7 @@ class AlarmController(
     /**
      * Snoozes an alarm that is currently ringing.
      *
-     * - Stops the current alarm sound/vibration service ([stopAlarmService]).
+     * - Stops the alarm sound/vibration service ([stopAlarmService]).
      * - Schedules the alarm to ring again after [snoozeMinutes] using [setupAlarmClock]
      *   with a calculated future trigger time.
      *
@@ -147,14 +149,18 @@ class AlarmController(
      */
     fun snoozeAlarm(alarmId: Int, snoozeMinutes: Int) {
         context.stopAlarmService()
+        bus.post(AlarmEvent.Stopped(alarmId))
+
         ensureBackgroundThread {
-            val alarm = db.getAlarmWithId(alarmId) ?: return@ensureBackgroundThread
-            context.setupAlarmClock(
-                alarm = alarm,
-                triggerTimeMillis = Calendar.getInstance()
-                    .apply { add(Calendar.MINUTE, snoozeMinutes) }
-                    .timeInMillis
-            )
+            val alarm = db.getAlarmWithId(alarmId)
+            if (alarm != null) {
+                context.setupAlarmClock(
+                    alarm = alarm,
+                    triggerTimeMillis = Calendar.getInstance()
+                        .apply { add(Calendar.MINUTE, snoozeMinutes) }
+                        .timeInMillis
+                )
+            }
 
             notifyObservers()
         }
