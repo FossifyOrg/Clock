@@ -97,9 +97,11 @@ class AlarmController(
      */
     fun onAlarmTriggered(alarmId: Int) {
         ensureBackgroundThread {
-            // Reschedule the next occurrence right away.
+            // Reschedule the next occurrence right away
             val alarm = db.getAlarmWithId(alarmId) ?: return@ensureBackgroundThread
-            scheduleNextOccurrence(alarm)
+            if (alarm.isRecurring()) {
+                scheduleNextOccurrence(alarm)
+            }
         }
 
         context.startAlarmService(alarmId)
