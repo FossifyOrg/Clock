@@ -11,7 +11,7 @@ import android.view.MotionEvent
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import org.fossify.clock.R
-import org.fossify.clock.databinding.ActivityReminderBinding
+import org.fossify.clock.databinding.ActivityAlarmBinding
 import org.fossify.clock.extensions.alarmController
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
@@ -33,14 +33,14 @@ import org.fossify.commons.helpers.isOreoMr1Plus
 import kotlin.math.max
 import kotlin.math.min
 
-class ReminderActivity : SimpleActivity() {
+class AlarmActivity : SimpleActivity() {
 
     private val swipeGuideFadeHandler = Handler(Looper.getMainLooper())
     private var alarm: Alarm? = null
     private var didVibrate = false
     private var dragDownX = 0f
 
-    private val binding: ActivityReminderBinding by viewBinding(ActivityReminderBinding::inflate)
+    private val binding by viewBinding(ActivityAlarmBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true

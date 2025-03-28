@@ -20,7 +20,7 @@ import android.os.Vibrator
 import androidx.core.app.NotificationCompat
 import androidx.core.net.toUri
 import org.fossify.clock.R
-import org.fossify.clock.activities.ReminderActivity
+import org.fossify.clock.activities.AlarmActivity
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getFormattedTime
@@ -38,7 +38,7 @@ import kotlin.time.Duration.Companion.seconds
 /**
  * Service responsible for sounding the alarms and vibrations.
  * It also shows a notification with actions to dismiss or snooze an alarm.
- * Totally based on the previous implementation in the [ReminderActivity].
+ * Totally based on the previous implementation in the [AlarmActivity].
  */
 class AlarmService : Service() {
 
@@ -102,7 +102,7 @@ class AlarmService : Service() {
             makeAmPmSmaller = false
         )
 
-        val reminderIntent = Intent(this, ReminderActivity::class.java).apply {
+        val reminderIntent = Intent(this, AlarmActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             putExtra(ALARM_ID, alarm.id)
         }

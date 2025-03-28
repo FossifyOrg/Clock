@@ -74,7 +74,7 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".activities.ReminderActivity"
+            android:name=".activities.AlarmActivity"
             android:configChanges="orientation|screenSize|screenLayout"
             android:excludeFromRecents="true"
             android:exported="false"
