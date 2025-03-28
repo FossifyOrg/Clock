@@ -272,7 +272,6 @@ fun getTimeOfNextAlarm(alarm: Alarm): Calendar? {
 
 fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
     val nextAlarmTime = Calendar.getInstance().apply {
-        firstDayOfWeek = Calendar.MONDAY // why is this here? seems unnecessary
         set(Calendar.HOUR_OF_DAY, alarmTimeInMinutes / 60)
         set(Calendar.MINUTE, alarmTimeInMinutes % 60)
         set(Calendar.SECOND, 0)
