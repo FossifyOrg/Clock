@@ -93,11 +93,17 @@ import kotlin.math.ceil
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 
-val Context.config: Config get() = Config.newInstance(applicationContext)
+val Context.config: Config
+    get() = Config.newInstance(applicationContext)
 
-val Context.dbHelper: DBHelper get() = DBHelper.newInstance(applicationContext)
-val Context.timerDb: TimerDao get() = AppDatabase.getInstance(applicationContext).TimerDao()
-val Context.timerHelper: TimerHelper get() = TimerHelper(this)
+val Context.dbHelper: DBHelper
+    get() = DBHelper.newInstance(applicationContext)
+
+val Context.timerDb: TimerDao
+    get() = AppDatabase.getInstance(applicationContext).TimerDao()
+
+val Context.timerHelper: TimerHelper
+    get() = TimerHelper(this)
 
 val Context.alarmManager: AlarmManager
     get() = getSystemService(Context.ALARM_SERVICE) as AlarmManager

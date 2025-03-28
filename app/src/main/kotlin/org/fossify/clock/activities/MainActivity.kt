@@ -3,11 +3,11 @@ package org.fossify.clock.activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ShortcutInfo
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.core.graphics.drawable.toDrawable
 import me.grantland.widget.AutofitHelper
 import org.fossify.clock.BuildConfig
 import org.fossify.clock.R
@@ -18,10 +18,44 @@ import org.fossify.clock.extensions.getEnabledAlarms
 import org.fossify.clock.extensions.handleFullScreenNotificationsPermission
 import org.fossify.clock.extensions.rescheduleEnabledAlarms
 import org.fossify.clock.extensions.updateWidgets
-import org.fossify.clock.helpers.*
+import org.fossify.clock.helpers.INVALID_TIMER_ID
+import org.fossify.clock.helpers.OPEN_TAB
+import org.fossify.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
+import org.fossify.clock.helpers.STOPWATCH_SHORTCUT_ID
+import org.fossify.clock.helpers.STOPWATCH_TOGGLE_ACTION
+import org.fossify.clock.helpers.TABS_COUNT
+import org.fossify.clock.helpers.TAB_ALARM
+import org.fossify.clock.helpers.TAB_ALARM_INDEX
+import org.fossify.clock.helpers.TAB_CLOCK
+import org.fossify.clock.helpers.TAB_CLOCK_INDEX
+import org.fossify.clock.helpers.TAB_STOPWATCH
+import org.fossify.clock.helpers.TAB_STOPWATCH_INDEX
+import org.fossify.clock.helpers.TAB_TIMER
+import org.fossify.clock.helpers.TAB_TIMER_INDEX
+import org.fossify.clock.helpers.TIMER_ID
+import org.fossify.clock.helpers.TOGGLE_STOPWATCH
 import org.fossify.commons.databinding.BottomTablayoutItemBinding
-import org.fossify.commons.extensions.*
-import org.fossify.commons.helpers.*
+import org.fossify.commons.extensions.appLaunched
+import org.fossify.commons.extensions.applyColorFilter
+import org.fossify.commons.extensions.convertToBitmap
+import org.fossify.commons.extensions.getBottomNavigationBackgroundColor
+import org.fossify.commons.extensions.getProperBackgroundColor
+import org.fossify.commons.extensions.getProperPrimaryColor
+import org.fossify.commons.extensions.getProperTextColor
+import org.fossify.commons.extensions.launchMoreAppsFromUsIntent
+import org.fossify.commons.extensions.onPageChangeListener
+import org.fossify.commons.extensions.onTabSelectionChanged
+import org.fossify.commons.extensions.shortcutManager
+import org.fossify.commons.extensions.storeNewYourAlarmSound
+import org.fossify.commons.extensions.toast
+import org.fossify.commons.extensions.updateBottomTabItemColors
+import org.fossify.commons.extensions.viewBinding
+import org.fossify.commons.helpers.LICENSE_AUTOFITTEXTVIEW
+import org.fossify.commons.helpers.LICENSE_NUMBER_PICKER
+import org.fossify.commons.helpers.LICENSE_RTL
+import org.fossify.commons.helpers.LICENSE_STETHO
+import org.fossify.commons.helpers.ensureBackgroundThread
+import org.fossify.commons.helpers.isNougatMR1Plus
 import org.fossify.commons.models.FAQItem
 
 class MainActivity : SimpleActivity() {
@@ -38,7 +72,12 @@ class MainActivity : SimpleActivity() {
         setupOptionsMenu()
         refreshMenuItems()
 
-        updateMaterialActivityViews(binding.mainCoordinator, binding.mainHolder, useTransparentNavigation = false, useTopSearchMenu = false)
+        updateMaterialActivityViews(
+            mainCoordinatorLayout = binding.mainCoordinator,
+            nestedView = binding.mainHolder,
+            useTransparentNavigation = false,
+            useTopSearchMenu = false
+        )
 
         storeStateVariables()
         initFragments()
@@ -72,13 +111,14 @@ class MainActivity : SimpleActivity() {
 
         val configBackgroundColor = getProperBackgroundColor()
         if (storedBackgroundColor != configBackgroundColor) {
-            binding.mainTabsHolder.background = ColorDrawable(configBackgroundColor)
+            binding.mainTabsHolder.background = configBackgroundColor.toDrawable()
         }
 
         val configPrimaryColor = getProperPrimaryColor()
         if (storedPrimaryColor != configPrimaryColor) {
             binding.mainTabsHolder.setSelectedTabIndicatorColor(getProperPrimaryColor())
-            binding.mainTabsHolder.getTabAt(binding.viewPager.currentItem)?.icon?.applyColorFilter(getProperPrimaryColor())
+            binding.mainTabsHolder.getTabAt(binding.viewPager.currentItem)?.icon
+                ?.applyColorFilter(getProperPrimaryColor())
         }
 
         if (config.preventPhoneFromSleeping) {
@@ -107,7 +147,9 @@ class MainActivity : SimpleActivity() {
     private fun getLaunchStopwatchShortcut(appIconColor: Int): ShortcutInfo {
         val newEvent = getString(R.string.start_stopwatch)
         val drawable = resources.getDrawable(R.drawable.shortcut_stopwatch)
-        (drawable as LayerDrawable).findDrawableByLayerId(R.id.shortcut_stopwatch_background).applyColorFilter(appIconColor)
+        (drawable as LayerDrawable)
+            .findDrawableByLayerId(R.id.shortcut_stopwatch_background)
+            .applyColorFilter(appIconColor)
         val bmp = drawable.convertToBitmap()
 
         val intent = Intent(this, SplashActivity::class.java).apply {
@@ -152,8 +194,10 @@ class MainActivity : SimpleActivity() {
 
     private fun refreshMenuItems() {
         binding.mainToolbar.menu.apply {
-            findItem(R.id.sort).isVisible = binding.viewPager.currentItem == getTabIndex(TAB_ALARM) || binding.viewPager.currentItem == getTabIndex(TAB_TIMER)
-            findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
+            findItem(R.id.sort).isVisible = binding.viewPager.currentItem == getTabIndex(TAB_ALARM)
+                    || binding.viewPager.currentItem == getTabIndex(TAB_TIMER)
+            findItem(R.id.more_apps_from_us).isVisible =
+                !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
         }
     }
 
@@ -235,33 +279,52 @@ class MainActivity : SimpleActivity() {
             R.drawable.ic_stopwatch_vector,
             R.drawable.ic_hourglass_vector
         )
-        val tabLabels = arrayOf(R.string.clock, org.fossify.commons.R.string.alarm, R.string.stopwatch, R.string.timer)
+        val tabLabels = arrayOf(
+            R.string.clock,
+            org.fossify.commons.R.string.alarm,
+            R.string.stopwatch,
+            R.string.timer
+        )
 
         tabDrawables.forEachIndexed { i, drawableId ->
-            binding.mainTabsHolder.newTab().setCustomView(org.fossify.commons.R.layout.bottom_tablayout_item).apply tab@{
-                customView?.let { BottomTablayoutItemBinding.bind(it) }?.apply {
-                    tabItemIcon.setImageDrawable(getDrawable(drawableId))
-                    tabItemLabel.setText(tabLabels[i])
-                    AutofitHelper.create(tabItemLabel)
-                    binding.mainTabsHolder.addTab(this@tab)
+            binding.mainTabsHolder.newTab()
+                .setCustomView(org.fossify.commons.R.layout.bottom_tablayout_item)
+                .apply tab@{
+                    customView?.let { BottomTablayoutItemBinding.bind(it) }?.apply {
+                        tabItemIcon.setImageDrawable(getDrawable(drawableId))
+                        tabItemLabel.setText(tabLabels[i])
+                        AutofitHelper.create(tabItemLabel)
+                        binding.mainTabsHolder.addTab(this@tab)
+                    }
                 }
-            }
         }
 
         binding.mainTabsHolder.onTabSelectionChanged(
             tabUnselectedAction = {
-                updateBottomTabItemColors(it.customView, false, getDeselectedTabDrawableIds()[it.position])
+                updateBottomTabItemColors(
+                    view = it.customView,
+                    isActive = false,
+                    drawableId = getDeselectedTabDrawableIds()[it.position]
+                )
             },
             tabSelectedAction = {
                 binding.viewPager.currentItem = it.position
-                updateBottomTabItemColors(it.customView, true, getSelectedTabDrawableIds()[it.position])
+                updateBottomTabItemColors(
+                    view = it.customView,
+                    isActive = true,
+                    drawableId = getSelectedTabDrawableIds()[it.position]
+                )
             }
         )
     }
 
     private fun setupTabColors() {
         val activeView = binding.mainTabsHolder.getTabAt(binding.viewPager.currentItem)?.customView
-        updateBottomTabItemColors(activeView, true, getSelectedTabDrawableIds()[binding.viewPager.currentItem])
+        updateBottomTabItemColors(
+            view = activeView,
+            isActive = true,
+            drawableId = getSelectedTabDrawableIds()[binding.viewPager.currentItem]
+        )
 
         getInactiveTabIndexes(binding.viewPager.currentItem).forEach { index ->
             val inactiveView = binding.mainTabsHolder.getTabAt(index)?.customView
@@ -274,7 +337,9 @@ class MainActivity : SimpleActivity() {
         updateNavigationBarColor(bottomBarColor)
     }
 
-    private fun getInactiveTabIndexes(activeIndex: Int) = arrayListOf(0, 1, 2, 3).filter { it != activeIndex }
+    private fun getInactiveTabIndexes(activeIndex: Int): List<Int> {
+        return arrayListOf(0, 1, 2, 3).filter { it != activeIndex }
+    }
 
     private fun getSelectedTabDrawableIds() = arrayOf(
         org.fossify.commons.R.drawable.ic_clock_filled_vector,
@@ -295,21 +360,50 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun launchAbout() {
-        val licenses = LICENSE_STETHO or LICENSE_NUMBER_PICKER or LICENSE_RTL or LICENSE_AUTOFITTEXTVIEW
+        val licenses =
+            LICENSE_STETHO or LICENSE_NUMBER_PICKER or LICENSE_RTL or LICENSE_AUTOFITTEXTVIEW
 
         val faqItems = arrayListOf(
-            FAQItem(R.string.faq_1_title, R.string.faq_1_text),
-            FAQItem(org.fossify.commons.R.string.faq_1_title_commons, org.fossify.commons.R.string.faq_1_text_commons),
-            FAQItem(org.fossify.commons.R.string.faq_4_title_commons, org.fossify.commons.R.string.faq_4_text_commons),
-            FAQItem(org.fossify.commons.R.string.faq_9_title_commons, org.fossify.commons.R.string.faq_9_text_commons)
+            FAQItem(
+                title = R.string.faq_1_title,
+                text = R.string.faq_1_text
+            ),
+            FAQItem(
+                title = org.fossify.commons.R.string.faq_1_title_commons,
+                text = org.fossify.commons.R.string.faq_1_text_commons
+            ),
+            FAQItem(
+                title = org.fossify.commons.R.string.faq_4_title_commons,
+                text = org.fossify.commons.R.string.faq_4_text_commons
+            ),
+            FAQItem(
+                title = org.fossify.commons.R.string.faq_9_title_commons,
+                text = org.fossify.commons.R.string.faq_9_text_commons
+            )
         )
 
         if (!resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)) {
-            faqItems.add(FAQItem(org.fossify.commons.R.string.faq_2_title_commons, org.fossify.commons.R.string.faq_2_text_commons))
-            faqItems.add(FAQItem(org.fossify.commons.R.string.faq_6_title_commons, org.fossify.commons.R.string.faq_6_text_commons))
+            faqItems.add(
+                FAQItem(
+                    title = org.fossify.commons.R.string.faq_2_title_commons,
+                    text = org.fossify.commons.R.string.faq_2_text_commons
+                )
+            )
+            faqItems.add(
+                FAQItem(
+                    title = org.fossify.commons.R.string.faq_6_title_commons,
+                    text = org.fossify.commons.R.string.faq_6_text_commons
+                )
+            )
         }
 
-        startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
+        startAboutActivity(
+            appNameId = R.string.app_name,
+            licenseMask = licenses,
+            versionName = BuildConfig.VERSION_NAME,
+            faqItems = faqItems,
+            showFAQBeforeMail = true
+        )
     }
 
     @Deprecated("Remove this method in future releases")
