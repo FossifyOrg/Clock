@@ -13,10 +13,10 @@ import org.fossify.clock.BuildConfig
 import org.fossify.clock.R
 import org.fossify.clock.adapters.ViewPagerAdapter
 import org.fossify.clock.databinding.ActivityMainBinding
+import org.fossify.clock.extensions.alarmController
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.getEnabledAlarms
 import org.fossify.clock.extensions.handleFullScreenNotificationsPermission
-import org.fossify.clock.extensions.rescheduleEnabledAlarms
 import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.helpers.INVALID_TIMER_ID
 import org.fossify.clock.helpers.OPEN_TAB
@@ -85,7 +85,7 @@ class MainActivity : SimpleActivity() {
         updateWidgets()
         migrateFirstDayOfWeek()
         ensureBackgroundThread {
-            rescheduleEnabledAlarms()
+            alarmController.rescheduleEnabledAlarms()
         }
 
         getEnabledAlarms { enabledAlarms ->

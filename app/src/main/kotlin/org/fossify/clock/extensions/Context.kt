@@ -25,6 +25,7 @@ import org.fossify.clock.activities.SnoozeReminderActivity
 import org.fossify.clock.activities.SplashActivity
 import org.fossify.clock.databases.AppDatabase
 import org.fossify.clock.helpers.ALARM_ID
+import org.fossify.clock.helpers.AlarmController
 import org.fossify.clock.helpers.Config
 import org.fossify.clock.helpers.DBHelper
 import org.fossify.clock.helpers.EARLY_ALARM_DISMISSAL_INTENT_ID
@@ -46,20 +47,18 @@ import org.fossify.clock.helpers.TOMORROW_BIT
 import org.fossify.clock.helpers.TimerHelper
 import org.fossify.clock.helpers.formatTime
 import org.fossify.clock.helpers.getAllTimeZones
-import org.fossify.clock.helpers.getCurrentDayMinutes
 import org.fossify.clock.helpers.getDefaultTimeZoneTitle
 import org.fossify.clock.helpers.getTimeOfNextAlarm
 import org.fossify.clock.interfaces.TimerDao
 import org.fossify.clock.models.Alarm
-import org.fossify.clock.models.AlarmEvent
 import org.fossify.clock.models.MyTimeZone
 import org.fossify.clock.models.Timer
 import org.fossify.clock.models.TimerState
 import org.fossify.clock.receivers.AlarmReceiver
-import org.fossify.clock.receivers.DismissAlarmReceiver
-import org.fossify.clock.receivers.UpcomingAlarmReceiver
-import org.fossify.clock.receivers.HideAlarmReceiver
 import org.fossify.clock.receivers.HideTimerReceiver
+import org.fossify.clock.receivers.SkipUpcomingAlarmReceiver
+import org.fossify.clock.receivers.StopAlarmReceiver
+import org.fossify.clock.receivers.UpcomingAlarmReceiver
 import org.fossify.clock.services.AlarmService
 import org.fossify.clock.services.SnoozeService
 import org.fossify.commons.extensions.formatMinutesToTimeString
@@ -85,7 +84,6 @@ import org.fossify.commons.helpers.TUESDAY_BIT
 import org.fossify.commons.helpers.WEDNESDAY_BIT
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.helpers.isOreoPlus
-import org.greenrobot.eventbus.EventBus
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -107,6 +105,9 @@ val Context.timerHelper: TimerHelper
 
 val Context.alarmManager: AlarmManager
     get() = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+val Context.alarmController: AlarmController
+    get() = AlarmController.getInstance(applicationContext)
 
 fun Context.getFormattedDate(calendar: Calendar): String {
     val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7 // make sure index 0 means monday
@@ -174,17 +175,6 @@ fun Context.createNewTimer(): Timer {
     )
 }
 
-fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
-    val triggerTimeMillis = getTimeOfNextAlarm(alarm)?.timeInMillis ?: return
-    setupAlarmClock(alarm = alarm, triggerTimeMillis = triggerTimeMillis)
-
-    if (showToast) {
-        val now = Calendar.getInstance()
-        val triggerInMillis = triggerTimeMillis - now.timeInMillis
-        showRemainingTimeMessage(triggerInMillis)
-    }
-}
-
 fun Context.showRemainingTimeMessage(triggerInMillis: Long) {
     val totalSeconds = triggerInMillis.milliseconds.inWholeSeconds.toInt()
     val remainingTime = if (totalSeconds >= MINUTE_SECONDS) {
@@ -224,14 +214,14 @@ fun Context.setupAlarmClock(alarm: Alarm, triggerTimeMillis: Long) {
             alarmManager,
             0,
             dismissalTriggerTime,
-            getEarlyAlarmDismissalIntent(alarm)
+            getUpcomingAlarmPendingIntent(alarm)
         )
     } catch (e: Exception) {
         showErrorToast(e)
     }
 }
 
-fun Context.getEarlyAlarmDismissalIntent(alarm: Alarm): PendingIntent {
+fun Context.getUpcomingAlarmPendingIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, UpcomingAlarmReceiver::class.java).apply {
         putExtra(ALARM_ID, alarm.id)
     }
@@ -292,7 +282,7 @@ fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
 fun Context.cancelAlarmClock(alarm: Alarm) {
     val alarmManager = alarmManager
     alarmManager.cancel(getAlarmIntent(alarm))
-    alarmManager.cancel(getEarlyAlarmDismissalIntent(alarm))
+    alarmManager.cancel(getUpcomingAlarmPendingIntent(alarm))
 }
 
 fun Context.hideNotification(id: Int) {
@@ -433,14 +423,6 @@ fun Context.getEnabledAlarms(callback: (result: List<Alarm>?) -> Unit) {
     }
 }
 
-fun Context.rescheduleEnabledAlarms() {
-    dbHelper.getEnabledAlarms().forEach {
-        if (it.days != TODAY_BIT || it.timeInMinutes > getCurrentDayMinutes()) {
-            scheduleNextAlarm(it, false)
-        }
-    }
-}
-
 fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent): Notification {
     var soundUri = timer.soundUri
     if (soundUri == SILENT) {
@@ -525,8 +507,8 @@ fun Context.getHideTimerPendingIntent(timerId: Int): PendingIntent {
     )
 }
 
-fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
-    val intent = Intent(this, HideAlarmReceiver::class.java).apply {
+fun Context.getStopAlarmPendingIntent(alarm: Alarm): PendingIntent {
+    val intent = Intent(this, StopAlarmReceiver::class.java).apply {
         putExtra(ALARM_ID, alarm.id)
     }
     return PendingIntent.getBroadcast(
@@ -537,8 +519,8 @@ fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
     )
 }
 
-fun Context.getDismissAlarmPendingIntent(alarmId: Int, notificationId: Int): PendingIntent {
-    val intent = Intent(this, DismissAlarmReceiver::class.java).apply {
+fun Context.getSkipUpcomingAlarmPendingIntent(alarmId: Int, notificationId: Int): PendingIntent {
+    val intent = Intent(this, SkipUpcomingAlarmReceiver::class.java).apply {
         putExtra(ALARM_ID, alarmId)
         putExtra(NOTIFICATION_ID, notificationId)
     }
@@ -628,21 +610,26 @@ fun Context.firstDayOrder(bitMask: Int): Int {
     return bitMask
 }
 
-fun Context.disableExpiredAlarm(alarm: Alarm) {
-    if (alarm.days < 0) {
-        if (alarm.oneShot) {
-            alarm.isEnabled = false
-            dbHelper.deleteAlarms(arrayListOf(alarm))
-        } else {
-            dbHelper.updateAlarmEnabledState(alarm.id, false)
+fun Context.startAlarmService(alarmId: Int) {
+    try {
+        Intent(this, AlarmService::class.java).apply {
+            putExtra(ALARM_ID, alarmId)
+            if (isOreoPlus()) {
+                startForegroundService(this)
+            } else {
+                startService(this)
+            }
         }
-
-        updateWidgets()
-        EventBus.getDefault().post(AlarmEvent.Refresh)
+    } catch (e: Exception) {
+        showErrorToast(e)
     }
 }
 
 fun Context.stopAlarmService() {
-    val serviceIntent = Intent(this, AlarmService::class.java)
-    stopService(serviceIntent)
+    try {
+        val serviceIntent = Intent(this, AlarmService::class.java)
+        stopService(serviceIntent)
+    } catch (e: Exception) {
+        showErrorToast(e)
+    }
 }

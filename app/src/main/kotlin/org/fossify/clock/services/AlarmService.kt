@@ -1,5 +1,6 @@
 package org.fossify.clock.services
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -22,8 +23,8 @@ import org.fossify.clock.activities.ReminderActivity
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getFormattedTime
-import org.fossify.clock.extensions.getHideAlarmPendingIntent
 import org.fossify.clock.extensions.getSnoozePendingIntent
+import org.fossify.clock.extensions.getStopAlarmPendingIntent
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.ALARM_NOTIFICATION_CHANNEL_ID
 import org.fossify.clock.helpers.ALARM_NOTIF_ID
@@ -110,7 +111,7 @@ class AlarmService : Service() {
             this, 0, reminderIntent, FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
         )
 
-        val dismissIntent = applicationContext.getHideAlarmPendingIntent(alarm)
+        val dismissIntent = applicationContext.getStopAlarmPendingIntent(alarm)
         val snoozeIntent = applicationContext.getSnoozePendingIntent(alarm)
 
         return NotificationCompat.Builder(this, channelId)
@@ -199,8 +200,11 @@ class AlarmService : Service() {
         }, durationSecs * 1000L)
     }
 
+    @SuppressLint("InlinedApi")
     override fun onDestroy() {
         super.onDestroy()
+        stopForeground(STOP_FOREGROUND_REMOVE)
+
         mediaPlayer?.stop()
         mediaPlayer?.release()
         mediaPlayer = null

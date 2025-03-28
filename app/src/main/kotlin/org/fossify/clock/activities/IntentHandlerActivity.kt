@@ -3,28 +3,28 @@ package org.fossify.clock.activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Bundle
 import android.provider.AlarmClock
+import androidx.core.net.toUri
 import org.fossify.clock.R
 import org.fossify.clock.dialogs.EditAlarmDialog
 import org.fossify.clock.dialogs.EditTimerDialog
 import org.fossify.clock.dialogs.SelectAlarmDialog
+import org.fossify.clock.extensions.alarmController
 import org.fossify.clock.extensions.alarmManager
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.createNewAlarm
 import org.fossify.clock.extensions.createNewTimer
 import org.fossify.clock.extensions.dbHelper
-import org.fossify.clock.extensions.getDismissAlarmPendingIntent
 import org.fossify.clock.extensions.getHideTimerPendingIntent
+import org.fossify.clock.extensions.getSkipUpcomingAlarmPendingIntent
 import org.fossify.clock.extensions.isBitSet
-import org.fossify.clock.extensions.scheduleNextAlarm
 import org.fossify.clock.extensions.secondsToMillis
 import org.fossify.clock.extensions.timerHelper
 import org.fossify.clock.helpers.DEFAULT_ALARM_MINUTES
-import org.fossify.clock.helpers.EARLY_ALARM_NOTIF_ID
 import org.fossify.clock.helpers.TODAY_BIT
 import org.fossify.clock.helpers.TOMORROW_BIT
+import org.fossify.clock.helpers.UPCOMING_ALARM_NOTIFICATION_ID
 import org.fossify.clock.helpers.getBitForCalendarDay
 import org.fossify.clock.helpers.getCurrentDayMinutes
 import org.fossify.clock.helpers.getTodayBit
@@ -43,7 +43,6 @@ import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.models.AlarmSound
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.TimeUnit
-import androidx.core.net.toUri
 
 class IntentHandlerActivity : SimpleActivity() {
     companion object {
@@ -230,7 +229,10 @@ class IntentHandlerActivity : SimpleActivity() {
                 if (id != null) {
                     val alarm = dbHelper.getAlarmWithId(id)
                     if (alarm != null) {
-                        getDismissAlarmPendingIntent(alarm.id, EARLY_ALARM_NOTIF_ID).send()
+                        getSkipUpcomingAlarmPendingIntent(
+                            alarmId = alarm.id,
+                            notificationId = UPCOMING_ALARM_NOTIFICATION_ID
+                        ).send()
                         EventBus.getDefault().post(AlarmEvent.Refresh)
                         finish()
                     }
@@ -304,7 +306,10 @@ class IntentHandlerActivity : SimpleActivity() {
             }
 
             if (alarms.count() == 1) {
-                getDismissAlarmPendingIntent(alarms.first().id, EARLY_ALARM_NOTIF_ID).send()
+                getSkipUpcomingAlarmPendingIntent(
+                    alarmId = alarms.first().id,
+                    notificationId = UPCOMING_ALARM_NOTIFICATION_ID
+                ).send()
                 EventBus.getDefault().post(AlarmEvent.Refresh)
                 finish()
             } else if (alarms.count() > 1) {
@@ -314,7 +319,10 @@ class IntentHandlerActivity : SimpleActivity() {
                     titleResId = R.string.select_alarm_to_dismiss
                 ) {
                     if (it != null) {
-                        getDismissAlarmPendingIntent(it.id, EARLY_ALARM_NOTIF_ID).send()
+                        getSkipUpcomingAlarmPendingIntent(
+                            alarmId = it.id,
+                            notificationId = UPCOMING_ALARM_NOTIFICATION_ID
+                        ).send()
                     }
                     EventBus.getDefault().post(AlarmEvent.Refresh)
                     finish()
@@ -370,7 +378,7 @@ class IntentHandlerActivity : SimpleActivity() {
     }
 
     private fun startAlarm(alarm: Alarm) {
-        scheduleNextAlarm(alarm, true)
+        alarmController.scheduleNextOccurrence(alarm, true)
         EventBus.getDefault().post(AlarmEvent.Refresh)
     }
 

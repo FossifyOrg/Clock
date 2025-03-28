@@ -9,11 +9,12 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import org.fossify.clock.R
 import org.fossify.clock.extensions.getClosestEnabledAlarmString
-import org.fossify.clock.extensions.getDismissAlarmPendingIntent
 import org.fossify.clock.extensions.getOpenAlarmTabIntent
+import org.fossify.clock.extensions.getSkipUpcomingAlarmPendingIntent
+import org.fossify.clock.extensions.goAsync
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.EARLY_ALARM_DISMISSAL_CHANNEL_ID
-import org.fossify.clock.helpers.EARLY_ALARM_NOTIF_ID
+import org.fossify.clock.helpers.UPCOMING_ALARM_NOTIFICATION_ID
 import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.helpers.isOreoPlus
 
@@ -29,7 +30,9 @@ class UpcomingAlarmReceiver : BroadcastReceiver() {
             return
         }
 
-        showUpcomingAlarmNotification(context, alarmId)
+        goAsync {
+            showUpcomingAlarmNotification(context, alarmId)
+        }
     }
 
     private fun showUpcomingAlarmNotification(context: Context, alarmId: Int) {
@@ -47,8 +50,10 @@ class UpcomingAlarmReceiver : BroadcastReceiver() {
                 }
             }
 
-            val dismissIntent = context.getDismissAlarmPendingIntent(alarmId, EARLY_ALARM_NOTIF_ID)
             val contentIntent = context.getOpenAlarmTabIntent()
+            val dismissIntent = context.getSkipUpcomingAlarmPendingIntent(
+                alarmId = alarmId, notificationId = UPCOMING_ALARM_NOTIFICATION_ID
+            )
 
             val notification = NotificationCompat.Builder(context)
                 .setContentTitle(context.getString(R.string.upcoming_alarm))
@@ -66,7 +71,7 @@ class UpcomingAlarmReceiver : BroadcastReceiver() {
                 .setChannelId(EARLY_ALARM_DISMISSAL_CHANNEL_ID)
                 .build()
 
-            notificationManager.notify(EARLY_ALARM_NOTIF_ID, notification)
+            notificationManager.notify(UPCOMING_ALARM_NOTIFICATION_ID, notification)
         }
     }
 }

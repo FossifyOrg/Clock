@@ -12,14 +12,10 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import org.fossify.clock.R
 import org.fossify.clock.databinding.ActivityReminderBinding
-import org.fossify.clock.extensions.cancelAlarmClock
+import org.fossify.clock.extensions.alarmController
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
-import org.fossify.clock.extensions.disableExpiredAlarm
 import org.fossify.clock.extensions.getFormattedTime
-import org.fossify.clock.extensions.scheduleNextAlarm
-import org.fossify.clock.extensions.setupAlarmClock
-import org.fossify.clock.extensions.stopAlarmService
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.getPassedSeconds
 import org.fossify.clock.models.Alarm
@@ -34,7 +30,6 @@ import org.fossify.commons.extensions.updateTextColors
 import org.fossify.commons.extensions.viewBinding
 import org.fossify.commons.helpers.MINUTE_SECONDS
 import org.fossify.commons.helpers.isOreoMr1Plus
-import java.util.Calendar
 import kotlin.math.max
 import kotlin.math.min
 
@@ -44,7 +39,6 @@ class ReminderActivity : SimpleActivity() {
     private var alarm: Alarm? = null
     private var didVibrate = false
     private var dragDownX = 0f
-    private var wasAlarmSnoozed = false
 
     private val binding: ActivityReminderBinding by viewBinding(ActivityReminderBinding::inflate)
 
@@ -178,12 +172,12 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun snoozeAlarm(overrideSnoozeDuration: Int? = null) {
-        stopAlarmService()
         if (overrideSnoozeDuration != null) {
-            scheduleSnoozedAlarm(overrideSnoozeDuration)
+            dismissAlarmAndFinish(overrideSnoozeDuration)
         } else if (config.useSameSnooze) {
-            scheduleSnoozedAlarm(config.snoozeTime)
+            dismissAlarmAndFinish(config.snoozeTime)
         } else {
+            alarmController.stopAlarm(alarmId = alarm!!.id, disable = false)
             showPickSecondsDialog(
                 curSeconds = config.snoozeTime * MINUTE_SECONDS,
                 isSnoozePicker = true,
@@ -192,36 +186,19 @@ class ReminderActivity : SimpleActivity() {
                 },
                 callback = {
                     config.snoozeTime = it / MINUTE_SECONDS
-                    scheduleSnoozedAlarm(config.snoozeTime)
+                    dismissAlarmAndFinish(config.snoozeTime)
                 }
             )
         }
     }
 
-    private fun scheduleSnoozedAlarm(snoozeMinutes: Int) {
+    private fun dismissAlarmAndFinish(snoozeMinutes: Int = -1) {
         if (alarm != null) {
-            setupAlarmClock(
-                alarm = alarm!!,
-                triggerTimeMillis = Calendar.getInstance()
-                    .apply { add(Calendar.MINUTE, snoozeMinutes) }
-                    .timeInMillis
-            )
-
-            wasAlarmSnoozed = true
-        }
-
-        dismissAlarmAndFinish()
-    }
-
-    private fun dismissAlarmAndFinish() {
-        stopAlarmService()
-        if (!wasAlarmSnoozed && alarm != null) {
-            cancelAlarmClock(alarm!!)
-            if (alarm!!.days > 0) {
-                scheduleNextAlarm(alarm!!, false)
+            if (snoozeMinutes != -1) {
+                alarmController.snoozeAlarm(alarm!!.id, snoozeMinutes)
+            } else {
+                alarmController.stopAlarm(alarm!!.id)
             }
-
-            disableExpiredAlarm(alarm!!)
         }
 
         finish()
