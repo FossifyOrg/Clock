@@ -47,4 +47,7 @@
     <string name="increase_volume_gradually">Voimista ääntä asteittain</string>
     <string name="faq_1_title">Miten vaihdan kierrosten järjestystä ajanoton välilehdellä\?</string>
     <string name="faq_1_text">Napauta saraketta, jonka perusteella haluat järjestää kierrokset. Lisänapautukset vaihtavat järjestyksen nousevaksi tai laskevaksi.</string>
+    <string name="sort_by_timer_duration">Ajastimen kesto</string>
+    <string name="settings_export_data">Vie hälytykset ja ajastimet</string>
+    <string name="settings_import_data">Tuo hälytykset ja ajastimet</string>
 </resources>
