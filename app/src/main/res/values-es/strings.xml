@@ -34,7 +34,7 @@
     <string name="timer_single_notification_label_msg">El temporizador para %s está en marcha</string>
     <string name="new_timer">Nuevo Temporizador</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d temporizador están funcionando</item>
+        <item quantity="one">%d temporizador está funcionando</item>
         <item quantity="many">%d temporizadores están funcionando</item>
         <item quantity="other">%d temporizadores están funcionando</item>
     </plurals>
