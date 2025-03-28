@@ -464,10 +464,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent): No
         }
     }
 
-    val title = timer.label.ifEmpty {
-        getString(R.string.timer)
-    }
-
+    val title = timer.label.ifEmpty { getString(R.string.timer) }
     val builder = NotificationCompat.Builder(this)
         .setContentTitle(title)
         .setContentText(getString(R.string.time_expired))

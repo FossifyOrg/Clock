@@ -66,9 +66,7 @@ class AlarmController(
             // Schedule the *next* occurrence based on the original repeating schedule.
             if (alarm.isRecurring()) {
                 // TODO: This is a bit of a hack. Skipped alarms should be tracked properly.
-                val calendar = Calendar.getInstance()
-                val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY + 7) % 7
-                val todayBitmask = 1 shl dayOfWeek
+                val todayBitmask = getTodayBit()
                 if (alarm.days and todayBitmask != 0) {
                     // If there are other days set, schedule based on those remaining days.
                     val remainingDays = alarm.days.removeBit(todayBitmask)

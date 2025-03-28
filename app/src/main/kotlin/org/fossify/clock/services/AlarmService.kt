@@ -11,6 +11,7 @@ import android.app.Service
 import android.content.Intent
 import android.media.AudioAttributes
 import android.media.AudioManager
+import android.media.AudioManager.STREAM_ALARM
 import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
@@ -32,6 +33,7 @@ import org.fossify.clock.models.Alarm
 import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.helpers.SILENT
 import org.fossify.commons.helpers.isOreoPlus
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Service responsible for sounding the alarms and vibrations.
@@ -57,12 +59,12 @@ class AlarmService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val alarmId = intent?.getIntExtra(ALARM_ID, -1) ?: -1
-        if (alarmId == -1) {
-            stopSelf()
-            return START_NOT_STICKY
+        alarm = if (alarmId != -1) {
+            applicationContext.dbHelper.getAlarmWithId(alarmId)
+        } else {
+            null
         }
 
-        alarm = applicationContext.dbHelper.getAlarmWithId(alarmId)
         if (alarm == null) {
             stopSelf()
             return START_NOT_STICKY
@@ -90,10 +92,8 @@ class AlarmService : Service() {
             notificationManager.createNotificationChannel(channel)
         }
 
-        val contentTitle = if (alarm.label.isEmpty()) {
+        val contentTitle = alarm.label.ifEmpty {
             getString(org.fossify.commons.R.string.alarm)
-        } else {
-            alarm.label
         }
 
         val contentText = getFormattedTime(
@@ -156,9 +156,8 @@ class AlarmService : Service() {
                 }
 
                 if (config.increaseVolumeGradually) {
-                    initialAlarmVolume = audioManager?.getStreamVolume(
-                        AudioManager.STREAM_ALARM
-                    ) ?: DEFAULT_ALARM_VOLUME
+                    initialAlarmVolume = audioManager?.getStreamVolume(STREAM_ALARM)
+                        ?: DEFAULT_ALARM_VOLUME
 
                     scheduleVolumeIncrease(
                         lastVolume = MIN_ALARM_VOLUME_FOR_INCREASING_ALARMS.toFloat(),
@@ -173,15 +172,21 @@ class AlarmService : Service() {
 
         if (alarm.vibrate && isOreoPlus()) {
             vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
-            val pattern = longArrayOf(500, 500)
-            vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
+            val timing = 500L
+            val repeatIndex = 0
+            vibrator?.vibrate(
+                VibrationEffect.createWaveform(
+                    longArrayOf(timing, timing), repeatIndex
+                )
+            )
         }
     }
 
     private fun scheduleVolumeIncrease(lastVolume: Float, maxVolume: Float, delay: Long) {
         increaseVolumeHandler.postDelayed({
+            val volumeFlags = 0
             val newVolume = (lastVolume + 0.1f).coerceAtMost(maxVolume)
-            audioManager?.setStreamVolume(AudioManager.STREAM_ALARM, newVolume.toInt(), 0)
+            audioManager?.setStreamVolume(STREAM_ALARM, newVolume.toInt(), volumeFlags)
             if (newVolume < maxVolume) {
                 scheduleVolumeIncrease(newVolume, maxVolume, INCREASE_VOLUME_DELAY)
             }
@@ -190,14 +195,15 @@ class AlarmService : Service() {
 
     private fun resetVolumeToInitialValue() {
         if (config.increaseVolumeGradually) {
-            audioManager?.setStreamVolume(AudioManager.STREAM_ALARM, initialAlarmVolume, 0)
+            val volumeFlags = 0
+            audioManager?.setStreamVolume(STREAM_ALARM, initialAlarmVolume, volumeFlags)
         }
     }
 
     private fun startAutoDismiss(durationSecs: Int) {
         autoDismissHandler.postDelayed({
             stopSelf()
-        }, durationSecs * 1000L)
+        }, durationSecs.seconds.inWholeMilliseconds)
     }
 
     @SuppressLint("InlinedApi")
