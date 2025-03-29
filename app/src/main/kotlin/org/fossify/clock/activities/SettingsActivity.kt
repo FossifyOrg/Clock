@@ -111,6 +111,7 @@ class SettingsActivity : SimpleActivity() {
             binding.settingsGeneralSettingsLabel,
             binding.settingsAlarmTabLabel,
             binding.settingsTimerTabLabel,
+            binding.settingsMigratingLabel
         ).forEach {
             it.setTextColor(getProperPrimaryColor())
         }
@@ -338,7 +339,7 @@ class SettingsActivity : SimpleActivity() {
         ExportDataDialog(this, config.lastDataExportPath) { file ->
             try {
                 exportActivityResultLauncher.launch(file.name)
-            } catch (@Suppress("SwallowedException") e: ActivityNotFoundException) {
+            } catch (@Suppress("SwallowedException") _: ActivityNotFoundException) {
                 toast(
                     id = org.fossify.commons.R.string.system_service_disabled,
                     length = Toast.LENGTH_LONG
@@ -352,7 +353,7 @@ class SettingsActivity : SimpleActivity() {
     private fun tryImportData() {
         try {
             importActivityResultLauncher.launch(IMPORT_BACKUP_MIME_TYPES.toTypedArray())
-        } catch (@Suppress("SwallowedException") e: ActivityNotFoundException) {
+        } catch (@Suppress("SwallowedException") _: ActivityNotFoundException) {
             toast(org.fossify.commons.R.string.system_service_disabled, Toast.LENGTH_LONG)
         } catch (e: Exception) {
             showErrorToast(e)
