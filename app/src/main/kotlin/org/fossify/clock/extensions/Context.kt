@@ -28,7 +28,7 @@ import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.AlarmController
 import org.fossify.clock.helpers.Config
 import org.fossify.clock.helpers.DBHelper
-import org.fossify.clock.helpers.EARLY_ALARM_DISMISSAL_INTENT_ID
+import org.fossify.clock.helpers.UPCOMING_ALARM_INTENT_ID
 import org.fossify.clock.helpers.EDITED_TIME_ZONE_SEPARATOR
 import org.fossify.clock.helpers.FORMAT_12H
 import org.fossify.clock.helpers.FORMAT_24H
@@ -227,7 +227,7 @@ fun Context.getUpcomingAlarmPendingIntent(alarm: Alarm): PendingIntent {
 
     return PendingIntent.getBroadcast(
         this,
-        EARLY_ALARM_DISMISSAL_INTENT_ID,
+        UPCOMING_ALARM_INTENT_ID,
         intent,
         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     )

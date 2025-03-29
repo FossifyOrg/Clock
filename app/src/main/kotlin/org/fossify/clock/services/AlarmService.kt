@@ -29,7 +29,7 @@ import org.fossify.clock.extensions.getSnoozePendingIntent
 import org.fossify.clock.extensions.getStopAlarmPendingIntent
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.ALARM_NOTIFICATION_CHANNEL_ID
-import org.fossify.clock.helpers.ALARM_NOTIF_ID
+import org.fossify.clock.helpers.ALARM_NOTIFICATION_ID
 import org.fossify.clock.models.Alarm
 import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.helpers.SILENT
@@ -71,7 +71,7 @@ class AlarmService : Service() {
         }
 
         val notification = buildNotification(alarm!!)
-        startForeground(ALARM_NOTIF_ID, notification)
+        startForeground(ALARM_NOTIFICATION_ID, notification)
         startAlarmEffects(alarm!!)
         startAutoDismiss(config.alarmMaxReminderSecs)
         return START_STICKY

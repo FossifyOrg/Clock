@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import org.fossify.clock.R
 import org.fossify.clock.extensions.getFormattedDuration
 import org.fossify.clock.extensions.getOpenStopwatchTabIntent
-import org.fossify.clock.helpers.STOPWATCH_RUNNING_NOTIF_ID
+import org.fossify.clock.helpers.STOPWATCH_RUNNING_NOTIFICATION_ID
 import org.fossify.clock.helpers.Stopwatch
 import org.fossify.clock.helpers.Stopwatch.State
 import org.fossify.clock.helpers.Stopwatch.UpdateListener
@@ -44,7 +44,7 @@ class StopwatchService : Service() {
         super.onStartCommand(intent, flags, startId)
         isStopping = false
         startForeground(
-            STOPWATCH_RUNNING_NOTIF_ID,
+            STOPWATCH_RUNNING_NOTIFICATION_ID,
             notificationBuilder.build()
         )
         Stopwatch.addUpdateListener(updateListener)
@@ -91,7 +91,7 @@ class StopwatchService : Service() {
         val formattedDuration = totalTime.getFormattedDuration()
         notificationBuilder.setContentTitle(formattedDuration)
             .setContentText(getString(R.string.stopwatch))
-        notificationManager.notify(STOPWATCH_RUNNING_NOTIF_ID, notificationBuilder.build())
+        notificationManager.notify(STOPWATCH_RUNNING_NOTIFICATION_ID, notificationBuilder.build())
     }
 
     private val updateListener = object : UpdateListener {

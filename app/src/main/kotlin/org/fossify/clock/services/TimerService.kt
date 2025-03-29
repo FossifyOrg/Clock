@@ -16,7 +16,7 @@ import org.fossify.clock.extensions.getFormattedDuration
 import org.fossify.clock.extensions.getOpenTimerTabIntent
 import org.fossify.clock.extensions.timerHelper
 import org.fossify.clock.helpers.INVALID_TIMER_ID
-import org.fossify.clock.helpers.TIMER_RUNNING_NOTIF_ID
+import org.fossify.clock.helpers.TIMER_RUNNING_NOTIFICATION_ID
 import org.fossify.clock.models.TimerEvent
 import org.fossify.clock.models.TimerState
 import org.fossify.commons.extensions.notificationManager
@@ -41,7 +41,7 @@ class TimerService : Service() {
         isStopping = false
         updateNotification()
         startForeground(
-            TIMER_RUNNING_NOTIF_ID,
+            TIMER_RUNNING_NOTIFICATION_ID,
             notification(
                 title = getString(R.string.app_name),
                 contentText = getString(R.string.timers_notification_msg),
@@ -74,7 +74,7 @@ class TimerService : Service() {
                 Handler(Looper.getMainLooper()).post {
                     try {
                         startForeground(
-                            TIMER_RUNNING_NOTIF_ID,
+                            TIMER_RUNNING_NOTIFICATION_ID,
                             notification(
                                 title = formattedDuration,
                                 contentText = contextText,

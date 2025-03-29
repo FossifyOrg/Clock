@@ -13,7 +13,7 @@ import org.fossify.clock.extensions.getOpenAlarmTabIntent
 import org.fossify.clock.extensions.getSkipUpcomingAlarmPendingIntent
 import org.fossify.clock.extensions.goAsync
 import org.fossify.clock.helpers.ALARM_ID
-import org.fossify.clock.helpers.EARLY_ALARM_DISMISSAL_CHANNEL_ID
+import org.fossify.clock.helpers.UPCOMING_ALARM_CHANNEL_ID
 import org.fossify.clock.helpers.UPCOMING_ALARM_NOTIFICATION_ID
 import org.fossify.commons.extensions.notificationManager
 
@@ -38,8 +38,8 @@ class UpcomingAlarmReceiver : BroadcastReceiver() {
         context.getClosestEnabledAlarmString { alarmString ->
             val notificationManager = context.notificationManager
             NotificationChannel(
-                EARLY_ALARM_DISMISSAL_CHANNEL_ID,
-                context.getString(R.string.early_alarm_dismissal),
+                UPCOMING_ALARM_CHANNEL_ID,
+                context.getString(R.string.upcoming_alarm),
                 NotificationManager.IMPORTANCE_DEFAULT
             ).apply {
                 setBypassDnd(true)
@@ -52,7 +52,7 @@ class UpcomingAlarmReceiver : BroadcastReceiver() {
                 alarmId = alarmId, notificationId = UPCOMING_ALARM_NOTIFICATION_ID
             )
 
-            val notification = NotificationCompat.Builder(context, EARLY_ALARM_DISMISSAL_CHANNEL_ID)
+            val notification = NotificationCompat.Builder(context, UPCOMING_ALARM_CHANNEL_ID)
                 .setContentTitle(context.getString(R.string.upcoming_alarm))
                 .setContentText(alarmString)
                 .setSmallIcon(R.drawable.ic_alarm_vector)
@@ -65,7 +65,7 @@ class UpcomingAlarmReceiver : BroadcastReceiver() {
                 .setContentIntent(contentIntent)
                 .setSound(null)
                 .setAutoCancel(true)
-                .setChannelId(EARLY_ALARM_DISMISSAL_CHANNEL_ID)
+                .setChannelId(UPCOMING_ALARM_CHANNEL_ID)
                 .build()
 
             notificationManager.notify(UPCOMING_ALARM_NOTIFICATION_ID, notification)
