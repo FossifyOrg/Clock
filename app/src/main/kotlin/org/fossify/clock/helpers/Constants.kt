@@ -14,7 +14,6 @@ import org.fossify.commons.helpers.isPiePlus
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
-import kotlin.math.pow
 
 // shared preferences
 const val SELECTED_TIME_ZONES = "selected_time_zones"
@@ -54,14 +53,13 @@ const val EARLY_ALARM_DISMISSAL_CHANNEL_ID = "Early Alarm Dismissal"
 
 const val OPEN_STOPWATCH_TAB_INTENT_ID = 9993
 const val PICK_AUDIO_FILE_INTENT_ID = 9994
-const val REMINDER_ACTIVITY_INTENT_ID = 9995
 const val OPEN_ALARMS_TAB_INTENT_ID = 9996
 const val OPEN_APP_INTENT_ID = 9997
 const val ALARM_NOTIF_ID = 9998
 const val TIMER_RUNNING_NOTIF_ID = 10000
 const val STOPWATCH_RUNNING_NOTIF_ID = 10001
 const val EARLY_ALARM_DISMISSAL_INTENT_ID = 10002
-const val EARLY_ALARM_NOTIF_ID = 10003
+const val UPCOMING_ALARM_NOTIFICATION_ID = 10003
 
 const val OPEN_TAB = "open_tab"
 const val TAB_CLOCK = 1
@@ -157,13 +155,13 @@ fun getTomorrowBit(): Int {
     val calendar = Calendar.getInstance()
     calendar.add(Calendar.DAY_OF_WEEK, 1)
     val dayOfWeek = getDayNumber(calendar.get(Calendar.DAY_OF_WEEK))
-    return 2.0.pow(dayOfWeek).toInt()
+    return 1 shl dayOfWeek
 }
 
 fun getTodayBit(): Int {
     val calendar = Calendar.getInstance()
     val dayOfWeek = getDayNumber(calendar.get(Calendar.DAY_OF_WEEK))
-    return 2.0.pow(dayOfWeek).toInt()
+    return 1 shl dayOfWeek
 }
 
 fun getBitForCalendarDay(day: Int): Int {
@@ -274,7 +272,6 @@ fun getTimeOfNextAlarm(alarm: Alarm): Calendar? {
 
 fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
     val nextAlarmTime = Calendar.getInstance().apply {
-        firstDayOfWeek = Calendar.MONDAY // why is this here? seems unnecessary
         set(Calendar.HOUR_OF_DAY, alarmTimeInMinutes / 60)
         set(Calendar.MINUTE, alarmTimeInMinutes % 60)
         set(Calendar.SECOND, 0)

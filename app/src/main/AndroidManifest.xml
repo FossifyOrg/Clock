@@ -74,7 +74,7 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".activities.ReminderActivity"
+            android:name=".activities.AlarmActivity"
             android:configChanges="orientation|screenSize|screenLayout"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -141,6 +141,14 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".services.AlarmService"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Used to notify the user that alarms are running" />
+        </service>
+
         <service android:name=".services.SnoozeService" />
 
         <service
@@ -163,11 +171,11 @@
 
         <receiver android:name=".receivers.HideTimerReceiver" />
 
-        <receiver android:name=".receivers.HideAlarmReceiver" />
+        <receiver android:name=".receivers.StopAlarmReceiver" />
 
-        <receiver android:name=".receivers.DismissAlarmReceiver" />
+        <receiver android:name=".receivers.SkipUpcomingAlarmReceiver" />
 
-        <receiver android:name=".receivers.EarlyAlarmDismissalReceiver" />
+        <receiver android:name=".receivers.UpcomingAlarmReceiver" />
 
         <receiver
             android:name=".receivers.BootCompletedReceiver"
