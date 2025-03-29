@@ -21,6 +21,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.net.toUri
 import org.fossify.clock.R
 import org.fossify.clock.activities.AlarmActivity
+import org.fossify.clock.extensions.alarmController
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getFormattedTime
@@ -201,8 +202,9 @@ class AlarmService : Service() {
     }
 
     private fun startAutoDismiss(durationSecs: Int) {
+        val alarmId = alarm?.id ?: return
         autoDismissHandler.postDelayed({
-            stopSelf()
+            alarmController.stopAlarm(alarmId)
         }, durationSecs.seconds.inWholeMilliseconds)
     }
 
