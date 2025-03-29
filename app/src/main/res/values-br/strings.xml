@@ -40,7 +40,6 @@
     <string name="timer_tab">Ivinell munuter</string>
     <string name="show_seconds">Diskouez an eilennoù</string>
     <string name="increase_volume_gradually">Kreskaat an ampled tamm-ha-tamm</string>
-    <string name="early_alarm_dismissal">Paouez un arfroù en a-raok</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">Emañ %d munuter o loc\'hañ</item>
         <item quantity="two">Emañ %d vunuter o loc\'hañ</item>

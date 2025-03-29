@@ -21,7 +21,6 @@
     <string name="increase_volume_gradually">音量漸增</string>
     <string name="faq_1_title">碼錶頁面分段的排序如何變更?</string>
     <string name="faq_1_text">只要點擊任一欄位，就會依選定的欄位做排序。再多點一下，還能切換遞增或遞減的排序。</string>
-    <string name="early_alarm_dismissal">提早解除鬧鐘</string>
     <string name="clock">時鐘</string>
     <string name="stopwatch">計時器</string>
     <string name="start_stopwatch">開始計時</string>

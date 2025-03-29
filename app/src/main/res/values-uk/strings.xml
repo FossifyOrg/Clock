@@ -31,7 +31,6 @@
     <string name="no_timers_found">Таймерів не знайдено</string>
     <string name="add_timer">Додати таймер</string>
     <string name="upcoming_alarm">Майбутній будильник</string>
-    <string name="early_alarm_dismissal">Відхилення раннього будильника</string>
     <string name="timers_notification_msg">Таймери працюють</string>
     <string name="timer_single_notification_label_msg">Таймер для %s працює</string>
     <string name="new_timer">Новий таймер</string>

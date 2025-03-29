@@ -31,7 +31,6 @@
     <string name="no_timers_found">Non se atoparon temporizadores</string>
     <string name="add_timer">Engadir temporizador</string>
     <string name="upcoming_alarm">Próxima alarma</string>
-    <string name="early_alarm_dismissal">Desbotar alarma anticipadamente</string>
     <string name="timers_notification_msg">Hai temporizadores activos</string>
     <string name="timer_single_notification_label_msg">O temporizador para %s está funcionando</string>
     <string name="new_timer">Novo temporizador</string>

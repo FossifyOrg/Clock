@@ -29,7 +29,6 @@
     <string name="no_alarms_found">Липсват будилници</string>
     <string name="no_timers_found">Липсват отброявания</string>
     <string name="upcoming_alarm">Предстоящ будилник</string>
-    <string name="early_alarm_dismissal">Ранно изключване на будилник</string>
     <string name="timers_notification_msg">Отброяванията са включени</string>
     <string name="timer_single_notification_label_msg">Отброяването за %s е включено</string>
     <string name="new_timer">Ново отброяване</string>

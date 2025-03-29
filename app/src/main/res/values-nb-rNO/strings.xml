@@ -24,7 +24,6 @@
     <string name="no_alarms_found">Ingen alarmer funnet</string>
     <string name="no_timers_found">Ingen timere funnet</string>
     <string name="upcoming_alarm">Kommende alarm</string>
-    <string name="early_alarm_dismissal">Tidlig alarm-avslåing</string>
     <string name="timers_notification_msg">Timere er i gang</string>
     <string name="timer_single_notification_label_msg">Timer for %s er i gang</string>
     <string name="new_timer">Ny timer</string>

@@ -32,7 +32,6 @@
     <string name="no_timers_found">Không tìm thấy bộ hẹn giờ nào</string>
     <string name="add_timer">Thêm bộ hẹn giờ</string>
     <string name="upcoming_alarm">Báo thức sắp tới</string>
-    <string name="early_alarm_dismissal">Loại bỏ báo thức sớm</string>
     <string name="timers_notification_msg">Đồng hồ hẹn giờ đang chạy</string>
     <string name="timer_single_notification_label_msg">Bộ hẹn giờ cho %s đang chạy</string>
     <string name="new_timer">Hẹn giờ mới</string>

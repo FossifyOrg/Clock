@@ -44,6 +44,5 @@
     <string name="select_alarm_to_dismiss">消去するアラームを選択してください</string>
     <string name="alarm_created">アラームを作成しました</string>
     <string name="alarm_snoozed">%sまでスヌーズ中のアラーム</string>
-    <string name="early_alarm_dismissal">アラームを事前に消去</string>
     <string name="select_timer_to_dismiss">消去するタイマーを選択してください</string>
 </resources>

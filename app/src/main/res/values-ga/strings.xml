@@ -38,7 +38,6 @@
     <string name="analogue_clock">Clog analógach</string>
     <string name="digital_clock">Clog digiteach</string>
     <string name="upcoming_alarm">Aláram atá le teacht</string>
-    <string name="early_alarm_dismissal">Dífhostú aláraim luath</string>
     <string name="timers_notification_msg">Amadóirí ag rith</string>
     <string name="timer_single_notification_label_msg">Tá an t- amadóir do %s ag rith</string>
     <string name="new_timer">Amadóir Nua</string>

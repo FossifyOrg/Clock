@@ -43,7 +43,6 @@
     <string name="increase_volume_gradually">Postupno povećavaj glasnoću</string>
     <string name="faq_1_title">Kako mogu promijeniti razvrstavanje rundi na kartici štoperice\?</string>
     <string name="faq_1_text">Jednostavno pritisni bilo koji stupac. Time će se runde razvrstati po zadanom stupcu. Dodatnim pritiskanjem stupca možeš mijenjati između uzlaznog i silaznog razvrstavanja.</string>
-    <string name="early_alarm_dismissal">Odbacivanje ranog alarma</string>
     <string name="select_alarm_to_dismiss">Odaberi alarm za odbacivanje</string>
     <string name="alarm_created">Alarm je stvoren</string>
     <string name="select_timer_to_dismiss">Odaberi timer za odbacivanje</string>

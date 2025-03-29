@@ -22,7 +22,6 @@
     <string name="no_timers_found">타이머가 없습니다</string>
     <string name="add_timer">타이머 추가하기</string>
     <string name="upcoming_alarm">곧 울릴 알람</string>
-    <string name="early_alarm_dismissal">조기 알람 해제</string>
     <string name="timers_notification_msg">타이머가 실행 중입니다</string>
     <plurals name="timer_notification_msg">
         <item quantity="other">타이머 %d 개가 실행 중입니다</item>
