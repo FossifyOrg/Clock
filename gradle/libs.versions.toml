@@ -26,7 +26,7 @@ commons = "5381db38e6"
 #Stetho
 stetho = "1.6.0"
 #Gradle
-gradlePlugins-agp = "8.3.1"
+gradlePlugins-agp = "8.9.1"
 #build
 app-build-compileSDKVersion = "34"
 app-build-targetSDK = "34"
