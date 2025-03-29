@@ -150,9 +150,9 @@ class AlarmActivity : SimpleActivity() {
         setupAlarmButtons()
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        when (intent?.action) {
+        when (intent.action) {
             AlarmClock.ACTION_DISMISS_ALARM -> dismissAlarmAndFinish()
             AlarmClock.ACTION_SNOOZE_ALARM -> {
                 val durationMinutes = intent.getIntExtra(AlarmClock.EXTRA_ALARM_SNOOZE_DURATION, -1)

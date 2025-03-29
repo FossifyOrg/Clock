@@ -33,6 +33,7 @@ import org.fossify.commons.extensions.getDefaultAlarmSound
 import org.fossify.commons.extensions.getProperBackgroundColor
 import org.fossify.commons.extensions.getProperTextColor
 import org.fossify.commons.extensions.getTimePickerDialogTheme
+import org.fossify.commons.extensions.isDynamicTheme
 import org.fossify.commons.extensions.removeBit
 import org.fossify.commons.extensions.setupDialogStuff
 import org.fossify.commons.extensions.toast
@@ -54,7 +55,7 @@ class EditAlarmDialog(
 
         binding.apply {
             editAlarmTime.setOnClickListener {
-                if (activity.config.isUsingSystemTheme) {
+                if (activity.isDynamicTheme()) {
                     val timeFormat = if (activity.config.use24HourFormat) {
                         TimeFormat.CLOCK_24H
                     } else {

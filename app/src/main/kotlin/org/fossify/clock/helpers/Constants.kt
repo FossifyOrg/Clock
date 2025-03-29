@@ -15,6 +15,8 @@ import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
 
+const val REPOSITORY_NAME = "Clock"
+
 // shared preferences
 const val SELECTED_TIME_ZONES = "selected_time_zones"
 const val EDITED_TIME_ZONE_TITLES = "edited_time_zone_titles"
