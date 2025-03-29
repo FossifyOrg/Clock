@@ -1,14 +1,14 @@
 [versions]
 #jetbrains
-kotlin = "1.9.22"
-kotlinxSerializationJson = "1.6.0"
+kotlin = "1.9.25"
+kotlinxSerializationJson = "1.6.3"
 #KSP
-ksp = "1.9.22-1.0.17"
+ksp = "1.9.25-1.0.20"
 #Detekt
 detekt = "1.23.3"
 #AndroidX
-androidx-constraintlayout = "2.1.4"
-androidx-lifecycle = "2.7.0"
+androidx-constraintlayout = "2.2.1"
+androidx-lifecycle = "2.8.7"
 androidx-preference = "1.2.1"
 androidx-work = "2.9.0"
 #AutoFitTextView
