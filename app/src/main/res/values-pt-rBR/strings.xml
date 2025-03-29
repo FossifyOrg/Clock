@@ -46,7 +46,6 @@
     <string name="faq_1_text">Basta clicar em qualquer uma das colunas e isso fará com que as voltas sejam classificadas pela coluna especificada. Com cliques adicionais, você pode alternar a ordem de classificação entre crescente e decrescente.</string>
     <string name="select_alarm_to_dismiss">Selecione o alarme para descartar</string>
     <string name="alarm_created">Alarme criado</string>
-    <string name="early_alarm_dismissal">Descarte antecipado de alarme</string>
     <string name="select_timer_to_dismiss">Selecione o temporizador para descartar</string>
     <string name="sort_by_timer_duration">Duração do temporizador</string>
     <string name="settings_export_data">Exportar alarmes e temporizadores</string>

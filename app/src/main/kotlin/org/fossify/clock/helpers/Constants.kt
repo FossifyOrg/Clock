@@ -15,6 +15,8 @@ import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
 
+const val REPOSITORY_NAME = "Clock"
+
 // shared preferences
 const val SELECTED_TIME_ZONES = "selected_time_zones"
 const val EDITED_TIME_ZONE_TITLES = "edited_time_zone_titles"
@@ -49,16 +51,16 @@ const val DEFAULT_MAX_ALARM_REMINDER_SECS = 300
 const val DEFAULT_MAX_TIMER_REMINDER_SECS = 60
 const val SIMPLE_PHONE = "Simple_Phone"
 const val ALARM_NOTIFICATION_CHANNEL_ID = "Alarm_Channel"
-const val EARLY_ALARM_DISMISSAL_CHANNEL_ID = "Early Alarm Dismissal"
+const val UPCOMING_ALARM_CHANNEL_ID = "Early Alarm Dismissal"
 
 const val OPEN_STOPWATCH_TAB_INTENT_ID = 9993
 const val PICK_AUDIO_FILE_INTENT_ID = 9994
 const val OPEN_ALARMS_TAB_INTENT_ID = 9996
 const val OPEN_APP_INTENT_ID = 9997
-const val ALARM_NOTIF_ID = 9998
-const val TIMER_RUNNING_NOTIF_ID = 10000
-const val STOPWATCH_RUNNING_NOTIF_ID = 10001
-const val EARLY_ALARM_DISMISSAL_INTENT_ID = 10002
+const val ALARM_NOTIFICATION_ID = 9998
+const val TIMER_RUNNING_NOTIFICATION_ID = 10000
+const val STOPWATCH_RUNNING_NOTIFICATION_ID = 10001
+const val UPCOMING_ALARM_INTENT_ID = 10002
 const val UPCOMING_ALARM_NOTIFICATION_ID = 10003
 
 const val OPEN_TAB = "open_tab"

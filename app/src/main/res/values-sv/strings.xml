@@ -30,7 +30,6 @@
     <string name="no_timers_found">Inga timers hittades</string>
     <string name="add_timer">Lägg till timer</string>
     <string name="upcoming_alarm">Kommande alarm</string>
-    <string name="early_alarm_dismissal">Tidig avstängning av alarm</string>
     <string name="timers_notification_msg">Timers är igång</string>
     <string name="timer_single_notification_label_msg">Timer för %s är igång</string>
     <string name="new_timer">Ny timer</string>

@@ -26,7 +26,6 @@
     <string name="no_alarms_found">لم يتم العثور على منبهات</string>
     <string name="no_timers_found">لم يتم العثور على موقتات</string>
     <string name="upcoming_alarm">التنبيه القادم</string>
-    <string name="early_alarm_dismissal">الفصل المبكر للتنبيه</string>
     <string name="timers_notification_msg">أجهزة ضبط الوقت قيد التشغيل</string>
     <string name="timer_single_notification_label_msg">عداد الوقت لـ %s قيد التشغيل</string>
     <string name="new_timer">مؤقت جديد</string>

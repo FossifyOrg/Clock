@@ -31,7 +31,6 @@
     <string name="no_timers_found">Nenalezeny žádné časovače</string>
     <string name="add_timer">Přidat časovač</string>
     <string name="upcoming_alarm">Nadcházející budík</string>
-    <string name="early_alarm_dismissal">Předčasné zrušení budíku</string>
     <string name="timers_notification_msg">Časovače běží</string>
     <string name="timer_single_notification_label_msg">Časovač pro %s běží</string>
     <string name="new_timer">Nový časovač</string>

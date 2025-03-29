@@ -31,7 +31,6 @@
     <string name="no_timers_found">Nie znaleziono minutników</string>
     <string name="add_timer">Dodaj minutnik</string>
     <string name="upcoming_alarm">Nadchodzący alarm</string>
-    <string name="early_alarm_dismissal">Wcześniejsze wyłączenie alarmu</string>
     <string name="timers_notification_msg">Minutniki są uruchomione</string>
     <string name="timer_single_notification_label_msg">Minutnik dla %s jest uruchomiony</string>
     <string name="new_timer">Nowy minutnik</string>

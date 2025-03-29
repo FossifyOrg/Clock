@@ -47,5 +47,4 @@
     <string name="start_stopwatch">Pornește cronometrul</string>
     <string name="select_timer_to_dismiss">Selectează temporizatorul pentru a anula</string>
     <string name="select_alarm_to_dismiss">Selectează alama pentru a anula</string>
-    <string name="early_alarm_dismissal">Anulare alarmă timpurie</string>
 </resources>

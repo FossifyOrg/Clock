@@ -14,13 +14,12 @@ import androidx.core.content.ContextCompat
 import org.fossify.clock.R
 import org.fossify.clock.extensions.getFormattedDuration
 import org.fossify.clock.extensions.getOpenStopwatchTabIntent
-import org.fossify.clock.helpers.STOPWATCH_RUNNING_NOTIF_ID
+import org.fossify.clock.helpers.STOPWATCH_RUNNING_NOTIFICATION_ID
 import org.fossify.clock.helpers.Stopwatch
 import org.fossify.clock.helpers.Stopwatch.State
 import org.fossify.clock.helpers.Stopwatch.UpdateListener
 import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.helpers.isOreoPlus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -45,7 +44,7 @@ class StopwatchService : Service() {
         super.onStartCommand(intent, flags, startId)
         isStopping = false
         startForeground(
-            STOPWATCH_RUNNING_NOTIF_ID,
+            STOPWATCH_RUNNING_NOTIFICATION_ID,
             notificationBuilder.build()
         )
         Stopwatch.addUpdateListener(updateListener)
@@ -70,12 +69,10 @@ class StopwatchService : Service() {
     ): NotificationCompat.Builder {
         val channelId = "simple_alarm_stopwatch"
         val label = getString(R.string.stopwatch)
-        if (isOreoPlus()) {
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            NotificationChannel(channelId, label, importance).apply {
-                setSound(null, null)
-                notificationManager.createNotificationChannel(this)
-            }
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        NotificationChannel(channelId, label, importance).apply {
+            setSound(null, null)
+            notificationManager.createNotificationChannel(this)
         }
 
         return NotificationCompat.Builder(this, channelId)
@@ -94,7 +91,7 @@ class StopwatchService : Service() {
         val formattedDuration = totalTime.getFormattedDuration()
         notificationBuilder.setContentTitle(formattedDuration)
             .setContentText(getString(R.string.stopwatch))
-        notificationManager.notify(STOPWATCH_RUNNING_NOTIF_ID, notificationBuilder.build())
+        notificationManager.notify(STOPWATCH_RUNNING_NOTIFICATION_ID, notificationBuilder.build())
     }
 
     private val updateListener = object : UpdateListener {

@@ -6,7 +6,12 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
 import android.view.View
 import android.widget.RemoteViews
@@ -20,7 +25,11 @@ import org.fossify.commons.extensions.setText
 import org.fossify.commons.extensions.setVisibleIf
 
 class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
-    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+    override fun onUpdate(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetIds: IntArray,
+    ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
         performUpdate(context)
     }
@@ -43,8 +52,18 @@ class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
         views.apply {
             setText(R.id.widget_next_alarm, nextAlarm)
             setVisibleIf(R.id.widget_alarm_holder, nextAlarm.isNotEmpty())
-            val clockToHide = if (context.config.use24HourFormat) R.id.widget_text_clock_12 else R.id.widget_text_clock_24
-            val clockToShow = if (context.config.use24HourFormat) R.id.widget_text_clock_24 else R.id.widget_text_clock_12
+            val clockToHide = if (context.config.use24HourFormat) {
+                R.id.widget_text_clock_12
+            } else {
+                R.id.widget_text_clock_24
+            }
+
+            val clockToShow = if (context.config.use24HourFormat) {
+                R.id.widget_text_clock_24
+            } else {
+                R.id.widget_text_clock_12
+            }
+
             setViewVisibility(clockToHide, View.GONE)
             setViewVisibility(clockToShow, View.VISIBLE)
         }
@@ -61,7 +80,11 @@ class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
             setTextColor(R.id.widget_date, widgetTextColor)
             setTextColor(R.id.widget_next_alarm, widgetTextColor)
 
-            val bitmap = getMultiplyColoredBitmap(R.drawable.ic_clock_shadowed, widgetTextColor, context)
+            val bitmap = getMultiplyColoredBitmap(
+                resourceId = R.drawable.ic_clock_shadowed,
+                newColor = widgetTextColor,
+                context = context
+            )
             setImageViewBitmap(R.id.widget_next_alarm_image, bitmap)
         }
     }
@@ -70,12 +93,22 @@ class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
 
     private fun setupAppOpenIntent(context: Context, views: RemoteViews) {
         (context.getLaunchIntent() ?: Intent(context, SplashActivity::class.java)).apply {
-            val pendingIntent = PendingIntent.getActivity(context, OPEN_APP_INTENT_ID, this, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+            val pendingIntent = PendingIntent.getActivity(
+                context,
+                OPEN_APP_INTENT_ID,
+                this,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
             views.setOnClickPendingIntent(R.id.widget_date_time_holder, pendingIntent)
         }
     }
 
-    override fun onAppWidgetOptionsChanged(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int, newOptions: Bundle?) {
+    override fun onAppWidgetOptionsChanged(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetId: Int,
+        newOptions: Bundle?,
+    ) {
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
         performUpdate(context)
     }

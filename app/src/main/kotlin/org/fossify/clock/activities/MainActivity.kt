@@ -55,7 +55,6 @@ import org.fossify.commons.helpers.LICENSE_NUMBER_PICKER
 import org.fossify.commons.helpers.LICENSE_RTL
 import org.fossify.commons.helpers.LICENSE_STETHO
 import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.helpers.isNougatMR1Plus
 import org.fossify.commons.models.FAQItem
 
 class MainActivity : SimpleActivity() {
@@ -132,7 +131,7 @@ class MainActivity : SimpleActivity() {
     @SuppressLint("NewApi")
     private fun checkShortcuts() {
         val appIconColor = config.appIconColor
-        if (isNougatMR1Plus() && config.lastHandledShortcutColor != appIconColor) {
+        if (config.lastHandledShortcutColor != appIconColor) {
             val stopWatchShortcutInfo = getLaunchStopwatchShortcut(appIconColor)
 
             try {

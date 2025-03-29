@@ -31,7 +31,6 @@
     <string name="no_timers_found">Nessun contaminuti trovato</string>
     <string name="add_timer">Aggiungi contaminuti</string>
     <string name="upcoming_alarm">Allarme imminente</string>
-    <string name="early_alarm_dismissal">Arresto anticipato dell\'allarme</string>
     <string name="timers_notification_msg">I contaminuti sono in funzione</string>
     <string name="timer_single_notification_label_msg">Il contaminuti per %s è in funzione</string>
     <string name="new_timer">Nuovo contaminuti</string>

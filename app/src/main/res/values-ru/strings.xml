@@ -31,7 +31,6 @@
     <string name="no_timers_found">Таймеры отсутствуют</string>
     <string name="add_timer">Добавить таймер</string>
     <string name="upcoming_alarm">Предстоящий будильник</string>
-    <string name="early_alarm_dismissal">Досрочное отключение будильника</string>
     <string name="timers_notification_msg">Таймеры запущены</string>
     <string name="timer_single_notification_label_msg">Таймер для %s запущен</string>
     <string name="new_timer">Новый таймер</string>

@@ -2,18 +2,15 @@ package org.fossify.clock.views
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 
 /**
  * A simple wrapper TextView that restores the original text size
  * when view width is restored.
  */
 @SuppressLint("AppCompatCustomView")
-@RequiresApi(Build.VERSION_CODES.O)
 class AutoFitTextView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,

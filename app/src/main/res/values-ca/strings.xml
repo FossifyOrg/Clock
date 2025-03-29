@@ -28,7 +28,6 @@
     <string name="no_alarms_found">No s\'ha trobat cap alarma</string>
     <string name="no_timers_found">No s\'ha trobat cap temporitzador</string>
     <string name="upcoming_alarm">Pròxima alarma</string>
-    <string name="early_alarm_dismissal">Supressió d\'alarma anticipada</string>
     <string name="timers_notification_msg">Els temporitzadors estan en marxa</string>
     <string name="timer_single_notification_label_msg">El temporitzador per a %s està en marxa</string>
     <string name="new_timer">Temporitzador nou</string>

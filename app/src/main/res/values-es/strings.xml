@@ -29,7 +29,6 @@
     <string name="no_alarms_found">No se encontraron alarmas</string>
     <string name="no_timers_found">No se encontraron temporizadores</string>
     <string name="upcoming_alarm">Próxima alarma</string>
-    <string name="early_alarm_dismissal">Supresión de la alarma anticipada</string>
     <string name="timers_notification_msg">Los temporizadores están en marcha</string>
     <string name="timer_single_notification_label_msg">El temporizador para %s está en marcha</string>
     <string name="new_timer">Nuevo Temporizador</string>

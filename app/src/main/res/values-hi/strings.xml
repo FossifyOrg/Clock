@@ -13,7 +13,6 @@
     <string name="timer_stopped">टाइमर बंद कर दिया गया है</string>
     <string name="alarm_dismissed">अलार्म खारिज हो गया</string>
     <string name="no_timers_found">कोई टाइमर नहीं मिला</string>
-    <string name="early_alarm_dismissal">शीघ्र अलार्म बर्खास्तगी</string>
     <string name="alarm_tab">अलार्म टैब</string>
     <string name="increase_volume_gradually">धीरे-धीरे वॉल्यूम बढ़ाएं</string>
     <string name="faq_1_text">बस किसी भी कॉलम पर क्लिक करें, जिससे लैप्स दिए गए कॉलम के अनुसार क्रमबद्ध हो जाएंगे। अतिरिक्त क्लिक के साथ आप आरोही और अवरोही सॉर्टिंग के बीच टॉगल कर सकते हैं।</string>

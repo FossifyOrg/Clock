@@ -31,7 +31,6 @@
     <string name="no_timers_found">Aucun minuteur n\'a été trouvé</string>
     <string name="add_timer">Ajouter un minuteur</string>
     <string name="upcoming_alarm">Alarme à venir</string>
-    <string name="early_alarm_dismissal">Rejet d\'alarme précoce</string>
     <string name="timers_notification_msg">Les minuteurs sont en cours d\'exécution</string>
     <string name="timer_single_notification_label_msg">Le minuteur pour %s est en cours d\'exécution</string>
     <string name="new_timer">Nouveau minuteur</string>
