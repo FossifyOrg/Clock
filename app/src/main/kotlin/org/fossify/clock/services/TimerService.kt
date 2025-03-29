@@ -21,7 +21,6 @@ import org.fossify.clock.models.TimerEvent
 import org.fossify.clock.models.TimerState
 import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.helpers.isOreoPlus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -106,11 +105,7 @@ class TimerService : Service() {
 
     private fun stopService() {
         isStopping = true
-        if (isOreoPlus()) {
-            stopForeground(true)
-        } else {
-            stopSelf()
-        }
+        stopForeground(STOP_FOREGROUND_REMOVE)
     }
 
     override fun onDestroy() {
@@ -125,15 +120,13 @@ class TimerService : Service() {
     ): Notification {
         val channelId = "simple_alarm_timer"
         val label = getString(R.string.timer)
-        if (isOreoPlus()) {
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            NotificationChannel(channelId, label, importance).apply {
-                setSound(null, null)
-                notificationManager.createNotificationChannel(this)
-            }
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        NotificationChannel(channelId, label, importance).apply {
+            setSound(null, null)
+            notificationManager.createNotificationChannel(this)
         }
 
-        val builder = NotificationCompat.Builder(this)
+        val builder = NotificationCompat.Builder(this, channelId)
             .setContentTitle(title)
             .setContentText(contentText)
             .setSmallIcon(R.drawable.ic_hourglass_vector)

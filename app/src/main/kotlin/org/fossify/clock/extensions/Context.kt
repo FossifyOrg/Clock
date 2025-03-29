@@ -83,7 +83,6 @@ import org.fossify.commons.helpers.THURSDAY_BIT
 import org.fossify.commons.helpers.TUESDAY_BIT
 import org.fossify.commons.helpers.WEDNESDAY_BIT
 import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.helpers.isOreoPlus
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -435,37 +434,35 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent): No
         timer.channelId ?: "simple_timer_channel_${soundUri}_${System.currentTimeMillis()}"
     timerHelper.insertOrUpdateTimer(timer.copy(channelId = channelId))
 
-    if (isOreoPlus()) {
-        try {
-            notificationManager.deleteNotificationChannel(channelId)
-        } catch (_: Exception) {
+    try {
+        notificationManager.deleteNotificationChannel(channelId)
+    } catch (_: Exception) {
+    }
+
+    val audioAttributes = AudioAttributes.Builder()
+        .setUsage(AudioAttributes.USAGE_ALARM)
+        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+        .setLegacyStreamType(STREAM_ALARM)
+        .build()
+
+    val name = getString(R.string.timer)
+    val importance = NotificationManager.IMPORTANCE_HIGH
+    NotificationChannel(channelId, name, importance).apply {
+        setBypassDnd(true)
+        enableLights(true)
+        lightColor = getProperPrimaryColor()
+        setSound(soundUri.toUri(), audioAttributes)
+
+        if (!timer.vibrate) {
+            vibrationPattern = longArrayOf(0L)
         }
 
-        val audioAttributes = AudioAttributes.Builder()
-            .setUsage(AudioAttributes.USAGE_ALARM)
-            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-            .setLegacyStreamType(STREAM_ALARM)
-            .build()
-
-        val name = getString(R.string.timer)
-        val importance = NotificationManager.IMPORTANCE_HIGH
-        NotificationChannel(channelId, name, importance).apply {
-            setBypassDnd(true)
-            enableLights(true)
-            lightColor = getProperPrimaryColor()
-            setSound(soundUri.toUri(), audioAttributes)
-
-            if (!timer.vibrate) {
-                vibrationPattern = longArrayOf(0L)
-            }
-
-            enableVibration(timer.vibrate)
-            notificationManager.createNotificationChannel(this)
-        }
+        enableVibration(timer.vibrate)
+        notificationManager.createNotificationChannel(this)
     }
 
     val title = timer.label.ifEmpty { getString(R.string.timer) }
-    val builder = NotificationCompat.Builder(this)
+    val builder = NotificationCompat.Builder(this, channelId)
         .setContentTitle(title)
         .setContentText(getString(R.string.time_expired))
         .setSmallIcon(R.drawable.ic_hourglass_vector)
@@ -611,11 +608,7 @@ fun Context.startAlarmService(alarmId: Int) {
     try {
         Intent(this, AlarmService::class.java).apply {
             putExtra(ALARM_ID, alarmId)
-            if (isOreoPlus()) {
-                startForegroundService(this)
-            } else {
-                startService(this)
-            }
+            startForegroundService(this)
         }
     } catch (e: Exception) {
         showErrorToast(e)

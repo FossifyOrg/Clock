@@ -33,7 +33,6 @@ import org.fossify.clock.helpers.ALARM_NOTIF_ID
 import org.fossify.clock.models.Alarm
 import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.helpers.SILENT
-import org.fossify.commons.helpers.isOreoPlus
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -80,18 +79,16 @@ class AlarmService : Service() {
 
     private fun buildNotification(alarm: Alarm): Notification {
         val channelId = ALARM_NOTIFICATION_CHANNEL_ID
-        if (isOreoPlus()) {
-            val channel = NotificationChannel(
-                channelId,
-                getString(org.fossify.commons.R.string.alarm),
-                NotificationManager.IMPORTANCE_HIGH
-            ).apply {
-                setBypassDnd(true)
-                setSound(null, null)
-            }
-
-            notificationManager.createNotificationChannel(channel)
+        val channel = NotificationChannel(
+            channelId,
+            getString(org.fossify.commons.R.string.alarm),
+            NotificationManager.IMPORTANCE_HIGH
+        ).apply {
+            setBypassDnd(true)
+            setSound(null, null)
         }
+
+        notificationManager.createNotificationChannel(channel)
 
         val contentTitle = alarm.label.ifEmpty {
             getString(org.fossify.commons.R.string.alarm)
@@ -171,7 +168,7 @@ class AlarmService : Service() {
             }
         }
 
-        if (alarm.vibrate && isOreoPlus()) {
+        if (alarm.vibrate) {
             vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
             val timing = 500L
             val repeatIndex = 0

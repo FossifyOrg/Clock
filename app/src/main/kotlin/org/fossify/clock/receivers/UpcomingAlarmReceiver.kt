@@ -16,7 +16,6 @@ import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.EARLY_ALARM_DISMISSAL_CHANNEL_ID
 import org.fossify.clock.helpers.UPCOMING_ALARM_NOTIFICATION_ID
 import org.fossify.commons.extensions.notificationManager
-import org.fossify.commons.helpers.isOreoPlus
 
 /**
  * Receiver responsible for showing a notification that allows users to skip an upcoming alarm.
@@ -38,16 +37,14 @@ class UpcomingAlarmReceiver : BroadcastReceiver() {
     private fun showUpcomingAlarmNotification(context: Context, alarmId: Int) {
         context.getClosestEnabledAlarmString { alarmString ->
             val notificationManager = context.notificationManager
-            if (isOreoPlus()) {
-                NotificationChannel(
-                    EARLY_ALARM_DISMISSAL_CHANNEL_ID,
-                    context.getString(R.string.early_alarm_dismissal),
-                    NotificationManager.IMPORTANCE_DEFAULT
-                ).apply {
-                    setBypassDnd(true)
-                    setSound(null, null)
-                    notificationManager.createNotificationChannel(this)
-                }
+            NotificationChannel(
+                EARLY_ALARM_DISMISSAL_CHANNEL_ID,
+                context.getString(R.string.early_alarm_dismissal),
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                setBypassDnd(true)
+                setSound(null, null)
+                notificationManager.createNotificationChannel(this)
             }
 
             val contentIntent = context.getOpenAlarmTabIntent()
@@ -55,7 +52,7 @@ class UpcomingAlarmReceiver : BroadcastReceiver() {
                 alarmId = alarmId, notificationId = UPCOMING_ALARM_NOTIFICATION_ID
             )
 
-            val notification = NotificationCompat.Builder(context)
+            val notification = NotificationCompat.Builder(context, EARLY_ALARM_DISMISSAL_CHANNEL_ID)
                 .setContentTitle(context.getString(R.string.upcoming_alarm))
                 .setContentText(alarmString)
                 .setSmallIcon(R.drawable.ic_alarm_vector)

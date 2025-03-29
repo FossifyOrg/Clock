@@ -20,7 +20,6 @@ import org.fossify.clock.helpers.Stopwatch.State
 import org.fossify.clock.helpers.Stopwatch.UpdateListener
 import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.helpers.isOreoPlus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -70,12 +69,10 @@ class StopwatchService : Service() {
     ): NotificationCompat.Builder {
         val channelId = "simple_alarm_stopwatch"
         val label = getString(R.string.stopwatch)
-        if (isOreoPlus()) {
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            NotificationChannel(channelId, label, importance).apply {
-                setSound(null, null)
-                notificationManager.createNotificationChannel(this)
-            }
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        NotificationChannel(channelId, label, importance).apply {
+            setSound(null, null)
+            notificationManager.createNotificationChannel(this)
         }
 
         return NotificationCompat.Builder(this, channelId)
