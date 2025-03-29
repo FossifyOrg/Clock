@@ -9,14 +9,20 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import org.fossify.clock.R
 import org.fossify.clock.extensions.getClosestEnabledAlarmString
-import org.fossify.clock.extensions.getDismissAlarmPendingIntent
 import org.fossify.clock.extensions.getOpenAlarmTabIntent
+import org.fossify.clock.extensions.getSkipUpcomingAlarmPendingIntent
+import org.fossify.clock.extensions.goAsync
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.EARLY_ALARM_DISMISSAL_CHANNEL_ID
-import org.fossify.clock.helpers.EARLY_ALARM_NOTIF_ID
+import org.fossify.clock.helpers.UPCOMING_ALARM_NOTIFICATION_ID
+import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.helpers.isOreoPlus
 
-class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
+/**
+ * Receiver responsible for showing a notification that allows users to skip an upcoming alarm.
+ * This notification appears 10 minutes before (hardcoded) the alarm is scheduled to trigger.
+ */
+class UpcomingAlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         val alarmId = intent.getIntExtra(ALARM_ID, -1)
@@ -24,12 +30,14 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
             return
         }
 
-        triggerEarlyDismissalNotification(context, alarmId)
+        goAsync {
+            showUpcomingAlarmNotification(context, alarmId)
+        }
     }
 
-    private fun triggerEarlyDismissalNotification(context: Context, alarmId: Int) {
+    private fun showUpcomingAlarmNotification(context: Context, alarmId: Int) {
         context.getClosestEnabledAlarmString { alarmString ->
-            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager = context.notificationManager
             if (isOreoPlus()) {
                 NotificationChannel(
                     EARLY_ALARM_DISMISSAL_CHANNEL_ID,
@@ -41,22 +49,29 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
                     notificationManager.createNotificationChannel(this)
                 }
             }
-            val dismissIntent = context.getDismissAlarmPendingIntent(alarmId, EARLY_ALARM_NOTIF_ID)
+
             val contentIntent = context.getOpenAlarmTabIntent()
+            val dismissIntent = context.getSkipUpcomingAlarmPendingIntent(
+                alarmId = alarmId, notificationId = UPCOMING_ALARM_NOTIFICATION_ID
+            )
+
             val notification = NotificationCompat.Builder(context)
                 .setContentTitle(context.getString(R.string.upcoming_alarm))
                 .setContentText(alarmString)
                 .setSmallIcon(R.drawable.ic_alarm_vector)
                 .setPriority(Notification.PRIORITY_LOW)
-                .addAction(0, context.getString(org.fossify.commons.R.string.dismiss), dismissIntent)
+                .addAction(
+                    0,
+                    context.getString(org.fossify.commons.R.string.dismiss),
+                    dismissIntent
+                )
                 .setContentIntent(contentIntent)
                 .setSound(null)
                 .setAutoCancel(true)
                 .setChannelId(EARLY_ALARM_DISMISSAL_CHANNEL_ID)
                 .build()
 
-            notificationManager.notify(EARLY_ALARM_NOTIF_ID, notification)
+            notificationManager.notify(UPCOMING_ALARM_NOTIFICATION_ID, notification)
         }
     }
-
 }

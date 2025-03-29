@@ -11,13 +11,13 @@ import org.fossify.clock.adapters.AlarmsAdapter
 import org.fossify.clock.databinding.FragmentAlarmBinding
 import org.fossify.clock.dialogs.ChangeAlarmSortDialog
 import org.fossify.clock.dialogs.EditAlarmDialog
+import org.fossify.clock.extensions.alarmController
 import org.fossify.clock.extensions.cancelAlarmClock
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.createNewAlarm
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.firstDayOrder
 import org.fossify.clock.extensions.handleFullScreenNotificationsPermission
-import org.fossify.clock.extensions.scheduleNextAlarm
 import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.helpers.DEFAULT_ALARM_MINUTES
 import org.fossify.clock.helpers.SORT_BY_ALARM_TIME
@@ -195,7 +195,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
     private fun checkAlarmState(alarm: Alarm) {
         if (alarm.isEnabled) {
-            context?.scheduleNextAlarm(alarm, true)
+            context?.alarmController?.scheduleNextOccurrence(alarm, true)
         } else {
             context?.cancelAlarmClock(alarm)
         }

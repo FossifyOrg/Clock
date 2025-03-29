@@ -10,10 +10,9 @@ import org.fossify.clock.R
 import org.fossify.clock.databinding.ActivitySettingsBinding
 import org.fossify.clock.dialogs.ExportDataDialog
 import org.fossify.clock.extensions.config
-import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.timerDb
-import org.fossify.clock.helpers.DBHelper
+import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.helpers.DEFAULT_MAX_ALARM_REMINDER_SECS
 import org.fossify.clock.helpers.DEFAULT_MAX_TIMER_REMINDER_SECS
 import org.fossify.clock.helpers.EXPORT_BACKUP_MIME_TYPE
@@ -50,7 +49,6 @@ import org.fossify.commons.helpers.TAB_LAST_USED
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.helpers.isTiramisuPlus
 import org.fossify.commons.models.RadioItem
-import java.io.IOException
 import java.util.Locale
 import kotlin.system.exitProcess
 
@@ -60,11 +58,7 @@ class SettingsActivity : SimpleActivity() {
         registerForActivityResult(ActivityResultContracts.CreateDocument(EXPORT_BACKUP_MIME_TYPE)) { uri ->
             if (uri == null) return@registerForActivityResult
             ensureBackgroundThread {
-                try {
-                    exportDataTo(uri)
-                } catch (e: IOException) {
-                    showErrorToast(e)
-                }
+                exportData(uri)
             }
         }
 
@@ -72,11 +66,7 @@ class SettingsActivity : SimpleActivity() {
         registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
             if (uri == null) return@registerForActivityResult
             ensureBackgroundThread {
-                try {
-                    importData(uri)
-                } catch (e: Exception) {
-                    showErrorToast(e)
-                }
+                importData(uri)
             }
         }
 
@@ -218,12 +208,14 @@ class SettingsActivity : SimpleActivity() {
             RadioItem(5, getString(org.fossify.commons.R.string.saturday)),
         )
 
-        binding.settingsStartWeekOn.text = resources.getStringArray(org.fossify.commons.R.array.week_days)[config.firstDayOfWeek]
+        binding.settingsStartWeekOn.text =
+            resources.getStringArray(org.fossify.commons.R.array.week_days)[config.firstDayOfWeek]
         binding.settingsStartWeekOnHolder.setOnClickListener {
             RadioGroupDialog(this@SettingsActivity, items, config.firstDayOfWeek) { day ->
                 val firstDayOfWeek = day as Int
                 config.firstDayOfWeek = firstDayOfWeek
-                binding.settingsStartWeekOn.text = resources.getStringArray(org.fossify.commons.R.array.week_days)[config.firstDayOfWeek]
+                binding.settingsStartWeekOn.text =
+                    resources.getStringArray(org.fossify.commons.R.array.week_days)[config.firstDayOfWeek]
             }
         }
     }
@@ -231,7 +223,11 @@ class SettingsActivity : SimpleActivity() {
     private fun setupAlarmMaxReminder() {
         updateAlarmMaxReminderText()
         binding.settingsAlarmMaxReminderHolder.setOnClickListener {
-            showPickSecondsDialog(config.alarmMaxReminderSecs, true, true) {
+            showPickSecondsDialog(
+                curSeconds = config.alarmMaxReminderSecs,
+                isSnoozePicker = true,
+                showSecondsAtCustomDialog = true
+            ) {
                 config.alarmMaxReminderSecs = if (it != 0) it else DEFAULT_MAX_ALARM_REMINDER_SECS
                 updateAlarmMaxReminderText()
             }
@@ -251,7 +247,10 @@ class SettingsActivity : SimpleActivity() {
     private fun setupSnoozeTime() {
         updateSnoozeText()
         binding.settingsSnoozeTimeHolder.setOnClickListener {
-            showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true) {
+            showPickSecondsDialog(
+                curSeconds = config.snoozeTime * MINUTE_SECONDS,
+                isSnoozePicker = true
+            ) {
                 config.snoozeTime = it / MINUTE_SECONDS
                 updateSnoozeText()
             }
@@ -261,7 +260,11 @@ class SettingsActivity : SimpleActivity() {
     private fun setupTimerMaxReminder() {
         updateTimerMaxReminderText()
         binding.settingsTimerMaxReminderHolder.setOnClickListener {
-            showPickSecondsDialog(config.timerMaxReminderSecs, true, true) {
+            showPickSecondsDialog(
+                curSeconds = config.timerMaxReminderSecs,
+                isSnoozePicker = true,
+                showSecondsAtCustomDialog = true
+            ) {
                 config.timerMaxReminderSecs = if (it != 0) it else DEFAULT_MAX_TIMER_REMINDER_SECS
                 updateTimerMaxReminderText()
             }
@@ -311,7 +314,7 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun exportDataTo(outputUri: Uri) {
+    private fun exportData(outputUri: Uri) {
         val alarms = dbHelper.getAlarms()
         val timers = timerDb.getTimers()
         if (alarms.isEmpty() && timers.isEmpty()) {
@@ -335,7 +338,7 @@ class SettingsActivity : SimpleActivity() {
         ExportDataDialog(this, config.lastDataExportPath) { file ->
             try {
                 exportActivityResultLauncher.launch(file.name)
-            } catch (e: ActivityNotFoundException) {
+            } catch (@Suppress("SwallowedException") e: ActivityNotFoundException) {
                 toast(
                     id = org.fossify.commons.R.string.system_service_disabled,
                     length = Toast.LENGTH_LONG
@@ -349,7 +352,7 @@ class SettingsActivity : SimpleActivity() {
     private fun tryImportData() {
         try {
             importActivityResultLauncher.launch(IMPORT_BACKUP_MIME_TYPES.toTypedArray())
-        } catch (e: ActivityNotFoundException) {
+        } catch (@Suppress("SwallowedException") e: ActivityNotFoundException) {
             toast(org.fossify.commons.R.string.system_service_disabled, Toast.LENGTH_LONG)
         } catch (e: Exception) {
             showErrorToast(e)
@@ -359,7 +362,7 @@ class SettingsActivity : SimpleActivity() {
     private fun importData(uri: Uri) {
         val result = ImportHelper(
             context = this,
-            dbHelper = DBHelper.dbInstance!!,
+            dbHelper = dbHelper,
             timerHelper = TimerHelper(this)
         ).importData(uri)
 

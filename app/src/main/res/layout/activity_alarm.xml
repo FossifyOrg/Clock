@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/time_expired" />
+        tools:text="Wake up!" />
 
     <org.fossify.commons.views.MyTextView
         android:id="@+id/reminder_text"
@@ -27,13 +27,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reminder_title"
-        tools:text="14:00" />
+        tools:text="05:00 AM" />
 
     <ImageView
         android:id="@+id/reminder_snooze"
         android:layout_width="@dimen/reminder_background_min_size"
         android:layout_height="@dimen/reminder_background_min_size"
         android:clickable="false"
+        android:contentDescription="@string/snooze"
         android:padding="@dimen/activity_margin"
         android:src="@drawable/ic_snooze_vector"
         app:layout_constraintBottom_toBottomOf="@+id/reminder_draggable"
@@ -58,6 +59,7 @@
         android:layout_height="@dimen/reminder_background_min_size"
         android:layout_marginBottom="@dimen/activity_margin"
         android:alpha="0.2"
+        android:importantForAccessibility="no"
         android:padding="@dimen/medium_margin"
         android:src="@drawable/pulsing_background"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -84,6 +86,7 @@
         android:layout_width="@dimen/reminder_background_min_size"
         android:layout_height="@dimen/reminder_background_min_size"
         android:clickable="false"
+        android:contentDescription="@string/dismiss"
         android:padding="@dimen/activity_margin"
         android:src="@drawable/ic_alarm_off_vector"
         app:layout_constraintBottom_toBottomOf="@+id/reminder_draggable"
@@ -112,17 +115,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reminder_draggable" />
-
-    <ImageView
-        android:id="@+id/reminder_stop"
-        android:layout_width="@dimen/stopwatch_button_size"
-        android:layout_height="@dimen/stopwatch_button_size"
-        android:layout_marginBottom="@dimen/big_margin"
-        android:padding="@dimen/normal_margin"
-        android:src="@drawable/ic_stop_vector"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
