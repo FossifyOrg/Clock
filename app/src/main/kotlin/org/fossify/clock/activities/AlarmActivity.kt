@@ -73,6 +73,7 @@ class AlarmActivity : SimpleActivity() {
         )
 
         setupAlarmButtons()
+        EventBus.getDefault().register(this)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -168,19 +169,10 @@ class AlarmActivity : SimpleActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         swipeGuideFadeHandler.removeCallbacksAndMessages(null)
+        EventBus.getDefault().unregister(this)
     }
 
     private fun snoozeAlarm(overrideSnoozeDuration: Int? = null) {
