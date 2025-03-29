@@ -1,32 +1,32 @@
-Introducindo o Relógio Fossify - o companheiro definito para gerencimento de tempo, para melhorar suas rotinas diárias e motivar hábitos de sono melhores. Com uma multitude de funções feitas com suas necessidades em mente, o Relógio Fossify integra diretamente à sua vida, oferecendo conveniência e versatilidade excepcionais. 
+Apresentando o Fossify Clock – o melhor companheiro de cronometragem projetado para melhorar suas rotinas diárias e promover melhores hábitos de sono. Com uma infinidade de funções adaptadas às suas necessidades, o Fossify Clock se integra perfeitamente à sua vida, oferecendo conveniência e versatilidade incomparáveis.
 
-⌚ MULTIFUNCTIONAL TIMEKEEPING:
-Experience the power of versatile time management with Fossify Clock. From serving as a clock widget to functioning as an alarm clock and stopwatch, this app is your go-to tool for regulating your daily activities and improving your overall lifestyle.
+⌚ CRONOMETRAGEM MULTIFUNCIONAL:
+Experimente o poder do gerenciamento de tempo versátil com o Fossify Clock. De servir como um widget de relógio a funcionar como um despertador e cronômetro, este aplicativo é sua ferramenta preferida para regular suas atividades diárias e melhorar seu estilo de vida geral.
 
-⏰ FEATURE-RICH ALARM:
-Wake up refreshed with Fossify Clock's comprehensive alarm features. Set multiple alarms with options like day selection, vibration toggle, custom labels and ringtone customization. Enjoy gradual volume increase and a customizable snooze button for a pleasant waking experience. With a user-friendly interface, setting up alarms has never been easier.
+⏰ ALARME RICO EM RECURSOS:
+Acorde revigorado com os recursos abrangentes de alarme do Fossify Clock. Defina vários alarmes com opções como seleção de dia, alternância de vibração, rótulos personalizados e personalização de toque. Aproveite o aumento gradual do volume e um botão de soneca personalizável para uma experiência agradável ao acordar. Com uma interface amigável, configurar alarmes nunca foi tão fácil.
 
-⏱️ CONVENIENT STOPWATCH:
-Track your activities with precision using Fossify Clock's stopwatch function. Measure longer periods or individual laps effortlessly. You can also sort your laps in ascending or descending order.
+⏱️ CRONÔMETRO CONVENIENTE:
+Acompanhe suas atividades com precisão usando a função de cronômetro do Fossify Clock. Meça períodos mais longos ou voltas individuais sem esforço. Você também pode classificar suas voltas em ordem crescente ou decrescente.
 
-⏳ PRECISE TIMER FUNCTIONALITY:
-Stay on top of your tasks with Fossify Clock's versatile timer feature. Customize ringtone preferences, toggle vibrations, and pause countdowns to suit your needs. Whether you're timing cooking intervals, managing study sessions, or ensuring timely breaks, Fossify Clock has you covered with precision and ease.
+⏳ FUNCIONALIDADE DE TEMPORIZADOR PRECISO:
+Fique em dia com suas tarefas com o versátil recurso de temporizador do Fossify Clock. Personalize as preferências de toque, alterne vibrações e pause contagens regressivas para atender às suas necessidades. Quer você esteja cronometrando intervalos de cozimento, gerenciando sessões de estudo ou garantindo pausas oportunas, o Fossify Clock tem tudo o que você precisa com precisão e facilidade.
 
-🌈 CLOCK WIDGET WITH CUSTOMIZABLE FEATURES:
-Transform your home screen with Fossify Clock's customizable clock widget. Adjust text color, background color, and transparency. Choose between analog or digital clock to suit your style and easily access essential time information at a glance.
+🌈 WIDGET DE RELÓGIO COM RECURSOS PERSONALIZÁVEIS:
+Transforme sua tela inicial com o widget de relógio personalizável do Fossify Clock. Ajuste a cor do texto, a cor do plano de fundo e a transparência. Escolha entre relógio analógico ou digital para se adequar ao seu estilo e acesse facilmente informações essenciais de tempo rapidamente.
 
-🎨 CUSTOMIZABLE INTERFACE AND THEMES:
-Enjoy a personalized experience with Fossify Clock's material design and dark theme options. Tailor the app to your preferences with customizable colors and themes, enhancing usability and reducing eye strain, especially in low-light environments.
+🎨 INTERFACE E TEMAS PERSONALIZÁVEIS:
+Desfrute de uma experiência personalizada com o design de material e as opções de tema escuro do Fossify Clock. Adapte o aplicativo às suas preferências com cores e temas personalizáveis, melhorando a usabilidade e reduzindo o cansaço visual, especialmente em ambientes com pouca luz.
 
-🔒 PRIVACY-FIRST APPROACH:
-Rest assured knowing your privacy is protected with Fossify Clock's offline operation. Experience maximum privacy, security, and stability without sacrificing functionality or convenience.
+🔒 ABORDAGEM DE PRIVACIDADE EM PRIMEIRO LUGAR:
+Fique tranquilo sabendo que sua privacidade está protegida com a operação offline do Fossify Clock. Experimente o máximo de privacidade, segurança e estabilidade sem sacrificar a funcionalidade ou a conveniência.
 
-🌐 AD-FREE & OPEN-SOURCE:
-Say goodbye to intrusive ads and unnecessary permissions. Fossify Clock is ad-free, fully open-source, and grants you complete control over your timekeeping experience.
+🌐 SEM ANÚNCIOS E DE CÓDIGO ABERTO:
+Diga adeus aos anúncios intrusivos e às permissões desnecessárias. O Fossify Clock é livre de anúncios, totalmente de código aberto e concede a você controle total sobre sua experiência de cronometragem.
 
-Upgrade your time management skills, optimize your routines, and prioritize better sleep with Fossify Clock. Download now and take control of your time like never before.
+Atualize suas habilidades de gerenciamento de tempo, otimize suas rotinas e priorize um sono melhor com o Fossify Clock. Baixe agora e assuma o controle do seu tempo como nunca antes.
 
-Explore more Fossify apps: https://www.fossify.org
-Open-Source Code: https://www.github.com/FossifyOrg
-Join the community on Reddit: https://www.reddit.com/r/Fossify
-Connect on Telegram: https://t.me/Fossify
+Explore mais aplicativos Fossify: https://www.fossify.org
+Código Aberto: https://www.github.com/FossifyOrg
+Junte-se à comunidade no Reddit: https://www.reddit.com/r/Fossify
+Conecte-se no Telegram: https://t.me/Fossify
