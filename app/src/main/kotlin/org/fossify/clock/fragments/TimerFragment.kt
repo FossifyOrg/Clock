@@ -19,6 +19,7 @@ import org.fossify.clock.helpers.DisabledItemChangeAnimator
 import org.fossify.clock.helpers.SORT_BY_TIMER_DURATION
 import org.fossify.clock.models.Timer
 import org.fossify.clock.models.TimerEvent
+import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.getProperBackgroundColor
 import org.fossify.commons.extensions.getProperTextColor
 import org.fossify.commons.extensions.hideKeyboard
@@ -161,6 +162,7 @@ class TimerFragment : Fragment() {
                         }
                     }
                 }
+                binding.timersPlaceholder.beVisibleIf(timers.isEmpty())
             }
         }
     }
