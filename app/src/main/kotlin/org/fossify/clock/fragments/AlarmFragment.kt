@@ -26,6 +26,7 @@ import org.fossify.clock.helpers.getTomorrowBit
 import org.fossify.clock.interfaces.ToggleAlarmInterface
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.AlarmEvent
+import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.getProperBackgroundColor
 import org.fossify.commons.extensions.getProperTextColor
 import org.fossify.commons.extensions.toast
@@ -159,6 +160,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                     updateItems(alarms)
                 }
             }
+            binding.alarmsPlaceholder.beVisibleIf(alarms.isEmpty())
         }
     }
 

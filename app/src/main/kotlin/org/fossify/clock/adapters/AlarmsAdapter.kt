@@ -19,6 +19,7 @@ import org.fossify.clock.helpers.TOMORROW_BIT
 import org.fossify.clock.helpers.getCurrentDayMinutes
 import org.fossify.clock.interfaces.ToggleAlarmInterface
 import org.fossify.clock.models.Alarm
+import org.fossify.clock.models.AlarmEvent
 import org.fossify.commons.adapters.MyRecyclerViewAdapter
 import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.extensions.applyColorFilter
@@ -29,6 +30,7 @@ import org.fossify.commons.interfaces.ItemMoveCallback
 import org.fossify.commons.interfaces.ItemTouchHelperContract
 import org.fossify.commons.interfaces.StartReorderDragListener
 import org.fossify.commons.views.MyRecyclerView
+import org.greenrobot.eventbus.EventBus
 
 class AlarmsAdapter(
     activity: SimpleActivity,
@@ -123,6 +125,7 @@ class AlarmsAdapter(
         alarms.removeAll(alarmsToRemove)
         removeSelectedItems(positions)
         activity.dbHelper.deleteAlarms(alarmsToRemove)
+        EventBus.getDefault().post(AlarmEvent.Refresh)
     }
 
     private fun getSelectedItems(): ArrayList<Alarm> {

@@ -6,19 +6,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.fossify.commons.views.MyRecyclerView
-        android:id="@+id/timers_list"
+    <RelativeLayout
+        android:id="@+id/timer_holder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/fab_list_bottom_padding"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="3"
-        tools:listitem="@layout/item_timer" />
+        android:layout_height="match_parent">
+
+        <org.fossify.commons.views.MyRecyclerView
+            android:id="@+id/timers_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/fab_list_bottom_padding"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_timer" />
+
+        <org.fossify.commons.views.MyTextView
+            android:id="@+id/timers_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/small_margin"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:paddingStart="@dimen/activity_margin"
+            android:paddingTop="@dimen/activity_margin"
+            android:paddingEnd="@dimen/activity_margin"
+            android:text="@string/no_timers_found"
+            android:textSize="@dimen/bigger_text_size"
+            android:textStyle="italic"
+            android:visibility="gone" />
+
+    </RelativeLayout>
 
     <org.fossify.commons.views.MyFloatingActionButton
         android:id="@+id/timer_add"

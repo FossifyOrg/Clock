@@ -22,6 +22,22 @@
             app:layoutManager="org.fossify.commons.views.MyLinearLayoutManager"
             tools:listitem="@layout/item_alarm" />
 
+        <org.fossify.commons.views.MyTextView
+            android:id="@+id/alarms_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/small_margin"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:paddingStart="@dimen/activity_margin"
+            android:paddingTop="@dimen/activity_margin"
+            android:paddingEnd="@dimen/activity_margin"
+            android:text="@string/no_alarms_found"
+            android:textSize="@dimen/bigger_text_size"
+            android:textStyle="italic"
+            android:visibility="gone" />
+
     </RelativeLayout>
 
     <org.fossify.commons.views.MyFloatingActionButton
