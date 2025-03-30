@@ -49,6 +49,7 @@ import org.fossify.commons.helpers.TAB_LAST_USED
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.helpers.isTiramisuPlus
 import org.fossify.commons.models.RadioItem
+import java.time.DayOfWeek
 import java.util.Locale
 import kotlin.system.exitProcess
 
@@ -199,24 +200,31 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupStartWeekOn() {
-        val items = arrayListOf(
-            RadioItem(6, getString(org.fossify.commons.R.string.sunday)),
-            RadioItem(0, getString(org.fossify.commons.R.string.monday)),
-            RadioItem(1, getString(org.fossify.commons.R.string.tuesday)),
-            RadioItem(2, getString(org.fossify.commons.R.string.wednesday)),
-            RadioItem(3, getString(org.fossify.commons.R.string.thursday)),
-            RadioItem(4, getString(org.fossify.commons.R.string.friday)),
-            RadioItem(5, getString(org.fossify.commons.R.string.saturday)),
+        binding.settingsStartWeekOn.text = resources.getStringArray(
+            org.fossify.commons.R.array.week_days
+        )[config.firstDayOfWeek - 1]
+
+        val weekDays = arrayListOf(
+            RadioItem(DayOfWeek.SUNDAY.value, getString(org.fossify.commons.R.string.sunday)),
+            RadioItem(DayOfWeek.MONDAY.value, getString(org.fossify.commons.R.string.monday)),
+            RadioItem(DayOfWeek.TUESDAY.value, getString(org.fossify.commons.R.string.tuesday)),
+            RadioItem(DayOfWeek.WEDNESDAY.value, getString(org.fossify.commons.R.string.wednesday)),
+            RadioItem(DayOfWeek.THURSDAY.value, getString(org.fossify.commons.R.string.thursday)),
+            RadioItem(DayOfWeek.FRIDAY.value, getString(org.fossify.commons.R.string.friday)),
+            RadioItem(DayOfWeek.SATURDAY.value, getString(org.fossify.commons.R.string.saturday)),
         )
 
-        binding.settingsStartWeekOn.text =
-            resources.getStringArray(org.fossify.commons.R.array.week_days)[config.firstDayOfWeek]
         binding.settingsStartWeekOnHolder.setOnClickListener {
-            RadioGroupDialog(this@SettingsActivity, items, config.firstDayOfWeek) { day ->
+            RadioGroupDialog(
+                activity = this,
+                items = weekDays,
+                checkedItemId = config.firstDayOfWeek
+            ) { day ->
                 val firstDayOfWeek = day as Int
                 config.firstDayOfWeek = firstDayOfWeek
-                binding.settingsStartWeekOn.text =
-                    resources.getStringArray(org.fossify.commons.R.array.week_days)[config.firstDayOfWeek]
+                binding.settingsStartWeekOn.text = resources.getStringArray(
+                    org.fossify.commons.R.array.week_days
+                )[config.firstDayOfWeek - 1]
             }
         }
     }

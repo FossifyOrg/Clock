@@ -28,7 +28,6 @@ import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.AlarmController
 import org.fossify.clock.helpers.Config
 import org.fossify.clock.helpers.DBHelper
-import org.fossify.clock.helpers.UPCOMING_ALARM_INTENT_ID
 import org.fossify.clock.helpers.EDITED_TIME_ZONE_SEPARATOR
 import org.fossify.clock.helpers.FORMAT_12H
 import org.fossify.clock.helpers.FORMAT_24H
@@ -45,6 +44,7 @@ import org.fossify.clock.helpers.TIMER_ID
 import org.fossify.clock.helpers.TODAY_BIT
 import org.fossify.clock.helpers.TOMORROW_BIT
 import org.fossify.clock.helpers.TimerHelper
+import org.fossify.clock.helpers.UPCOMING_ALARM_INTENT_ID
 import org.fossify.clock.helpers.formatTime
 import org.fossify.clock.helpers.getAllTimeZones
 import org.fossify.clock.helpers.getDefaultTimeZoneTitle
@@ -69,6 +69,7 @@ import org.fossify.commons.extensions.getProperPrimaryColor
 import org.fossify.commons.extensions.getSelectedDaysString
 import org.fossify.commons.extensions.grantReadUriPermission
 import org.fossify.commons.extensions.notificationManager
+import org.fossify.commons.extensions.rotateLeft
 import org.fossify.commons.extensions.showErrorToast
 import org.fossify.commons.extensions.toInt
 import org.fossify.commons.extensions.toast
@@ -566,24 +567,17 @@ fun Context.getAlarmSelectedDaysString(bitMask: Int): String {
         TODAY_BIT -> getString(org.fossify.commons.R.string.today)
         TOMORROW_BIT -> getString(org.fossify.commons.R.string.tomorrow)
         EVERY_DAY_BIT -> getString(org.fossify.commons.R.string.every_day)
-        else -> getSelectedDaysString(bitMask)
+        else -> getSelectedDaysString(bitMask) // TODO: This does not respect config.firstDayOfWeek
     }
 }
 
-fun Context.orderDaysList(days: List<Int>): List<Int> {
-    if (config.firstDayOfWeek > 0) {
-        val range = (config.firstDayOfWeek..6).toList() + (0..<config.firstDayOfWeek).toList()
-        return days.slice(range)
-    } else {
-        return days
-    }
-}
+fun Context.rotateWeekdays(days: List<Int>) = days.rotateLeft(config.firstDayOfWeek - 1)
 
 fun Context.firstDayOrder(bitMask: Int): Int {
     if (bitMask == TODAY_BIT) return -2
     if (bitMask == TOMORROW_BIT) return -1
 
-    val dayBits = orderDaysList(
+    val dayBits = rotateWeekdays(
         arrayListOf(
             MONDAY_BIT,
             TUESDAY_BIT,

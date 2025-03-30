@@ -56,6 +56,8 @@ import org.fossify.commons.helpers.LICENSE_RTL
 import org.fossify.commons.helpers.LICENSE_STETHO
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.models.FAQItem
+import java.time.temporal.WeekFields
+import java.util.Locale
 
 class MainActivity : SimpleActivity() {
     private var storedTextColor = 0
@@ -407,11 +409,9 @@ class MainActivity : SimpleActivity() {
 
     @Deprecated("Remove this method in future releases")
     private fun migrateFirstDayOfWeek() {
-        // check existing config.isSundayFirst to migrate setting value
-        if (config.isSundayFirst) {
-            config.firstDayOfWeek = 6
-            // revert old setting to not run this code anymore
-            config.isSundayFirst = false
+        if (config.migrateFirstDayOfWeek) {
+            config.migrateFirstDayOfWeek = false
+            config.firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek.value
         }
     }
 

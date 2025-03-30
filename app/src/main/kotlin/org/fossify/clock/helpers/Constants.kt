@@ -40,7 +40,7 @@ const val STOPWATCH_LAPS_SORT_BY = "stopwatch_laps_sort_by"
 const val WAS_INITIAL_WIDGET_SET_UP = "was_initial_widget_set_up"
 const val DATA_EXPORT_EXTENSION = ".json"
 const val LAST_DATA_EXPORT_PATH = "last_alarms_export_path"
-const val FIRST_DAY_OF_WEEK = "first_day_of_week"
+const val MIGRATE_FIRST_DAY_OF_WEEK = "migrate_first_day_of_week"
 
 const val TABS_COUNT = 4
 const val EDITED_TIME_ZONE_SEPARATOR = ":"
@@ -100,7 +100,7 @@ const val FORMAT_24H = "HH:mm"
 const val FORMAT_12H_WITH_SECONDS = "h:mm:ss a"
 const val FORMAT_24H_WITH_SECONDS = "HH:mm:ss"
 
-val DAY_BIT_MAP = mapOf(
+private val DAY_BIT_MAP = mapOf(
     Calendar.SUNDAY to SUNDAY_BIT,
     Calendar.MONDAY to MONDAY_BIT,
     Calendar.TUESDAY to TUESDAY_BIT,
