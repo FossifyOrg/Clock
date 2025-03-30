@@ -17,7 +17,7 @@ import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getFormattedTime
 import org.fossify.clock.extensions.handleFullScreenNotificationsPermission
-import org.fossify.clock.extensions.orderDaysList
+import org.fossify.clock.extensions.rotateWeekdays
 import org.fossify.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import org.fossify.clock.helpers.TODAY_BIT
 import org.fossify.clock.helpers.TOMORROW_BIT
@@ -124,7 +124,7 @@ class EditAlarmDialog(
             val dayLetters =
                 activity.resources.getStringArray(org.fossify.commons.R.array.week_day_letters)
                     .toList() as ArrayList<String>
-            val dayIndexes = activity.orderDaysList(arrayListOf(0, 1, 2, 3, 4, 5, 6))
+            val dayIndexes = activity.rotateWeekdays(arrayListOf(0, 1, 2, 3, 4, 5, 6))
 
             dayIndexes.forEach {
                 val bitmask = 1 shl it
