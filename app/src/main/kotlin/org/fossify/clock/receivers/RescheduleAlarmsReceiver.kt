@@ -6,7 +6,7 @@ import android.content.Intent
 import org.fossify.clock.extensions.alarmController
 import org.fossify.clock.extensions.goAsync
 
-class BootCompletedReceiver : BroadcastReceiver() {
+class RescheduleAlarmsReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         goAsync {
