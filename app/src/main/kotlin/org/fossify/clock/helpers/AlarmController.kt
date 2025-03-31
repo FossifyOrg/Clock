@@ -31,6 +31,8 @@ class AlarmController(
      */
     fun rescheduleEnabledAlarms() {
         db.getEnabledAlarms().forEach {
+            // TODO: Instead of naively not scheduling all alarms for today, skipped upcoming
+            //  alarms should be tracked properly.
             if (!it.isToday() || it.timeInMinutes > getCurrentDayMinutes()) {
                 scheduleNextOccurrence(it, false)
             }
