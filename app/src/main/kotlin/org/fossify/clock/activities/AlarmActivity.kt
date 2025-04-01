@@ -38,6 +38,11 @@ import kotlin.math.max
 import kotlin.math.min
 
 class AlarmActivity : SimpleActivity() {
+    companion object {
+        private const val REMINDER_DRAGGABLE_BACKGROUND_ALPHA = 0.2f
+        private const val REMINDER_GUIDE_SHOW_DURATION = 2000L
+        private const val DRAG_ACTION_THRESHOLD_PX = 50f
+    }
 
     private val swipeGuideFadeHandler = Handler(Looper.getMainLooper())
     private var alarm: Alarm? = null
@@ -109,14 +114,16 @@ class AlarmActivity : SimpleActivity() {
                     dragDownX = 0f
                     if (!didVibrate) {
                         binding.reminderDraggable.animate().x(initialDraggableX).withEndAction {
-                            binding.reminderDraggableBackground.animate().alpha(0.2f)
+                            binding.reminderDraggableBackground
+                                .animate()
+                                .alpha(REMINDER_DRAGGABLE_BACKGROUND_ALPHA)
                         }
 
                         binding.reminderGuide.animate().alpha(1f).start()
                         swipeGuideFadeHandler.removeCallbacksAndMessages(null)
                         swipeGuideFadeHandler.postDelayed({
                             binding.reminderGuide.animate().alpha(0f).start()
-                        }, 2000L)
+                        }, REMINDER_GUIDE_SHOW_DURATION)
                     }
                 }
 
@@ -126,13 +133,13 @@ class AlarmActivity : SimpleActivity() {
                         b = max(minDragX, event.rawX - dragDownX)
                     )
 
-                    if (binding.reminderDraggable.x >= maxDragX - 50f) {
+                    if (binding.reminderDraggable.x >= maxDragX - DRAG_ACTION_THRESHOLD_PX) {
                         if (!didVibrate) {
                             binding.reminderDraggable.performHapticFeedback()
                             didVibrate = true
                             dismissAlarmAndFinish()
                         }
-                    } else if (binding.reminderDraggable.x <= minDragX + 50f) {
+                    } else if (binding.reminderDraggable.x <= minDragX + DRAG_ACTION_THRESHOLD_PX) {
                         if (!didVibrate) {
                             binding.reminderDraggable.performHapticFeedback()
                             didVibrate = true

@@ -196,12 +196,13 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     private fun checkAlarmState(alarm: Alarm) {
+        val activity = activity as? MainActivity ?: return
         if (alarm.isEnabled) {
-            context?.alarmController?.scheduleNextOccurrence(alarm, true)
+            activity.alarmController.scheduleNextOccurrence(alarm = alarm, showToasts = true)
         } else {
-            context?.cancelAlarmClock(alarm)
+            activity.cancelAlarmClock(alarm)
         }
-        (activity as? MainActivity)?.updateClockTabAlarm()
+        activity.updateClockTabAlarm()
     }
 
     fun updateAlarmSound(alarmSound: AlarmSound) {
@@ -209,7 +210,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: AlarmEvent.Refresh) {
+    fun onMessageEvent(@Suppress("unused") event: AlarmEvent.Refresh) {
         setupAlarms()
     }
 }
