@@ -46,6 +46,8 @@ class AlarmService : Service() {
         private const val DEFAULT_ALARM_VOLUME = 7
         private const val INCREASE_VOLUME_DELAY = 300L
         private const val MIN_ALARM_VOLUME_FOR_INCREASING_ALARMS = 1
+        private const val VIBRATION_PATTERN_TIMING = 500L
+        private const val VOLUME_INCREASE_STEP = 0.1f
     }
 
     private var alarm: Alarm? = null
@@ -170,11 +172,9 @@ class AlarmService : Service() {
 
         if (alarm.vibrate) {
             vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
-            val timing = 500L
-            val repeatIndex = 0
             vibrator?.vibrate(
                 VibrationEffect.createWaveform(
-                    longArrayOf(timing, timing), repeatIndex
+                    longArrayOf(VIBRATION_PATTERN_TIMING, VIBRATION_PATTERN_TIMING), 0
                 )
             )
         }
@@ -182,9 +182,8 @@ class AlarmService : Service() {
 
     private fun scheduleVolumeIncrease(lastVolume: Float, maxVolume: Float, delay: Long) {
         increaseVolumeHandler.postDelayed({
-            val volumeFlags = 0
-            val newVolume = (lastVolume + 0.1f).coerceAtMost(maxVolume)
-            audioManager?.setStreamVolume(STREAM_ALARM, newVolume.toInt(), volumeFlags)
+            val newVolume = (lastVolume + VOLUME_INCREASE_STEP).coerceAtMost(maxVolume)
+            audioManager?.setStreamVolume(STREAM_ALARM, newVolume.toInt(), 0)
             if (newVolume < maxVolume) {
                 scheduleVolumeIncrease(newVolume, maxVolume, INCREASE_VOLUME_DELAY)
             }
@@ -193,8 +192,7 @@ class AlarmService : Service() {
 
     private fun resetVolumeToInitialValue() {
         if (config.increaseVolumeGradually) {
-            val volumeFlags = 0
-            audioManager?.setStreamVolume(STREAM_ALARM, initialAlarmVolume, volumeFlags)
+            audioManager?.setStreamVolume(STREAM_ALARM, initialAlarmVolume, 0)
         }
     }
 

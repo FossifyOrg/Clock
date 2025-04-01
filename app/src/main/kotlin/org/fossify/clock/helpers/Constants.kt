@@ -175,6 +175,7 @@ fun getCurrentDayMinutes(): Int {
     return calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
 }
 
+@Suppress("MagicNumber")
 fun getAllTimeZones() = arrayListOf(
     MyTimeZone(1, "GMT-11:00 Midway", "Pacific/Midway"),
     MyTimeZone(2, "GMT-10:00 Honolulu", "Pacific/Honolulu"),

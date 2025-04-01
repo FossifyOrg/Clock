@@ -36,7 +36,6 @@ import org.fossify.commons.extensions.getCustomizeColorsString
 import org.fossify.commons.extensions.getProperPrimaryColor
 import org.fossify.commons.extensions.isOrWasThankYouInstalled
 import org.fossify.commons.extensions.launchPurchaseThankYouIntent
-import org.fossify.commons.extensions.showErrorToast
 import org.fossify.commons.extensions.showPickSecondsDialog
 import org.fossify.commons.extensions.toast
 import org.fossify.commons.extensions.updateTextColors
@@ -352,8 +351,6 @@ class SettingsActivity : SimpleActivity() {
                     id = org.fossify.commons.R.string.system_service_disabled,
                     length = Toast.LENGTH_LONG
                 )
-            } catch (e: Exception) {
-                showErrorToast(e)
             }
         }
     }
@@ -363,8 +360,6 @@ class SettingsActivity : SimpleActivity() {
             importActivityResultLauncher.launch(IMPORT_BACKUP_MIME_TYPES.toTypedArray())
         } catch (@Suppress("SwallowedException") _: ActivityNotFoundException) {
             toast(org.fossify.commons.R.string.system_service_disabled, Toast.LENGTH_LONG)
-        } catch (e: Exception) {
-            showErrorToast(e)
         }
     }
 
