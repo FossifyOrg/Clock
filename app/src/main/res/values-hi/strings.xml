@@ -46,4 +46,7 @@
     <string name="timer_tab">टाइमर टैब</string>
     <string name="show_seconds">सेकंड दिखाएँ</string>
     <string name="faq_1_title">मैं स्टॉपवॉच टैब पर लैप सॉर्टिंग कैसे बदल सकता हूं?</string>
+    <string name="sort_by_timer_duration">टाइमर अवधि</string>
+    <string name="settings_import_data">अलार्म और टाइमर आयात करें</string>
+    <string name="settings_export_data">अलार्म और टाइमर निर्यात करें</string>
 </resources>
