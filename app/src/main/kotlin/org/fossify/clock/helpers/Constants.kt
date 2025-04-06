@@ -298,3 +298,12 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
         }
     }
 }
+
+fun updateNonRecurringAlarmDay(alarm: Alarm) {
+    if (alarm.isRecurring()) return
+    alarm.days = if (alarm.timeInMinutes > getCurrentDayMinutes()) {
+        TODAY_BIT
+    } else {
+        TOMORROW_BIT
+    }
+}

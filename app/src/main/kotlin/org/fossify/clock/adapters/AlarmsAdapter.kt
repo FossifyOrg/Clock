@@ -15,8 +15,7 @@ import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getAlarmSelectedDaysString
 import org.fossify.clock.extensions.getFormattedTime
 import org.fossify.clock.extensions.swap
-import org.fossify.clock.helpers.TOMORROW_BIT
-import org.fossify.clock.helpers.getCurrentDayMinutes
+import org.fossify.clock.helpers.updateNonRecurringAlarmDay
 import org.fossify.clock.interfaces.ToggleAlarmInterface
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.AlarmEvent
@@ -24,7 +23,6 @@ import org.fossify.commons.adapters.MyRecyclerViewAdapter
 import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.extensions.applyColorFilter
 import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.toast
 import org.fossify.commons.helpers.SORT_BY_CUSTOM
 import org.fossify.commons.interfaces.ItemMoveCallback
 import org.fossify.commons.interfaces.ItemTouchHelperContract
@@ -185,27 +183,17 @@ class AlarmsAdapter(
                 }
             }
 
-            alarm.isToday() -> {
-                if (alarm.timeInMinutes <= getCurrentDayMinutes()) {
-                    alarm.days = TOMORROW_BIT
+            else -> {
+                updateNonRecurringAlarmDay(alarm)
+                activity.dbHelper.updateAlarm(alarm)
+                if (alarm.isToday()) {
+                    binding.alarmDays.text =
+                        resources.getString(org.fossify.commons.R.string.today)
+                } else {
                     binding.alarmDays.text =
                         resources.getString(org.fossify.commons.R.string.tomorrow)
                 }
-                activity.dbHelper.updateAlarm(alarm)
-                toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
-            }
 
-            alarm.isTomorrow() -> {
-                toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
-            }
-
-            // Unreachable zombie branch. Days are always set to a non-zero value.
-            binding.alarmSwitch.isChecked -> {
-                activity.toast(R.string.no_days_selected)
-                binding.alarmSwitch.isChecked = false
-            }
-
-            else -> {
                 toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
             }
         }
