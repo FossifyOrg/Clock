@@ -188,7 +188,7 @@ class AlarmActivity : SimpleActivity() {
         } else if (config.useSameSnooze) {
             dismissAlarmAndFinish(config.snoozeTime)
         } else {
-            alarmController.stopAlarm(alarmId = alarm!!.id, disable = false)
+            alarmController.silenceAlarm()
             showPickSecondsDialog(
                 curSeconds = config.snoozeTime * MINUTE_SECONDS,
                 isSnoozePicker = true,

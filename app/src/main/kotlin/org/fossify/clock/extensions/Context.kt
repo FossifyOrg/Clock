@@ -608,12 +608,3 @@ fun Context.startAlarmService(alarmId: Int) {
         showErrorToast(e)
     }
 }
-
-fun Context.stopAlarmService() {
-    try {
-        val serviceIntent = Intent(this, AlarmService::class.java)
-        stopService(serviceIntent)
-    } catch (e: Exception) {
-        showErrorToast(e)
-    }
-}
