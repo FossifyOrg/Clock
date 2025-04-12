@@ -23,7 +23,6 @@ import org.fossify.clock.helpers.DEFAULT_ALARM_MINUTES
 import org.fossify.clock.helpers.SORT_BY_ALARM_TIME
 import org.fossify.clock.helpers.SORT_BY_DATE_AND_TIME
 import org.fossify.clock.helpers.getTomorrowBit
-import org.fossify.clock.helpers.updateNonRecurringAlarmDay
 import org.fossify.clock.interfaces.ToggleAlarmInterface
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.AlarmEvent
