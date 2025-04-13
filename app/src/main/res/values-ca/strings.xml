@@ -50,4 +50,5 @@
     <string name="settings_export_data">Exporta alarmes i temporitzadors</string>
     <string name="settings_import_data">Importa alarmes i temporitzadors</string>
     <string name="sort_by_timer_duration">Durada del temporitzador</string>
+    <string name="not_scheduled">No planificada</string>
 </resources>
