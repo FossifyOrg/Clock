@@ -13,7 +13,6 @@ import org.fossify.clock.databinding.ItemAlarmBinding
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getFormattedTime
-import org.fossify.clock.extensions.swap
 import org.fossify.clock.helpers.updateNonRecurringAlarmDay
 import org.fossify.clock.interfaces.ToggleAlarmInterface
 import org.fossify.clock.models.Alarm
@@ -23,6 +22,7 @@ import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.extensions.applyColorFilter
 import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.getSelectedDaysString
+import org.fossify.commons.extensions.move
 import org.fossify.commons.helpers.EVERY_DAY_BIT
 import org.fossify.commons.helpers.SORT_BY_CUSTOM
 import org.fossify.commons.interfaces.ItemMoveCallback
@@ -215,7 +215,7 @@ class AlarmsAdapter(
     }
 
     override fun onRowMoved(fromPosition: Int, toPosition: Int) {
-        alarms.swap(fromPosition, toPosition)
+        alarms.move(fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
         saveAlarmsCustomOrder(alarms)
         if (activity.config.alarmSort != SORT_BY_CUSTOM) {
