@@ -32,6 +32,7 @@
     <string name="no_timers_found">No timers found</string>
     <string name="add_timer">Add timer</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="not_scheduled">Not scheduled</string>
 
     <!-- Timer -->
     <string name="timers_notification_msg">Timers are running</string>

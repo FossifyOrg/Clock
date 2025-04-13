@@ -12,11 +12,8 @@ import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.databinding.ItemAlarmBinding
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
-import org.fossify.clock.extensions.getAlarmSelectedDaysString
 import org.fossify.clock.extensions.getFormattedTime
-import org.fossify.clock.extensions.swap
-import org.fossify.clock.helpers.TOMORROW_BIT
-import org.fossify.clock.helpers.getCurrentDayMinutes
+import org.fossify.clock.helpers.updateNonRecurringAlarmDay
 import org.fossify.clock.interfaces.ToggleAlarmInterface
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.AlarmEvent
@@ -24,7 +21,9 @@ import org.fossify.commons.adapters.MyRecyclerViewAdapter
 import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.extensions.applyColorFilter
 import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.toast
+import org.fossify.commons.extensions.getSelectedDaysString
+import org.fossify.commons.extensions.move
+import org.fossify.commons.helpers.EVERY_DAY_BIT
 import org.fossify.commons.helpers.SORT_BY_CUSTOM
 import org.fossify.commons.interfaces.ItemMoveCallback
 import org.fossify.commons.interfaces.ItemTouchHelperContract
@@ -152,7 +151,7 @@ class AlarmsAdapter(
             )
             alarmTime.setTextColor(textColor)
 
-            alarmDays.text = activity.getAlarmSelectedDaysString(alarm.days)
+            alarmDays.text = getAlarmSelectedDaysString(alarm)
             alarmDays.setTextColor(textColor)
 
             alarmLabel.text = alarm.label
@@ -185,34 +184,38 @@ class AlarmsAdapter(
                 }
             }
 
-            alarm.isToday() -> {
-                if (alarm.timeInMinutes <= getCurrentDayMinutes()) {
-                    alarm.days = TOMORROW_BIT
-                    binding.alarmDays.text =
-                        resources.getString(org.fossify.commons.R.string.tomorrow)
-                }
-                activity.dbHelper.updateAlarm(alarm)
-                toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
-            }
-
-            alarm.isTomorrow() -> {
-                toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
-            }
-
-            // Unreachable zombie branch. Days are always set to a non-zero value.
-            binding.alarmSwitch.isChecked -> {
-                activity.toast(R.string.no_days_selected)
-                binding.alarmSwitch.isChecked = false
-            }
-
             else -> {
+                updateNonRecurringAlarmDay(alarm)
+                activity.dbHelper.updateAlarm(alarm)
+                binding.alarmDays.text = getAlarmSelectedDaysString(
+                    alarm = alarm, isEnabled = binding.alarmSwitch.isChecked
+                )
                 toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
             }
         }
     }
 
+    private fun getAlarmSelectedDaysString(
+        alarm: Alarm, isEnabled: Boolean = alarm.isEnabled,
+    ): String {
+        if (alarm.isRecurring()) {
+            return if (alarm.days == EVERY_DAY_BIT) {
+                activity.getString(org.fossify.commons.R.string.every_day)
+            } else {
+                // TODO: This does not respect config.firstDayOfWeek
+                activity.getSelectedDaysString(alarm.days)
+            }
+        }
+
+        return when {
+            !isEnabled -> resources.getString(R.string.not_scheduled)
+            alarm.isToday() -> resources.getString(org.fossify.commons.R.string.today)
+            else -> resources.getString(org.fossify.commons.R.string.tomorrow)
+        }
+    }
+
     override fun onRowMoved(fromPosition: Int, toPosition: Int) {
-        alarms.swap(fromPosition, toPosition)
+        alarms.move(fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
         saveAlarmsCustomOrder(alarms)
         if (activity.config.alarmSort != SORT_BY_CUSTOM) {

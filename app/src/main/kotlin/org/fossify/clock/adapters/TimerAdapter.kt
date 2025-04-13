@@ -15,7 +15,6 @@ import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.getFormattedDuration
 import org.fossify.clock.extensions.hideTimerNotification
 import org.fossify.clock.extensions.secondsToMillis
-import org.fossify.clock.extensions.swap
 import org.fossify.clock.models.Timer
 import org.fossify.clock.models.TimerEvent
 import org.fossify.clock.models.TimerState.Finished
@@ -31,6 +30,7 @@ import org.fossify.commons.extensions.beInvisibleIf
 import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.getColoredDrawableWithColor
 import org.fossify.commons.extensions.getFormattedDuration
+import org.fossify.commons.extensions.move
 import org.fossify.commons.extensions.openNotificationSettings
 import org.fossify.commons.helpers.SORT_BY_CUSTOM
 import org.fossify.commons.interfaces.ItemMoveCallback
@@ -260,7 +260,7 @@ class TimerAdapter(
 
     override fun onRowMoved(fromPosition: Int, toPosition: Int) {
         val timers = currentList.toMutableList()
-        timers.swap(fromPosition, toPosition)
+        timers.move(fromPosition, toPosition)
         submitList(timers)
         saveAlarmsCustomOrder(ArrayList(timers))
         if (simpleActivity.config.timerSort != SORT_BY_CUSTOM) {

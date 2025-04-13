@@ -287,7 +287,7 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
         else -> {
             val now = Calendar.getInstance()
             repeat(8) {
-                val currentDay = (nextAlarmTime.get(Calendar.DAY_OF_WEEK) + 5) % 7
+                val currentDay = getDayNumber(nextAlarmTime.get(Calendar.DAY_OF_WEEK))
                 if (days.isBitSet(currentDay) && now < nextAlarmTime) {
                     return nextAlarmTime
                 } else {
@@ -296,5 +296,14 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
             }
             null
         }
+    }
+}
+
+fun updateNonRecurringAlarmDay(alarm: Alarm) {
+    if (alarm.isRecurring()) return
+    alarm.days = if (alarm.timeInMinutes > getCurrentDayMinutes()) {
+        TODAY_BIT
+    } else {
+        TOMORROW_BIT
     }
 }

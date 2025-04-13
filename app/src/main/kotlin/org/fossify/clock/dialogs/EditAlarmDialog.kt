@@ -19,9 +19,8 @@ import org.fossify.clock.extensions.getFormattedTime
 import org.fossify.clock.extensions.handleFullScreenNotificationsPermission
 import org.fossify.clock.extensions.rotateWeekdays
 import org.fossify.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
-import org.fossify.clock.helpers.TODAY_BIT
-import org.fossify.clock.helpers.TOMORROW_BIT
 import org.fossify.clock.helpers.getCurrentDayMinutes
+import org.fossify.clock.helpers.updateNonRecurringAlarmDay
 import org.fossify.clock.models.Alarm
 import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.dialogs.SelectAlarmSoundDialog
@@ -178,13 +177,7 @@ class EditAlarmDialog(
                             return@setOnClickListener
                         }
 
-                        if (alarm.days <= 0) {
-                            alarm.days = if (alarm.timeInMinutes > getCurrentDayMinutes()) {
-                                TODAY_BIT
-                            } else {
-                                TOMORROW_BIT
-                            }
-                        }
+                        updateNonRecurringAlarmDay(alarm)
 
                         alarm.label = binding.editAlarm.value
                         alarm.isEnabled = true

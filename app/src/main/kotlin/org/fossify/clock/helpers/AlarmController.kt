@@ -2,16 +2,18 @@ package org.fossify.clock.helpers
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import org.fossify.clock.extensions.cancelAlarmClock
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.setupAlarmClock
 import org.fossify.clock.extensions.showRemainingTimeMessage
 import org.fossify.clock.extensions.startAlarmService
-import org.fossify.clock.extensions.stopAlarmService
 import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.AlarmEvent
+import org.fossify.clock.services.AlarmService
 import org.fossify.commons.extensions.removeBit
+import org.fossify.commons.extensions.showErrorToast
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.greenrobot.eventbus.EventBus
 import java.util.Calendar
@@ -26,8 +28,10 @@ class AlarmController(
     private val bus: EventBus,
 ) {
     /**
-     * Reschedules all enabled alarms with the exception of one-time alarms that were scheduled
-     * for today (to avoid rescheduling skipped upcoming alarms, yeah).
+     * Reschedules all enabled alarms.
+     * Skips rescheduling one-time alarms that were set for today but whose time has already passed,
+     * and potentially upcoming alarms for today depending on the logic in `scheduleNextOccurrence`.
+     * NOTE: The handling of skipped upcoming alarms for today needs refinement.
      */
     fun rescheduleEnabledAlarms() {
         db.getEnabledAlarms().forEach {
@@ -40,7 +44,7 @@ class AlarmController(
     }
 
     /**
-     * Schedules the next occurrence of a repeating alarm based on its repetition rules.
+     * Schedules the next occurrence of the given alarm based on its properties (time, repetition).
      *
      * @param alarm The alarm to schedule.
      * @param showToasts If true, a remaining time toast will be shown for the alarm.
@@ -92,8 +96,9 @@ class AlarmController(
     }
 
     /**
-     * Handles the triggering of an alarm, scheduling the next occurrence and starting the service
-     * for sounding the alarm.
+     * Handles the triggering of an alarm.
+     * If the alarm is repeating, it schedules the next occurrence immediately.
+     * Then, it starts the service for sounding the alarm.
      *
      * @param alarmId The ID of the alarm that was triggered.
      */
@@ -110,25 +115,30 @@ class AlarmController(
     }
 
     /**
+     * Silences the currently ringing alarm by stopping the alarm service.
+     */
+    fun silenceAlarm() {
+        stopAlarmService()
+    }
+
+    /**
      * Dismisses an alarm that is currently ringing or has just finished ringing.
      *
      * - Stops the alarm sound/vibration service ([stopAlarmService]).
-     * - If the alarm is *not* repeating and the `disable` parameter is true, the alarm is
-     *   disabled or deleted via [disableOrDeleteOneTimeAlarm].
+     * - If the alarm is *not* repeating, it is cancelled in the system scheduler and then
+     * disabled or deleted via [disableOrDeleteOneTimeAlarm].
      *
      * @param alarmId The ID of the alarm to dismiss.
-     * @param disable If true and the alarm is a one-time alarm, it will be disabled or deleted.
-     *                This parameter has no effect on repeating alarms.
      */
-    fun stopAlarm(alarmId: Int, disable: Boolean = true) {
-        context.stopAlarmService()
+    fun stopAlarm(alarmId: Int) {
+        stopAlarmService()
         bus.post(AlarmEvent.Stopped(alarmId))
 
         ensureBackgroundThread {
             val alarm = db.getAlarmWithId(alarmId)
 
             // We don't reschedule alarms here.
-            if (alarm != null && !alarm.isRecurring() && disable) {
+            if (alarm != null && !alarm.isRecurring()) {
                 context.cancelAlarmClock(alarm)
                 disableOrDeleteOneTimeAlarm(alarm)
             }
@@ -144,24 +154,22 @@ class AlarmController(
      * - Schedules the alarm to ring again after [snoozeMinutes] using [setupAlarmClock]
      *   with a calculated future trigger time.
      *
-     * TODO: This works but it is very rudimentary. Snoozed alarms should be tracked properly.
-     *
      * @param alarmId The ID of the alarm to snooze.
      * @param snoozeMinutes The number of minutes from now until the alarm should ring again.
      */
     fun snoozeAlarm(alarmId: Int, snoozeMinutes: Int) {
-        context.stopAlarmService()
+        stopAlarmService()
         bus.post(AlarmEvent.Stopped(alarmId))
 
         ensureBackgroundThread {
             val alarm = db.getAlarmWithId(alarmId)
+            // TODO: This works but it is very rudimentary. Snoozed alarms are not being tracked.
             if (alarm != null) {
-                context.setupAlarmClock(
-                    alarm = alarm,
-                    triggerTimeMillis = Calendar.getInstance()
-                        .apply { add(Calendar.MINUTE, snoozeMinutes) }
-                        .timeInMillis
-                )
+                val triggerTimeMillis = Calendar.getInstance()
+                    .apply { add(Calendar.MINUTE, snoozeMinutes) }
+                    .timeInMillis
+
+                context.setupAlarmClock(alarm = alarm, triggerTimeMillis = triggerTimeMillis)
             }
 
             notifyObservers()
@@ -202,6 +210,15 @@ class AlarmController(
     private fun notifyObservers() {
         context.updateWidgets()
         bus.post(AlarmEvent.Refresh)
+    }
+
+    private fun stopAlarmService() {
+        try {
+            val serviceIntent = Intent(context, AlarmService::class.java)
+            context.stopService(serviceIntent)
+        } catch (e: Exception) {
+            context.showErrorToast(e)
+        }
     }
 
     companion object {
