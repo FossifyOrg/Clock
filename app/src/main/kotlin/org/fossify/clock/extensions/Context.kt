@@ -66,14 +66,12 @@ import org.fossify.commons.extensions.formatSecondsToTimeString
 import org.fossify.commons.extensions.getDefaultAlarmSound
 import org.fossify.commons.extensions.getLaunchIntent
 import org.fossify.commons.extensions.getProperPrimaryColor
-import org.fossify.commons.extensions.getSelectedDaysString
 import org.fossify.commons.extensions.grantReadUriPermission
 import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.extensions.rotateLeft
 import org.fossify.commons.extensions.showErrorToast
 import org.fossify.commons.extensions.toInt
 import org.fossify.commons.extensions.toast
-import org.fossify.commons.helpers.EVERY_DAY_BIT
 import org.fossify.commons.helpers.FRIDAY_BIT
 import org.fossify.commons.helpers.MINUTE_SECONDS
 import org.fossify.commons.helpers.MONDAY_BIT
@@ -559,15 +557,6 @@ fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
         it.soundTitle = defaultAlarmSound.title
         it.soundUri = defaultAlarmSound.uri
         dbHelper.updateAlarm(it)
-    }
-}
-
-fun Context.getAlarmSelectedDaysString(bitMask: Int): String {
-    return when (bitMask) {
-        TODAY_BIT -> getString(org.fossify.commons.R.string.today)
-        TOMORROW_BIT -> getString(org.fossify.commons.R.string.tomorrow)
-        EVERY_DAY_BIT -> getString(org.fossify.commons.R.string.every_day)
-        else -> getSelectedDaysString(bitMask) // TODO: This does not respect config.firstDayOfWeek
     }
 }
 

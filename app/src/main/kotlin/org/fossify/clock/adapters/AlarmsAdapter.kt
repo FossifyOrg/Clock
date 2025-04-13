@@ -12,7 +12,6 @@ import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.databinding.ItemAlarmBinding
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
-import org.fossify.clock.extensions.getAlarmSelectedDaysString
 import org.fossify.clock.extensions.getFormattedTime
 import org.fossify.clock.extensions.swap
 import org.fossify.clock.helpers.updateNonRecurringAlarmDay
@@ -23,6 +22,8 @@ import org.fossify.commons.adapters.MyRecyclerViewAdapter
 import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.extensions.applyColorFilter
 import org.fossify.commons.extensions.beVisibleIf
+import org.fossify.commons.extensions.getSelectedDaysString
+import org.fossify.commons.helpers.EVERY_DAY_BIT
 import org.fossify.commons.helpers.SORT_BY_CUSTOM
 import org.fossify.commons.interfaces.ItemMoveCallback
 import org.fossify.commons.interfaces.ItemTouchHelperContract
@@ -150,7 +151,7 @@ class AlarmsAdapter(
             )
             alarmTime.setTextColor(textColor)
 
-            alarmDays.text = activity.getAlarmSelectedDaysString(alarm.days)
+            alarmDays.text = getAlarmSelectedDaysString(alarm)
             alarmDays.setTextColor(textColor)
 
             alarmLabel.text = alarm.label
@@ -186,16 +187,30 @@ class AlarmsAdapter(
             else -> {
                 updateNonRecurringAlarmDay(alarm)
                 activity.dbHelper.updateAlarm(alarm)
-                if (alarm.isToday()) {
-                    binding.alarmDays.text =
-                        resources.getString(org.fossify.commons.R.string.today)
-                } else {
-                    binding.alarmDays.text =
-                        resources.getString(org.fossify.commons.R.string.tomorrow)
-                }
-
+                binding.alarmDays.text = getAlarmSelectedDaysString(
+                    alarm = alarm, isEnabled = binding.alarmSwitch.isChecked
+                )
                 toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
             }
+        }
+    }
+
+    private fun getAlarmSelectedDaysString(
+        alarm: Alarm, isEnabled: Boolean = alarm.isEnabled,
+    ): String {
+        if (alarm.isRecurring()) {
+            return if (alarm.days == EVERY_DAY_BIT) {
+                activity.getString(org.fossify.commons.R.string.every_day)
+            } else {
+                // TODO: This does not respect config.firstDayOfWeek
+                activity.getSelectedDaysString(alarm.days)
+            }
+        }
+
+        return when {
+            !isEnabled -> resources.getString(R.string.not_scheduled)
+            alarm.isToday() -> resources.getString(org.fossify.commons.R.string.today)
+            else -> resources.getString(org.fossify.commons.R.string.tomorrow)
         }
     }
 
