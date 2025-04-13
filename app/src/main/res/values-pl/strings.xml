@@ -51,4 +51,5 @@
     <string name="settings_export_data">Eksportuj alarmy i minutniki</string>
     <string name="settings_import_data">Importuj alarmy i minutniki</string>
     <string name="sort_by_timer_duration">Czas trwania minutnika</string>
+    <string name="not_scheduled">Niezaplanowany</string>
 </resources>
