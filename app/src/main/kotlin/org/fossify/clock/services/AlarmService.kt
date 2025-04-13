@@ -59,6 +59,11 @@ class AlarmService : Service() {
     private val autoDismissHandler = Handler(Looper.getMainLooper())
     private val increaseVolumeHandler = Handler(Looper.getMainLooper())
 
+    override fun onCreate() {
+        super.onCreate()
+        audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val alarmId = intent?.getIntExtra(ALARM_ID, -1) ?: -1
         alarm = if (alarmId != -1) {
