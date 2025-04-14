@@ -72,14 +72,16 @@ class AlarmService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val action = intent?.action ?: ACTION_START_ALARM
         val alarmId = intent?.getIntExtra(ALARM_ID, -1) ?: -1
-
-        if (alarmId == -1) {
+        val newAlarm = applicationContext.dbHelper.getAlarmWithId(alarmId)
+        if (alarmId == -1 || newAlarm == null) {
             stopSelfIfIdle()
             return START_NOT_STICKY
         }
 
+        startForeground(ALARM_NOTIFICATION_ID, buildNotification(newAlarm))
+
         when (action) {
-            ACTION_START_ALARM -> startNewAlarm(alarmId)
+            ACTION_START_ALARM -> startNewAlarm(newAlarm)
             ACTION_STOP_ALARM -> stopActiveAlarm(alarmId)
             else -> throw IllegalArgumentException("Unknown action: $action")
         }
@@ -87,23 +89,20 @@ class AlarmService : Service() {
         return START_STICKY
     }
 
-    private fun startNewAlarm(alarmId: Int) {
-        val newAlarm = applicationContext.dbHelper.getAlarmWithId(alarmId) ?: return
+    private fun startNewAlarm(newAlarm: Alarm) {
         val currentAlarm = activeAlarm
         activeAlarm = newAlarm
 
-        when {
-            currentAlarm?.id == newAlarm.id -> return // No action needed, same alarm
+        if (currentAlarm?.id == newAlarm.id) {
+            // No action needed, same alarm
+            return
+        }
 
-            currentAlarm != null -> {
-                // Replace currently active alarm with the new one
-                stopPlayerAndCleanup()
-                postMissedAlarmNotification(currentAlarm)
-                alarmController.stopAlarm(currentAlarm.id)
-                notificationManager.notify(ALARM_NOTIFICATION_ID, buildNotification(newAlarm))
-            }
-
-            else -> startForeground(ALARM_NOTIFICATION_ID, buildNotification(newAlarm))
+        val replaceActiveAlarm = currentAlarm != null
+        if (replaceActiveAlarm) {
+            stopPlayerAndCleanup()
+            postMissedAlarmNotification(currentAlarm!!)
+            alarmController.stopAlarm(currentAlarm.id)
         }
 
         startAlarmEffects(newAlarm)
