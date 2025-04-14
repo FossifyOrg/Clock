@@ -52,6 +52,8 @@ const val DEFAULT_MAX_TIMER_REMINDER_SECS = 60
 const val SIMPLE_PHONE = "Simple_Phone"
 const val ALARM_NOTIFICATION_CHANNEL_ID = "Alarm_Channel"
 const val UPCOMING_ALARM_CHANNEL_ID = "Early Alarm Dismissal"
+const val MISSED_ALARM_NOTIFICATION_CHANNEL_ID = "missed_alarm_channel"
+const val MISSED_ALARM_NOTIFICATION_TAG = "missed_alarm_tag"
 
 const val OPEN_STOPWATCH_TAB_INTENT_ID = 9993
 const val PICK_AUDIO_FILE_INTENT_ID = 9994

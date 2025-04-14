@@ -59,7 +59,6 @@ import org.fossify.clock.receivers.HideTimerReceiver
 import org.fossify.clock.receivers.SkipUpcomingAlarmReceiver
 import org.fossify.clock.receivers.StopAlarmReceiver
 import org.fossify.clock.receivers.UpcomingAlarmReceiver
-import org.fossify.clock.services.AlarmService
 import org.fossify.clock.services.SnoozeService
 import org.fossify.commons.extensions.formatMinutesToTimeString
 import org.fossify.commons.extensions.formatSecondsToTimeString
@@ -585,15 +584,4 @@ fun Context.firstDayOrder(bitMask: Int): Int {
     }
 
     return bitMask
-}
-
-fun Context.startAlarmService(alarmId: Int) {
-    try {
-        Intent(this, AlarmService::class.java).apply {
-            putExtra(ALARM_ID, alarmId)
-            startForegroundService(this)
-        }
-    } catch (e: Exception) {
-        showErrorToast(e)
-    }
 }
