@@ -52,4 +52,6 @@
     <string name="settings_import_data">Importuj alarmy i minutniki</string>
     <string name="sort_by_timer_duration">Czas trwania minutnika</string>
     <string name="not_scheduled">Niezaplanowany</string>
+    <string name="missed_alarm">Pominięty alarm</string>
+    <string name="replaced_by_another_alarm">Zastąpiony innym alarmem</string>
 </resources>
