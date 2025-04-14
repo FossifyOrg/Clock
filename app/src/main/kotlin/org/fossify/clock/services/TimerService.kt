@@ -135,6 +135,7 @@ class TimerService : Service() {
             .setOngoing(true)
             .setAutoCancel(true)
             .setChannelId(channelId)
+            .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
 
         if (firstRunningTimerId != INVALID_TIMER_ID) {
             builder.setContentIntent(this.getOpenTimerTabIntent(firstRunningTimerId))
