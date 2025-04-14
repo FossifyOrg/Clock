@@ -78,8 +78,6 @@ class AlarmService : Service() {
             return START_NOT_STICKY
         }
 
-        startForeground(ALARM_NOTIFICATION_ID, buildNotification(newAlarm))
-
         when (action) {
             ACTION_START_ALARM -> startNewAlarm(newAlarm)
             ACTION_STOP_ALARM -> stopActiveAlarm(alarmId)
@@ -90,6 +88,11 @@ class AlarmService : Service() {
     }
 
     private fun startNewAlarm(newAlarm: Alarm) {
+        startForeground(
+            ALARM_NOTIFICATION_ID,
+            buildNotification(newAlarm)
+        )
+
         val currentAlarm = activeAlarm
         activeAlarm = newAlarm
 
@@ -112,6 +115,8 @@ class AlarmService : Service() {
     private fun stopActiveAlarm(alarmIdToStop: Int) {
         if (activeAlarm?.id == alarmIdToStop) {
             stopSelf()
+        } else {
+            stopSelfIfIdle()
         }
     }
 
