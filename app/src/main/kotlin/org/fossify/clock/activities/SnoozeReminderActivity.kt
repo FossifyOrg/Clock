@@ -11,9 +11,13 @@ import org.fossify.commons.helpers.MINUTE_SECONDS
 class SnoozeReminderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        alarmController.silenceAlarm()
-
         val alarmId = intent.getIntExtra(ALARM_ID, -1)
+        if (alarmId == -1) {
+            finish()
+            return
+        }
+
+        alarmController.silenceAlarm(alarmId)
         showPickSecondsDialog(
             curSeconds = config.snoozeTime * MINUTE_SECONDS,
             isSnoozePicker = true,

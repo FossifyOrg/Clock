@@ -154,9 +154,12 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 }
             } else {
                 currAdapter.apply {
+                    val context = context
                     updatePrimaryColor()
-                    updateBackgroundColor(requireContext().getProperBackgroundColor())
-                    updateTextColor(requireContext().getProperTextColor())
+                    if (context != null) {
+                        updateBackgroundColor(context.getProperBackgroundColor())
+                        updateTextColor(context.getProperTextColor())
+                    }
                     updateItems(alarms)
                 }
             }

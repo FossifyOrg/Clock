@@ -7,7 +7,6 @@ import org.fossify.clock.extensions.cancelAlarmClock
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.setupAlarmClock
 import org.fossify.clock.extensions.showRemainingTimeMessage
-import org.fossify.clock.extensions.startAlarmService
 import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.AlarmEvent
@@ -31,12 +30,10 @@ class AlarmController(
      * Reschedules all enabled alarms.
      * Skips rescheduling one-time alarms that were set for today but whose time has already passed,
      * and potentially upcoming alarms for today depending on the logic in `scheduleNextOccurrence`.
-     * NOTE: The handling of skipped upcoming alarms for today needs refinement.
      */
     fun rescheduleEnabledAlarms() {
         db.getEnabledAlarms().forEach {
-            // TODO: Instead of naively not scheduling all alarms for today, skipped upcoming
-            //  alarms should be tracked properly.
+            // TODO: Skipped upcoming alarms are being *rescheduled* here.
             if (!it.isToday() || it.timeInMinutes > getCurrentDayMinutes()) {
                 scheduleNextOccurrence(it, false)
             }
@@ -111,27 +108,27 @@ class AlarmController(
             }
         }
 
-        context.startAlarmService(alarmId)
+        sendIntentToService(AlarmService.ACTION_START_ALARM, alarmId)
     }
 
     /**
      * Silences the currently ringing alarm by stopping the alarm service.
      */
-    fun silenceAlarm() {
-        stopAlarmService()
+    fun silenceAlarm(alarmId: Int) {
+        sendIntentToService(AlarmService.ACTION_STOP_ALARM, alarmId)
     }
 
     /**
      * Dismisses an alarm that is currently ringing or has just finished ringing.
      *
-     * - Stops the alarm sound/vibration service ([stopAlarmService]).
+     * - Stops the alarm sound/vibration service.
      * - If the alarm is *not* repeating, it is cancelled in the system scheduler and then
      * disabled or deleted via [disableOrDeleteOneTimeAlarm].
      *
      * @param alarmId The ID of the alarm to dismiss.
      */
     fun stopAlarm(alarmId: Int) {
-        stopAlarmService()
+        sendIntentToService(AlarmService.ACTION_STOP_ALARM, alarmId)
         bus.post(AlarmEvent.Stopped(alarmId))
 
         ensureBackgroundThread {
@@ -150,7 +147,7 @@ class AlarmController(
     /**
      * Snoozes an alarm that is currently ringing.
      *
-     * - Stops the alarm sound/vibration service ([stopAlarmService]).
+     * - Stops the alarm sound/vibration service.
      * - Schedules the alarm to ring again after [snoozeMinutes] using [setupAlarmClock]
      *   with a calculated future trigger time.
      *
@@ -158,7 +155,7 @@ class AlarmController(
      * @param snoozeMinutes The number of minutes from now until the alarm should ring again.
      */
     fun snoozeAlarm(alarmId: Int, snoozeMinutes: Int) {
-        stopAlarmService()
+        sendIntentToService(AlarmService.ACTION_STOP_ALARM, alarmId)
         bus.post(AlarmEvent.Stopped(alarmId))
 
         ensureBackgroundThread {
@@ -212,10 +209,13 @@ class AlarmController(
         bus.post(AlarmEvent.Refresh)
     }
 
-    private fun stopAlarmService() {
+    private fun sendIntentToService(action: String, alarmId: Int) {
         try {
-            val serviceIntent = Intent(context, AlarmService::class.java)
-            context.stopService(serviceIntent)
+            val serviceIntent = Intent(context, AlarmService::class.java).apply {
+                this.action = action
+                putExtra(ALARM_ID, alarmId)
+            }
+            context.startForegroundService(serviceIntent)
         } catch (e: Exception) {
             context.showErrorToast(e)
         }

@@ -33,6 +33,8 @@
     <string name="add_timer">Add timer</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
     <string name="not_scheduled">Not scheduled</string>
+    <string name="missed_alarm">Missed alarm</string>
+    <string name="replaced_by_another_alarm">Replaced by another alarm</string>
 
     <!-- Timer -->
     <string name="timers_notification_msg">Timers are running</string>

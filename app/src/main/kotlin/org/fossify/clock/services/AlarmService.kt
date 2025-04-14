@@ -1,6 +1,5 @@
 package org.fossify.clock.services
 
-import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -25,11 +24,14 @@ import org.fossify.clock.extensions.alarmController
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getFormattedTime
+import org.fossify.clock.extensions.getOpenAlarmTabIntent
 import org.fossify.clock.extensions.getSnoozePendingIntent
 import org.fossify.clock.extensions.getStopAlarmPendingIntent
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.ALARM_NOTIFICATION_CHANNEL_ID
 import org.fossify.clock.helpers.ALARM_NOTIFICATION_ID
+import org.fossify.clock.helpers.MISSED_ALARM_NOTIFICATION_CHANNEL_ID
+import org.fossify.clock.helpers.MISSED_ALARM_NOTIFICATION_TAG
 import org.fossify.clock.models.Alarm
 import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.helpers.SILENT
@@ -48,9 +50,12 @@ class AlarmService : Service() {
         private const val MIN_ALARM_VOLUME_FOR_INCREASING_ALARMS = 1
         private const val VIBRATION_PATTERN_TIMING = 500L
         private const val VOLUME_INCREASE_STEP = 0.1f
+
+        const val ACTION_START_ALARM = "org.fossify.clock.START_ALARM"
+        const val ACTION_STOP_ALARM = "org.fossify.clock.STOP_ALARM"
     }
 
-    private var alarm: Alarm? = null
+    private var activeAlarm: Alarm? = null
     private var audioManager: AudioManager? = null
     private var initialAlarmVolume = DEFAULT_ALARM_VOLUME
     private var mediaPlayer: MediaPlayer? = null
@@ -59,24 +64,56 @@ class AlarmService : Service() {
     private val autoDismissHandler = Handler(Looper.getMainLooper())
     private val increaseVolumeHandler = Handler(Looper.getMainLooper())
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        val alarmId = intent?.getIntExtra(ALARM_ID, -1) ?: -1
-        alarm = if (alarmId != -1) {
-            applicationContext.dbHelper.getAlarmWithId(alarmId)
-        } else {
-            null
-        }
+    override fun onCreate() {
+        super.onCreate()
+        audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
+    }
 
-        if (alarm == null) {
-            stopSelf()
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        val action = intent?.action ?: ACTION_START_ALARM
+        val alarmId = intent?.getIntExtra(ALARM_ID, -1) ?: -1
+
+        if (alarmId == -1) {
+            stopSelfIfIdle()
             return START_NOT_STICKY
         }
 
-        val notification = buildNotification(alarm!!)
-        startForeground(ALARM_NOTIFICATION_ID, notification)
-        startAlarmEffects(alarm!!)
-        startAutoDismiss(config.alarmMaxReminderSecs)
+        when (action) {
+            ACTION_START_ALARM -> startNewAlarm(alarmId)
+            ACTION_STOP_ALARM -> stopActiveAlarm(alarmId)
+            else -> throw IllegalArgumentException("Unknown action: $action")
+        }
+
         return START_STICKY
+    }
+
+    private fun startNewAlarm(alarmId: Int) {
+        val newAlarm = applicationContext.dbHelper.getAlarmWithId(alarmId) ?: return
+        val currentAlarm = activeAlarm
+        activeAlarm = newAlarm
+
+        when {
+            currentAlarm?.id == newAlarm.id -> return // No action needed, same alarm
+
+            currentAlarm != null -> {
+                // Replace currently active alarm with the new one
+                stopPlayerAndCleanup()
+                postMissedAlarmNotification(currentAlarm)
+                alarmController.stopAlarm(currentAlarm.id)
+                notificationManager.notify(ALARM_NOTIFICATION_ID, buildNotification(newAlarm))
+            }
+
+            else -> startForeground(ALARM_NOTIFICATION_ID, buildNotification(newAlarm))
+        }
+
+        startAlarmEffects(newAlarm)
+        startAutoDismiss(config.alarmMaxReminderSecs)
+    }
+
+    private fun stopActiveAlarm(alarmIdToStop: Int) {
+        if (activeAlarm?.id == alarmIdToStop) {
+            stopSelf()
+        }
     }
 
     private fun buildNotification(alarm: Alarm): Notification {
@@ -108,7 +145,7 @@ class AlarmService : Service() {
         }
 
         val pendingIntent = PendingIntent.getActivity(
-            this, 0, reminderIntent, FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
+            this, alarm.id, reminderIntent, FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
         )
 
         val dismissIntent = applicationContext.getStopAlarmPendingIntent(alarm)
@@ -167,6 +204,8 @@ class AlarmService : Service() {
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
+                mediaPlayer?.release()
+                mediaPlayer = null
             }
         }
 
@@ -180,6 +219,7 @@ class AlarmService : Service() {
         }
     }
 
+    // Revisit this. We are directly changing the system alarm volume here.
     private fun scheduleVolumeIncrease(lastVolume: Float, maxVolume: Float, delay: Long) {
         increaseVolumeHandler.postDelayed({
             val newVolume = (lastVolume + VOLUME_INCREASE_STEP).coerceAtMost(maxVolume)
@@ -191,23 +231,23 @@ class AlarmService : Service() {
     }
 
     private fun resetVolumeToInitialValue() {
-        if (config.increaseVolumeGradually) {
+        if (config.increaseVolumeGradually && initialAlarmVolume != DEFAULT_ALARM_VOLUME) {
             audioManager?.setStreamVolume(STREAM_ALARM, initialAlarmVolume, 0)
         }
+
+        initialAlarmVolume = DEFAULT_ALARM_VOLUME
     }
 
     private fun startAutoDismiss(durationSecs: Int) {
-        val alarmId = alarm?.id ?: return
+        val alarmId = activeAlarm?.id ?: return
         autoDismissHandler.postDelayed({
-            alarmController.stopAlarm(alarmId)
+            if (activeAlarm?.id == alarmId) {
+                alarmController.stopAlarm(alarmId)
+            }
         }, durationSecs.seconds.inWholeMilliseconds)
     }
 
-    @SuppressLint("InlinedApi")
-    override fun onDestroy() {
-        super.onDestroy()
-        stopForeground(STOP_FOREGROUND_REMOVE)
-
+    private fun stopPlayerAndCleanup() {
         mediaPlayer?.stop()
         mediaPlayer?.release()
         mediaPlayer = null
@@ -218,6 +258,49 @@ class AlarmService : Service() {
         increaseVolumeHandler.removeCallbacksAndMessages(null)
         autoDismissHandler.removeCallbacksAndMessages(null)
         resetVolumeToInitialValue()
+    }
+
+    private fun postMissedAlarmNotification(replacedAlarm: Alarm) {
+        val channel = NotificationChannel(
+            MISSED_ALARM_NOTIFICATION_CHANNEL_ID,
+            getString(R.string.missed_alarm),
+            NotificationManager.IMPORTANCE_DEFAULT
+        ).apply {
+            setSound(null, null)
+        }
+
+        notificationManager.createNotificationChannel(channel)
+
+        val replacedTime = getFormattedTime(
+            passedSeconds = replacedAlarm.timeInMinutes * 60,
+            showSeconds = false,
+            makeAmPmSmaller = false
+        )
+        val contentIntent = getOpenAlarmTabIntent()
+        val notification = NotificationCompat.Builder(this, MISSED_ALARM_NOTIFICATION_CHANNEL_ID)
+            .setContentTitle(getString(R.string.missed_alarm))
+            .setContentText(getString(R.string.replaced_by_another_alarm))
+            .setContentIntent(contentIntent)
+            .setSubText(replacedTime)
+            .setSmallIcon(R.drawable.ic_alarm_off_vector)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setShowWhen(false)
+            .setAutoCancel(true)
+            .build()
+
+        notificationManager.notify(MISSED_ALARM_NOTIFICATION_TAG, replacedAlarm.id, notification)
+    }
+
+    private fun stopSelfIfIdle() {
+        if (activeAlarm == null) {
+            stopSelf()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopForeground(STOP_FOREGROUND_REMOVE)
+        stopPlayerAndCleanup()
     }
 
     override fun onBind(intent: Intent?) = null

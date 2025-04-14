@@ -239,7 +239,7 @@ class EditAlarmDialog(
     }
 
     private fun checkDaylessAlarm() {
-        if (alarm.days <= 0) {
+        if (!alarm.isRecurring()) {
             val textId = if (alarm.timeInMinutes > getCurrentDayMinutes()) {
                 org.fossify.commons.R.string.today
             } else {
@@ -248,7 +248,7 @@ class EditAlarmDialog(
 
             binding.editAlarmDaylessLabel.text = "(${activity.getString(textId)})"
         }
-        binding.editAlarmDaylessLabel.beVisibleIf(alarm.days <= 0)
+        binding.editAlarmDaylessLabel.beVisibleIf(!alarm.isRecurring())
     }
 
     private fun getProperDayDrawable(selected: Boolean): Drawable {
