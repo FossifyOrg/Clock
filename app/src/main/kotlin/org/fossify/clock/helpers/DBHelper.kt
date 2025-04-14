@@ -1,5 +1,6 @@
 package org.fossify.clock.helpers
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -11,9 +12,18 @@ import org.fossify.clock.extensions.createNewAlarm
 import org.fossify.clock.models.Alarm
 import org.fossify.commons.extensions.getIntValue
 import org.fossify.commons.extensions.getStringValue
-import org.fossify.commons.helpers.*
+import org.fossify.commons.helpers.FRIDAY_BIT
+import org.fossify.commons.helpers.MONDAY_BIT
+import org.fossify.commons.helpers.SATURDAY_BIT
+import org.fossify.commons.helpers.SUNDAY_BIT
+import org.fossify.commons.helpers.THURSDAY_BIT
+import org.fossify.commons.helpers.TUESDAY_BIT
+import org.fossify.commons.helpers.WEDNESDAY_BIT
 
-class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
+class DBHelper private constructor(
+    val context: Context,
+) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
+
     private val ALARMS_TABLE_NAME = "contacts"  // wrong table name, ignore it
     private val COL_ID = "id"
     private val COL_TIME_IN_MINUTES = "time_in_minutes"
@@ -30,13 +40,16 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
     companion object {
         private const val DB_VERSION = 2
         const val DB_NAME = "alarms.db"
-        var dbInstance: DBHelper? = null
+
+        @SuppressLint("StaticFieldLeak")
+        @Volatile
+        private var dbInstance: DBHelper? = null
 
         fun newInstance(context: Context): DBHelper {
-            if (dbInstance == null)
-                dbInstance = DBHelper(context)
-
-            return dbInstance!!
+            val appContext = context.applicationContext
+            return dbInstance ?: synchronized(this) {
+                dbInstance ?: DBHelper(appContext).also { dbInstance = it }
+            }
         }
     }
 
@@ -115,7 +128,17 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
 
     fun getAlarms(): ArrayList<Alarm> {
         val alarms = ArrayList<Alarm>()
-        val cols = arrayOf(COL_ID, COL_TIME_IN_MINUTES, COL_DAYS, COL_IS_ENABLED, COL_VIBRATE, COL_SOUND_TITLE, COL_SOUND_URI, COL_LABEL, COL_ONE_SHOT)
+        val cols = arrayOf(
+            COL_ID,
+            COL_TIME_IN_MINUTES,
+            COL_DAYS,
+            COL_IS_ENABLED,
+            COL_VIBRATE,
+            COL_SOUND_TITLE,
+            COL_SOUND_URI,
+            COL_LABEL,
+            COL_ONE_SHOT
+        )
         var cursor: Cursor? = null
         try {
             cursor = mDb.query(ALARMS_TABLE_NAME, cols, null, null, null, null, null)
@@ -132,7 +155,17 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
                         val label = cursor.getStringValue(COL_LABEL)
                         val oneShot = cursor.getIntValue(COL_ONE_SHOT) == 1
 
-                        val alarm = Alarm(id, timeInMinutes, days, isEnabled, vibrate, soundTitle, soundUri, label, oneShot)
+                        val alarm = Alarm(
+                            id = id,
+                            timeInMinutes = timeInMinutes,
+                            days = days,
+                            isEnabled = isEnabled,
+                            vibrate = vibrate,
+                            soundTitle = soundTitle,
+                            soundUri = soundUri,
+                            label = label,
+                            oneShot = oneShot
+                        )
                         alarms.add(alarm)
                     } catch (e: Exception) {
                         continue
