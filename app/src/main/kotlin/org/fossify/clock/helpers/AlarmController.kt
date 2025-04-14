@@ -31,12 +31,10 @@ class AlarmController(
      * Reschedules all enabled alarms.
      * Skips rescheduling one-time alarms that were set for today but whose time has already passed,
      * and potentially upcoming alarms for today depending on the logic in `scheduleNextOccurrence`.
-     * NOTE: The handling of skipped upcoming alarms for today needs refinement.
      */
     fun rescheduleEnabledAlarms() {
         db.getEnabledAlarms().forEach {
-            // TODO: Instead of naively not scheduling all alarms for today, skipped upcoming
-            //  alarms should be tracked properly.
+            // TODO: Skipped upcoming alarms are being *rescheduled* here.
             if (!it.isToday() || it.timeInMinutes > getCurrentDayMinutes()) {
                 scheduleNextOccurrence(it, false)
             }
