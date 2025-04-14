@@ -49,4 +49,5 @@
     <string name="settings_import_data">Alarme und Timer importieren</string>
     <string name="settings_export_data">Alarme und Timer exportieren</string>
     <string name="sort_by_timer_duration">Timer-Zeitdauer</string>
+    <string name="not_scheduled">Nicht geplant</string>
 </resources>

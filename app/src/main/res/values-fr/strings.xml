@@ -50,4 +50,5 @@
     <string name="sort_by_timer_duration">Durée du timer</string>
     <string name="settings_export_data">Exporter des alarmes et des timers</string>
     <string name="settings_import_data">Importer des alarmes et des timers</string>
+    <string name="not_scheduled">Non programmé</string>
 </resources>

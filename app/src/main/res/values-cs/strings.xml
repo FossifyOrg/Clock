@@ -50,4 +50,5 @@
     <string name="settings_import_data">Importovat budíky a časovače</string>
     <string name="settings_export_data">Exportovat budíky a časovače</string>
     <string name="sort_by_timer_duration">Trvání časovače</string>
+    <string name="not_scheduled">Nenaplánováno</string>
 </resources>

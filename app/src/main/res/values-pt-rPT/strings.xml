@@ -1,2 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="clock_tab">Guia Relógio</string>
+    <string name="alarm_tab">Guia Alarme</string>
+    <string name="faq_1_title">Como posso alterar a classificação das voltas na guia Cronômetro?</string>
+    <string name="sort_by_timer_duration">Duração do temporizador</string>
+    <string name="select_alarm_to_dismiss">Selecione o alarme para descartar</string>
+    <string name="new_timer">Novo temporizador</string>
+    <string name="app_launcher_name">Clock</string>
+    <string name="time_zone">Fuso horário</string>
+    <string name="vibrate">Vibrar</string>
+    <string name="no_days_selected">Nenhum dia selecionado</string>
+    <string name="stopwatch_stopped">O cronômetro foi parado</string>
+    <string name="timer_stopped">O temporizador foi parado</string>
+    <string name="max_reminder_duration">Duração máxima do lembrete</string>
+    <string name="time_expired">O tempo expirou</string>
+    <string name="alarm_created">Alarme criado</string>
+    <string name="clock">Relógio</string>
+    <string name="timer">Temporizador</string>
+    <string name="stopwatch">Cronômetro</string>
+    <string name="start_stopwatch">Iniciar cronômetro</string>
+    <string name="lap">Volta</string>
+    <string name="clock_and_date">Relógio e data</string>
+    <string name="use_text_shadow">Usar sombra de texto</string>
+    <string name="swipe_right_to_dismiss">Deslize para a direita para dispensar ou para a esquerda para adiar.</string>
+    <string name="sort_by_creation_order">Ordem de criação</string>
+    <string name="sort_by_alarm_time">Hora do alarme</string>
+    <string name="sort_by_day_and_alarm_time">Dia e hora do alarme</string>
+    <string name="analogue_clock">Relógio analógico</string>
+    <string name="digital_clock">Relógio digital</string>
+    <string name="alarm_dismissed">Alarme descartado</string>
+    <string name="select_timer_to_dismiss">Selecione o temporizador para descartar</string>
+    <string name="alarm_snoozed">Alarme adiado por %s</string>
+    <string name="no_alarms_found">Nenhum alarme encontrado</string>
+    <string name="add_alarm">Adicionar alarme</string>
+    <string name="no_timers_found">Nenhum temporizador encontrado</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d temporizador em execução</item>
+        <item quantity="many">%d temporizadores em execução</item>
+        <item quantity="other">%d temporizadores em execução</item>
+    </plurals>
+    <string name="stopwatch_tab">Guia Cronômetro</string>
+    <string name="timer_tab">Guia Temporizador</string>
+    <string name="show_seconds">Mostrar segundos</string>
+    <string name="add_timer">Adicionar temporizador</string>
+    <string name="upcoming_alarm">Próximo alarme</string>
+    <string name="timers_notification_msg">Temporizadores em execução</string>
+    <string name="timer_single_notification_label_msg">O temporizador para %s está em execução</string>
+    <string name="increase_volume_gradually">Aumentar volume gradualmente</string>
+    <string name="settings_import_data">Importar alarmes e temporizadores</string>
+    <string name="settings_export_data">Exportar alarmes e temporizadores</string>
+    <string name="faq_1_text">Basta clicar em qualquer uma das colunas e fará com que as voltas sejam classificadas pela coluna especificada. Com cliques adicionais, pode alternar a ordem de classificação entre crescente e decrescente.</string>
+</resources>

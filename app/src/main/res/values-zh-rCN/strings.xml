@@ -48,4 +48,5 @@
     <string name="settings_export_data">导出闹钟和定时器</string>
     <string name="settings_import_data">导入闹钟和定时器</string>
     <string name="sort_by_timer_duration">计时器持续时长</string>
+    <string name="not_scheduled">未设置</string>
 </resources>
