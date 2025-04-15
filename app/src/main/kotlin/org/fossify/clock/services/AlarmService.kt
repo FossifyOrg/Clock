@@ -104,7 +104,7 @@ class AlarmService : Service() {
         val replaceActiveAlarm = currentAlarm != null
         if (replaceActiveAlarm) {
             stopPlayerAndCleanup()
-            postMissedAlarmNotification(currentAlarm!!)
+            postReplacedAlarmNotification(currentAlarm!!)
             alarmController.stopAlarm(currentAlarm.id)
         }
 
@@ -245,7 +245,9 @@ class AlarmService : Service() {
     private fun startAutoDismiss(durationSecs: Int) {
         val alarmId = activeAlarm?.id ?: return
         autoDismissHandler.postDelayed({
-            if (activeAlarm?.id == alarmId) {
+            val missedAlarm = activeAlarm
+            if (missedAlarm?.id == alarmId) {
+                postMissedAlarmNotification(missedAlarm)
                 alarmController.stopAlarm(alarmId)
             }
         }, durationSecs.seconds.inWholeMilliseconds)
@@ -264,7 +266,7 @@ class AlarmService : Service() {
         resetVolumeToInitialValue()
     }
 
-    private fun postMissedAlarmNotification(replacedAlarm: Alarm) {
+    private fun createMissedAlarmNotificationChannel() {
         val channel = NotificationChannel(
             MISSED_ALARM_NOTIFICATION_CHANNEL_ID,
             getString(R.string.missed_alarm),
@@ -274,6 +276,32 @@ class AlarmService : Service() {
         }
 
         notificationManager.createNotificationChannel(channel)
+    }
+
+    private fun postMissedAlarmNotification(missedAlarm: Alarm) {
+        createMissedAlarmNotificationChannel()
+        val replacedTime = getFormattedTime(
+            passedSeconds = missedAlarm.timeInMinutes * 60,
+            showSeconds = false,
+            makeAmPmSmaller = false
+        )
+        val contentIntent = getOpenAlarmTabIntent()
+        val notification = NotificationCompat.Builder(this, MISSED_ALARM_NOTIFICATION_CHANNEL_ID)
+            .setContentTitle(getString(R.string.missed_alarm))
+            .setContentText(getString(R.string.alarm_timed_out))
+            .setContentIntent(contentIntent)
+            .setSubText(replacedTime)
+            .setSmallIcon(R.drawable.ic_alarm_off_vector)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setShowWhen(false)
+            .setAutoCancel(true)
+            .build()
+
+        notificationManager.notify(MISSED_ALARM_NOTIFICATION_TAG, missedAlarm.id, notification)
+    }
+
+    private fun postReplacedAlarmNotification(replacedAlarm: Alarm) {
+        createMissedAlarmNotificationChannel()
 
         val replacedTime = getFormattedTime(
             passedSeconds = replacedAlarm.timeInMinutes * 60,
