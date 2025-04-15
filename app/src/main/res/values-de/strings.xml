@@ -52,4 +52,5 @@
     <string name="not_scheduled">Nicht geplant</string>
     <string name="missed_alarm">Verpasster Alarm</string>
     <string name="replaced_by_another_alarm">Ersetzt durch einen anderen Alarm</string>
+    <string name="alarm_timed_out">Alarm ist abgelaufen</string>
 </resources>
