@@ -49,4 +49,8 @@
     <string name="settings_export_data">Ekspordi äratusi ja taimereid</string>
     <string name="settings_import_data">Impordi äratusi ja taimereid</string>
     <string name="sort_by_timer_duration">Taimeri kestus</string>
+    <string name="alarm_timed_out">Äratus aegus</string>
+    <string name="not_scheduled">Pole ajastatud</string>
+    <string name="missed_alarm">Märkamata äratus</string>
+    <string name="replaced_by_another_alarm">Seda asendas teine äratus</string>
 </resources>
