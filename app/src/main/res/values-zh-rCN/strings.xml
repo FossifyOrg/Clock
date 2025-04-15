@@ -49,4 +49,6 @@
     <string name="settings_import_data">导入闹钟和定时器</string>
     <string name="sort_by_timer_duration">计时器持续时长</string>
     <string name="not_scheduled">未设置</string>
+    <string name="missed_alarm">错过的闹钟</string>
+    <string name="replaced_by_another_alarm">已被另一个闹钟替代‌</string>
 </resources>
