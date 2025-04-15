@@ -1,0 +1,9 @@
+* Added notifications for missed or replaced alarms
+* Added placeholders for empty alarms and timers
+* Fixed issue where alarms could be silenced unintentionally
+* Fixed issue where alarms didn't go off in some cases
+* Fixed broken behavior when re-enabling one-time alarms
+* Replaced checkboxes with switches
+* Removed support for Android 7 and older versions
+* Other minor bug fixes and improvements
+* Added more translations

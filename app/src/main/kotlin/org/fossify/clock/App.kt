@@ -1,6 +1,5 @@
 package org.fossify.clock
 
-import android.app.Application
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
@@ -22,14 +21,14 @@ import org.fossify.clock.services.StopwatchStopService
 import org.fossify.clock.services.TimerStopService
 import org.fossify.clock.services.startStopwatchService
 import org.fossify.clock.services.startTimerService
-import org.fossify.commons.extensions.checkUseEnglish
+import org.fossify.commons.FossifyApp
 import org.fossify.commons.extensions.notificationManager
 import org.fossify.commons.extensions.showErrorToast
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class App : Application(), LifecycleObserver {
+class App : FossifyApp(), LifecycleObserver {
 
     private var countDownTimers = mutableMapOf<Int, CountDownTimer>()
 
@@ -41,8 +40,6 @@ class App : Application(), LifecycleObserver {
         if (BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this)
         }
-
-        checkUseEnglish()
     }
 
     override fun onTerminate() {

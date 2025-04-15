@@ -215,7 +215,12 @@ class AlarmController(
                 this.action = action
                 putExtra(ALARM_ID, alarmId)
             }
-            context.startForegroundService(serviceIntent)
+
+            when (action) {
+                AlarmService.ACTION_START_ALARM -> context.startForegroundService(serviceIntent)
+                AlarmService.ACTION_STOP_ALARM -> context.startService(serviceIntent)
+                else -> throw IllegalArgumentException("Unknown action: $action")
+            }
         } catch (e: Exception) {
             context.showErrorToast(e)
         }
