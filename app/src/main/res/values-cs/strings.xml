@@ -51,4 +51,7 @@
     <string name="settings_export_data">Exportovat budíky a časovače</string>
     <string name="sort_by_timer_duration">Trvání časovače</string>
     <string name="not_scheduled">Nenaplánováno</string>
+    <string name="missed_alarm">Zmeškaný budík</string>
+    <string name="replaced_by_another_alarm">Nahrazen jiným budíkem</string>
+    <string name="alarm_timed_out">Budík vypršel</string>
 </resources>
