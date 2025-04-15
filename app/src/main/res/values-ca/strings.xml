@@ -51,4 +51,6 @@
     <string name="settings_import_data">Importa alarmes i temporitzadors</string>
     <string name="sort_by_timer_duration">Durada del temporitzador</string>
     <string name="not_scheduled">No planificada</string>
+    <string name="missed_alarm">Alarma desatesa</string>
+    <string name="replaced_by_another_alarm">Substituïda per una altra alarma</string>
 </resources>

@@ -50,4 +50,6 @@
     <string name="settings_export_data">Wekkers en timers exporteren</string>
     <string name="sort_by_timer_duration">Tijd</string>
     <string name="not_scheduled">Niet ingepland</string>
+    <string name="missed_alarm">Gemist</string>
+    <string name="replaced_by_another_alarm">Vervangen door andere wekker</string>
 </resources>
