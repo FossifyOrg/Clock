@@ -54,4 +54,5 @@
     <string name="not_scheduled">Не запланировано</string>
     <string name="missed_alarm">Пропущенный будильник</string>
     <string name="replaced_by_another_alarm">Заменён другим будильником</string>
+    <string name="alarm_timed_out">Время действия будильника истекло</string>
 </resources>
