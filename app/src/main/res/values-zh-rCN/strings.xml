@@ -51,4 +51,5 @@
     <string name="not_scheduled">未设置</string>
     <string name="missed_alarm">错过的闹钟</string>
     <string name="replaced_by_another_alarm">已被另一个闹钟替代‌</string>
+    <string name="alarm_timed_out">闹钟已超时</string>
 </resources>
