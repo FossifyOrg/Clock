@@ -53,4 +53,5 @@
     <string name="not_scheduled">Nenaplánováno</string>
     <string name="missed_alarm">Zmeškaný budík</string>
     <string name="replaced_by_another_alarm">Nahrazen jiným budíkem</string>
+    <string name="alarm_timed_out">Budík vypršel</string>
 </resources>
