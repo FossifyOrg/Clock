@@ -50,4 +50,6 @@
     <string name="settings_export_data">Alarme und Timer exportieren</string>
     <string name="sort_by_timer_duration">Timer-Zeitdauer</string>
     <string name="not_scheduled">Nicht geplant</string>
+    <string name="missed_alarm">Verpasster Alarm</string>
+    <string name="replaced_by_another_alarm">Ersetzt durch einen anderen Alarm</string>
 </resources>
