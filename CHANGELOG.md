@@ -1,6 +1,19 @@
 Changelog
 ==========
 
+Version 1.2.0 *(2025-04-15)*
+----------------------------
+
+* Added notifications for missed or replaced alarms
+* Added placeholders for empty alarms and timers (#124)
+* Fixed issue where alarms could be silenced unintentionally (#77, #93)
+* Fixed issue where alarms didn't go off in some cases (#89)
+* Fixed broken behavior when re-enabling one-time alarms (#110)
+* Replaced checkboxes with switches (https://github.com/orgs/FossifyOrg/discussions/78)
+* Removed support for Android 7 and older versions (https://github.com/orgs/FossifyOrg/discussions/241)
+* Other minor bug fixes and improvements
+* Added more translations
+
 Version 1.1.0 *(2025-03-24)*
 ----------------------------
 
