@@ -49,4 +49,7 @@
     <string name="settings_import_data">匯入鬧鐘與計時器</string>
     <string name="sort_by_timer_duration">計時器持續時間</string>
     <string name="not_scheduled">未排定</string>
+    <string name="alarm_timed_out">鬧鐘逾時</string>
+    <string name="missed_alarm">錯過的鬧鐘</string>
+    <string name="replaced_by_another_alarm">被其他鬧鐘取代</string>
 </resources>
