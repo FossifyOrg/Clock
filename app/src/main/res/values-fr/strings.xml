@@ -53,4 +53,5 @@
     <string name="not_scheduled">Non programmé</string>
     <string name="replaced_by_another_alarm">Remplacée par une autre alarme</string>
     <string name="missed_alarm">Alarme manquée</string>
+    <string name="alarm_timed_out">Alarme expirée</string>
 </resources>
