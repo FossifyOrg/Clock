@@ -53,4 +53,5 @@
     <string name="not_scheduled">No planificada</string>
     <string name="missed_alarm">Alarma desatesa</string>
     <string name="replaced_by_another_alarm">Substituïda per una altra alarma</string>
+    <string name="alarm_timed_out">L\'alarma ha excedit el temps d\'espera</string>
 </resources>
