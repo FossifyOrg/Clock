@@ -50,4 +50,7 @@
     <string name="settings_import_data">Внасяне на будилници и отброявания</string>
     <string name="sort_by_timer_duration">Продължителност на отброяването</string>
     <string name="not_scheduled">Не планирано</string>
+    <string name="alarm_timed_out">Времето за звънене на будилника е изтекло</string>
+    <string name="missed_alarm">Пропуснат будилник</string>
+    <string name="replaced_by_another_alarm">Заменен от друг будилник</string>
 </resources>

@@ -51,4 +51,8 @@
     <string name="settings_import_data">Імпортувати будильники та таймери</string>
     <string name="settings_export_data">Експортувати будильники та таймери</string>
     <string name="sort_by_timer_duration">Тривалість таймера</string>
+    <string name="alarm_timed_out">Час спрацювання будильника вичерпано</string>
+    <string name="not_scheduled">Не заплановано</string>
+    <string name="missed_alarm">Пропущений будильник</string>
+    <string name="replaced_by_another_alarm">Замінено на інший будильник</string>
 </resources>
