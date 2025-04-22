@@ -49,4 +49,8 @@
     <string name="sort_by_timer_duration">टाइमर अवधि</string>
     <string name="settings_import_data">अलार्म और टाइमर आयात करें</string>
     <string name="settings_export_data">अलार्म और टाइमर निर्यात करें</string>
+    <string name="alarm_timed_out">अलार्म का समय समाप्त</string>
+    <string name="not_scheduled">अनुसूचित नहीं</string>
+    <string name="missed_alarm">अलार्म छूट गया</string>
+    <string name="replaced_by_another_alarm">दूसरे अलार्म द्वारा प्रतिस्थापित</string>
 </resources>
