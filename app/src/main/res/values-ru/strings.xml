@@ -42,7 +42,7 @@
     </plurals>
     <string name="clock_tab">Часы</string>
     <string name="alarm_tab">Будильник</string>
-    <string name="stopwatch_tab">Секундомер</string>
+    <string name="stopwatch_tab">Вкладка секундомера</string>
     <string name="timer_tab">Таймер</string>
     <string name="show_seconds">Показывать секунды</string>
     <string name="increase_volume_gradually">Нарастание громкости</string>
