@@ -45,4 +45,11 @@
     <string name="alarm_created">Alarm dibuat</string>
     <string name="stopwatch">Pengukur waktu</string>
     <string name="add_alarm">Tambah alarm</string>
+    <string name="sort_by_timer_duration">Durasi pewaktu</string>
+    <string name="alarm_timed_out">Waktu alarm habis</string>
+    <string name="settings_import_data">Impor alarm dan pewaktu</string>
+    <string name="settings_export_data">Ekspor alarm dan pewaktu</string>
+    <string name="not_scheduled">Belum dijadwalkan</string>
+    <string name="missed_alarm">Alarm terlewat</string>
+    <string name="replaced_by_another_alarm">Digantikan oleh alarm lain</string>
 </resources>
