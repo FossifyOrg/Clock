@@ -48,4 +48,9 @@
     <string name="alarm_created">Ébresztés létrehozva</string>
     <string name="settings_import_data">Ébresztések és időzítők importálása</string>
     <string name="settings_export_data">Ébresztések és időzítők exportálása</string>
+    <string name="sort_by_timer_duration">Időzítés időtartama</string>
+    <string name="alarm_timed_out">Ébresztő időkorlátja lejárt</string>
+    <string name="not_scheduled">Nincs ütemezve</string>
+    <string name="missed_alarm">Kihagyott ébresztés</string>
+    <string name="replaced_by_another_alarm">Másik ébresztés helyettesíti</string>
 </resources>
