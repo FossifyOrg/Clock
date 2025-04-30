@@ -52,4 +52,8 @@
     <string name="settings_import_data">Iompórtáil aláraim agus amadóirí</string>
     <string name="settings_export_data">Easpórtáil aláraim agus amadóirí</string>
     <string name="sort_by_timer_duration">Fad an lasc ama</string>
+    <string name="alarm_timed_out">Chuaigh an t-am ar an aláram amach</string>
+    <string name="not_scheduled">Gan sceidealú</string>
+    <string name="missed_alarm">Aláram caillte</string>
+    <string name="replaced_by_another_alarm">Cuireadh aláram eile ina áit</string>
 </resources>
