@@ -5,7 +5,7 @@
     <string name="vibrate">震動</string>
     <string name="no_days_selected">未選擇哪一天</string>
     <string name="timer">計時器</string>
-    <string name="lap">分段</string>
+    <string name="lap">分圈</string>
     <string name="stopwatch_stopped">碼錶已停止</string>
     <string name="timer_stopped">計時器已停止</string>
     <string name="max_reminder_duration">最長提醒持續時間</string>
@@ -22,7 +22,7 @@
     <string name="faq_1_title">碼錶頁面分段的排序如何變更?</string>
     <string name="faq_1_text">只要點擊任一欄位，就會依選定的欄位做排序。再多點一下，還能切換遞增或遞減的排序。</string>
     <string name="clock">時鐘</string>
-    <string name="stopwatch">計時器</string>
+    <string name="stopwatch">碼表</string>
     <string name="start_stopwatch">開始計時</string>
     <string name="alarm_dismissed">解除鬧鐘</string>
     <string name="select_timer_to_dismiss">選取要解除的計時器</string>
