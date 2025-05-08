@@ -114,7 +114,6 @@ class AlarmService : Service() {
                 val audioAttributes = AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_ALARM)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
                     .build()
 
                 mediaPlayer = MediaPlayer().apply {
