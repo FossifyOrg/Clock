@@ -1,0 +1,7 @@
+Changed:
+
+• Updated translations
+
+Fixed:
+
+• Fixed gradual alarm volume increase on Samsung devices
