@@ -16,7 +16,7 @@ autofittextview = "0.2.1"
 #Eventbus
 eventbus = "3.3.1"
 #KotlinX
-kotlinx-coroutines = "1.7.3"
+kotlinx-coroutines = "1.10.2"
 #NumberPicker
 numberpicker = "2.4.13"
 #Room
