@@ -51,4 +51,8 @@
     <string name="settings_import_data">ייבוא התראות וטיימרים</string>
     <string name="settings_export_data">ייצוא התראות וטיימרים</string>
     <string name="upcoming_alarm">התראה קרובה</string>
+    <string name="alarm_timed_out">זמן הפעולה של ההתראה הסתיים</string>
+    <string name="not_scheduled">לא מתוכנן</string>
+    <string name="missed_alarm">התראה שלא נענתה</string>
+    <string name="replaced_by_another_alarm">הוחלף על ידי התראה אחרת</string>
 </resources>
