@@ -50,4 +50,6 @@
     <string name="settings_import_data">Importar alarmas y temporizadores</string>
     <string name="settings_export_data">Exportar alarmas y temporizadores</string>
     <string name="sort_by_timer_duration">Duración de temporizador</string>
+    <string name="missed_alarm">Alarma perdida</string>
+    <string name="replaced_by_another_alarm">Sustituida por otra alarma</string>
 </resources>
