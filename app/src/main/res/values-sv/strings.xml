@@ -49,4 +49,7 @@
     <string name="settings_import_data">Importera alarm och timers</string>
     <string name="settings_export_data">Exportera alarm och timers</string>
     <string name="sort_by_timer_duration">Timerlängd</string>
+    <string name="not_scheduled">Inte schemalagd</string>
+    <string name="missed_alarm">Missat alarm</string>
+    <string name="replaced_by_another_alarm">Ersatt av ett annat alarm</string>
 </resources>
