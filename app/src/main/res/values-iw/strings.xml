@@ -2,18 +2,18 @@
 <resources>
     <string name="app_launcher_name">שעון</string>
     <string name="time_zone">אזור זמן</string>
-    <string name="vibrate">לנדנד</string>
+    <string name="vibrate">נידנוד</string>
     <string name="no_days_selected">נא לבחור ימים ולבצע שוב</string>
     <string name="timer">טיימר</string>
     <string name="stopwatch">סטופר</string>
     <string name="lap">הקפה</string>
-    <string name="stopwatch_stopped">הסטופר הופסק</string>
-    <string name="timer_stopped">הטיימר הופסק</string>
+    <string name="stopwatch_stopped">הסטופר נעצר</string>
+    <string name="timer_stopped">הטיימר נעצר</string>
     <string name="max_reminder_duration">משך תזכורת מקסימלי</string>
     <string name="time_expired">הזמן פג</string>
     <string name="clock_and_date">שעון ותאריך</string>
     <string name="use_text_shadow">השתמש בצל טקסט</string>
-    <string name="swipe_right_to_dismiss">החלק ימינה כדי לסגור, או שמאלה כדי להשהות.</string>
+    <string name="swipe_right_to_dismiss">החלק ימינה כדי לסגור, ושמאלה כדי להשהות.</string>
     <string name="sort_by_creation_order">סדר יצירה</string>
     <string name="sort_by_alarm_time">זמן השעון המעורר</string>
     <string name="sort_by_day_and_alarm_time">יום וזמן השעון המעורר</string>
@@ -23,9 +23,8 @@
     <string name="timer_single_notification_label_msg">טיימר עבור %s פועל</string>
     <string name="new_timer">טיימר חדש</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d טיימר פועל</item>
+        <item quantity="one">טיימר %d פועל</item>
         <item quantity="two">%d טיימרים פועלים</item>
-        <item quantity="many">%d טיימר פועל</item>
         <item quantity="other">%d טיימרים פועלים</item>
     </plurals>
     <string name="clock_tab">לשונית שעון</string>
