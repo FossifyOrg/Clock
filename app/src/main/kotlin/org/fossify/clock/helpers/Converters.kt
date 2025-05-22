@@ -8,7 +8,8 @@ import org.fossify.clock.models.TimerState
 class Converters {
 
     @TypeConverter
-    fun jsonToTimerState(value: String): TimerState {
+    fun jsonToTimerState(value: String?): TimerState {
+        if (value.isNullOrEmpty()) return TimerState.Idle
         return try {
             gson.fromJson(value, StateWrapper::class.java).state
         } catch (e: Exception) {
