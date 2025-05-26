@@ -8,7 +8,7 @@ ksp = "2.1.21-2.0.1"
 detekt = "1.23.8"
 #AndroidX
 androidx-constraintlayout = "2.2.1"
-androidx-lifecycle = "2.8.7"
+androidx-lifecycle = "2.9.0"
 androidx-preference = "1.2.1"
 androidx-work = "2.9.0"
 #AutoFitTextView
