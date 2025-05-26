@@ -10,7 +10,7 @@ detekt = "1.23.8"
 androidx-constraintlayout = "2.2.1"
 androidx-lifecycle = "2.8.7"
 androidx-preference = "1.2.1"
-androidx-work = "2.9.0"
+androidx-work = "2.10.1"
 #AutoFitTextView
 autofittextview = "0.2.1"
 #Eventbus
