@@ -52,4 +52,5 @@
     <string name="not_scheduled">Inte schemalagd</string>
     <string name="missed_alarm">Missat alarm</string>
     <string name="replaced_by_another_alarm">Ersatt av ett annat alarm</string>
+    <string name="alarm_timed_out">Alarm gick ut</string>
 </resources>
