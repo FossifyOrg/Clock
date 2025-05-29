@@ -22,7 +22,7 @@ numberpicker = "2.4.13"
 #Room
 room = "2.7.1"
 #Fossify
-commons = "2.0.0"
+commons = "2.0.1"
 #Stetho
 stetho = "1.6.0"
 #Gradle
