@@ -2,7 +2,7 @@
 <resources>
     <string name="app_launcher_name">שעון</string>
     <string name="time_zone">אזור זמן</string>
-    <string name="vibrate">נידנוד</string>
+    <string name="vibrate">רטט</string>
     <string name="no_days_selected">נא לבחור ימים ולבצע שוב</string>
     <string name="timer">טיימר</string>
     <string name="stopwatch">סטופר</string>
@@ -10,7 +10,7 @@
     <string name="stopwatch_stopped">הסטופר נעצר</string>
     <string name="timer_stopped">הטיימר נעצר</string>
     <string name="max_reminder_duration">משך תזכורת מקסימלי</string>
-    <string name="time_expired">הזמן פג</string>
+    <string name="time_expired">הזמן עבר</string>
     <string name="clock_and_date">שעון ותאריך</string>
     <string name="use_text_shadow">השתמש בצל טקסט</string>
     <string name="swipe_right_to_dismiss">החלק ימינה כדי לסגור, ושמאלה כדי להשהות.</string>
@@ -19,7 +19,7 @@
     <string name="sort_by_day_and_alarm_time">יום וזמן השעון המעורר</string>
     <string name="analogue_clock">שעון אנלוגי</string>
     <string name="digital_clock">שעון דיגיטלי</string>
-    <string name="timers_notification_msg">‏טיימר פועל</string>
+    <string name="timers_notification_msg">טיימרים פועלים</string>
     <string name="timer_single_notification_label_msg">טיימר עבור %s פועל</string>
     <string name="new_timer">טיימר חדש</string>
     <plurals name="timer_notification_msg">
@@ -34,7 +34,7 @@
     <string name="show_seconds">הצג שניות</string>
     <string name="increase_volume_gradually">הגבר את עוצמת הקול בהדרגה</string>
     <string name="faq_1_title">כיצד אוכל לשנות את מיון ההקפה בכרטיסיית הסטופר?</string>
-    <string name="faq_1_text">פשוט לחץ על כל אחת מהעמודות, זה יגרום להקפות להיות ממוינות לפי העמודה הנתונה. בלחיצות נוספות תוכל לעבור בין מיון עולה ויורד.</string>
+    <string name="faq_1_text">פשוט לחץ על אחת מהעמודות, וההקפות ימוינו לפי העמודה שנבחרה. לחיצות נוספות יחליפו בין מיון עולה ליורד.</string>
     <string name="clock">שעון</string>
     <string name="start_stopwatch">הפעל סטופר</string>
     <string name="alarm_created">נוצר שעון מעורר</string>
