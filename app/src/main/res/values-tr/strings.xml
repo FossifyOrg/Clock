@@ -49,4 +49,8 @@
     <string name="settings_export_data">Alarmları ve zamanlayıcıları dışa aktar</string>
     <string name="settings_import_data">Alarmları ve zamanlayıcıları içe aktar</string>
     <string name="sort_by_timer_duration">Zamanlayıcı süresi</string>
+    <string name="alarm_timed_out">Alarm zaman aşımına uğradı</string>
+    <string name="not_scheduled">Planlanmadı</string>
+    <string name="missed_alarm">Kaçırılmış alarm</string>
+    <string name="replaced_by_another_alarm">Yerine başka bir alarm konuldu</string>
 </resources>
