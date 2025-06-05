@@ -19,14 +19,14 @@ Transformez votre écran d'accueil avec le widget horloge personnalisable de l'H
 Profitez d'une expérience personnalisée grâce au design matériel et aux options de thème sombre de l'Horloge Fossify. Adaptez l'application à vos préférences avec des couleurs et des thèmes personnalisables, en améliorant la convivialité et en réduisant la fatigue oculaire, en particulier dans les environnements à faible luminosité.
 
 🔒 UNE APPROCHE AXÉE SUR LA PROTECTION DE LA VIE PRIVÉE :
-Soyez rassuré en sachant que votre vie privée est protégée grâce au fonctionnement hors ligne de l'Horloge Fossify. Faites l'expérience d'une confidentialité, d'une sécurité et d'une stabilité maximales sans sacrifier fonctionnalités ou confort.
+Soyez rassuré en sachant que votre vie privée est protégée grâce au fonctionnement hors ligne de l'Horloge Fossify. Faites l'expérience d'une confidentialité, d'une sécurité et d'une stabilité maximales sans sacrifier confort ou fonctionnalités.
 
-🌐 SANS PUBS & OPEN-SOURCE :
+🌐 SANS PUB & OPEN-SOURCE :
 Dites adieu aux publicités intrusives et aux autorisations inutiles. L'Horloge Fossify est sans publicité, entièrement open-source, et vous accorde un contrôle total sur votre chronomètre.
 
-Améliorez vos compétences dans la gestion du temps, optimisez vos routines et donnez la priorité à un meilleur sommeil avec l'Horloge Fossify. Téléchargez maintenant et prenez le contrôle de votre temps comme jamais auparavant.
+Améliorez vos compétences dans la gestion du temps, optimisez vos routines et donnez la priorité à un meilleur sommeil avec l'Horloge Fossify. Téléchargez-la maintenant et prenez le contrôle de votre temps comme jamais auparavant.
 
-Explorez plus d'applications Fossify: https://www.fossify.org
-Code Open-Source : https://www.github.com/FossifyOrg
-Rejoignez la communauté sur Reddit : https://www.reddit.com/r/Fossify
-Restez connecté sur Telegram : https://t.me/Fossify
+Découvrez plus d'applications Fossify : https ://www.fossify.org
+Code Open-Source : https ://www.github.com/FossifyOrg
+Rejoignez la communauté sur Reddit : https ://www.reddit.com/r/Fossify
+Restez connecté sur Telegram : https ://t.me/Fossify
