@@ -49,4 +49,8 @@
     <string name="sort_by_timer_duration">Ajastimen kesto</string>
     <string name="settings_export_data">Vie hälytykset ja ajastimet</string>
     <string name="settings_import_data">Tuo hälytykset ja ajastimet</string>
+    <string name="alarm_timed_out">Hälytys päättyi</string>
+    <string name="not_scheduled">Ei aikataulutettu</string>
+    <string name="replaced_by_another_alarm">Toinen hälytys korvannut</string>
+    <string name="missed_alarm">Hukattu hälytys</string>
 </resources>
