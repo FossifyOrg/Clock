@@ -2,17 +2,17 @@
 <resources>
     <string name="app_launcher_name">Ceas</string>
     <string name="time_zone">Fus Orar</string>
-    <string name="vibrate">Vibrează</string>
-    <string name="no_days_selected">Nici o zi selectată</string>
+    <string name="vibrate">Vibrare</string>
+    <string name="no_days_selected">Nicio zi selectată</string>
     <string name="clock">Ceas</string>
     <string name="timer">Temporizator</string>
     <string name="stopwatch">Cronometru</string>
     <string name="lap">Tură</string>
     <string name="stopwatch_stopped">Cronometrul a fost oprit</string>
     <string name="timer_stopped">Temporizatorul a fost oprit</string>
-    <string name="max_reminder_duration">Durată maximă a atenţionării</string>
+    <string name="max_reminder_duration">Durata maximă a atenționării</string>
     <string name="time_expired">Timpul a expirat</string>
-    <string name="clock_and_date">Ceas şi dată</string>
+    <string name="clock_and_date">Ceas și dată</string>
     <string name="use_text_shadow">Utilizează umbră la text</string>
     <string name="swipe_right_to_dismiss">Glisează în dreapta pentru a ignora sau stânga pentru a amâna.</string>
     <string name="sort_by_creation_order">Data creării</string>
@@ -35,16 +35,23 @@
         <item quantity="other">%d de temporizatoare sunt pornite</item>
     </plurals>
     <string name="clock_tab">Fereastră ceas</string>
-    <string name="alarm_tab">Fereastră alarmă</string>
-    <string name="stopwatch_tab">Fereastră cronometru</string>
-    <string name="timer_tab">Fereastră temporizator</string>
-    <string name="show_seconds">Arată secunde</string>
-    <string name="increase_volume_gradually">Creşte volumul gradual</string>
+    <string name="alarm_tab">Fila alarme</string>
+    <string name="stopwatch_tab">Fila cronometru</string>
+    <string name="timer_tab">Fila temporizator</string>
+    <string name="show_seconds">Arată secundele</string>
+    <string name="increase_volume_gradually">Crește volumul gradual</string>
     <string name="faq_1_title">Cum pot schimba sortarea turelor în fereastra cronometrului\?</string>
-    <string name="faq_1_text">Apasă pe oricare coloana, asta o să facă ca turele să fie sortate după coloana selectată. Apăsările suplimentare o să comute între ordonare crescătoare şi descrescătoare.</string>
+    <string name="faq_1_text">Apasă pe oricare coloană, asta o să facă ca turele să fie sortate după coloana selectată. Apăsările suplimentare o să comute între ordonare crescătoare și descrescătoare.</string>
     <string name="upcoming_alarm">Alarma viitoare</string>
     <string name="alarm_created">Alarma a fost creată</string>
     <string name="start_stopwatch">Pornește cronometrul</string>
     <string name="select_timer_to_dismiss">Selectează temporizatorul pentru a anula</string>
     <string name="select_alarm_to_dismiss">Selectează alama pentru a anula</string>
+    <string name="sort_by_timer_duration">Durata cronometrului</string>
+    <string name="alarm_timed_out">Alarmă expirată</string>
+    <string name="settings_import_data">Importă alarme și cronometre</string>
+    <string name="settings_export_data">Exportă alarme și cronometre</string>
+    <string name="not_scheduled">Nu este programat</string>
+    <string name="missed_alarm">Alarmă ratată</string>
+    <string name="replaced_by_another_alarm">Înlocuită cu o altă alarmă</string>
 </resources>
