@@ -5,9 +5,9 @@
     <string name="vibrate">רטט</string>
     <string name="no_days_selected">נא לבחור ימים ולבצע שוב</string>
     <string name="timer">טיימר</string>
-    <string name="stopwatch">סטופר</string>
+    <string name="stopwatch">שעון עצר</string>
     <string name="lap">הקפה</string>
-    <string name="stopwatch_stopped">הסטופר נעצר</string>
+    <string name="stopwatch_stopped">השעון עצר נעצר</string>
     <string name="timer_stopped">הטיימר נעצר</string>
     <string name="max_reminder_duration">משך תזכורת מקסימלי</string>
     <string name="time_expired">הזמן עבר</string>
@@ -29,14 +29,14 @@
     </plurals>
     <string name="clock_tab">לשונית שעון</string>
     <string name="alarm_tab">לשונית שעון מעורר</string>
-    <string name="stopwatch_tab">לשונית סטופר</string>
+    <string name="stopwatch_tab">לשונית שעון עצר</string>
     <string name="timer_tab">לשונית טיימר</string>
     <string name="show_seconds">הצג שניות</string>
     <string name="increase_volume_gradually">הגבר את עוצמת הקול בהדרגה</string>
-    <string name="faq_1_title">כיצד אוכל לשנות את מיון ההקפה בכרטיסיית הסטופר?</string>
+    <string name="faq_1_title">כיצד אוכל לשנות את מיון ההקפה בלשונית שעון עצר?</string>
     <string name="faq_1_text">פשוט לחץ על אחת מהעמודות, וההקפות ימוינו לפי העמודה שנבחרה. לחיצות נוספות יחליפו בין מיון עולה ליורד.</string>
     <string name="clock">שעון</string>
-    <string name="start_stopwatch">הפעל סטופר</string>
+    <string name="start_stopwatch">הפעל שעון עצר</string>
     <string name="alarm_created">נוצר שעון מעורר</string>
     <string name="select_alarm_to_dismiss">בחר שעון מעורר לביטול</string>
     <string name="select_timer_to_dismiss">בחר טיימר לביטול</string>
