@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_launcher_name">Fossify - Relógio</string>
+    <string name="app_launcher_name">Relógio</string>
     <string name="time_zone">Fuso horário</string>
     <string name="vibrate">Vibrar</string>
     <string name="no_days_selected">Nenhum dia selecionado</string>
