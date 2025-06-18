@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.databinding.ItemLapBinding
 import org.fossify.clock.extensions.formatStopwatchTime
@@ -15,11 +14,12 @@ import org.fossify.clock.models.Lap
 import org.fossify.commons.adapters.MyRecyclerViewAdapter
 import org.fossify.commons.views.MyRecyclerView
 
-class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) :
-    MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
-    private var lastLapTimeView: TextView? = null
-    private var lastTotalTimeView: TextView? = null
-    private var lastLapId = 0
+class StopwatchAdapter(
+    activity: SimpleActivity,
+    var laps: ArrayList<Lap>,
+    recyclerView: MyRecyclerView,
+    itemClick: (Any) -> Unit,
+) : MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
 
     override fun getActionMenuId() = 0
 
@@ -43,7 +43,7 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
         return createViewHolder(ItemLapBinding.inflate(layoutInflater, parent, false).root)
     }
 
-    override fun onBindViewHolder(holder: MyRecyclerViewAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val lap = laps[position]
         holder.bindView(lap, false, false) { itemView, layoutPosition ->
             setupView(itemView, lap)
@@ -55,16 +55,9 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateItems(newItems: ArrayList<Lap>) {
-        lastLapId = 0
-        laps = newItems.clone() as ArrayList<Lap>
-        laps.sort()
+        laps = newItems
         notifyDataSetChanged()
         finishActMode()
-    }
-
-    fun updateLastField(lapTime: Long, totalTime: Long) {
-        lastLapTimeView?.text = lapTime.formatStopwatchTime(false)
-        lastTotalTimeView?.text = totalTime.formatStopwatchTime(false)
     }
 
     private fun setupView(view: View, lap: Lap) {
@@ -85,12 +78,6 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
             lapTotalTime.setTextColor(textColor)
             lapTotalTime.setOnClickListener {
                 itemClick(SORT_BY_TOTAL_TIME)
-            }
-
-            if (lap.id > lastLapId) {
-                lastLapTimeView = lapLapTime
-                lastTotalTimeView = lapTotalTime
-                lastLapId = lap.id
             }
         }
     }

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated translations
+
+### Fixed
+
+- Fixed inaccuracy in stopwatch over long durations ([#207])
+
 ## [1.2.1] - 2025-05-08
 
 ### Changed
@@ -75,3 +83,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.0.0]: https://github.com/FossifyOrg/Clock/releases/tag/1.0.0
 
 [#158]: https://github.com/FossifyOrg/Clock/issues/158
+[#207]: https://github.com/FossifyOrg/Clock/issues/207
