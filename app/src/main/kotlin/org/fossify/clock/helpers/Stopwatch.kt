@@ -6,6 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.fossify.clock.models.Lap
 import java.util.concurrent.CopyOnWriteArraySet
@@ -114,7 +115,7 @@ object Stopwatch {
     private fun startUpdateJob() {
         updateJob?.cancel()
         updateJob = scope.launch {
-            while (state == State.RUNNING) {
+            while (isActive && state == State.RUNNING) {
                 val now = SystemClock.elapsedRealtime()
                 notifyListeners(
                     totalTime = accumulatedTime + (now - startTime),
