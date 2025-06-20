@@ -10,7 +10,7 @@ import org.fossify.clock.extensions.formatStopwatchTime
 import org.fossify.clock.helpers.SORT_BY_LAP
 import org.fossify.clock.helpers.SORT_BY_LAP_TIME
 import org.fossify.clock.helpers.SORT_BY_TOTAL_TIME
-import org.fossify.clock.helpers.isLive
+import org.fossify.clock.extensions.isLive
 import org.fossify.clock.models.Lap
 import org.fossify.commons.adapters.MyRecyclerViewAdapter
 import org.fossify.commons.views.MyRecyclerView
