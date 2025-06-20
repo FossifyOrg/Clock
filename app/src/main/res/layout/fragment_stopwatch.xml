@@ -96,24 +96,22 @@
         app:layout_constraintBottom_toBottomOf="@+id/stopwatch_play_pause"
         app:layout_constraintEnd_toStartOf="@+id/stopwatch_play_pause"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/stopwatch_play_pause" />
+        app:layout_constraintTop_toTopOf="@+id/stopwatch_play_pause"
+        tools:visibility="visible" />
 
-    <org.fossify.commons.views.MyTextView
+    <ImageView
         android:id="@+id/stopwatch_lap"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/stopwatch_button_small_size"
         android:layout_height="@dimen/stopwatch_button_small_size"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:gravity="center"
-        android:letterSpacing="0.1"
-        android:paddingLeft="@dimen/activity_margin"
-        android:paddingRight="@dimen/activity_margin"
-        android:text="@string/lap"
-        android:textAllCaps="true"
-        android:textSize="@dimen/bigger_text_size"
+        android:contentDescription="@string/lap"
+        android:padding="@dimen/normal_margin"
+        android:src="@drawable/ic_stopwatch_vector"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/stopwatch_play_pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/stopwatch_play_pause"
-        app:layout_constraintTop_toTopOf="@+id/stopwatch_play_pause" />
+        app:layout_constraintTop_toTopOf="@+id/stopwatch_play_pause"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
