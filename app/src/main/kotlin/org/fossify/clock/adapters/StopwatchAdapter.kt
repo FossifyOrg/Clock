@@ -19,7 +19,12 @@ class StopwatchAdapter(
     activity: SimpleActivity,
     recyclerView: MyRecyclerView,
     private val onItemClick: (Any) -> Unit,
-) : MyRecyclerViewListAdapter<Lap>(activity, recyclerView, LapDiffCallback(), {}) {
+) : MyRecyclerViewListAdapter<Lap>(
+    activity = activity,
+    recyclerView = recyclerView,
+    diffUtil = LapDiffCallback(),
+    itemClick = {}
+) {
 
     init {
         setHasStableIds(true)
