@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import org.fossify.clock.models.Lap
 import java.util.concurrent.CopyOnWriteArraySet
 
-private const val UPDATE_INTERVAL_MS = 20L
+private const val UPDATE_INTERVAL_MS = 100L
 
 object Stopwatch {
     private var startTime = 0L

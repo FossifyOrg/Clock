@@ -83,6 +83,8 @@ const val SORT_BY_LAP = 1
 const val SORT_BY_LAP_TIME = 2
 const val SORT_BY_TOTAL_TIME = 4
 
+const val STOPWATCH_LIVE_LAP_ID = Int.MAX_VALUE
+
 // alarm and timer sorting
 const val SORT_BY_CREATION_ORDER = 0
 const val SORT_BY_ALARM_TIME = 1
