@@ -17,6 +17,7 @@ import org.fossify.clock.extensions.formatStopwatchTime
 import org.fossify.clock.helpers.SORT_BY_LAP
 import org.fossify.clock.helpers.SORT_BY_LAP_TIME
 import org.fossify.clock.helpers.SORT_BY_TOTAL_TIME
+import org.fossify.clock.helpers.STOPWATCH_LIVE_LAP_ID
 import org.fossify.clock.helpers.Stopwatch
 import org.fossify.clock.models.Lap
 import org.fossify.commons.dialogs.PermissionRequiredDialog
@@ -38,7 +39,7 @@ import org.fossify.commons.helpers.SORT_DESCENDING
 
 class StopwatchFragment : Fragment() {
 
-    lateinit var stopwatchAdapter: StopwatchAdapter
+    private var stopwatchAdapter: StopwatchAdapter? = null
     private lateinit var binding: FragmentStopwatchBinding
 
     private var latestLapTime: Long = 0L
@@ -128,6 +129,12 @@ class StopwatchFragment : Fragment() {
                 color = properPrimaryColor
             )
             stopwatchReset.applyColorFilter(requireContext().getProperTextColor())
+        }
+
+        stopwatchAdapter?.apply {
+            updatePrimaryColor()
+            updateBackgroundColor(requireContext().getProperBackgroundColor())
+            updateTextColor(requireContext().getProperTextColor())
         }
     }
 
@@ -233,37 +240,28 @@ class StopwatchFragment : Fragment() {
         val allLaps = ArrayList(Stopwatch.laps)
         if (Stopwatch.laps.isNotEmpty() && Stopwatch.state != Stopwatch.State.STOPPED) {
             allLaps += Lap(
-                id = Stopwatch.laps.size + 1,
+                id = STOPWATCH_LIVE_LAP_ID,
                 lapTime = latestLapTime,
                 totalTime = latestTotalTime
             )
         }
 
         allLaps.sort()
-        stopwatchAdapter.apply {
-            updatePrimaryColor()
-            updateBackgroundColor(requireContext().getProperBackgroundColor())
-            updateTextColor(requireContext().getProperTextColor())
-            updateItems(allLaps)
-        }
+        stopwatchAdapter?.updateItems(allLaps)
     }
 
     private val updateListener = object : Stopwatch.UpdateListener {
         override fun onUpdate(totalTime: Long, lapTime: Long, useLongerMSFormat: Boolean) {
-            activity?.runOnUiThread {
-                binding.stopwatchTime.text = totalTime.formatStopwatchTime(useLongerMSFormat)
-                latestLapTime = lapTime
-                latestTotalTime = totalTime
-                updateLaps()
-            }
+            binding.stopwatchTime.text = totalTime.formatStopwatchTime(useLongerMSFormat)
+            latestLapTime = lapTime
+            latestTotalTime = totalTime
+            stopwatchAdapter?.updateLiveLap(totalTime, lapTime)
         }
 
         override fun onStateChanged(state: Stopwatch.State) {
-            activity?.runOnUiThread {
-                updateIcons(state)
-                binding.stopwatchLap.beVisibleIf(state == Stopwatch.State.RUNNING)
-                binding.stopwatchReset.beVisibleIf(state != Stopwatch.State.STOPPED)
-            }
+            updateIcons(state)
+            binding.stopwatchLap.beVisibleIf(state == Stopwatch.State.RUNNING)
+            binding.stopwatchReset.beVisibleIf(state != Stopwatch.State.STOPPED)
         }
     }
 }

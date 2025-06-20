@@ -10,16 +10,21 @@ import org.fossify.clock.extensions.formatStopwatchTime
 import org.fossify.clock.helpers.SORT_BY_LAP
 import org.fossify.clock.helpers.SORT_BY_LAP_TIME
 import org.fossify.clock.helpers.SORT_BY_TOTAL_TIME
+import org.fossify.clock.helpers.isLive
 import org.fossify.clock.models.Lap
 import org.fossify.commons.adapters.MyRecyclerViewAdapter
 import org.fossify.commons.views.MyRecyclerView
 
 class StopwatchAdapter(
     activity: SimpleActivity,
-    var laps: ArrayList<Lap>,
+    private var laps: ArrayList<Lap>,
     recyclerView: MyRecyclerView,
     itemClick: (Any) -> Unit,
 ) : MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
+
+    init {
+        recyclerView.itemAnimator = null
+    }
 
     override fun getActionMenuId() = 0
 
@@ -60,9 +65,26 @@ class StopwatchAdapter(
         finishActMode()
     }
 
+    fun updateLiveLap(totalTime: Long, lapTime: Long) {
+        val oldIndex = laps.indexOfFirst { it.isLive() }
+        if (oldIndex == -1) return
+        laps[oldIndex].lapTime = lapTime
+        laps[oldIndex].totalTime = totalTime
+        laps.sort()
+
+        // the live lap might have changed position
+        val newIndex = laps.indexOfFirst { it.isLive() }
+        if (oldIndex == newIndex) {
+            notifyItemChanged(newIndex)
+        } else {
+            notifyItemMoved(oldIndex, newIndex)
+            notifyItemChanged(newIndex)
+        }
+    }
+
     private fun setupView(view: View, lap: Lap) {
         ItemLapBinding.bind(view).apply {
-            lapOrder.text = lap.id.toString()
+            lapOrder.text = if (lap.isLive()) laps.size.toString() else lap.id.toString()
             lapOrder.setTextColor(textColor)
             lapOrder.setOnClickListener {
                 itemClick(SORT_BY_LAP)
