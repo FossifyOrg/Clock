@@ -1,76 +1,80 @@
 package org.fossify.clock.helpers
 
 import android.os.SystemClock
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import org.fossify.clock.models.Lap
-import java.util.Timer
-import java.util.TimerTask
 import java.util.concurrent.CopyOnWriteArraySet
 
-private const val UPDATE_INTERVAL = 10L
+private const val UPDATE_INTERVAL_MS = 20L
 
 object Stopwatch {
-
-    private var updateTimer = Timer()
-    private var uptimeAtStart = 0L
-    private var totalTicks = 0
-    private var currentTicks = 0    // ticks that reset at pause
-    private var lapTicks = 0
+    private var startTime = 0L
+    private var accumulatedTime = 0L
+    private var lapStartTime = 0L
+    private var accumulatedLapTime = 0L
     private var currentLap = 1
+
+    private val updateListeners = CopyOnWriteArraySet<UpdateListener>()
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    private var updateJob: Job? = null
+
     val laps = ArrayList<Lap>()
     var state = State.STOPPED
         private set(value) {
             field = value
-            for (listener in updateListeners) {
-                listener.onStateChanged(value)
+            updateListeners.forEach {
+                it.onStateChanged(value)
             }
         }
-    private var updateListeners = CopyOnWriteArraySet<UpdateListener>()
 
     fun reset() {
-        updateTimer.cancel()
+        cancelUpdateJob()
         state = State.STOPPED
-        currentTicks = 0
-        totalTicks = 0
+        accumulatedTime = 0L
+        lapStartTime = 0L
+        accumulatedLapTime = 0L
         currentLap = 1
-        lapTicks = 0
         laps.clear()
+        notifyListeners(totalTime = 0, lapTime = 0, useLongerMSFormat = false)
     }
 
-    fun toggle(setUptimeAtStart: Boolean) {
+    fun toggle() {
+        val now = SystemClock.elapsedRealtime()
         if (state != State.RUNNING) {
             state = State.RUNNING
-            updateTimer = buildUpdateTimer()
-            if (setUptimeAtStart) {
-                uptimeAtStart = SystemClock.uptimeMillis()
-            }
+            startTime = now
+            lapStartTime = now
+            startUpdateJob()
         } else {
             state = State.PAUSED
-            val prevSessionsMS = (totalTicks - currentTicks) * UPDATE_INTERVAL
-            val totalDuration = SystemClock.uptimeMillis() - uptimeAtStart + prevSessionsMS
-            updateTimer.cancel()
-            currentTicks = 0
-            totalTicks--
-            for (listener in updateListeners) {
-                listener.onUpdate(totalDuration, -1, true)
-            }
+            cancelUpdateJob()
+            accumulatedTime += now - startTime
+            accumulatedLapTime += now - lapStartTime
+            notifyListeners(
+                totalTime = accumulatedTime,
+                lapTime = accumulatedLapTime,
+                useLongerMSFormat = true
+            )
         }
     }
 
     fun lap() {
-        if (laps.isEmpty()) {
-            val lap = Lap(currentLap++, lapTicks * UPDATE_INTERVAL, totalTicks * UPDATE_INTERVAL)
-            laps.add(0, lap)
-            lapTicks = 0
-        } else {
-            laps.first().apply {
-                lapTime = lapTicks * UPDATE_INTERVAL
-                totalTime = totalTicks * UPDATE_INTERVAL
-            }
-        }
+        if (state != State.RUNNING) return
 
-        val lap = Lap(currentLap++, lapTicks * UPDATE_INTERVAL, totalTicks * UPDATE_INTERVAL)
+        val now = SystemClock.elapsedRealtime()
+        val lapDuration = accumulatedLapTime + (now - lapStartTime)
+        val totalDuration = accumulatedTime + (now - startTime)
+
+        val lap = Lap(id = currentLap++, lapTime = lapDuration, totalTime = totalDuration)
         laps.add(0, lap)
-        lapTicks = 0
+        lapStartTime = now
+        accumulatedLapTime = 0L
     }
 
     /**
@@ -81,10 +85,21 @@ object Stopwatch {
      */
     fun addUpdateListener(updateListener: UpdateListener) {
         updateListeners.add(updateListener)
+        val totalDuration: Long
+        val lapDuration: Long
+        if (state == State.RUNNING) {
+            val now = SystemClock.elapsedRealtime()
+            totalDuration = accumulatedTime + (now - startTime)
+            lapDuration = accumulatedLapTime + (now - lapStartTime)
+        } else {
+            totalDuration = accumulatedTime
+            lapDuration = accumulatedLapTime
+        }
+
         updateListener.onUpdate(
-            totalTicks * UPDATE_INTERVAL,
-            lapTicks * UPDATE_INTERVAL,
-            state != State.STOPPED
+            totalTime = totalDuration,
+            lapTime = lapDuration,
+            useLongerMSFormat = state != State.STOPPED
         )
         updateListener.onStateChanged(state)
     }
@@ -97,26 +112,33 @@ object Stopwatch {
         updateListeners.remove(updateListener)
     }
 
-    private fun buildUpdateTimer(): Timer {
-        return Timer().apply {
-            scheduleAtFixedRate(object : TimerTask() {
-                override fun run() {
-                    if (state == State.RUNNING) {
-                        if (totalTicks % 10 == 0) {
-                            for (listener in updateListeners) {
-                                listener.onUpdate(
-                                    totalTicks * UPDATE_INTERVAL,
-                                    lapTicks * UPDATE_INTERVAL,
-                                    false
-                                )
-                            }
-                        }
-                        totalTicks++
-                        currentTicks++
-                        lapTicks++
-                    }
-                }
-            }, 0, UPDATE_INTERVAL)
+    private fun startUpdateJob() {
+        updateJob?.cancel()
+        updateJob = scope.launch {
+            while (isActive && state == State.RUNNING) {
+                val now = SystemClock.elapsedRealtime()
+                notifyListeners(
+                    totalTime = accumulatedTime + (now - startTime),
+                    lapTime = accumulatedLapTime + (now - lapStartTime),
+                    useLongerMSFormat = false
+                )
+                delay(UPDATE_INTERVAL_MS)
+            }
+        }
+    }
+
+    private fun cancelUpdateJob() {
+        updateJob?.cancel()
+        updateJob = null
+    }
+
+    private fun notifyListeners(totalTime: Long, lapTime: Long, useLongerMSFormat: Boolean) {
+        updateListeners.forEach {
+            it.onUpdate(
+                totalTime = totalTime,
+                lapTime = lapTime,
+                useLongerMSFormat = useLongerMSFormat
+            )
         }
     }
 
