@@ -126,19 +126,21 @@ class StopwatchFragment : Fragment() {
 
     private fun setupViews() {
         val properPrimaryColor = requireContext().getProperPrimaryColor()
+        val properTextColor = requireContext().getProperTextColor()
         binding.apply {
             requireContext().updateTextColors(stopwatchFragment)
             stopwatchPlayPause.background = resources.getColoredDrawableWithColor(
                 drawableId = R.drawable.circle_background_filled,
                 color = properPrimaryColor
             )
-            stopwatchReset.applyColorFilter(requireContext().getProperTextColor())
+            stopwatchReset.applyColorFilter(properTextColor)
+            stopwatchLap.applyColorFilter(properTextColor)
         }
 
         stopwatchAdapter?.apply {
             updatePrimaryColor()
             updateBackgroundColor(requireContext().getProperBackgroundColor())
-            updateTextColor(requireContext().getProperTextColor())
+            updateTextColor(properTextColor)
         }
     }
 
