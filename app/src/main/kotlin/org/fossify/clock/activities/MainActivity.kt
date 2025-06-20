@@ -275,7 +275,7 @@ class MainActivity : SimpleActivity() {
     private fun setupTabs() {
         binding.mainTabsHolder.removeAllTabs()
         val tabDrawables = arrayOf(
-            org.fossify.commons.R.drawable.ic_clock_vector,
+            R.drawable.ic_clock_vector,
             R.drawable.ic_alarm_vector,
             R.drawable.ic_stopwatch_vector,
             R.drawable.ic_hourglass_vector
@@ -343,7 +343,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun getSelectedTabDrawableIds() = arrayOf(
-        org.fossify.commons.R.drawable.ic_clock_filled_vector,
+        R.drawable.ic_clock_filled_vector,
         R.drawable.ic_alarm_filled_vector,
         R.drawable.ic_stopwatch_filled_vector,
         R.drawable.ic_hourglass_filled_vector
