@@ -8,6 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.fossify.clock.R
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.adapters.StopwatchAdapter
@@ -81,11 +85,11 @@ class StopwatchFragment : Fragment() {
                 stopwatchSortingIndicatorsHolder.beVisible()
                 Stopwatch.lap()
                 updateLaps()
+                scrollToTop()
             }
 
             stopwatchAdapter = StopwatchAdapter(
                 activity = activity as SimpleActivity,
-                laps = ArrayList(),
                 recyclerView = stopwatchList
             ) {
                 if (it is Int) {
@@ -195,6 +199,7 @@ class StopwatchFragment : Fragment() {
             clickedValue or SORT_DESCENDING
         }
         updateSorting(sorting)
+        scrollToTop()
     }
 
     private fun updateSorting(sorting: Int) {
@@ -236,18 +241,27 @@ class StopwatchFragment : Fragment() {
         }
     }
 
-    private fun updateLaps() {
-        val allLaps = ArrayList(Stopwatch.laps)
-        if (Stopwatch.laps.isNotEmpty() && Stopwatch.state != Stopwatch.State.STOPPED) {
-            allLaps += Lap(
-                id = STOPWATCH_LIVE_LAP_ID,
-                lapTime = latestLapTime,
-                totalTime = latestTotalTime
-            )
-        }
+    private fun updateLaps() = lifecycleScope.launch {
+        stopwatchAdapter?.submitList(
+            withContext(Dispatchers.Default) {
+                val laps = ArrayList(Stopwatch.laps)
+                if (laps.isNotEmpty() && Stopwatch.state != Stopwatch.State.STOPPED) {
+                    laps += Lap(
+                        id = STOPWATCH_LIVE_LAP_ID,
+                        lapTime = latestLapTime,
+                        totalTime = latestTotalTime
+                    )
+                }
+                laps.sort()
+                laps
+            }
+        )
+    }
 
-        allLaps.sort()
-        stopwatchAdapter?.updateItems(allLaps)
+    private fun scrollToTop() {
+        binding.stopwatchList.post {
+            binding.stopwatchList.scrollToPosition(0)
+        }
     }
 
     private val updateListener = object : Stopwatch.UpdateListener {
@@ -255,7 +269,7 @@ class StopwatchFragment : Fragment() {
             binding.stopwatchTime.text = totalTime.formatStopwatchTime(useLongerMSFormat)
             latestLapTime = lapTime
             latestTotalTime = totalTime
-            stopwatchAdapter?.updateLiveLap(totalTime, lapTime)
+            updateLaps()
         }
 
         override fun onStateChanged(state: Stopwatch.State) {
