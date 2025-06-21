@@ -7,7 +7,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.facebook.stetho.Stetho
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.getOpenTimerTabIntent
 import org.fossify.clock.extensions.getTimerNotification
@@ -36,10 +35,6 @@ class App : FossifyApp(), LifecycleObserver {
         super.onCreate()
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
         EventBus.getDefault().register(this)
-
-        if (BuildConfig.DEBUG) {
-            Stetho.initializeWithDefaults(this)
-        }
     }
 
     override fun onTerminate() {

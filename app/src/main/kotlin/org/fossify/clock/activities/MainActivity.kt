@@ -53,7 +53,6 @@ import org.fossify.commons.extensions.viewBinding
 import org.fossify.commons.helpers.LICENSE_AUTOFITTEXTVIEW
 import org.fossify.commons.helpers.LICENSE_NUMBER_PICKER
 import org.fossify.commons.helpers.LICENSE_RTL
-import org.fossify.commons.helpers.LICENSE_STETHO
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.models.FAQItem
 import java.time.temporal.WeekFields
@@ -362,7 +361,7 @@ class MainActivity : SimpleActivity() {
 
     private fun launchAbout() {
         val licenses =
-            LICENSE_STETHO or LICENSE_NUMBER_PICKER or LICENSE_RTL or LICENSE_AUTOFITTEXTVIEW
+            LICENSE_NUMBER_PICKER or LICENSE_RTL or LICENSE_AUTOFITTEXTVIEW
 
         val faqItems = arrayListOf(
             FAQItem(
