@@ -272,6 +272,8 @@ class StopwatchFragment : Fragment() {
             binding.stopwatchTime.text = totalTime.formatStopwatchTime(useLongerMSFormat)
             latestLapTime = lapTime
             latestTotalTime = totalTime
+            // We just update the list everytime for simplicity.
+            // dafa9e0ad88fdf77c19b91caec0683a3a87b8f50 would be more efficient.
             updateLaps()
         }
 
