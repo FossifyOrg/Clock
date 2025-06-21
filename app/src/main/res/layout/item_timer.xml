@@ -16,6 +16,7 @@
         android:id="@+id/timer_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:fontFeatureSettings="tnum"
         android:autoSizeMaxTextSize="@dimen/timer_text_size"
         android:autoSizeMinTextSize="@dimen/extra_big_text_size"
         android:autoSizeStepGranularity="2sp"

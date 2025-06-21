@@ -129,6 +129,7 @@ class StopwatchFragment : Fragment() {
         val properTextColor = requireContext().getProperTextColor()
         binding.apply {
             requireContext().updateTextColors(stopwatchFragment)
+            stopwatchTime.setTextColor(properTextColor)
             stopwatchPlayPause.background = resources.getColoredDrawableWithColor(
                 drawableId = R.drawable.circle_background_filled,
                 color = properPrimaryColor

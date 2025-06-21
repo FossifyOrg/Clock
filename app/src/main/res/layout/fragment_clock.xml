@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_margin"
+            android:fontFeatureSettings="tnum"
             android:gravity="center_horizontal"
             android:textSize="@dimen/clock_text_size"
             tools:text="00:00:00" />

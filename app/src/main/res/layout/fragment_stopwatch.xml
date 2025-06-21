@@ -6,26 +6,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.fossify.commons.views.MyTextView
+    <org.fossify.clock.views.AutoFitTextView
         android:id="@+id/stopwatch_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/normal_margin"
+        android:autoSizeMaxTextSize="@dimen/stopwatch_text_size"
+        android:autoSizeMinTextSize="@dimen/extra_big_text_size"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
         android:background="?attr/selectableItemBackground"
+        android:fontFeatureSettings="tnum"
         android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:maxLines="1"
         android:padding="@dimen/small_margin"
         android:textSize="@dimen/stopwatch_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="00.00" />
+        tools:text="01:30:00" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/stopwatch_sorting_indicators_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
         android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@+id/stopwatch_time">
+        app:layout_constraintTop_toBottomOf="@+id/stopwatch_time"
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/stopwatch_sorting_indicator_1"
@@ -68,7 +77,8 @@
         app:layout_constraintBottom_toTopOf="@+id/stopwatch_play_pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stopwatch_sorting_indicators_holder" />
+        app:layout_constraintTop_toBottomOf="@+id/stopwatch_sorting_indicators_holder"
+        tools:listitem="@layout/item_lap" />
 
     <ImageView
         android:id="@+id/stopwatch_play_pause"

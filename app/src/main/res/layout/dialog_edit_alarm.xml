@@ -17,6 +17,7 @@
             android:layout_marginStart="@dimen/activity_margin"
             android:layout_marginTop="@dimen/activity_margin"
             android:background="?attr/selectableItemBackground"
+            android:fontFeatureSettings="tnum"
             android:includeFontPadding="false"
             android:padding="@dimen/tiny_margin"
             android:textSize="@dimen/alarm_text_size"
