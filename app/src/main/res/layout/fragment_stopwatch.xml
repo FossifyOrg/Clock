@@ -6,11 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.fossify.commons.views.MyTextView
+    <org.fossify.clock.views.AutoFitTextView
         android:id="@+id/stopwatch_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/normal_margin"
+        android:autoSizeMaxTextSize="@dimen/stopwatch_text_size"
+        android:autoSizeMinTextSize="@dimen/extra_big_text_size"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
         android:background="?attr/selectableItemBackground"
         android:fontFeatureSettings="tnum"
         android:gravity="center_horizontal"
@@ -27,6 +31,7 @@
         android:id="@+id/stopwatch_sorting_indicators_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
         android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@+id/stopwatch_time"
         tools:visibility="visible">
