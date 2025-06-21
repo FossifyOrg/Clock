@@ -1,0 +1,13 @@
+Changed:
+
+• Replaced lap text button with an icon button
+• Updated stopwatch layout animation
+• Updated translations
+
+Fixed:
+
+• Fixed inaccuracy in stopwatch over long durations 
+• Fixed text jitter in clock, stopwatch, and timer 
+• Fixed invisible stopwatch laps in landscape mode 
+• Fixed overlapping text in right-to-left languages 
+
