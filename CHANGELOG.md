@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed inaccuracy in stopwatch over long durations ([#207])
 - Fixed text jitter in clock, stopwatch, and timer ([#11])
+- Fixed invisible stopwatch laps in landscape mode ([#107])
 
 ## [1.2.1] - 2025-05-08
 
@@ -85,5 +86,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.0.0]: https://github.com/FossifyOrg/Clock/releases/tag/1.0.0
 
 [#11]: https://github.com/FossifyOrg/Clock/issues/11
+[#107]: https://github.com/FossifyOrg/Clock/issues/107
 [#158]: https://github.com/FossifyOrg/Clock/issues/158
 [#207]: https://github.com/FossifyOrg/Clock/issues/207
