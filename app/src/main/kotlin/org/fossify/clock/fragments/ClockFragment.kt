@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.fossify.clock.R
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.adapters.TimeZonesAdapter
 import org.fossify.clock.databinding.FragmentClockBinding
@@ -93,13 +92,6 @@ class ClockFragment : Fragment() {
         val hours = (passedSeconds / 3600) % 24
         val minutes = (passedSeconds / 60) % 60
         val seconds = passedSeconds % 60
-
-        val safeContext = context ?: return
-        if (!safeContext.config.use24HourFormat) {
-            binding.clockTime.textSize =
-                resources.getDimension(R.dimen.clock_text_size_smaller) / resources.displayMetrics.density
-        }
-
         if (seconds == 0) {
             if (hours == 0 && minutes == 0) {
                 updateDate()
