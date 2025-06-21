@@ -133,7 +133,6 @@ dependencies {
     implementation(libs.androidx.preference)
     implementation(libs.androidx.work)
     implementation(libs.kotlinx.coroutines)
-    implementation(libs.stetho)
     implementation(libs.numberpicker)
     implementation(libs.autofittextview)
     implementation(libs.eventbus)

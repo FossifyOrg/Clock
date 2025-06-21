@@ -23,8 +23,6 @@ numberpicker = "2.4.13"
 room = "2.7.1"
 #Fossify
 commons = "3.0.5"
-#Stetho
-stetho = "1.6.0"
 #Gradle
 gradlePlugins-agp = "8.10.1"
 #build
@@ -58,8 +56,6 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 #Fossify
 fossify-commons = { module = "org.fossify:commons", version.ref = "commons" }
-#Stetho
-stetho = { module = "com.facebook.stetho:stetho", version.ref = "stetho" }
 [bundles]
 room = [
     "androidx-room-ktx",
