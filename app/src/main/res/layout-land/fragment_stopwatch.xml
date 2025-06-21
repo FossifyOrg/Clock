@@ -18,6 +18,7 @@
         android:background="?attr/selectableItemBackground"
         android:fontFeatureSettings="tnum"
         android:gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/medium_margin"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:padding="@dimen/small_margin"
