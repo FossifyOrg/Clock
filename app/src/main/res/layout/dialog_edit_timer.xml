@@ -19,6 +19,7 @@
             android:background="?attr/selectableItemBackground"
             android:drawableLeft="@drawable/ic_hourglass_small"
             android:drawablePadding="@dimen/normal_margin"
+            android:fontFeatureSettings="tnum"
             android:gravity="center_vertical"
             android:padding="@dimen/activity_margin"
             android:textSize="@dimen/bigger_text_size"
