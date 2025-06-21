@@ -12,7 +12,9 @@
         android:id="@+id/lap_order"
         android:layout_width="@dimen/lap_time_size"
         android:layout_height="wrap_content"
+        android:fontFeatureSettings="tnum"
         android:gravity="end"
+        android:includeFontPadding="false"
         android:maxLines="1"
         android:textSize="@dimen/bigger_text_size"
         app:layout_constraintEnd_toStartOf="@+id/lap_lap_time"
@@ -24,7 +26,9 @@
         android:id="@+id/lap_lap_time"
         android:layout_width="@dimen/lap_time_size"
         android:layout_height="wrap_content"
+        android:fontFeatureSettings="tnum"
         android:gravity="end"
+        android:includeFontPadding="false"
         android:maxLines="1"
         android:textSize="@dimen/bigger_text_size"
         app:layout_constraintEnd_toStartOf="@+id/lap_total_time"
@@ -36,13 +40,14 @@
         android:id="@+id/lap_total_time"
         android:layout_width="@dimen/lap_time_size"
         android:layout_height="wrap_content"
-        android:layout_marginRight="48dp"
+        android:fontFeatureSettings="tnum"
         android:gravity="end"
+        android:includeFontPadding="false"
         android:maxLines="1"
         android:textSize="@dimen/bigger_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/lap_lap_time"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="0.00" />
+        tools:text="0.00.00" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

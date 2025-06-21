@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/normal_margin"
         android:background="?attr/selectableItemBackground"
+        android:fontFeatureSettings="tnum"
         android:gravity="center_horizontal"
+        android:includeFontPadding="false"
         android:padding="@dimen/small_margin"
         android:textSize="@dimen/stopwatch_text_size"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@+id/stopwatch_time">
+        app:layout_constraintTop_toBottomOf="@+id/stopwatch_time"
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/stopwatch_sorting_indicator_1"
@@ -68,7 +71,8 @@
         app:layout_constraintBottom_toTopOf="@+id/stopwatch_play_pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stopwatch_sorting_indicators_holder" />
+        app:layout_constraintTop_toBottomOf="@+id/stopwatch_sorting_indicators_holder"
+        tools:listitem="@layout/item_lap" />
 
     <ImageView
         android:id="@+id/stopwatch_play_pause"
