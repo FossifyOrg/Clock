@@ -131,7 +131,6 @@ dependencies {
     implementation(libs.bundles.lifecycle)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.preference)
-    implementation(libs.androidx.work)
     implementation(libs.kotlinx.coroutines)
     implementation(libs.numberpicker)
     implementation(libs.autofittextview)
