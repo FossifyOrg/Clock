@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
+    android:paddingVertical="@dimen/small_margin"
     android:paddingLeft="@dimen/activity_margin">
 
     <org.fossify.commons.views.MyTextView
