@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/stopwatch_fragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
 
     <org.fossify.clock.views.AutoFitTextView
         android:id="@+id/stopwatch_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/normal_margin"
+        android:layout_marginBottom="@dimen/small_margin"
         android:autoSizeMaxTextSize="@dimen/stopwatch_text_size"
         android:autoSizeMinTextSize="@dimen/extra_big_text_size"
         android:autoSizeStepGranularity="2sp"
@@ -26,13 +28,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginBottom="@dimen/stopwatch_button_size"
         tools:text="01:30:00" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/stopwatch_sorting_indicators_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/stopwatch_list"
         app:layout_constraintTop_toBottomOf="@+id/stopwatch_time"
@@ -75,12 +77,14 @@
         android:clipToPadding="false"
         android:overScrollMode="ifContentScrolls"
         android:scrollbars="vertical"
+        android:visibility="gone"
         app:layoutManager="org.fossify.commons.views.MyLinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/stopwatch_play_pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stopwatch_sorting_indicators_holder"
-        tools:listitem="@layout/item_lap" />
+        tools:listitem="@layout/item_lap"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/stopwatch_play_pause"

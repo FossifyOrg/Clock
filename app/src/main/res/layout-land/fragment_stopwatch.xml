@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/stopwatch_fragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
 
     <org.fossify.clock.views.AutoFitTextView
         android:id="@+id/stopwatch_time"
@@ -77,13 +78,15 @@
         android:clipToPadding="false"
         android:overScrollMode="ifContentScrolls"
         android:scrollbars="vertical"
+        android:visibility="gone"
         app:layoutManager="org.fossify.commons.views.MyLinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/stopwatch_play_pause"
         app:layout_constraintStart_toEndOf="@id/stopwatch_time"
         app:layout_constraintTop_toBottomOf="@+id/stopwatch_sorting_indicators_holder"
         tools:itemCount="18"
-        tools:listitem="@layout/item_lap" />
+        tools:listitem="@layout/item_lap"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/stopwatch_play_pause"

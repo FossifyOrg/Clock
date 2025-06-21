@@ -27,9 +27,7 @@ import org.fossify.clock.models.Lap
 import org.fossify.commons.dialogs.PermissionRequiredDialog
 import org.fossify.commons.extensions.applyColorFilter
 import org.fossify.commons.extensions.beGone
-import org.fossify.commons.extensions.beInvisible
 import org.fossify.commons.extensions.beInvisibleIf
-import org.fossify.commons.extensions.beVisible
 import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.flipBit
 import org.fossify.commons.extensions.getColoredBitmap
@@ -82,7 +80,7 @@ class StopwatchFragment : Fragment() {
             }
 
             stopwatchLap.setOnClickListener {
-                stopwatchSortingIndicatorsHolder.beVisible()
+                setShowLaps(true)
                 Stopwatch.lap()
                 updateLaps()
                 scrollToTop()
@@ -108,9 +106,11 @@ class StopwatchFragment : Fragment() {
         setupViews()
         Stopwatch.addUpdateListener(updateListener)
         updateLaps()
-        binding.stopwatchSortingIndicatorsHolder.beVisibleIf(Stopwatch.laps.isNotEmpty())
         if (Stopwatch.laps.isNotEmpty()) {
             updateSorting(Lap.sorting)
+            setShowLaps(true)
+        } else {
+            setShowLaps(false)
         }
 
         if (requireContext().config.toggleStopwatch) {
@@ -191,7 +191,7 @@ class StopwatchFragment : Fragment() {
             stopwatchReset.beGone()
             stopwatchLap.beGone()
             stopwatchTime.text = 0L.formatStopwatchTime(false)
-            stopwatchSortingIndicatorsHolder.beInvisible()
+            setShowLaps(false)
         }
     }
 
@@ -244,7 +244,7 @@ class StopwatchFragment : Fragment() {
         }
     }
 
-    private fun updateLaps() = lifecycleScope.launch {
+    private fun updateLaps() = viewLifecycleOwner.lifecycleScope.launch {
         stopwatchAdapter?.submitList(
             withContext(Dispatchers.Default) {
                 val laps = ArrayList(Stopwatch.laps)
@@ -265,6 +265,11 @@ class StopwatchFragment : Fragment() {
         binding.stopwatchList.post {
             binding.stopwatchList.scrollToPosition(0)
         }
+    }
+
+    private fun setShowLaps(showLaps: Boolean) {
+        binding.stopwatchSortingIndicatorsHolder.beVisibleIf(showLaps)
+        binding.stopwatchList.beVisibleIf(showLaps)
     }
 
     private val updateListener = object : Stopwatch.UpdateListener {
