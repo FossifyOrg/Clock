@@ -15,12 +15,13 @@
         android:fontFeatureSettings="tnum"
         android:gravity="center_horizontal"
         android:includeFontPadding="false"
+        android:maxLines="1"
         android:padding="@dimen/small_margin"
         android:textSize="@dimen/stopwatch_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="00.00" />
+        tools:text="01:30:00" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/stopwatch_sorting_indicators_holder"
