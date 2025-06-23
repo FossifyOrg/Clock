@@ -19,7 +19,7 @@ kotlinx-coroutines = "1.10.2"
 #NumberPicker
 numberpicker = "2.4.13"
 #Room
-room = "2.7.1"
+room = "2.7.2"
 #Fossify
 commons = "3.0.5"
 #Gradle
