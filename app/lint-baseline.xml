@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="6" by="lint 8.3.1" type="baseline" client="gradle" dependencies="false" name="AGP (8.3.1)" variant="all" version="8.3.1">
-
-    <issue
-        id="InlinedApi"
-        message="Field requires API level 24 (current min is 23): `android.app.NotificationManager#IMPORTANCE_DEFAULT`"
-        errorLine1="        val importance = NotificationManager.IMPORTANCE_DEFAULT"
-        errorLine2="                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/kotlin/org/fossify/clock/services/StopwatchService.kt"
-            line="74"
-            column="26"/>
-    </issue>
+<issues format="6" by="lint 8.10.1" type="baseline" client="gradle" dependencies="false" name="AGP (8.10.1)" variant="all" version="8.10.1">
 
     <issue
         id="MissingConstraints"
@@ -19,7 +8,18 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="src/main/res/layout/fragment_stopwatch.xml"
-            line="30"
+            line="43"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="MissingConstraints"
+        message="This view is not constrained vertically: at runtime it will jump to the top unless you add a vertical constraint"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-land/fragment_stopwatch.xml"
+            line="44"
             column="10"/>
     </issue>
 
@@ -30,13 +30,13 @@
         errorLine2="     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/layout/item_lap.xml"
-            line="11"
+            line="12"
             column="6"/>
     </issue>
 
     <issue
         id="NewApi"
-        message="Call requires API level 34 (current min is 23): `openFullScreenIntentSettings`"
+        message="Call requires API level 34 (current min is 26): `openFullScreenIntentSettings`"
         errorLine1="                        openFullScreenIntentSettings(BuildConfig.APPLICATION_ID)"
         errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -46,30 +46,19 @@
     </issue>
 
     <issue
-        id="NewApi"
-        message="Call requires API level 33 (current min is 23): `launchChangeAppLanguageIntent`"
-        errorLine1="            launchChangeAppLanguageIntent()"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        id="OldTargetApi"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details."
+        errorLine1="app-build-targetSDK = &quot;34&quot;"
+        errorLine2="                      ~~~~">
         <location
-            file="src/main/kotlin/org/fossify/clock/activities/SettingsActivity.kt"
-            line="85"
-            column="13"/>
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="29"
+            column="23"/>
     </issue>
 
     <issue
         id="UnusedAttribute"
-        message="Attribute `appCategory` is only used in API level 26 and higher (current min is 23)"
-        errorLine1="        android:appCategory=&quot;productivity&quot;"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/AndroidManifest.xml"
-            line="30"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="UnusedAttribute"
-        message="Attribute `localeConfig` is only used in API level 33 and higher (current min is 23)"
+        message="Attribute `localeConfig` is only used in API level 33 and higher (current min is 26)"
         errorLine1="        android:localeConfig=&quot;@xml/locale_config&quot;"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -80,7 +69,7 @@
 
     <issue
         id="UnusedAttribute"
-        message="Attribute `targetCellWidth` is only used in API level 31 and higher (current min is 23)"
+        message="Attribute `targetCellWidth` is only used in API level 31 and higher (current min is 26)"
         errorLine1="    android:targetCellWidth=&quot;2&quot;"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -91,7 +80,7 @@
 
     <issue
         id="UnusedAttribute"
-        message="Attribute `targetCellHeight` is only used in API level 31 and higher (current min is 23)"
+        message="Attribute `targetCellHeight` is only used in API level 31 and higher (current min is 26)"
         errorLine1="    android:targetCellHeight=&quot;1&quot;"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -102,7 +91,7 @@
 
     <issue
         id="UnusedAttribute"
-        message="Attribute `targetCellWidth` is only used in API level 31 and higher (current min is 23)"
+        message="Attribute `targetCellWidth` is only used in API level 31 and higher (current min is 26)"
         errorLine1="    android:targetCellWidth=&quot;3&quot;"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -113,7 +102,7 @@
 
     <issue
         id="UnusedAttribute"
-        message="Attribute `targetCellHeight` is only used in API level 31 and higher (current min is 23)"
+        message="Attribute `targetCellHeight` is only used in API level 31 and higher (current min is 26)"
         errorLine1="    android:targetCellHeight=&quot;1&quot;"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -146,266 +135,101 @@
 
     <issue
         id="AndroidGradlePluginVersion"
-        message="A newer version of com.android.application than 8.3.1 is available: 8.6.1. (There is also a newer version of 8.3.𝑥 available, if upgrading to 8.6.1 is difficult: 8.3.2)"
-        errorLine1="gradlePlugins-agp = &quot;8.3.1&quot;"
-        errorLine2="                    ~~~~~~~">
+        message="A newer version of Gradle than 8.11.1 is available: 8.14.2"
+        errorLine1="distributionUrl=https\://services.gradle.org/distributions/gradle-8.11.1-bin.zip"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="28"
-            column="21"/>
-    </issue>
-
-    <issue
-        id="AndroidGradlePluginVersion"
-        message="A newer version of com.android.application than 8.3.1 is available: 8.6.1. (There is also a newer version of 8.3.𝑥 available, if upgrading to 8.6.1 is difficult: 8.3.2)"
-        errorLine1="gradlePlugins-agp = &quot;8.3.1&quot;"
-        errorLine2="                    ~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="28"
-            column="21"/>
-    </issue>
-
-    <issue
-        id="AndroidGradlePluginVersion"
-        message="A newer version of com.android.application than 8.3.1 is available: 8.6.1. (There is also a newer version of 8.3.𝑥 available, if upgrading to 8.6.1 is difficult: 8.3.2)"
-        errorLine1="gradlePlugins-agp = &quot;8.3.1&quot;"
-        errorLine2="                    ~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="28"
-            column="21"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of org.jetbrains.kotlin.android than 1.9.22 is available: 1.9.25"
-        errorLine1="kotlin = &quot;1.9.22&quot;"
-        errorLine2="         ~~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/wrapper/gradle-wrapper.properties"
             line="3"
-            column="10"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of org.jetbrains.kotlin.android than 1.9.22 is available: 1.9.25"
-        errorLine1="kotlin = &quot;1.9.22&quot;"
-        errorLine2="         ~~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="3"
-            column="10"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of org.jetbrains.kotlin.android than 1.9.22 is available: 1.9.25"
-        errorLine1="kotlin = &quot;1.9.22&quot;"
-        errorLine2="         ~~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="3"
-            column="10"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of com.google.devtools.ksp than 1.9.22-1.0.17 is available: 1.9.25-1.0.20"
-        errorLine1="ksp = &quot;1.9.22-1.0.17&quot;"
-        errorLine2="      ~~~~~~~~~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="5"
-            column="7"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of com.google.devtools.ksp than 1.9.22-1.0.17 is available: 1.9.25-1.0.20"
-        errorLine1="ksp = &quot;1.9.22-1.0.17&quot;"
-        errorLine2="      ~~~~~~~~~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="5"
-            column="7"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of com.google.devtools.ksp than 1.9.22-1.0.17 is available: 1.9.25-1.0.20"
-        errorLine1="ksp = &quot;1.9.22-1.0.17&quot;"
-        errorLine2="      ~~~~~~~~~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="5"
-            column="7"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.lifecycle:lifecycle-process than 2.7.0 is available: 2.8.6"
-        errorLine1="androidx-lifecycle = &quot;2.7.0&quot;"
-        errorLine2="                     ~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="10"
-            column="22"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.lifecycle:lifecycle-process than 2.7.0 is available: 2.8.6"
-        errorLine1="androidx-lifecycle = &quot;2.7.0&quot;"
-        errorLine2="                     ~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="10"
-            column="22"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.lifecycle:lifecycle-process than 2.7.0 is available: 2.8.6"
-        errorLine1="androidx-lifecycle = &quot;2.7.0&quot;"
-        errorLine2="                     ~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="10"
-            column="22"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.7.0 is available: 2.8.6"
-        errorLine1="androidx-lifecycle = &quot;2.7.0&quot;"
-        errorLine2="                     ~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="10"
-            column="22"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.7.0 is available: 2.8.6"
-        errorLine1="androidx-lifecycle = &quot;2.7.0&quot;"
-        errorLine2="                     ~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="10"
-            column="22"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.7.0 is available: 2.8.6"
-        errorLine1="androidx-lifecycle = &quot;2.7.0&quot;"
-        errorLine2="                     ~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="10"
-            column="22"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.7.0 is available: 2.8.6"
-        errorLine1="androidx-lifecycle = &quot;2.7.0&quot;"
-        errorLine2="                     ~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="10"
-            column="22"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.7.0 is available: 2.8.6"
-        errorLine1="androidx-lifecycle = &quot;2.7.0&quot;"
-        errorLine2="                     ~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="10"
-            column="22"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.7.0 is available: 2.8.6"
-        errorLine1="androidx-lifecycle = &quot;2.7.0&quot;"
-        errorLine2="                     ~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="10"
-            column="22"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.work:work-runtime-ktx than 2.9.0 is available: 2.9.1"
-        errorLine1="androidx-work = &quot;2.9.0&quot;"
-        errorLine2="                ~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="12"
             column="17"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of androidx.work:work-runtime-ktx than 2.9.0 is available: 2.9.1"
-        errorLine1="androidx-work = &quot;2.9.0&quot;"
-        errorLine2="                ~~~~~~~">
+        message="A newer version of androidx.lifecycle:lifecycle-process than 2.8.7 is available: 2.9.1"
+        errorLine1="androidx-lifecycle = &quot;2.8.7&quot;"
+        errorLine2="                     ~~~~~~~">
         <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="12"
-            column="17"/>
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="11"
+            column="22"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of androidx.work:work-runtime-ktx than 2.9.0 is available: 2.9.1"
-        errorLine1="androidx-work = &quot;2.9.0&quot;"
-        errorLine2="                ~~~~~~~">
+        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.9.1"
+        errorLine1="androidx-lifecycle = &quot;2.8.7&quot;"
+        errorLine2="                     ~~~~~~~">
         <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="12"
-            column="17"/>
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="11"
+            column="22"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of org.fossify:commons than 5381db38e6 is available: 8685963657"
-        errorLine1="commons = &quot;5381db38e6&quot;"
-        errorLine2="          ~~~~~~~~~~~~">
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.8.7 is available: 2.9.1"
+        errorLine1="androidx-lifecycle = &quot;2.8.7&quot;"
+        errorLine2="                     ~~~~~~~">
         <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="11"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.room:room-compiler than 2.7.1 is available: 2.7.2"
+        errorLine1="room = &quot;2.7.1&quot;"
+        errorLine2="       ~~~~~~~">
+        <location
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="22"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.room:room-ktx than 2.7.1 is available: 2.7.2"
+        errorLine1="room = &quot;2.7.1&quot;"
+        errorLine2="       ~~~~~~~">
+        <location
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="22"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.room:room-runtime than 2.7.1 is available: 2.7.2"
+        errorLine1="room = &quot;2.7.1&quot;"
+        errorLine2="       ~~~~~~~">
+        <location
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="22"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of org.fossify:commons than 3.0.5 is available: 3.1.0"
+        errorLine1="commons = &quot;3.0.5&quot;"
+        errorLine2="          ~~~~~~~">
+        <location
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
             line="24"
             column="11"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of org.fossify:commons than 5381db38e6 is available: 8685963657"
-        errorLine1="commons = &quot;5381db38e6&quot;"
-        errorLine2="          ~~~~~~~~~~~~">
+        message="A newer version of `compileSdkVersion` than 34 is available: 35"
+        errorLine1="app-build-compileSDKVersion = &quot;34&quot;"
+        errorLine2="                              ~~~~">
         <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="24"
-            column="11"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of org.fossify:commons than 5381db38e6 is available: 8685963657"
-        errorLine1="commons = &quot;5381db38e6&quot;"
-        errorLine2="          ~~~~~~~~~~~~">
-        <location
-            file="$HOME/Projects/Community/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="24"
-            column="11"/>
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="28"
+            column="31"/>
     </issue>
 
     <issue
@@ -459,7 +283,7 @@
         errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/org/fossify/clock/dialogs/EditAlarmDialog.kt"
-            line="228"
+            line="261"
             column="24"/>
     </issue>
 
@@ -470,19 +294,19 @@
         errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/org/fossify/clock/activities/MainActivity.kt"
-            line="102"
+            line="149"
             column="24"/>
     </issue>
 
     <issue
         id="UseCompatLoadingForDrawables"
         message="Use `AppCompatResources.getDrawable()`"
-        errorLine1="                    tabItemIcon.setImageDrawable(getDrawable(drawableId))"
-        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="                        tabItemIcon.setImageDrawable(getDrawable(drawableId))"
+        errorLine2="                                                     ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/org/fossify/clock/activities/MainActivity.kt"
-            line="230"
-            column="50"/>
+            line="294"
+            column="54"/>
     </issue>
 
     <issue
@@ -503,7 +327,7 @@
         errorLine2="    ^">
         <location
             file="src/main/res/values-cs/strings.xml"
-            line="38"
+            line="37"
             column="5"/>
     </issue>
 
@@ -514,13 +338,13 @@
         errorLine2="    ^">
         <location
             file="src/main/res/values-sk/strings.xml"
-            line="38"
+            line="37"
             column="5"/>
     </issue>
 
     <issue
         id="MissingTranslation"
-        message="&quot;time_zone&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        message="&quot;time_zone&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;time_zone&quot;>Time zone&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~">
         <location
@@ -531,7 +355,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;vibrate&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        message="&quot;vibrate&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;vibrate&quot;>Vibrate&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~">
         <location
@@ -542,7 +366,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;no_days_selected&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        message="&quot;no_days_selected&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;no_days_selected&quot;>No days selected&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -553,7 +377,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;clock&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;iw&quot; (Hebrew), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;"
+        message="&quot;clock&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;clock&quot;>Clock&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~">
         <location
@@ -564,7 +388,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;timer&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;hr&quot; (Croatian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;sv&quot; (Swedish), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        message="&quot;timer&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;timer&quot;>Timer&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~">
         <location
@@ -575,7 +399,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;stopwatch&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;"
+        message="&quot;stopwatch&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;stopwatch&quot;>Stopwatch&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~">
         <location
@@ -586,7 +410,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;start_stopwatch&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;iw&quot; (Hebrew), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;"
+        message="&quot;start_stopwatch&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;start_stopwatch&quot;>Start stopwatch&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -597,7 +421,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;lap&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;"
+        message="&quot;lap&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;lap&quot;>Lap&lt;/string>"
         errorLine2="            ~~~~~~~~~~">
         <location
@@ -608,7 +432,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;stopwatch_stopped&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        message="&quot;stopwatch_stopped&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;stopwatch_stopped&quot;>Stopwatch has been stopped&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -619,7 +443,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;timer_stopped&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        message="&quot;timer_stopped&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;timer_stopped&quot;>Timer has been stopped&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -630,7 +454,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;max_reminder_duration&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        message="&quot;max_reminder_duration&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;max_reminder_duration&quot;>Max reminder duration&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -641,7 +465,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;time_expired&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        message="&quot;time_expired&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;time_expired&quot;>Time expired&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
@@ -652,7 +476,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;clock_and_date&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        message="&quot;clock_and_date&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;clock_and_date&quot;>Clock and date&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -663,7 +487,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;use_text_shadow&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        message="&quot;use_text_shadow&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;use_text_shadow&quot;>Use text shadow&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -674,7 +498,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;swipe_right_to_dismiss&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        message="&quot;swipe_right_to_dismiss&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;, &quot;da&quot; (Danish)"
         errorLine1="    &lt;string name=&quot;swipe_right_to_dismiss&quot;>Swipe right to Dismiss, or left to Snooze.&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -685,7 +509,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;sort_by_creation_order&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        message="&quot;sort_by_creation_order&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
         errorLine1="    &lt;string name=&quot;sort_by_creation_order&quot;>Creation order&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -696,7 +520,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;sort_by_alarm_time&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        message="&quot;sort_by_alarm_time&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
         errorLine1="    &lt;string name=&quot;sort_by_alarm_time&quot;>Alarm time&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -707,9 +531,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;sort_by_day_and_alarm_time&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;sort_by_day_and_alarm_time&quot;>Day and Alarm time&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;sort_by_timer_duration&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;hr&quot; (Croatian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;el&quot; (Greek), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;my&quot; (Burmese), &quot;eu&quot; (Basque), &quot;vi&quot; (Vietnamese), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sk&quot; (Slovak), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;ko&quot; (Korean), &quot;gl&quot; (Galician), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;sort_by_timer_duration&quot;>Timer duration&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="21"
@@ -718,9 +542,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;analogue_clock&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;analogue_clock&quot;>Analogue clock&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;sort_by_day_and_alarm_time&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;sort_by_day_and_alarm_time&quot;>Day and Alarm time&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="22"
@@ -729,9 +553,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;digital_clock&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;digital_clock&quot;>Digital clock&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;analogue_clock&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;analogue_clock&quot;>Analogue clock&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="23"
@@ -740,9 +564,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;alarm_dismissed&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;iw&quot; (Hebrew), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;alarm_dismissed&quot;>Alarm dismissed&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;digital_clock&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;digital_clock&quot;>Digital clock&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="24"
@@ -751,9 +575,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;select_timer_to_dismiss&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;my&quot; (Burmese), &quot;iw&quot; (Hebrew), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;select_timer_to_dismiss&quot;>Select timer to dismiss&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;alarm_dismissed&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;alarm_dismissed&quot;>Alarm dismissed&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="25"
@@ -762,8 +586,8 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;select_alarm_to_dismiss&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;my&quot; (Burmese), &quot;iw&quot; (Hebrew), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;select_alarm_to_dismiss&quot;>Select alarm to dismiss&lt;/string>"
+        message="&quot;select_timer_to_dismiss&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;my&quot; (Burmese), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;select_timer_to_dismiss&quot;>Select timer to dismiss&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
@@ -773,9 +597,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;alarm_created&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;my&quot; (Burmese), &quot;iw&quot; (Hebrew), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;alarm_created&quot;>Alarm created&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;select_alarm_to_dismiss&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;my&quot; (Burmese), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;select_alarm_to_dismiss&quot;>Select alarm to dismiss&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="27"
@@ -784,8 +608,8 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;alarm_snoozed&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;iw&quot; (Hebrew), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;alarm_snoozed&quot;>Alarm snoozed by %s&lt;/string>"
+        message="&quot;alarm_created&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;my&quot; (Burmese), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;alarm_created&quot;>Alarm created&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
@@ -795,9 +619,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;no_alarms_found&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;iw&quot; (Hebrew), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;no_alarms_found&quot;>No alarms found&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;alarm_snoozed&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;alarm_snoozed&quot;>Alarm snoozed by %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="29"
@@ -806,9 +630,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;add_alarm&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;iw&quot; (Hebrew), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;add_alarm&quot;>Add alarm&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~">
+        message="&quot;no_alarms_found&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;no_alarms_found&quot;>No alarms found&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="30"
@@ -817,9 +641,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;no_timers_found&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;iw&quot; (Hebrew), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;no_timers_found&quot;>No timers found&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;add_alarm&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;add_alarm&quot;>Add alarm&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="31"
@@ -828,9 +652,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;add_timer&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;iw&quot; (Hebrew), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;add_timer&quot;>Add timer&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~">
+        message="&quot;no_timers_found&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;no_timers_found&quot;>No timers found&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="32"
@@ -839,9 +663,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;upcoming_alarm&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;iw&quot; (Hebrew), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;upcoming_alarm&quot;>Upcoming alarm&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;add_timer&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;add_timer&quot;>Add timer&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="33"
@@ -850,9 +674,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;early_alarm_dismissal&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;iw&quot; (Hebrew), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;early_alarm_dismissal&quot;>Early alarm dismissal&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;upcoming_alarm&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;upcoming_alarm&quot;>Upcoming alarm&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="34"
@@ -861,9 +685,31 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;timers_notification_msg&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;timers_notification_msg&quot;>Timers are running&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;not_scheduled&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;hr&quot; (Croatian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;el&quot; (Greek), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;it&quot; (Italian), &quot;my&quot; (Burmese), &quot;es&quot; (Spanish), &quot;eu&quot; (Basque), &quot;vi&quot; (Vietnamese), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sk&quot; (Slovak), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;ko&quot; (Korean), &quot;gl&quot; (Galician), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;not_scheduled&quot;>Not scheduled&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="35"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;missed_alarm&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;hr&quot; (Croatian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;el&quot; (Greek), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;it&quot; (Italian), &quot;my&quot; (Burmese), &quot;eu&quot; (Basque), &quot;vi&quot; (Vietnamese), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sk&quot; (Slovak), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;ko&quot; (Korean), &quot;gl&quot; (Galician), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;missed_alarm&quot;>Missed alarm&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="36"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;replaced_by_another_alarm&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;hr&quot; (Croatian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;el&quot; (Greek), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;it&quot; (Italian), &quot;my&quot; (Burmese), &quot;eu&quot; (Basque), &quot;vi&quot; (Vietnamese), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sk&quot; (Slovak), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;ko&quot; (Korean), &quot;gl&quot; (Galician), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;replaced_by_another_alarm&quot;>Replaced by another alarm&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="37"
@@ -872,9 +718,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;timer_single_notification_label_msg&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;timer_single_notification_label_msg&quot;>Timer for %s is running&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;alarm_timed_out&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;hr&quot; (Croatian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;el&quot; (Greek), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;it&quot; (Italian), &quot;my&quot; (Burmese), &quot;es&quot; (Spanish), &quot;eu&quot; (Basque), &quot;vi&quot; (Vietnamese), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sk&quot; (Slovak), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;ko&quot; (Korean), &quot;gl&quot; (Galician), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;alarm_timed_out&quot;>Alarm timed out&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="38"
@@ -883,75 +729,53 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;new_timer&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;new_timer&quot;>New Timer&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~">
+        message="&quot;timers_notification_msg&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;timers_notification_msg&quot;>Timers are running&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="39"
+            line="41"
             column="13"/>
     </issue>
 
     <issue
         id="MissingTranslation"
-        message="&quot;timer_notification_msg&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        message="&quot;timer_single_notification_label_msg&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;timer_single_notification_label_msg&quot;>Timer for %s is running&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="42"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;new_timer&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;new_timer&quot;>New Timer&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="43"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;timer_notification_msg&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;, &quot;da&quot; (Danish)"
         errorLine1="    &lt;plurals name=&quot;timer_notification_msg&quot;>"
         errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="41"
+            line="45"
             column="14"/>
     </issue>
 
     <issue
         id="MissingTranslation"
-        message="&quot;clock_tab&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        message="&quot;clock_tab&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
         errorLine1="    &lt;string name=&quot;clock_tab&quot;>Clock tab&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="47"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;alarm_tab&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
-        errorLine1="    &lt;string name=&quot;alarm_tab&quot;>Alarm tab&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="48"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;stopwatch_tab&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
-        errorLine1="    &lt;string name=&quot;stopwatch_tab&quot;>Stopwatch tab&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="49"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;timer_tab&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
-        errorLine1="    &lt;string name=&quot;timer_tab&quot;>Timer tab&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="50"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;show_seconds&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
-        errorLine1="    &lt;string name=&quot;show_seconds&quot;>Show seconds&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="51"
@@ -960,9 +784,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;increase_volume_gradually&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;, &quot;da&quot; (Danish)"
-        errorLine1="    &lt;string name=&quot;increase_volume_gradually&quot;>Increase volume gradually&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;alarm_tab&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        errorLine1="    &lt;string name=&quot;alarm_tab&quot;>Alarm tab&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="52"
@@ -971,9 +795,31 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;faq_1_title&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
-        errorLine1="    &lt;string name=&quot;faq_1_title&quot;>How can I change lap sorting at the stopwatch tab?&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        message="&quot;stopwatch_tab&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        errorLine1="    &lt;string name=&quot;stopwatch_tab&quot;>Stopwatch tab&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="53"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;timer_tab&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        errorLine1="    &lt;string name=&quot;timer_tab&quot;>Timer tab&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="54"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;show_seconds&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        errorLine1="    &lt;string name=&quot;show_seconds&quot;>Show seconds&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="55"
@@ -982,9 +828,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;faq_1_text&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;eo&quot; (Esperanto), &quot;is&quot; (Icelandic), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;br&quot; (Breton), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
-        errorLine1="    &lt;string name=&quot;faq_1_text&quot;>Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        message="&quot;increase_volume_gradually&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;ne&quot; (Nepali), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;increase_volume_gradually&quot;>Increase volume gradually&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="56"
@@ -992,14 +838,47 @@
     </issue>
 
     <issue
-        id="UnusedQuantity"
-        message="For language &quot;iw&quot; (Hebrew) the following quantities are not relevant: `many`"
-        errorLine1="    &lt;plurals name=&quot;timer_notification_msg&quot;>"
-        errorLine2="    ^">
+        id="MissingTranslation"
+        message="&quot;settings_import_data&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;hr&quot; (Croatian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;el&quot; (Greek), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;my&quot; (Burmese), &quot;vi&quot; (Vietnamese), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sk&quot; (Slovak), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;ko&quot; (Korean), &quot;gl&quot; (Galician), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;settings_import_data&quot;>Import alarms and timers&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/values-iw/strings.xml"
-            line="25"
-            column="5"/>
+            file="src/main/res/values/strings.xml"
+            line="57"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;settings_export_data&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lt&quot; (Lithuanian), &quot;hr&quot; (Croatian), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ml&quot; (Malayalam), &quot;ms&quot; (Malay), &quot;el&quot; (Greek), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;my&quot; (Burmese), &quot;vi&quot; (Vietnamese), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;be&quot; (Belarusian), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;sk&quot; (Slovak), &quot;sl&quot; (Slovenian), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;sr&quot; (Serbian), &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;ko&quot; (Korean), &quot;gl&quot; (Galician), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;cy&quot; (Welsh), &quot;ckb&quot;, &quot;da&quot; (Danish)"
+        errorLine1="    &lt;string name=&quot;settings_export_data&quot;>Export alarms and timers&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="58"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;faq_1_title&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        errorLine1="    &lt;string name=&quot;faq_1_title&quot;>How can I change lap sorting at the stopwatch tab?&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="61"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;faq_1_text&quot; is not translated in &quot;fil&quot; (Filipino; Pilipino), &quot;lv&quot; (Latvian), &quot;ia&quot; (Interlingua), &quot;mk&quot; (Macedonian), &quot;ms&quot; (Malay), &quot;en&quot; (English), &quot;is&quot; (Icelandic), &quot;nb&quot; (Norwegian Bokmål), &quot;ne&quot; (Nepali), &quot;az&quot; (Azerbaijani), &quot;fa&quot; (Persian), &quot;nn&quot; (Norwegian Nynorsk), &quot;bn&quot; (Bangla), &quot;bs&quot; (Bosnian), &quot;si&quot; (Sinhala), &quot;zgh&quot; (Standard Moroccan Tamazight), &quot;ltg&quot;, &quot;kn&quot; (Kannada), &quot;or&quot; (Odia), &quot;kr&quot; (Kanuri), &quot;sat&quot; (Santali), &quot;ta&quot; (Tamil), &quot;cr&quot; (Cree), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;th&quot; (Thai), &quot;ckb&quot;"
+        errorLine1="    &lt;string name=&quot;faq_1_text&quot;>Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="62"
+            column="13"/>
     </issue>
 
     <issue
@@ -1009,74 +888,33 @@
         errorLine2="    ^">
         <location
             file="src/main/res/values-my/strings.xml"
-            line="37"
+            line="36"
             column="5"/>
     </issue>
 
     <issue
-        id="NotifyDataSetChanged"
-        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
-        errorLine1="        notifyDataSetChanged()"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        id="UnsafeProtectedBroadcastReceiver"
+        message="This broadcast receiver declares an intent-filter for a protected broadcast action string, which can only be sent by the system, not third-party applications. However, the receiver&apos;s `onReceive` method does not appear to call `getAction` to ensure that the received Intent&apos;s action string matches the expected value, potentially making it possible for another actor to send a spoofed intent with no action string or a different action string and cause undesired behavior."
+        errorLine1="    override fun onReceive(context: Context, intent: Intent) {"
+        errorLine2="                 ~~~~~~~~~">
         <location
-            file="src/main/kotlin/org/fossify/clock/adapters/AlarmsAdapter.kt"
-            line="72"
-            column="9"/>
+            file="src/main/kotlin/org/fossify/clock/receivers/UpdateWidgetReceiver.kt"
+            line="9"
+            column="18"/>
     </issue>
 
     <issue
-        id="NotifyDataSetChanged"
-        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
-        errorLine1="        notifyDataSetChanged()"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        id="ObsoleteSdkInt"
+        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `layout`.">
         <location
-            file="src/main/kotlin/org/fossify/clock/adapters/StopwatchAdapter.kt"
-            line="59"
-            column="9"/>
+            file="src/main/res/layout-v26"/>
     </issue>
 
     <issue
-        id="NotifyDataSetChanged"
-        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
-        errorLine1="        notifyDataSetChanged()"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        id="ObsoleteSdkInt"
+        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `mipmap-anydpi`.">
         <location
-            file="src/main/kotlin/org/fossify/clock/adapters/TimeZonesAdapter.kt"
-            line="72"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="NotifyDataSetChanged"
-        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
-        errorLine1="        notifyDataSetChanged()"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/kotlin/org/fossify/clock/adapters/TimeZonesAdapter.kt"
-            line="77"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="StaticFieldLeak"
-        message="Do not place Android context classes in static fields (static reference to `DBHelper` which has field `context` pointing to `Context`); this is a memory leak"
-        errorLine1="        var dbInstance: DBHelper? = null"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/kotlin/org/fossify/clock/helpers/DBHelper.kt"
-            line="33"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="VectorPath"
-        message="Very long vector path (813 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector."
-        errorLine1="    &lt;path android:fillColor=&quot;#FFFFFFFF&quot; android:pathData=&quot;M24 43.9q-3.7 0-6.975-1.4-3.275-1.4-5.7-3.85-2.425-2.45-3.85-5.7-1.425-3.25-1.425-7 0-3.7 1.425-6.975Q8.9 15.7 11.325 13.25q2.425-2.45 5.7-3.85Q20.3 8 24 8q3.7 0 6.975 1.4 3.275 1.4 5.725 3.85 2.45 2.45 3.85 5.725 1.4 3.275 1.4 6.975 0 3.75-1.4 7t-3.85 5.7q-2.45 2.45-5.725 3.85Q27.7 43.9 24 43.9zm-1.35-26.4v8.6q0 0.3 0.1 0.55 0.1 0.25 0.35 0.5l5.95 5.95q0.4 0.4 1 0.4t1.05-0.45q0.45-0.45 0.45-1.05 0-0.6-0.45-1.05l-5.45-5.45v-8.05q0-0.6-0.425-1.025Q24.8 16 24.15 16q-0.65 0-1.075 0.425Q22.65 16.85 22.65 17.5zM5.7 13.65q-0.45 0.4-1.05 0.4-0.6 0-1.05-0.45-0.45-0.45-0.45-1.075T3.6 11.5l6.1-5.85q0.45-0.4 1.05-0.4 0.6 0 1.05 0.45 0.45 0.45 0.45 1.075T11.8 7.8zm36.6-0.05l-6.1-5.85q-0.45-0.4-0.45-1T36.2 5.7q0.4-0.4 1.025-0.4 0.625 0 1.075 0.4l6.1 5.85q0.45 0.4 0.45 1T44.4 13.6Q44 14 43.375 14q-0.625 0-1.075-0.4z&quot;/>"
-        errorLine2="                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/drawable/ic_alarm_filled_vector.xml"
-            line="2"
-            column="59"/>
+            file="src/main/res/mipmap-anydpi-v26"/>
     </issue>
 
     <issue
@@ -1086,28 +924,6 @@
         errorLine2="                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/drawable/ic_alarm_off_vector.xml"
-            line="2"
-            column="59"/>
-    </issue>
-
-    <issue
-        id="VectorPath"
-        message="Very long vector path (975 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector."
-        errorLine1="    &lt;path android:fillColor=&quot;#FFFFFFFF&quot; android:pathData=&quot;M24 43.9q-3.7 0-6.975-1.4-3.275-1.4-5.7-3.825-2.425-2.425-3.85-5.7Q6.05 29.7 6.05 25.95q0-3.7 1.425-6.975Q8.9 15.7 11.325 13.25q2.425-2.45 5.7-3.85Q20.3 8 24 8q3.7 0 6.975 1.4 3.275 1.4 5.725 3.85 2.45 2.45 3.85 5.725 1.4 3.275 1.4 6.975 0 3.75-1.4 7.025-1.4 3.275-3.85 5.7-2.45 2.425-5.725 3.825Q27.7 43.9 24 43.9zm0-17.85zm-1.35-8.55v8.6q0 0.3 0.1 0.55 0.1 0.25 0.35 0.5l5.95 5.95q0.4 0.4 1 0.4t1.05-0.45q0.45-0.45 0.45-1.05 0-0.6-0.45-1.05l-5.45-5.45v-8.05q0-0.6-0.425-1.025Q24.8 16 24.15 16q-0.65 0-1.075 0.425Q22.65 16.85 22.65 17.5zM5.7 13.65q-0.45 0.4-1.05 0.4-0.6 0-1.05-0.45-0.45-0.45-0.45-1.075T3.6 11.5l6.1-5.85q0.45-0.4 1.05-0.4 0.6 0 1.05 0.45 0.45 0.45 0.45 1.075T11.8 7.8zm36.6-0.05l-6.1-5.85q-0.4-0.4-0.425-1Q35.75 6.15 36.2 5.7q0.4-0.4 1.025-0.4 0.625 0 1.075 0.4l6.1 5.85q0.4 0.4 0.425 1 0.025 0.6-0.425 1.05Q44 14 43.375 14q-0.625 0-1.075-0.4zM24 40.9q6.25 0 10.6-4.35t4.35-10.6q0-6.25-4.35-10.6T24 11q-6.25 0-10.6 4.35t-4.35 10.6q0 6.25 4.35 10.6T24 40.9z&quot;/>"
-        errorLine2="                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/drawable/ic_alarm_vector.xml"
-            line="2"
-            column="59"/>
-    </issue>
-
-    <issue
-        id="VectorPath"
-        message="Very long vector path (855 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector."
-        errorLine1="    &lt;path android:fillColor=&quot;#FFFFFFFF&quot; android:pathData=&quot;M19.5 5q-0.65 0-1.075-0.425Q18 4.15 18 3.5q0-0.65 0.425-1.075Q18.85 2 19.5 2h9q0.65 0 1.075 0.425Q30 2.85 30 3.5q0 0.65-0.425 1.075Q29.15 5 28.5 5zM24 27.35q0.65 0 1.075-0.425Q25.5 26.5 25.5 25.85v-8.5q0-0.65-0.425-1.075Q24.65 15.85 24 15.85q-0.65 0-1.075 0.425Q22.5 16.7 22.5 17.35v8.5q0 0.65 0.425 1.075Q23.35 27.35 24 27.35zm0 16.6q-3.7 0-6.975-1.425Q13.75 41.1 11.3 38.65q-2.45-2.45-3.875-5.725Q6 29.65 6 25.95q0-3.7 1.425-6.975Q8.85 15.7 11.3 13.25q2.45-2.45 5.725-3.875Q20.3 7.95 24 7.95q3.35 0 6.3 1.125 2.95 1.125 5.25 3.125l1.55-1.55q0.4-0.4 1-0.4t1.05 0.45q0.45 0.45 0.45 1.05 0 0.6-0.45 1.05l-1.5 1.5q1.8 2 3.075 4.85Q42 22 42 25.95q0 3.7-1.425 6.975Q39.15 36.2 36.7 38.65q-2.45 2.45-5.725 3.875Q27.7 43.95 24 43.95zm0-3q6.25 0 10.625-4.375T39 25.95q0-6.25-4.375-10.625T24 10.95q-6.25 0-10.625 4.375T9 25.95q0 6.25 4.375 10.625T24 40.95zM24 26z&quot;/>"
-        errorLine2="                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/drawable/ic_stopwatch_vector.xml"
             line="2"
             column="59"/>
     </issue>
@@ -1163,7 +979,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/dimens.xml"
-            line="20"
+            line="21"
             column="12"/>
     </issue>
 
@@ -1198,6 +1014,17 @@
             file="src/main/res/values/integers.xml"
             line="4"
             column="14"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.no_days_selected` appears to be unused"
+        errorLine1="    &lt;string name=&quot;no_days_selected&quot;>No days selected&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="6"
+            column="13"/>
     </issue>
 
     <issue
@@ -1251,7 +1078,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="24"
+            line="25"
             column="13"/>
     </issue>
 
@@ -1262,7 +1089,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="25"
+            line="26"
             column="13"/>
     </issue>
 
@@ -1273,7 +1100,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="27"
+            line="28"
             column="13"/>
     </issue>
 
@@ -1282,17 +1109,6 @@
         message="The resource `R.string.alarm_snoozed` appears to be unused"
         errorLine1="    &lt;string name=&quot;alarm_snoozed&quot;>Alarm snoozed by %s&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="28"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.string.no_alarms_found` appears to be unused"
-        errorLine1="    &lt;string name=&quot;no_alarms_found&quot;>No alarms found&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="29"
@@ -1306,17 +1122,6 @@
         errorLine2="            ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="30"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.string.no_timers_found` appears to be unused"
-        errorLine1="    &lt;string name=&quot;no_timers_found&quot;>No timers found&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
             line="31"
             column="13"/>
     </issue>
@@ -1328,7 +1133,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="32"
+            line="33"
             column="13"/>
     </issue>
 
@@ -1339,7 +1144,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="47"
+            line="51"
             column="13"/>
     </issue>
 
@@ -1350,7 +1155,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="49"
+            line="53"
             column="13"/>
     </issue>
 
@@ -1361,7 +1166,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="51"
+            line="55"
             column="13"/>
     </issue>
 
@@ -1375,11 +1180,11 @@
     <issue
         id="ReportShortcutUsage"
         message="Calling this method indicates use of dynamic shortcuts, but there are no calls to methods that track shortcut usage, such as `pushDynamicShortcut` or `reportShortcutUsed`. Calling these methods is recommended, as they track shortcut usage and allow launchers to adjust which shortcuts appear based on activation history. Please see https://developer.android.com/develop/ui/views/launch/shortcuts/managing-shortcuts#track-usage"
-        errorLine1="                shortcutManager.dynamicShortcuts = listOf(launchDialpad)"
-        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="                shortcutManager.dynamicShortcuts = listOf(stopWatchShortcutInfo)"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/org/fossify/clock/activities/MainActivity.kt"
-            line="92"
+            line="139"
             column="17"/>
     </issue>
 
@@ -1389,52 +1194,8 @@
         errorLine1="    &lt;ImageView"
         errorLine2="     ~~~~~~~~~">
         <location
-            file="src/main/res/layout/activity_reminder.xml"
-            line="32"
-            column="6"/>
-    </issue>
-
-    <issue
-        id="ContentDescription"
-        message="Missing `contentDescription` attribute on image"
-        errorLine1="    &lt;ImageView"
-        errorLine2="     ~~~~~~~~~">
-        <location
-            file="src/main/res/layout/activity_reminder.xml"
-            line="55"
-            column="6"/>
-    </issue>
-
-    <issue
-        id="ContentDescription"
-        message="Missing `contentDescription` attribute on image"
-        errorLine1="    &lt;ImageView"
-        errorLine2="     ~~~~~~~~~">
-        <location
-            file="src/main/res/layout/activity_reminder.xml"
-            line="69"
-            column="6"/>
-    </issue>
-
-    <issue
-        id="ContentDescription"
-        message="Missing `contentDescription` attribute on image"
-        errorLine1="    &lt;ImageView"
-        errorLine2="     ~~~~~~~~~">
-        <location
-            file="src/main/res/layout/activity_reminder.xml"
-            line="82"
-            column="6"/>
-    </issue>
-
-    <issue
-        id="ContentDescription"
-        message="Missing `contentDescription` attribute on image"
-        errorLine1="    &lt;ImageView"
-        errorLine2="     ~~~~~~~~~">
-        <location
-            file="src/main/res/layout/activity_reminder.xml"
-            line="116"
+            file="src/main/res/layout/activity_alarm.xml"
+            line="71"
             column="6"/>
     </issue>
 
@@ -1445,7 +1206,7 @@
         errorLine2="             ~~~~~~~~~">
         <location
             file="src/main/res/layout/dialog_edit_alarm.xml"
-            line="57"
+            line="58"
             column="14"/>
     </issue>
 
@@ -1456,73 +1217,139 @@
         errorLine2="             ~~~~~~~~~">
         <location
             file="src/main/res/layout/dialog_edit_alarm.xml"
+            line="105"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_edit_timer.xml"
+            line="40"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_edit_timer.xml"
+            line="92"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_stopwatch.xml"
+            line="43"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-land/fragment_stopwatch.xml"
+            line="44"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_stopwatch.xml"
+            line="52"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-land/fragment_stopwatch.xml"
+            line="53"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_stopwatch.xml"
+            line="61"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-land/fragment_stopwatch.xml"
+            line="62"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_stopwatch.xml"
+            line="89"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-land/fragment_stopwatch.xml"
+            line="92"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_stopwatch.xml"
+            line="101"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-land/fragment_stopwatch.xml"
             line="104"
-            column="14"/>
-    </issue>
-
-    <issue
-        id="ContentDescription"
-        message="Missing `contentDescription` attribute on image"
-        errorLine1="            &lt;ImageView"
-        errorLine2="             ~~~~~~~~~">
-        <location
-            file="src/main/res/layout/dialog_edit_timer.xml"
-            line="39"
-            column="14"/>
-    </issue>
-
-    <issue
-        id="ContentDescription"
-        message="Missing `contentDescription` attribute on image"
-        errorLine1="            &lt;ImageView"
-        errorLine2="             ~~~~~~~~~">
-        <location
-            file="src/main/res/layout/dialog_edit_timer.xml"
-            line="91"
-            column="14"/>
-    </issue>
-
-    <issue
-        id="ContentDescription"
-        message="Missing `contentDescription` attribute on image"
-        errorLine1="        &lt;ImageView"
-        errorLine2="         ~~~~~~~~~">
-        <location
-            file="src/main/res/layout/fragment_stopwatch.xml"
-            line="30"
-            column="10"/>
-    </issue>
-
-    <issue
-        id="ContentDescription"
-        message="Missing `contentDescription` attribute on image"
-        errorLine1="        &lt;ImageView"
-        errorLine2="         ~~~~~~~~~">
-        <location
-            file="src/main/res/layout/fragment_stopwatch.xml"
-            line="39"
-            column="10"/>
-    </issue>
-
-    <issue
-        id="ContentDescription"
-        message="Missing `contentDescription` attribute on image"
-        errorLine1="        &lt;ImageView"
-        errorLine2="         ~~~~~~~~~">
-        <location
-            file="src/main/res/layout/fragment_stopwatch.xml"
-            line="48"
-            column="10"/>
-    </issue>
-
-    <issue
-        id="ContentDescription"
-        message="Missing `contentDescription` attribute on image"
-        errorLine1="    &lt;ImageView"
-        errorLine2="     ~~~~~~~~~">
-        <location
-            file="src/main/res/layout/fragment_stopwatch.xml"
-            line="73"
             column="6"/>
     </issue>
 
@@ -1532,31 +1359,42 @@
         errorLine1="    &lt;ImageView"
         errorLine2="     ~~~~~~~~~">
         <location
-            file="src/main/res/layout/fragment_stopwatch.xml"
-            line="87"
+            file="src/main/res/layout/item_alarm.xml"
+            line="67"
             column="6"/>
     </issue>
 
     <issue
         id="ContentDescription"
         message="Missing `contentDescription` attribute on image"
-        errorLine1="        &lt;ImageView"
-        errorLine2="         ~~~~~~~~~">
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
         <location
             file="src/main/res/layout/item_timer.xml"
-            line="45"
-            column="10"/>
+            line="50"
+            column="6"/>
     </issue>
 
     <issue
         id="ContentDescription"
         message="Missing `contentDescription` attribute on image"
-        errorLine1="        &lt;ImageView"
-        errorLine2="         ~~~~~~~~~">
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
         <location
             file="src/main/res/layout/item_timer.xml"
-            line="60"
-            column="10"/>
+            line="65"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_timer.xml"
+            line="77"
+            column="6"/>
     </issue>
 
     <issue
@@ -1610,7 +1448,7 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="src/main/res/layout/widget_config_digital.xml"
-            line="63"
+            line="61"
             column="10"/>
     </issue>
 
@@ -1621,7 +1459,7 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="src/main/res/layout/widget_config_digital.xml"
-            line="90"
+            line="88"
             column="10"/>
     </issue>
 
@@ -1643,7 +1481,7 @@
         errorLine2="             ~~~~~~~~~">
         <location
             file="src/main/res/layout/widget_digital.xml"
-            line="74"
+            line="94"
             column="14"/>
     </issue>
 
@@ -1654,7 +1492,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/org/fossify/clock/dialogs/EditAlarmDialog.kt"
-            line="221"
+            line="249"
             column="50"/>
     </issue>
 
@@ -1687,7 +1525,7 @@
         errorLine2="         ~~~~~~">
         <location
             file="src/main/res/layout/widget_config_digital.xml"
-            line="97"
+            line="95"
             column="10"/>
     </issue>
 
@@ -1698,19 +1536,8 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/layout/item_lap.xml"
-            line="9"
+            line="10"
             column="5"/>
-    </issue>
-
-    <issue
-        id="RtlSymmetry"
-        message="When you define `paddingStart` you should probably also define `paddingEnd` for right-to-left symmetry"
-        errorLine1="        android:paddingStart=&quot;@dimen/activity_margin&quot;"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/layout/item_timer.xml"
-            line="16"
-            column="9"/>
     </issue>
 
     <issue
@@ -1720,7 +1547,7 @@
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/layout/widget_digital.xml"
-            line="90"
+            line="110"
             column="17"/>
     </issue>
 
@@ -1731,7 +1558,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/layout/dialog_edit_alarm.xml"
-            line="85"
+            line="86"
             column="13"/>
     </issue>
 
@@ -1753,18 +1580,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/layout/dialog_edit_timer.xml"
-            line="67"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="RtlHardcoded"
-        message="Consider replacing `android:drawableLeft` with `android:drawableStart=&quot;@drawable/ic_clock_small&quot;` to better support right-to-left layouts"
-        errorLine1="            android:drawableLeft=&quot;@drawable/ic_clock_small&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/layout/fragment_clock.xml"
-            line="43"
+            line="68"
             column="13"/>
     </issue>
 
@@ -1775,30 +1591,8 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/layout/item_lap.xml"
-            line="9"
+            line="10"
             column="5"/>
-    </issue>
-
-    <issue
-        id="RtlHardcoded"
-        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;48dp&quot;` to better support right-to-left layouts"
-        errorLine1="        android:layout_marginRight=&quot;48dp&quot;"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/layout/item_lap.xml"
-            line="39"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="RtlHardcoded"
-        message="Consider replacing `android:layout_toLeftOf` with `android:layout_toStartOf=&quot;@+id/time_zone_time&quot;` to better support right-to-left layouts"
-        errorLine1="            android:layout_toLeftOf=&quot;@+id/time_zone_time&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/layout/item_time_zone.xml"
-            line="22"
-            column="13"/>
     </issue>
 
     <issue
