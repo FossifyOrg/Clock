@@ -51,20 +51,9 @@
         errorLine1="app-build-targetSDK = &quot;34&quot;"
         errorLine2="                      ~~~~">
         <location
-            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
             line="29"
             column="23"/>
-    </issue>
-
-    <issue
-        id="UnusedAttribute"
-        message="Attribute `localeConfig` is only used in API level 33 and higher (current min is 26)"
-        errorLine1="        android:localeConfig=&quot;@xml/locale_config&quot;"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/AndroidManifest.xml"
-            line="33"
-            column="9"/>
     </issue>
 
     <issue
@@ -139,9 +128,20 @@
         errorLine1="distributionUrl=https\://services.gradle.org/distributions/gradle-8.11.1-bin.zip"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/wrapper/gradle-wrapper.properties"
+            file="$HOME/work/Clock/Clock/gradle/wrapper/gradle-wrapper.properties"
             line="3"
             column="17"/>
+    </issue>
+
+    <issue
+        id="AndroidGradlePluginVersion"
+        message="A newer version of com.android.application than 8.10.1 is available: 8.11.0"
+        errorLine1="gradlePlugins-agp = &quot;8.10.1&quot;"
+        errorLine2="                    ~~~~~~~~">
+        <location
+            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
+            line="26"
+            column="21"/>
     </issue>
 
     <issue
@@ -150,7 +150,7 @@
         errorLine1="androidx-lifecycle = &quot;2.8.7&quot;"
         errorLine2="                     ~~~~~~~">
         <location
-            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
             line="11"
             column="22"/>
     </issue>
@@ -161,7 +161,7 @@
         errorLine1="androidx-lifecycle = &quot;2.8.7&quot;"
         errorLine2="                     ~~~~~~~">
         <location
-            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
             line="11"
             column="22"/>
     </issue>
@@ -172,53 +172,9 @@
         errorLine1="androidx-lifecycle = &quot;2.8.7&quot;"
         errorLine2="                     ~~~~~~~">
         <location
-            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
             line="11"
             column="22"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.room:room-compiler than 2.7.1 is available: 2.7.2"
-        errorLine1="room = &quot;2.7.1&quot;"
-        errorLine2="       ~~~~~~~">
-        <location
-            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="22"
-            column="8"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.room:room-ktx than 2.7.1 is available: 2.7.2"
-        errorLine1="room = &quot;2.7.1&quot;"
-        errorLine2="       ~~~~~~~">
-        <location
-            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="22"
-            column="8"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.room:room-runtime than 2.7.1 is available: 2.7.2"
-        errorLine1="room = &quot;2.7.1&quot;"
-        errorLine2="       ~~~~~~~">
-        <location
-            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="22"
-            column="8"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of org.fossify:commons than 3.0.5 is available: 3.1.0"
-        errorLine1="commons = &quot;3.0.5&quot;"
-        errorLine2="          ~~~~~~~">
-        <location
-            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
-            line="24"
-            column="11"/>
     </issue>
 
     <issue
@@ -227,7 +183,7 @@
         errorLine1="app-build-compileSDKVersion = &quot;34&quot;"
         errorLine2="                              ~~~~">
         <location
-            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
             line="28"
             column="31"/>
     </issue>
@@ -239,7 +195,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/AndroidManifest.xml"
-            line="127"
+            line="126"
             column="13"/>
     </issue>
 
@@ -250,7 +206,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/AndroidManifest.xml"
-            line="137"
+            line="136"
             column="13"/>
     </issue>
 
@@ -261,7 +217,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/AndroidManifest.xml"
-            line="127"
+            line="126"
             column="13"/>
     </issue>
 
@@ -272,7 +228,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/AndroidManifest.xml"
-            line="137"
+            line="136"
             column="13"/>
     </issue>
 
@@ -901,13 +857,6 @@
             file="src/main/kotlin/org/fossify/clock/receivers/UpdateWidgetReceiver.kt"
             line="9"
             column="18"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `layout`.">
-        <location
-            file="src/main/res/layout-v26"/>
     </issue>
 
     <issue
