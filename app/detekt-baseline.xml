@@ -18,18 +18,10 @@
     <ID>ForbiddenComment:AlarmController.kt$AlarmController$// TODO: This is a bit of a hack. Skipped alarms should be tracked properly.</ID>
     <ID>ForbiddenComment:AlarmController.kt$AlarmController$// TODO: This works but it is very rudimentary. Snoozed alarms are not being tracked.</ID>
     <ID>ForbiddenComment:AlarmsAdapter.kt$AlarmsAdapter$// TODO: This does not respect config.firstDayOfWeek</ID>
-    <ID>LongMethod:AlarmActivity.kt$AlarmActivity$@SuppressLint("ClickableViewAccessibility") private fun setupAlarmButtons()</ID>
-    <ID>LongMethod:Constants.kt$@Suppress("MagicNumber") fun getAllTimeZones()</ID>
-    <ID>LongMethod:IntentHandlerActivity.kt$IntentHandlerActivity$private fun Intent.dismissAlarm()</ID>
-    <ID>LongMethod:IntentHandlerActivity.kt$IntentHandlerActivity$private fun Intent.setNewAlarm()</ID>
-    <ID>MagicNumber:App.kt$App$1000L</ID>
-    <ID>MagicNumber:App.kt$App.&lt;no name provided&gt;$1000</ID>
-    <ID>MagicNumber:ClockFragment.kt$ClockFragment$1000L</ID>
     <ID>MagicNumber:ClockFragment.kt$ClockFragment$24</ID>
     <ID>MagicNumber:ClockFragment.kt$ClockFragment$3600</ID>
     <ID>MagicNumber:ClockFragment.kt$ClockFragment$60</ID>
     <ID>MagicNumber:Config.kt$Config$300</ID>
-    <ID>MagicNumber:Constants.kt$1000</ID>
     <ID>MagicNumber:Constants.kt$5</ID>
     <ID>MagicNumber:Constants.kt$60</ID>
     <ID>MagicNumber:Constants.kt$7</ID>
@@ -59,15 +51,11 @@
     <ID>MagicNumber:IntentHandlerActivity.kt$IntentHandlerActivity$59</ID>
     <ID>MagicNumber:IntentHandlerActivity.kt$IntentHandlerActivity$60</ID>
     <ID>MagicNumber:Long.kt$100</ID>
-    <ID>MagicNumber:Long.kt$1000</ID>
-    <ID>MagicNumber:Long.kt$1000F</ID>
     <ID>MagicNumber:MainActivity.kt$MainActivity$3</ID>
     <ID>MagicNumber:MyTimePickerDialogDialog.kt$MyTimePickerDialogDialog$3600</ID>
     <ID>MagicNumber:MyTimePickerDialogDialog.kt$MyTimePickerDialogDialog$60</ID>
     <ID>MagicNumber:StopwatchService.kt$StopwatchService.&lt;no name provided&gt;$500L</ID>
-    <ID>MagicNumber:TimeZonesAdapter.kt$TimeZonesAdapter$1000</ID>
     <ID>MagicNumber:TimerAdapter.kt$TimerAdapter$0.7f</ID>
-    <ID>MagicNumber:TimerFragment.kt$TimerFragment$1000</ID>
     <ID>MagicNumber:WidgetAnalogueConfigureActivity.kt$WidgetAnalogueConfigureActivity$100</ID>
     <ID>MagicNumber:WidgetDigitalConfigureActivity.kt$WidgetDigitalConfigureActivity$100</ID>
     <ID>MaxLineLength:DBHelper.kt$DBHelper$"$COL_IS_ENABLED INTEGER, $COL_VIBRATE INTEGER, $COL_SOUND_TITLE TEXT, $COL_SOUND_URI TEXT, $COL_LABEL TEXT, $COL_ONE_SHOT INTEGER)"</ID>

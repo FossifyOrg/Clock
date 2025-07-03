@@ -51,8 +51,8 @@
         errorLine1="app-build-targetSDK = &quot;34&quot;"
         errorLine2="                      ~~~~">
         <location
-            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
-            line="29"
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="30"
             column="23"/>
     </issue>
 
@@ -128,7 +128,7 @@
         errorLine1="distributionUrl=https\://services.gradle.org/distributions/gradle-8.11.1-bin.zip"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="$HOME/work/Clock/Clock/gradle/wrapper/gradle-wrapper.properties"
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/wrapper/gradle-wrapper.properties"
             line="3"
             column="17"/>
     </issue>
@@ -139,8 +139,8 @@
         errorLine1="gradlePlugins-agp = &quot;8.10.1&quot;"
         errorLine2="                    ~~~~~~~~">
         <location
-            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
-            line="26"
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="27"
             column="21"/>
     </issue>
 
@@ -150,8 +150,8 @@
         errorLine1="androidx-lifecycle = &quot;2.8.7&quot;"
         errorLine2="                     ~~~~~~~">
         <location
-            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
-            line="11"
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="12"
             column="22"/>
     </issue>
 
@@ -161,8 +161,8 @@
         errorLine1="androidx-lifecycle = &quot;2.8.7&quot;"
         errorLine2="                     ~~~~~~~">
         <location
-            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
-            line="11"
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="12"
             column="22"/>
     </issue>
 
@@ -172,8 +172,8 @@
         errorLine1="androidx-lifecycle = &quot;2.8.7&quot;"
         errorLine2="                     ~~~~~~~">
         <location
-            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
-            line="11"
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="12"
             column="22"/>
     </issue>
 
@@ -183,8 +183,8 @@
         errorLine1="app-build-compileSDKVersion = &quot;34&quot;"
         errorLine2="                              ~~~~">
         <location
-            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
-            line="28"
+            file="$HOME/Projects/Fossify/FossifyOrg/Clock/gradle/libs.versions.toml"
+            line="29"
             column="31"/>
     </issue>
 
@@ -857,6 +857,13 @@
             file="src/main/kotlin/org/fossify/clock/receivers/UpdateWidgetReceiver.kt"
             line="9"
             column="18"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `layout`.">
+        <location
+            file="src/main/res/layout-v26"/>
     </issue>
 
     <issue
