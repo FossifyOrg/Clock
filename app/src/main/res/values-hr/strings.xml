@@ -47,4 +47,11 @@
     <string name="alarm_created">Alarm je stvoren</string>
     <string name="select_timer_to_dismiss">Odaberi timer za odbacivanje</string>
     <string name="timer">Timer</string>
+    <string name="sort_by_timer_duration">Trajanje timera</string>
+    <string name="not_scheduled">Nije planirano</string>
+    <string name="missed_alarm">Propušteni alarm</string>
+    <string name="replaced_by_another_alarm">Zamijenjen drugim alarmom</string>
+    <string name="alarm_timed_out">Vrijeme alarma je isteklo</string>
+    <string name="settings_import_data">Uvezi alarme i timere</string>
+    <string name="settings_export_data">Izvezi alarme i timere</string>
 </resources>
