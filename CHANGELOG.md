@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
-- It's now possible to select the default system alarm sound ([#144])
+- It's now possible to reselect the default system alarm sound ([#144])
 
 ## [1.2.2] - 2025-06-21
 
