@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- It's now possible to select the default system alarm sound ([#144])
+
 ## [1.2.2] - 2025-06-21
 
 ### Changed
@@ -92,6 +95,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [#11]: https://github.com/FossifyOrg/Clock/issues/11
 [#107]: https://github.com/FossifyOrg/Clock/issues/107
+[#144]: https://github.com/FossifyOrg/Clock/issues/144
 [#158]: https://github.com/FossifyOrg/Clock/issues/158
 [#206]: https://github.com/FossifyOrg/Clock/issues/206
 [#207]: https://github.com/FossifyOrg/Clock/issues/207
