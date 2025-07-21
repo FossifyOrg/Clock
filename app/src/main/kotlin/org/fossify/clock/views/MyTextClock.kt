@@ -38,27 +38,36 @@ class MyTextClock @JvmOverloads constructor(
         }
 
         val full = text.toString()
-        var index = -1
+        var amPmPosition = -1
         var amPmString: String? = null
         for (s in amPmStrings) {
             if (s.isNotEmpty()) {
                 val i = full.indexOf(s, ignoreCase = true)
                 if (i != -1) {
-                    index = i
+                    amPmPosition = i
                     amPmString = s
                     break
                 }
             }
         }
 
-        if (index != -1 && amPmString != null) {
+        if (amPmPosition != -1 && amPmString != null) {
             val spannable = SpannableString(text)
-            spannable.setSpan(
-                RelativeSizeSpan(AM_PM_SCALE),
-                index - 1, // including the space before AM/PM
-                index + amPmString.length,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
+            val startIndex = if (amPmPosition > 0 && full[amPmPosition - 1].isWhitespace()) {
+                amPmPosition - 1
+            } else {
+                amPmPosition
+            }
+            val endIndex = amPmPosition + amPmString.length
+            if (startIndex < endIndex) {
+                spannable.setSpan(
+                    RelativeSizeSpan(AM_PM_SCALE),
+                    startIndex,
+                    endIndex,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+
             reenter = true
 
             try {
