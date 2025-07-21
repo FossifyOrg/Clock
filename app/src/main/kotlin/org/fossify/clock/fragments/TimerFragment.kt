@@ -112,7 +112,8 @@ class TimerFragment : Fragment() {
 
     private fun getSortedTimers(callback: (List<Timer>) -> Unit) {
         activity?.timerHelper?.getTimers { timers ->
-            val sortedTimers = when (requireContext().config.timerSort) {
+            val safeContext = context ?: return@getTimers
+            val sortedTimers = when (safeContext.config.timerSort) {
                 SORT_BY_TIMER_DURATION -> timers.sortedBy { it.seconds }
                 SORT_BY_DATE_CREATED -> timers.sortedBy { it.id }
                 SORT_BY_CUSTOM -> {

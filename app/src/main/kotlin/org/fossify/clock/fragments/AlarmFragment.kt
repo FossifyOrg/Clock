@@ -140,10 +140,11 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     private fun setupAlarms() {
         getSortedAlarms { sortedAlarms ->
             alarms = sortedAlarms
+            val safeActivity = activity as? SimpleActivity ?: return@getSortedAlarms
             var currAdapter = binding.alarmsList.adapter as? AlarmsAdapter
             if (currAdapter == null) {
                 currAdapter = AlarmsAdapter(
-                    activity = activity as SimpleActivity,
+                    activity = safeActivity,
                     alarms = alarms,
                     toggleAlarmInterface = this,
                     recyclerView = binding.alarmsList
@@ -154,12 +155,9 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 }
             } else {
                 currAdapter.apply {
-                    val context = context
                     updatePrimaryColor()
-                    if (context != null) {
-                        updateBackgroundColor(context.getProperBackgroundColor())
-                        updateTextColor(context.getProperTextColor())
-                    }
+                    updateBackgroundColor(safeActivity.getProperBackgroundColor())
+                    updateTextColor(safeActivity.getProperTextColor())
                     updateItems(alarms)
                 }
             }
