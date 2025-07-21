@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Fixed crash on startup ([#247])
+
 ## [1.3.0] - 2025-07-13
 ### Changed
 - Updated translations
@@ -78,6 +81,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#158]: https://github.com/FossifyOrg/Clock/issues/158
 [#206]: https://github.com/FossifyOrg/Clock/issues/206
 [#207]: https://github.com/FossifyOrg/Clock/issues/207
+[#247]: https://github.com/FossifyOrg/Clock/issues/247
 
 [Unreleased]: https://github.com/FossifyOrg/Clock/compare/1.3.0...HEAD
 [1.3.0]: https://github.com/FossifyOrg/Clock/compare/1.2.2...1.3.0
