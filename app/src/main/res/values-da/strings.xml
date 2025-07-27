@@ -48,4 +48,9 @@
     <string name="alarm_timed_out">Alarmen udløb</string>
     <string name="timers_notification_msg">Timere kører</string>
     <string name="timer_single_notification_label_msg">Timer for %s kører</string>
+    <string name="new_timer">Ny timer</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d timer kører</item>
+        <item quantity="other">%d timere kører</item>
+    </plurals>
 </resources>
