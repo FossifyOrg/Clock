@@ -47,4 +47,10 @@
     <string name="increase_volume_gradually">Zvyšovať hlasitosť postupne</string>
     <string name="faq_1_title">Ako viem zmeniť poradie kôl na okne so stopkami?</string>
     <string name="faq_1_text">Stačí, ak kliknete na niektorý stĺpec, to aktivuje triedenie podľa daného stĺpca. Ďalším kliknutím na daný stĺpec viete prepínať zostupné a vzostupné triedenie.</string>
+    <string name="not_scheduled">Nenaplánované</string>
+    <string name="missed_alarm">Zmeškaný budík</string>
+    <string name="replaced_by_another_alarm">Nahradené iným budíkom</string>
+    <string name="alarm_timed_out">Budík vypršal</string>
+    <string name="settings_import_data">Importovať budíky a časovače</string>
+    <string name="settings_export_data">Exportovať budíky a časovače</string>
 </resources>
