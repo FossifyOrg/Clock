@@ -75,7 +75,6 @@
     <ID>NestedBlockDepth:DBHelper.kt$DBHelper$fun getAlarms(): ArrayList&lt;Alarm&gt;</ID>
     <ID>NestedBlockDepth:IntentHandlerActivity.kt$IntentHandlerActivity$private fun Intent.dismissAlarm()</ID>
     <ID>NestedBlockDepth:IntentHandlerActivity.kt$IntentHandlerActivity$private fun Intent.setNewAlarm()</ID>
-    <ID>NewLineAtEndOfFile:MyTextClock.kt$org.fossify.clock.views.MyTextClock.kt</ID>
     <ID>PrintStackTrace:AlarmService.kt$AlarmService$e</ID>
     <ID>ReturnCount:Context.kt$fun Context.firstDayOrder(bitMask: Int): Int</ID>
     <ID>SwallowedException:Converters.kt$Converters$e: Exception</ID>
