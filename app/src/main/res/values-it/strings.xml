@@ -50,4 +50,8 @@
     <string name="settings_import_data">Importa sveglie e timer</string>
     <string name="settings_export_data">Esporta sveglie e timer</string>
     <string name="sort_by_timer_duration">Durata del timer</string>
+    <string name="not_scheduled">Non in programma</string>
+    <string name="missed_alarm">Sveglia mancata</string>
+    <string name="replaced_by_another_alarm">Sostituita da un\'altra sveglia</string>
+    <string name="alarm_timed_out">Sveglia scaduta</string>
 </resources>
