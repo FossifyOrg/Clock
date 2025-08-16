@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_launcher_name">Reloj</string>
+    <string name="time_zone">Zona horaria</string>
+    <string name="vibrate">Vibrar</string>
+</resources>
