@@ -46,4 +46,8 @@
     <string name="increase_volume_gradually">Σταδιακή αύξηση έντασης</string>
     <string name="faq_1_title">Πώς μπορώ να αλλάξω την ταξινόμηση γύρων στην καρτέλα χρονόμετρου;</string>
     <string name="faq_1_text">Απλά κάντε κλικ σε οποιαδήποτε από τις στήλες, ώστε οι γύροι να ταξινομηθούν κατά τη δεδομένη στήλη. Με πρόσθετα κλικ μπορείτε να κάνετε εναλλαγή μεταξύ αύξουσας και φθίνουσας ταξινόμησης.</string>
+    <string name="not_scheduled">Δεν έχει προγραμματιστεί</string>
+    <string name="alarm_timed_out">Το χρονικό όριο του ξυπνητηριού έληξε</string>
+    <string name="settings_import_data">Εισαγωγή ξυπνητηριών και χρονομέτρων</string>
+    <string name="settings_export_data">Εξαγωγή ξυπνητηριών και χρονομέτρων</string>
 </resources>
