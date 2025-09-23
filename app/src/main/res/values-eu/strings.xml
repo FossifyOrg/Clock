@@ -49,4 +49,6 @@
     <string name="settings_import_data">Inportatu alarma eta denboragailuak</string>
     <string name="settings_export_data">Esportatu alarma eta denboragailuak</string>
     <string name="sort_by_timer_duration">Tenporizadorearen iraupena</string>
+    <string name="not_scheduled">Programatu gabe</string>
+    <string name="missed_alarm">Galdutako alarma</string>
 </resources>
