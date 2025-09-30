@@ -15,7 +15,7 @@
     <string name="time_expired">Час сплив</string>
     <string name="clock_and_date">Годинник і дата</string>
     <string name="use_text_shadow">Застосовувати ефект тіні у тексті</string>
-    <string name="swipe_right_to_dismiss">Свайп вправо, щоб відхилити, або вліво, щоб відкласти.</string>
+    <string name="swipe_right_to_dismiss">Проведіть управо, щоб відхилити, або вліво, щоб відкласти.</string>
     <string name="sort_by_creation_order">Порядок створення</string>
     <string name="sort_by_alarm_time">Час будильника</string>
     <string name="sort_by_day_and_alarm_time">День і час будильника</string>
@@ -25,7 +25,7 @@
     <string name="select_timer_to_dismiss">Виберіть таймер для відхилення</string>
     <string name="select_alarm_to_dismiss">Виберіть будильник для відхилення</string>
     <string name="alarm_created">Будильник створений</string>
-    <string name="alarm_snoozed">Будильник відкладено %s</string>
+    <string name="alarm_snoozed">Будильник відкладено на %s</string>
     <string name="no_alarms_found">Немає будильників</string>
     <string name="add_alarm">Додати будильник</string>
     <string name="no_timers_found">Таймерів не знайдено</string>
@@ -36,7 +36,7 @@
     <string name="new_timer">Новий таймер</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">%d таймер працює</item>
-        <item quantity="few">%d таймера працюють</item>
+        <item quantity="few">%d таймери працюють</item>
         <item quantity="many">%d таймерів працюють</item>
         <item quantity="other">%d таймерів працюють</item>
     </plurals>
