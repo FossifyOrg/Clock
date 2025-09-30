@@ -3,12 +3,12 @@
     <string name="app_launcher_name">Ur</string>
     <string name="time_zone">Tidszone</string>
     <string name="vibrate">Vibrer</string>
-    <string name="no_days_selected">Der er ikke valgt nogen dage</string>
-    <string name="timer">Æggeur</string>
-    <string name="lap">Mellemtid</string>
-    <string name="stopwatch_stopped">Stopuret er standset</string>
-    <string name="timer_stopped">Æggeuret er standset</string>
-    <string name="max_reminder_duration">Længste varighed af påmindelse</string>
+    <string name="no_days_selected">Ingen dage valgt</string>
+    <string name="timer">Timer</string>
+    <string name="lap">Omgang</string>
+    <string name="stopwatch_stopped">Stopuret er stoppet</string>
+    <string name="timer_stopped">Timeren er stoppet</string>
+    <string name="max_reminder_duration">Maks. påmindelsesvarighed</string>
     <string name="time_expired">Tiden er udløbet</string>
     <string name="use_text_shadow">Anvend tekstskygge</string>
     <string name="clock_tab">Ur</string>
@@ -22,7 +22,7 @@
     <string name="faq_1_text">Klik på den kolonne der skal sorteres efter. Med flere klik kan du skifte mellem stigende og faldende rækkefølge.</string>
     <string name="clock">Ur</string>
     <string name="start_stopwatch">Start stopur</string>
-    <string name="clock_and_date">Klokketslet og dato</string>
+    <string name="clock_and_date">Klokkeslæt og dato</string>
     <string name="stopwatch">Stopur</string>
     <string name="increase_volume_gradually">Øg lydstyrken gradvist</string>
     <string name="swipe_right_to_dismiss">Stryg til højre for at afvise, eller til venstre for at udsætte.</string>
