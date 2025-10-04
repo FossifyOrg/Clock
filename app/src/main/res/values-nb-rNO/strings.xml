@@ -36,4 +36,7 @@
     <string name="stopwatch_tab">Stoppeklokke</string>
     <string name="show_seconds">Vis sekunder</string>
     <string name="increase_volume_gradually">Øk volum gradvis</string>
-    </resources>
+    <string name="clock">Klokke</string>
+    <string name="alarm_created">Alarm opprettet</string>
+    <string name="add_alarm">Legg til alarm</string>
+</resources>

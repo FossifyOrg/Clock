@@ -1,2 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_launcher_name">時鐘</string>
+    <string name="time_zone">時區</string>
+    <string name="vibrate">震動</string>
+    <string name="no_days_selected">未選擇任何一天</string>
+    <string name="clock">時鐘</string>
+    <string name="timer">計時器</string>
+    <string name="stopwatch">碼表</string>
+    <string name="start_stopwatch">開始計時</string>
+    <string name="lap">分圈</string>
+    <string name="stopwatch_stopped">碼錶已停止</string>
+    <string name="timer_stopped">計時器已停止</string>
+    <string name="max_reminder_duration">最長提醒持續時間</string>
+    <string name="time_expired">時間結束</string>
+    <string name="clock_and_date">時鐘和日期</string>
+    <string name="use_text_shadow">使用文字陰影</string>
+    <string name="swipe_right_to_dismiss">右滑關閉，或左滑延遲。</string>
+    <string name="sort_by_creation_order">建立順序</string>
+    <string name="sort_by_alarm_time">鬧鐘時間</string>
+    <string name="sort_by_timer_duration">計時器持續時間</string>
+    <string name="sort_by_day_and_alarm_time">日期與鬧鐘時間</string>
+    <string name="analogue_clock">類比時鐘</string>
+    <string name="digital_clock">數位時鐘</string>
+    <string name="alarm_dismissed">解除鬧鐘</string>
+    <string name="select_timer_to_dismiss">選取要解除的計時器</string>
+    <string name="select_alarm_to_dismiss">選取要解除的鬧鐘</string>
+    <string name="alarm_created">已建立鬧鐘</string>
+    <string name="alarm_snoozed">鬧鐘被 %s 以貪睡延後</string>
+    <string name="no_alarms_found">找不到鬧鐘</string>
+    <string name="add_alarm">新增鬧鐘</string>
+    <string name="no_timers_found">找不到計時器</string>
+    <string name="add_timer">新增計時器</string>
+    <string name="upcoming_alarm">即將到來的鬧鐘</string>
+    <string name="not_scheduled">未排定</string>
+    <string name="missed_alarm">錯過的鬧鐘</string>
+    <string name="replaced_by_another_alarm">被其他鬧鐘取代</string>
+    <string name="alarm_timed_out">鬧鐘逾時</string>
+    <string name="timers_notification_msg">計時器正在運作</string>
+    <string name="timer_single_notification_label_msg">%s 的計時器正在運作</string>
+    <string name="new_timer">新的計時器</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="other">%d 個計時器正在運作</item>
+    </plurals>
+    <string name="clock_tab">時鐘頁面</string>
+    <string name="alarm_tab">鬧鐘頁面</string>
+    <string name="stopwatch_tab">碼錶頁面</string>
+    <string name="timer_tab">計時器頁面</string>
+    <string name="show_seconds">顯示秒數</string>
+    <string name="increase_volume_gradually">音量漸增</string>
+    <string name="settings_import_data">匯入鬧鐘與計時器</string>
+    <string name="settings_export_data">匯出鬧鐘與計時器</string>
+    <string name="faq_1_title">碼錶頁面分段的排序如何變更?</string>
+    <string name="faq_1_text">只要點擊任一欄位，就會依選定的欄位做排序。再多點一下，還能切換遞增或遞減的排序。</string>
+</resources>
