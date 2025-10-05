@@ -1,3 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_launcher_name">Saacadda</string>
+    <string name="time_zone">Aag waqtiyeed</string>
+    <string name="vibrate">Gariir</string>
+    <string name="no_days_selected">Maalinna lama xulan</string>
+    <string name="clock">Saacad</string>
+    <string name="timer">Xileeye</string>
+    <string name="stopwatch">Xillibeege</string>
+    <string name="start_stopwatch">Billow xillibeegaha</string>
+    <string name="lap">Wareeg</string>
+    <string name="stopwatch_stopped">Xillibeegaha waa la joojiyay</string>
+    <string name="timer_stopped">Xillikoobaha waa la joojiyay</string>
+    <string name="max_reminder_duration">Muddada ugu dheer ee xusuusiyaha</string>
+    <string name="time_expired">Waqtigu wuu dhammaaday</string>
+    <string name="clock_and_date">Saacadda iyo taariikhda</string>
+    <string name="use_text_shadow">Adeegso harka dhigaalka</string>
+    <string name="swipe_right_to_dismiss">Ujiid midig haddaad Damin, ama bidix haddaad Aamusin.</string>
+    <string name="sort_by_creation_order">Hannaanka alkumidda</string>
+    <string name="sort_by_alarm_time">Waqtiga digniinta</string>
+    <string name="sort_by_timer_duration">Muddada xillikoobaha</string>
+    <string name="sort_by_day_and_alarm_time">Maalinta iyo waqtiga Digniinta</string>
+    <string name="analogue_clock">Saacadda wareegsan</string>
+    <string name="digital_clock">Saacadda tirsan</string>
+    <string name="alarm_dismissed">Digniintu waa la damiyay</string>
+    <string name="select_timer_to_dismiss">Xulo xillikoobaha saad udamisid</string>
+    <string name="select_alarm_to_dismiss">Xulo digniinta saad udamisid</string>
+    <string name="alarm_created">Digniintu waa la alkumay</string>
+    <string name="alarm_snoozed">Digniintu waxaa aamusiyay %s</string>
+    <string name="no_alarms_found">Digniin lama helin</string>
+    <string name="add_alarm">Digniin alkun</string>
+    <string name="no_timers_found">Xillikoobe lama helin</string>
+    <string name="add_timer">Xillikoobe alkun</string>
+    <string name="upcoming_alarm">Digniinta soo socota</string>
+    <string name="not_scheduled">Lama qorsheyn</string>
+    <string name="missed_alarm">Digniin la seegay</string>
+    <string name="replaced_by_another_alarm">Waxaa baddashay digniin kale</string>
+    <string name="alarm_timed_out">Digniintu waqtigeedi wuu dhammaaday</string>
+    <string name="timers_notification_msg">Xillikoobayaal ayaa socda</string>
+    <string name="timer_single_notification_label_msg">Xillikoobaha %s ayaa socda</string>
+    <string name="new_timer">Xillikoobe Cusub</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d xillikoobe ayaa socda</item>
+        <item quantity="other">%d xillikoobayaal ayaa socda</item>
+    </plurals>
+    <string name="clock_tab">Gabalka Saacadda</string>
+    <string name="alarm_tab">Gabalka Digniinta</string>
+    <string name="stopwatch_tab">Gabalka Xillibeegaha</string>
+    <string name="timer_tab">Gabalka Xillikoobaha</string>
+    <string name="show_seconds">Muuji ilbiriqsiyada</string>
+    <string name="increase_volume_gradually">Codka tartiib-tartiib ukordhi</string>
+    <string name="settings_import_data">Soodeji digniinno iyo xillikoobayaal</string>
+    <string name="settings_export_data">Saar digniinno iyo xillikoobayaal</string>
+    <string name="faq_1_title">Sideen ubaddali karaa nidaamka wareegyada gabalka xillibeegaha?</string>
+    <string name="faq_1_text">Tiir un guji, waregyada waxaa loo nidaamin iyadoo la tixraacayo tiirkaas. Gujin kastana waxay baddali hannaanka nidaamka, min hoos ilaa kor ama kor ilaa hoos.</string>
 </resources>
