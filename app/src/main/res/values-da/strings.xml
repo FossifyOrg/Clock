@@ -14,12 +14,12 @@
     <string name="clock_tab">Ur</string>
     <string name="alarm_tab">Alarm</string>
     <string name="stopwatch_tab">Stopur</string>
-    <string name="timer_tab">Æggeur</string>
+    <string name="timer_tab">Timer</string>
     <string name="show_seconds">Vis sekunder</string>
-    <string name="settings_import_data">Importer alarmer og timere</string>
-    <string name="settings_export_data">Eksporter alarmer og timere</string>
-    <string name="faq_1_title">Hvordan kan jeg ændre sortering af mellemtider i stopuret?</string>
-    <string name="faq_1_text">Klik på den kolonne der skal sorteres efter. Med flere klik kan du skifte mellem stigende og faldende rækkefølge.</string>
+    <string name="settings_import_data">Importér alarmer og timere</string>
+    <string name="settings_export_data">Eksportér alarmer og timere</string>
+    <string name="faq_1_title">Hvordan ændrer jeg sortering af omgange i stopuret?</string>
+    <string name="faq_1_text">Tryk på en kolonne for at sortere omgange efter den. Med flere tryk kan du skifte mellem stigende og faldende rækkefølge.</string>
     <string name="clock">Ur</string>
     <string name="start_stopwatch">Start stopur</string>
     <string name="clock_and_date">Klokkeslæt og dato</string>
