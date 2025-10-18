@@ -31,12 +31,19 @@
         <item quantity="one">%d timer er i gang</item>
         <item quantity="other">%d timere er i gang</item>
     </plurals>
-    <string name="clock_tab">Klokke</string>
-    <string name="alarm_tab">Alarm</string>
-    <string name="stopwatch_tab">Stoppeklokke</string>
+    <string name="clock_tab">Klokkefane</string>
+    <string name="alarm_tab">Alarmfane</string>
+    <string name="stopwatch_tab">Stoppeklokkefane</string>
     <string name="show_seconds">Vis sekunder</string>
     <string name="increase_volume_gradually">Øk volum gradvis</string>
     <string name="clock">Klokke</string>
     <string name="alarm_created">Alarm opprettet</string>
     <string name="add_alarm">Legg til alarm</string>
+    <string name="sort_by_timer_duration">Timerlengde</string>
+    <string name="add_timer">Legg til timer</string>
+    <string name="timer_tab">Timerfane</string>
+    <string name="settings_import_data">Importer alarmer og timere</string>
+    <string name="settings_export_data">Eksporter alarmer og timere</string>
+    <string name="not_scheduled">Ikke planlagt</string>
+    <string name="alarm_timed_out">Alarmen gikk ut</string>
 </resources>
