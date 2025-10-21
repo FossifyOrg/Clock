@@ -99,7 +99,7 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(binding.mainToolbar, statusBarColor = getProperBackgroundColor())
+        setupTopAppBar(binding.mainToolbar, statusBarColor = getProperBackgroundColor())
         val configTextColor = getProperTextColor()
         if (storedTextColor != configTextColor) {
             getInactiveTabIndexes(binding.viewPager.currentItem).forEach {
