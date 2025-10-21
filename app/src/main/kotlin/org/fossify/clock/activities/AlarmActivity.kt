@@ -56,7 +56,6 @@ class AlarmActivity : SimpleActivity() {
         setContentView(binding.root)
         showOverLockscreen()
         updateTextColors(binding.root)
-        updateStatusbarColor(getProperBackgroundColor())
 
         val id = intent.getIntExtra(ALARM_ID, -1)
         alarm = dbHelper.getAlarmWithId(id)
