@@ -58,7 +58,6 @@ class IntentHandlerActivity : SimpleActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        isMaterialActivity = true
         super.onCreate(savedInstanceState)
 
         handleIntent(intent)

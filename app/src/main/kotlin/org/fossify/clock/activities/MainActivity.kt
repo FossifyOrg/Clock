@@ -65,18 +65,16 @@ class MainActivity : SimpleActivity() {
     private val binding: ActivityMainBinding by viewBinding(ActivityMainBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         appLaunched(BuildConfig.APPLICATION_ID)
         setupOptionsMenu()
         refreshMenuItems()
 
-        updateMaterialActivityViews(
-            mainCoordinatorLayout = binding.mainCoordinator,
-            nestedView = binding.mainHolder,
-            useTransparentNavigation = false,
-            useTopSearchMenu = false
+        updateEdgeToEdge(
+            topAppBar = binding.mainToolbar,
+            scrollingView = binding.viewPager,
+            bottomBar = binding.mainTabsHolder
         )
 
         storeStateVariables()
