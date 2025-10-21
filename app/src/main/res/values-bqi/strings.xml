@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_launcher_name">ساعت</string>
+    <string name="time_zone">منتقه زمووی</string>
+    <string name="vibrate">ویبره</string>
 </resources>
