@@ -65,19 +65,13 @@ class MainActivity : SimpleActivity() {
     private val binding: ActivityMainBinding by viewBinding(ActivityMainBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         appLaunched(BuildConfig.APPLICATION_ID)
         setupOptionsMenu()
         refreshMenuItems()
 
-        updateMaterialActivityViews(
-            mainCoordinatorLayout = binding.mainCoordinator,
-            nestedView = binding.mainHolder,
-            useTransparentNavigation = false,
-            useTopSearchMenu = false
-        )
+        setupEdgeToEdge(padBottomImeAndSystem = listOf(binding.mainTabsHolder))
 
         storeStateVariables()
         initFragments()
@@ -101,7 +95,7 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(binding.mainToolbar, statusBarColor = getProperBackgroundColor())
+        setupTopAppBar(binding.mainAppbar, topBarColor = getProperBackgroundColor())
         val configTextColor = getProperTextColor()
         if (storedTextColor != configTextColor) {
             getInactiveTabIndexes(binding.viewPager.currentItem).forEach {
@@ -334,7 +328,6 @@ class MainActivity : SimpleActivity() {
         binding.mainTabsHolder.getTabAt(binding.viewPager.currentItem)?.select()
         val bottomBarColor = getBottomNavigationBackgroundColor()
         binding.mainTabsHolder.setBackgroundColor(bottomBarColor)
-        updateNavigationBarColor(bottomBarColor)
     }
 
     private fun getInactiveTabIndexes(activeIndex: Int): List<Int> {

@@ -52,12 +52,10 @@ class AlarmActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityAlarmBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         showOverLockscreen()
         updateTextColors(binding.root)
-        updateStatusbarColor(getProperBackgroundColor())
 
         val id = intent.getIntExtra(ALARM_ID, -1)
         alarm = dbHelper.getAlarmWithId(id)

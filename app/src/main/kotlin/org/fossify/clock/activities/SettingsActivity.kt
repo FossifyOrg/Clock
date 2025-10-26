@@ -69,22 +69,16 @@ class SettingsActivity : SimpleActivity() {
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        updateMaterialActivityViews(
-            mainCoordinatorLayout = binding.settingsCoordinator,
-            nestedView = binding.settingsHolder,
-            useTransparentNavigation = true,
-            useTopSearchMenu = false
-        )
-        setupMaterialScrollListener(binding.settingsNestedScrollview, binding.settingsToolbar)
+        setupEdgeToEdge(padBottomSystem = listOf(binding.settingsNestedScrollview))
+        setupMaterialScrollListener(binding.settingsNestedScrollview, binding.settingsAppbar)
     }
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(binding.settingsToolbar, NavigationIcon.Arrow)
+        setupTopAppBar(binding.settingsAppbar, NavigationIcon.Arrow)
 
         setupCustomizeColors()
         setupUseEnglish()
