@@ -39,7 +39,7 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setResult(RESULT_CANCELED)
         setContentView(binding.root)
-        setupEdgeToEdge(padTopSystem = listOf(binding.root), padBottomSystem = listOf(binding.root))
+        setupEdgeToEdge(padTopSystem = listOf(binding.configDigitalHolder), padBottomSystem = listOf(binding.root))
         initVariables()
 
         mWidgetId = intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID)
