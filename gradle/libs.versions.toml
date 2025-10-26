@@ -9,7 +9,7 @@ detekt = "1.23.8"
 detektCompose = "0.4.27"
 #AndroidX
 androidx-constraintlayout = "2.2.1"
-androidx-lifecycle = "2.8.7"
+androidx-lifecycle = "2.9.4"
 androidx-preference = "1.2.1"
 #AutoFitTextView
 autofittextview = "0.2.1"
