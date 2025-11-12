@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_launcher_name">Tamrilt</string>
+    <string name="vibrate">Argigi</string>
+    <string name="clock">Tamrilt</string>
+    <string name="timer">Amakud</string>
+    <string name="stopwatch">Akrunumetr</string>
+    <string name="time_zone">Tamnaḍt tasragant</string>
 </resources>
