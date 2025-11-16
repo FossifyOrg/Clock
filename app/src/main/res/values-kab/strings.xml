@@ -12,4 +12,7 @@
     <string name="use_text_shadow">Seqdec tili n uḍris</string>
     <string name="sort_by_alarm_time">Tasuslit n wakud</string>
     <string name="sort_by_timer_duration">Teɣzi n wakud</string>
+    <string name="digital_clock">Tamrilt tumḍint</string>
+    <string name="alarm_dismissed">Tasuslit tettwazgel</string>
+    <string name="alarm_created">Tasuslit tettwarna</string>
 </resources>
