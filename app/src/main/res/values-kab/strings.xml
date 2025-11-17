@@ -15,4 +15,7 @@
     <string name="digital_clock">Tamrilt tumḍint</string>
     <string name="alarm_dismissed">Tasuslit tettwazgel</string>
     <string name="alarm_created">Tasuslit tettwarna</string>
+    <string name="add_timer">Rnu amakud</string>
+    <string name="upcoming_alarm">Tasuslit i d-iteddun</string>
+    <string name="not_scheduled">ur yettwahegga ara</string>
 </resources>
