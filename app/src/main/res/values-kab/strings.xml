@@ -18,4 +18,15 @@
     <string name="add_timer">Rnu amakud</string>
     <string name="upcoming_alarm">Tasuslit i d-iteddun</string>
     <string name="not_scheduled">ur yettwahegga ara</string>
+    <string name="timers_notification_msg">Imakuden la tteddun</string>
+    <string name="timer_single_notification_label_msg">Amakud i %s la iteddu</string>
+    <string name="new_timer">Amakud amaynut</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d amakud la itteddu</item>
+        <item quantity="other">%d imakuden la tteddun</item>
+    </plurals>
+    <string name="clock_tab">iccer n temrilt</string>
+    <string name="settings_import_data">Kter tisusliwin d imakuden</string>
+    <string name="settings_export_data">Sifeḍ tisusliwin d imakuden</string>
+    <string name="faq_1_title">Amek ara beddleɣ afrayen deg yiccer n temrint n ukrunumetr?</string>
 </resources>
