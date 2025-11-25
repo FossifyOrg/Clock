@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_launcher_name">Tamrilt</string>
+    <string name="vibrate">Argigi</string>
+    <string name="clock">Tamrilt</string>
+    <string name="timer">Amakud</string>
+    <string name="stopwatch">Akrunumetr</string>
+    <string name="time_zone">Tamnaḍt tasragant</string>
+    <string name="stopwatch_stopped">Tettwaḥbes ukrunumetr</string>
+    <string name="timer_stopped">Yettwaḥbes umakud</string>
+    <string name="max_reminder_duration">Tanzagt n usmekti tafellayt</string>
+    <string name="use_text_shadow">Seqdec tili n uḍris</string>
+    <string name="sort_by_alarm_time">Tasuslit n wakud</string>
+    <string name="sort_by_timer_duration">Teɣzi n wakud</string>
+    <string name="digital_clock">Tamrilt tumḍint</string>
+    <string name="alarm_dismissed">Tasuslit tettwazgel</string>
+    <string name="alarm_created">Tasuslit tettwarna</string>
+    <string name="add_timer">Rnu amakud</string>
+    <string name="upcoming_alarm">Tasuslit i d-iteddun</string>
+    <string name="not_scheduled">ur yettwahegga ara</string>
+    <string name="timers_notification_msg">Imakuden la tteddun</string>
+    <string name="timer_single_notification_label_msg">Amakud i %s la iteddu</string>
+    <string name="new_timer">Amakud amaynut</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d amakud la itteddu</item>
+        <item quantity="other">%d imakuden la tteddun</item>
+    </plurals>
+    <string name="clock_tab">iccer n temrilt</string>
+    <string name="settings_import_data">Kter tisusliwin d imakuden</string>
+    <string name="settings_export_data">Sifeḍ tisusliwin d imakuden</string>
+    <string name="faq_1_title">Amek ara beddleɣ afrayen deg yiccer n temrint n ukrunumetr?</string>
+    <string name="faq_1_text">Sit kan ɣef kra n tgejdit, ayen ara yeǧǧen afran ad yeffeɣ seg tgejdit. S usiti-nniḍen i tzemreḍ ad beddleḍ gar walluy d uṣubbu n ufran.</string>
+</resources>
