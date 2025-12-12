@@ -45,4 +45,11 @@
     <string name="alarm_created">アラームを作成しました</string>
     <string name="alarm_snoozed">%sまでスヌーズ中のアラーム</string>
     <string name="select_timer_to_dismiss">消去するタイマーを選択してください</string>
+    <string name="sort_by_timer_duration">­タイマー時間</string>
+    <string name="not_scheduled">スケジュールされていません</string>
+    <string name="missed_alarm">見逃したアラーム</string>
+    <string name="replaced_by_another_alarm">他のアラームによって置き換えられました</string>
+    <string name="alarm_timed_out">タイムアウトしたアラーム</string>
+    <string name="settings_import_data">アラームとタイマーをインポートする</string>
+    <string name="settings_export_data">アラームとタイマーをエクスポートする</string>
 </resources>
