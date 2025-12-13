@@ -1,3 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_launcher_name">Rellotge</string>
+    <string name="time_zone">Zona horària</string>
+    <string name="vibrate">Vibrar</string>
+    <string name="no_days_selected">No s\'ha seleccionat cap dia</string>
+    <string name="clock">Rellotge</string>
+    <string name="timer">Temporitzador</string>
+    <string name="stopwatch">Cronòmetre</string>
+    <string name="start_stopwatch">Iniciar el cronòmetre</string>
+    <string name="lap">Volta</string>
+    <string name="stopwatch_stopped">S\'ha aturat el cronòmetre</string>
+    <string name="timer_stopped">S\'ha aturat el temporitzador</string>
+    <string name="max_reminder_duration">Durada màxima del recordatori</string>
+    <string name="time_expired">El temps ha caducat</string>
+    <string name="clock_and_date">Rellotge i data</string>
+    <string name="use_text_shadow">Utilitzar l\'ombra del text</string>
+    <string name="swipe_right_to_dismiss">Esvareu a la dreta per a descartar, o a l\'esquerra per a posposar.</string>
+    <string name="sort_by_creation_order">Ordre de creació</string>
+    <string name="sort_by_alarm_time">Hora d\'alarma</string>
+    <string name="sort_by_timer_duration">Durada del temporitzador</string>
+    <string name="sort_by_day_and_alarm_time">Dia i hora d\'alarma</string>
+    <string name="analogue_clock">Rellotge analògic</string>
+    <string name="digital_clock">Rellotge digital</string>
+    <string name="alarm_dismissed">Alarma descartada</string>
+    <string name="select_timer_to_dismiss">Seleccioneu el temporitzador a descartar</string>
+    <string name="select_alarm_to_dismiss">Seleccioneu l\'alarma a descartar</string>
+    <string name="alarm_created">S\'ha creat l\'alarma</string>
+    <string name="alarm_snoozed">Alarma posposada %s</string>
+    <string name="no_alarms_found">No s\'ha trobat cap alarma</string>
+    <string name="add_alarm">Afegir una alarma</string>
+    <string name="no_timers_found">No s\'ha trobat cap temporitzador</string>
+    <string name="add_timer">Afegir un temporitzador</string>
+    <string name="upcoming_alarm">Pròxima alarma</string>
+    <string name="not_scheduled">No planificada</string>
+    <string name="missed_alarm">Alarma desatesa</string>
+    <string name="replaced_by_another_alarm">Substituïda per una altra alarma</string>
+    <string name="alarm_timed_out">L\'alarma ha excedit el temps d\'espera</string>
+    <string name="timers_notification_msg">Els temporitzadors estan en marxa</string>
+    <string name="timer_single_notification_label_msg">El temporitzador per a %s està en marxa</string>
+    <string name="new_timer">Temporitzador nou</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d temporitzador en marxa</item>
+        <item quantity="other">%d temporitzadors en marxa</item>
+    </plurals>
+    <string name="clock_tab">Pestanya del rellotge</string>
+    <string name="alarm_tab">Pestanya de l\'alarma</string>
+    <string name="stopwatch_tab">Pestanya del cronòmetre</string>
+    <string name="timer_tab">Pestanya del temporitzador</string>
+    <string name="show_seconds">Mostrar els segons</string>
+    <string name="increase_volume_gradually">Augmentar el volum gradualment</string>
+    <string name="settings_import_data">Importar alarmes i temporitzadors</string>
+    <string name="settings_export_data">Exportar alarmes i temporitzadors</string>
+    <string name="faq_1_title">Com puc canviar l\'ordenació de les voltes a la pestanya del cronòmetre?</string>
+    <string name="faq_1_text">Només cal que feu clic a qualsevol de les columnes, això farà que les voltes s\'ordenen per la columna indicada. Amb clics addicionals, podeu alternar entre l\'ordenació ascendent i descendent.</string>
 </resources>
