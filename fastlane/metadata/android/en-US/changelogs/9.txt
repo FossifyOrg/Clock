@@ -1,0 +1,9 @@
+Changed:
+
+• Updated timer reset icon 
+• Updated translations
+
+Fixed:
+
+• Fixed invisible status bar icons on the alarm screen
+
