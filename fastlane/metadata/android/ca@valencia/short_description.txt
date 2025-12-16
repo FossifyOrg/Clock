@@ -1,1 +1,0 @@
-Aplicació de rellotge de codi obert, lleugera i amb característiques essencials.
