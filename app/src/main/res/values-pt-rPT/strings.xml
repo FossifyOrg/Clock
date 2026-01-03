@@ -50,4 +50,8 @@
     <string name="settings_import_data">Importar alarmes e temporizadores</string>
     <string name="settings_export_data">Exportar alarmes e temporizadores</string>
     <string name="faq_1_text">Basta clicar em qualquer uma das colunas e fará com que as voltas sejam classificadas pela coluna especificada. Com cliques adicionais, pode alternar a ordem de classificação entre crescente e decrescente.</string>
+    <string name="not_scheduled">Não agendado</string>
+    <string name="missed_alarm">Alarme perdido</string>
+    <string name="replaced_by_another_alarm">Substituído por outro alarme</string>
+    <string name="alarm_timed_out">Alarme expirou</string>
 </resources>
