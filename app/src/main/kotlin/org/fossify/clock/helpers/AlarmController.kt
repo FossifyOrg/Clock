@@ -34,7 +34,7 @@ class AlarmController(
     fun rescheduleEnabledAlarms() {
         db.getEnabledAlarms().forEach {
             // TODO: Skipped upcoming alarms are being *rescheduled* here.
-            if (!it.isToday() || it.timeInMinutes > getCurrentDayMinutes()) {
+            if (shouldRescheduleAlarm(it)) {
                 scheduleNextOccurrence(it, false)
             }
         }
@@ -239,6 +239,19 @@ class AlarmController(
                     bus = EventBus.getDefault()
                 ).also { instance = it }
             }
+        }
+
+        /**
+         * Testable function that determines if an alarm should be rescheduled.
+         * This encapsulates the core logic from rescheduleEnabledAlarms().
+         * 
+         * @param alarm The alarm to check
+         * @param currentDayMinutes Optional current time for testing, null uses system time
+         * @return true if the alarm should be scheduled
+         */
+        fun shouldRescheduleAlarm(alarm: Alarm, currentDayMinutes: Int? = null): Boolean {
+            val currentMinutes = currentDayMinutes ?: getCurrentDayMinutes()
+            return !alarm.isToday() || alarm.timeInMinutes > currentMinutes
         }
     }
 }

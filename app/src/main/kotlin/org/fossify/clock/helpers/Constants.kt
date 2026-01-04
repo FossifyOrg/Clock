@@ -304,8 +304,17 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
 }
 
 fun updateNonRecurringAlarmDay(alarm: Alarm) {
+    updateNonRecurringAlarmDay(alarm, null)
+}
+
+/**
+ * Testable version that accepts an optional current time for testing purposes.
+ * @param currentDayMinutes If provided, uses this as the current time instead of the system time.
+ */
+fun updateNonRecurringAlarmDay(alarm: Alarm, currentDayMinutes: Int?) {
     if (alarm.isRecurring()) return
-    alarm.days = if (alarm.timeInMinutes > getCurrentDayMinutes()) {
+    val currentMinutes = currentDayMinutes ?: getCurrentDayMinutes()
+    alarm.days = if (alarm.timeInMinutes > currentMinutes) {
         TODAY_BIT
     } else {
         TOMORROW_BIT
