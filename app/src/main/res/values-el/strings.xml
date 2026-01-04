@@ -51,4 +51,5 @@
     <string name="settings_import_data">Εισαγωγή ξυπνητηριών και χρονομέτρων</string>
     <string name="settings_export_data">Εξαγωγή ξυπνητηριών και χρονομέτρων</string>
     <string name="sort_by_timer_duration">Διάρκεια χρονομέτρου</string>
+    <string name="missed_alarm">Η αφύπνιση παραλήφθηκε</string>
 </resources>
