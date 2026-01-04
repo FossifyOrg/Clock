@@ -3,7 +3,7 @@
     <dimen name="stopwatch_button_small_size">60dp</dimen>
     <dimen name="stopwatch_button_size">64dp</dimen>
     <dimen name="reminder_background_min_size">70dp</dimen>
-    <dimen name="lap_time_size">80dp</dimen>
+    <dimen name="lap_time_size">120dp</dimen>
     <dimen name="widget_alarm_icon_size">18dp</dimen>
     <dimen name="widget_digital_time_height">48dp</dimen>
     <dimen name="widget_analogue_time_height">96dp</dimen>
