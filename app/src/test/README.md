@@ -21,5 +21,5 @@ Tests alarm controller reschedule logic.
 ```
 
 Test reports are generated at:
-- `build-outputs/gradle/reports/tests/testFossDebugUnitTest/index.html`
-- `build-outputs/gradle/reports/tests/testCoreDebugUnitTest/index.html`
+- `build/reports/tests/testFossDebugUnitTest/index.html`
+- `build/reports/tests/testCoreDebugUnitTest/index.html`
