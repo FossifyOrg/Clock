@@ -11,22 +11,26 @@
 
     <org.fossify.commons.views.MyTextView
         android:id="@+id/lap_order"
-        android:layout_width="@dimen/lap_time_size"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/medium_margin"
+        android:minWidth="@dimen/lap_time_size"
         android:fontFeatureSettings="tnum"
         android:gravity="end"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:textSize="@dimen/bigger_text_size"
         app:layout_constraintEnd_toStartOf="@+id/lap_lap_time"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="1" />
 
     <org.fossify.commons.views.MyTextView
         android:id="@+id/lap_lap_time"
-        android:layout_width="@dimen/lap_time_size"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/medium_margin"
+        android:minWidth="@dimen/lap_time_size"
         android:fontFeatureSettings="tnum"
         android:gravity="end"
         android:includeFontPadding="false"
@@ -39,9 +43,10 @@
 
     <org.fossify.commons.views.MyTextView
         android:id="@+id/lap_total_time"
-        android:layout_width="@dimen/lap_time_size"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="48dp"
+        android:minWidth="@dimen/lap_time_size"
         android:fontFeatureSettings="tnum"
         android:gravity="end"
         android:includeFontPadding="false"
