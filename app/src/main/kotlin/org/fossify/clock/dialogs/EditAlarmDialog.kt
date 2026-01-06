@@ -263,7 +263,7 @@ class EditAlarmDialog(
 
             binding.editAlarmDaylessLabel.text = "(${activity.getString(textId)})"
         } else if (alarm.hasSpecificDate()) {
-            binding.editAlarmDaylessLabel.text = "(${alarm.getDateLabel()})"
+            binding.editAlarmDaylessLabel.text = "(${alarm.getDateLabel(activity)})"
         }
         binding.editAlarmDaylessLabel.beVisibleIf(!alarm.isRecurring())
     }
@@ -329,7 +329,7 @@ class EditAlarmDialog(
     private fun updateDateSelectorUI() {
         binding.apply {
             if (alarm.hasSpecificDate()) {
-                editAlarmDateLabel.text = alarm.getDateLabel()
+                editAlarmDateLabel.text = alarm.getDateLabel(activity)
                 editAlarmDateClear.beVisibleIf(true)
             } else {
                 editAlarmDateLabel.text = activity.getString(R.string.select_specific_date)
