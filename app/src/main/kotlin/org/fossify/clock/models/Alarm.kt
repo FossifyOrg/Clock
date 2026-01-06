@@ -10,6 +10,7 @@ import java.util.Locale
 
 @Keep
 @kotlinx.serialization.Serializable
+@Suppress("TooManyFunctions")
 data class Alarm(
     var id: Int,
     var timeInMinutes: Int,
@@ -22,6 +23,14 @@ data class Alarm(
     var oneShot: Boolean = false,
     var specificDate: Long? = null, // Unix timestamp in milliseconds for specific date alarms
 ) {
+    companion object {
+        private const val MIN_DAYS_FOR_DAY_NAME = 2
+        private const val MAX_DAYS_FOR_DAY_NAME = 6
+        private const val MILLIS_IN_SECOND = 1000L
+        private const val SECONDS_IN_MINUTE = 60
+        private const val MINUTES_IN_HOUR = 60
+        private const val HOURS_IN_DAY = 24
+    }
    
     fun isRecurring() = days > 0 && specificDate == null
     
@@ -42,7 +51,7 @@ data class Alarm(
             isToday() -> context.getString(org.fossify.commons.R.string.today)
             isTomorrow() -> context.getString(org.fossify.commons.R.string.tomorrow)
             specificDate != null -> formatSpecificDate(specificDate!!)
-            isRecurring() -> formatRecurringDays()
+            isRecurring() -> "Recurring"
             else -> error("Invalid alarm state: days=$days, specificDate=$specificDate")
         }
     }
@@ -53,7 +62,7 @@ data class Alarm(
         val daysDiff = getDaysDifference(today, calendar)
 
         return when {
-            daysDiff in 2..6 -> {
+            daysDiff in MIN_DAYS_FOR_DAY_NAME..MAX_DAYS_FOR_DAY_NAME -> {
                 // Within next 7 days - show day name
                 calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) ?: ""
             }
@@ -62,14 +71,6 @@ data class Alarm(
                 SimpleDateFormat("MMM d, yyyy", Locale.getDefault()).format(calendar.time)
             }
         }
-    }
-
-    /**
-     * Formats the recurring weekdays as a comma-separated string
-     */
-    private fun formatRecurringDays(): String {
-        // This would ideally use the weekday bits to build a string like "Mon, Wed, Fri"
-        return "Recurring"
     }
 
     private fun isDateToday(timestamp: Long): Boolean {
@@ -103,7 +104,8 @@ data class Alarm(
         toMidnight.set(Calendar.MILLISECOND, 0)
 
         val diffMillis = toMidnight.timeInMillis - fromMidnight.timeInMillis
-        return (diffMillis / (1000 * 60 * 60 * 24)).toInt()
+        val millisInDay = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY
+        return (diffMillis / millisInDay).toInt()
     }
 }
 

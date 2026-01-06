@@ -20,6 +20,7 @@ import org.fossify.commons.helpers.THURSDAY_BIT
 import org.fossify.commons.helpers.TUESDAY_BIT
 import org.fossify.commons.helpers.WEDNESDAY_BIT
 
+@Suppress("VariableNaming")
 class DBHelper private constructor(
     val context: Context,
 ) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
@@ -40,6 +41,8 @@ class DBHelper private constructor(
 
     companion object {
         private const val DB_VERSION = 3
+        private const val DB_VERSION_1 = 1
+        private const val DB_VERSION_3 = 3
         const val DB_NAME = "alarms.db"
 
         @SuppressLint("StaticFieldLeak")
@@ -56,18 +59,19 @@ class DBHelper private constructor(
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
-            "CREATE TABLE IF NOT EXISTS $ALARMS_TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_TIME_IN_MINUTES INTEGER, $COL_DAYS INTEGER, " +
-            "$COL_IS_ENABLED INTEGER, $COL_VIBRATE INTEGER, $COL_SOUND_TITLE TEXT, $COL_SOUND_URI TEXT, $COL_LABEL TEXT, $COL_ONE_SHOT INTEGER, " +
-            "$COL_SPECIFIC_DATE INTEGER)"
+            "CREATE TABLE IF NOT EXISTS $ALARMS_TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "$COL_TIME_IN_MINUTES INTEGER, $COL_DAYS INTEGER, $COL_IS_ENABLED INTEGER, " +
+            "$COL_VIBRATE INTEGER, $COL_SOUND_TITLE TEXT, $COL_SOUND_URI TEXT, $COL_LABEL TEXT, " +
+            "$COL_ONE_SHOT INTEGER, $COL_SPECIFIC_DATE INTEGER)"
         )
         insertInitialAlarms(db)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        if (oldVersion == 1 && newVersion > oldVersion) {
+        if (oldVersion == DB_VERSION_1 && newVersion > oldVersion) {
             db.execSQL("ALTER TABLE $ALARMS_TABLE_NAME ADD COLUMN $COL_ONE_SHOT INTEGER NOT NULL DEFAULT 0")
         }
-        if (oldVersion < 3 && newVersion >= 3) {
+        if (oldVersion < DB_VERSION_3 && newVersion >= DB_VERSION_3) {
             db.execSQL("ALTER TABLE $ALARMS_TABLE_NAME ADD COLUMN $COL_SPECIFIC_DATE INTEGER")
         }
     }
