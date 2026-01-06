@@ -1,5 +1,6 @@
 package org.fossify.clock.dialogs
 
+import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
@@ -27,6 +28,7 @@ import org.fossify.commons.dialogs.SelectAlarmSoundDialog
 import org.fossify.commons.extensions.addBit
 import org.fossify.commons.extensions.applyColorFilter
 import org.fossify.commons.extensions.beVisibleIf
+import org.fossify.commons.extensions.beGone
 import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.getDefaultAlarmSound
 import org.fossify.commons.extensions.getProperBackgroundColor
@@ -38,6 +40,7 @@ import org.fossify.commons.extensions.setupDialogStuff
 import org.fossify.commons.extensions.toast
 import org.fossify.commons.extensions.value
 import org.fossify.commons.models.AlarmSound
+import java.util.Calendar
 
 class EditAlarmDialog(
     val activity: SimpleActivity,
@@ -51,6 +54,7 @@ class EditAlarmDialog(
     init {
         restoreLastAlarm()
         updateAlarmTime()
+        updateDateSelectorUI()
 
         binding.apply {
             editAlarmTime.setOnClickListener {
@@ -119,11 +123,21 @@ class EditAlarmDialog(
 
             editAlarmLabelImage.applyColorFilter(textColor)
             editAlarm.setText(alarm.label)
+             // Date selector setup
+            editAlarmCalendarIcon.applyColorFilter(textColor)
+            editAlarmDateClear.applyColorFilter(textColor)
+            editAlarmDateSelector.setOnClickListener {
+                showDatePicker()
+            }
+            editAlarmDateClear.setOnClickListener {
+                clearSpecificDate()
+            }
 
             val dayLetters =
                 activity.resources.getStringArray(org.fossify.commons.R.array.week_day_letters)
                     .toList() as ArrayList<String>
             val dayIndexes = activity.rotateWeekdays(arrayListOf(0, 1, 2, 3, 4, 5, 6))
+            
 
             dayIndexes.forEach {
                 val bitmask = 1 shl it
@@ -154,6 +168,7 @@ class EditAlarmDialog(
 
                 editAlarmDaysHolder.addView(day)
             }
+            updateWeekdaysVisibility()
         }
 
         activity.getAlertDialogBuilder()
@@ -239,7 +254,7 @@ class EditAlarmDialog(
     }
 
     private fun checkDaylessAlarm() {
-        if (!alarm.isRecurring()) {
+        if (!alarm.isRecurring() && !alarm.hasSpecificDate()) {
             val textId = if (alarm.timeInMinutes > getCurrentDayMinutes()) {
                 org.fossify.commons.R.string.today
             } else {
@@ -247,6 +262,8 @@ class EditAlarmDialog(
             }
 
             binding.editAlarmDaylessLabel.text = "(${activity.getString(textId)})"
+        } else if (alarm.hasSpecificDate()) {
+            binding.editAlarmDaylessLabel.text = "(${alarm.getDateLabel()})"
         }
         binding.editAlarmDaylessLabel.beVisibleIf(!alarm.isRecurring())
     }
@@ -267,5 +284,61 @@ class EditAlarmDialog(
         alarm.soundTitle = alarmSound.title
         alarm.soundUri = alarmSound.uri
         binding.editAlarmSound.text = alarmSound.title
+    }
+
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+        alarm.specificDate?.let {
+            calendar.timeInMillis = it
+        }
+
+        DatePickerDialog(
+            activity,
+            { _, year, month, dayOfMonth ->
+                val selectedDate = Calendar.getInstance().apply {
+                    set(Calendar.YEAR, year)
+                    set(Calendar.MONTH, month)
+                    set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    set(Calendar.HOUR_OF_DAY, 0)
+                    set(Calendar.MINUTE, 0)
+                    set(Calendar.SECOND, 0)
+                    set(Calendar.MILLISECOND, 0)
+                }
+                alarm.specificDate = selectedDate.timeInMillis
+                alarm.days = 0 // Clear recurring days when setting specific date
+                updateDateSelectorUI()
+                updateWeekdaysVisibility()
+                checkDaylessAlarm()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        ).apply {
+            datePicker.minDate = System.currentTimeMillis() - 1000 // Allow today
+            show()
+        }
+    }
+
+    private fun clearSpecificDate() {
+        alarm.specificDate = null
+        updateDateSelectorUI()
+        updateWeekdaysVisibility()
+        checkDaylessAlarm()
+    }
+
+    private fun updateDateSelectorUI() {
+        binding.apply {
+            if (alarm.hasSpecificDate()) {
+                editAlarmDateLabel.text = alarm.getDateLabel()
+                editAlarmDateClear.beVisibleIf(true)
+            } else {
+                editAlarmDateLabel.text = activity.getString(R.string.select_specific_date)
+                editAlarmDateClear.beGone()
+            }
+        }
+    }
+
+    private fun updateWeekdaysVisibility() {
+        binding.editAlarmDaysHolder.beVisibleIf(!alarm.hasSpecificDate())
     }
 }
