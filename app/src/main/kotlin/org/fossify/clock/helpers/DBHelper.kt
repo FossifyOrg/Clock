@@ -71,7 +71,6 @@ class DBHelper private constructor(
             db.execSQL("ALTER TABLE $ALARMS_TABLE_NAME ADD COLUMN $COL_SPECIFIC_DATE INTEGER")
         }
     }
-    }
 
     private fun insertInitialAlarms(db: SQLiteDatabase) {
         val weekDays = MONDAY_BIT or TUESDAY_BIT or WEDNESDAY_BIT or THURSDAY_BIT or FRIDAY_BIT
