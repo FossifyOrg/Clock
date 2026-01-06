@@ -274,6 +274,15 @@ fun getAllTimeZones() = arrayListOf(
 )
 
 fun getTimeOfNextAlarm(alarm: Alarm): Calendar? {
+      if (alarm.specificDate != null) {
+        return Calendar.getInstance().apply {
+            timeInMillis = alarm.specificDate!!
+            set(Calendar.HOUR_OF_DAY, alarm.timeInMinutes / 60)
+            set(Calendar.MINUTE, alarm.timeInMinutes % 60)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+    }
     return getTimeOfNextAlarm(alarm.timeInMinutes, alarm.days)
 }
 
@@ -304,7 +313,7 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
 }
 
 fun updateNonRecurringAlarmDay(alarm: Alarm) {
-    if (alarm.isRecurring()) return
+    if (alarm.isRecurring() || alarm.hasSpecificDate()) return
     alarm.days = if (alarm.timeInMinutes > getCurrentDayMinutes()) {
         TODAY_BIT
     } else {
