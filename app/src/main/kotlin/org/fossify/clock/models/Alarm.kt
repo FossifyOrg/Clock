@@ -10,7 +10,6 @@ import java.util.Locale
 
 @Keep
 @kotlinx.serialization.Serializable
-@Suppress("TooManyFunctions")
 data class Alarm(
     var id: Int,
     var timeInMinutes: Int,
