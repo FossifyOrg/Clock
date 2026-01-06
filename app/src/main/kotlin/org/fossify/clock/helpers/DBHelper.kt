@@ -143,7 +143,8 @@ class DBHelper private constructor(
             COL_SOUND_TITLE,
             COL_SOUND_URI,
             COL_LABEL,
-            COL_ONE_SHOT
+            COL_ONE_SHOT,
+            COL_SPECIFIC_DATE
         )
         var cursor: Cursor? = null
         try {
