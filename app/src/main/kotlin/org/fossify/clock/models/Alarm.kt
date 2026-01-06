@@ -1,5 +1,6 @@
 package org.fossify.clock.models
 
+import android.content.Context
 import androidx.annotation.Keep
 import org.fossify.clock.helpers.TODAY_BIT
 import org.fossify.clock.helpers.TOMORROW_BIT
@@ -36,13 +37,13 @@ data class Alarm(
 
     fun hasSpecificDate() = specificDate != null
 
-    fun getDateLabel(): String {
+    fun getDateLabel(context: Context): String {
         return when {
-            isToday() -> "Today"
-            isTomorrow() -> "Tomorrow"
+            isToday() -> context.getString(org.fossify.commons.R.string.today)
+            isTomorrow() -> context.getString(org.fossify.commons.R.string.tomorrow)
             specificDate != null -> formatSpecificDate(specificDate!!)
             isRecurring() -> formatRecurringDays()
-            else -> "One time"
+            else -> error("Invalid alarm state: days=$days, specificDate=$specificDate")
         }
     }
 
