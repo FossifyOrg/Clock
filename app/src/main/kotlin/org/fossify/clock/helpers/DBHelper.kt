@@ -34,11 +34,12 @@ class DBHelper private constructor(
     private val COL_SOUND_URI = "sound_uri"
     private val COL_LABEL = "label"
     private val COL_ONE_SHOT = "one_shot"
+    private val COL_SPECIFIC_DATE = "specific_date"
 
     private val mDb = writableDatabase
 
     companion object {
-        private const val DB_VERSION = 2
+        private const val DB_VERSION = 3
         const val DB_NAME = "alarms.db"
 
         @SuppressLint("StaticFieldLeak")
@@ -56,7 +57,8 @@ class DBHelper private constructor(
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
             "CREATE TABLE IF NOT EXISTS $ALARMS_TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_TIME_IN_MINUTES INTEGER, $COL_DAYS INTEGER, " +
-                "$COL_IS_ENABLED INTEGER, $COL_VIBRATE INTEGER, $COL_SOUND_TITLE TEXT, $COL_SOUND_URI TEXT, $COL_LABEL TEXT, $COL_ONE_SHOT INTEGER)"
+            "$COL_IS_ENABLED INTEGER, $COL_VIBRATE INTEGER, $COL_SOUND_TITLE TEXT, $COL_SOUND_URI TEXT, $COL_LABEL TEXT, $COL_ONE_SHOT INTEGER, " +
+            "$COL_SPECIFIC_DATE INTEGER)"
         )
         insertInitialAlarms(db)
     }
@@ -65,6 +67,10 @@ class DBHelper private constructor(
         if (oldVersion == 1 && newVersion > oldVersion) {
             db.execSQL("ALTER TABLE $ALARMS_TABLE_NAME ADD COLUMN $COL_ONE_SHOT INTEGER NOT NULL DEFAULT 0")
         }
+        if (oldVersion < 3 && newVersion >= 3) {
+            db.execSQL("ALTER TABLE $ALARMS_TABLE_NAME ADD COLUMN $COL_SPECIFIC_DATE INTEGER")
+        }
+    }
     }
 
     private fun insertInitialAlarms(db: SQLiteDatabase) {
@@ -121,6 +127,7 @@ class DBHelper private constructor(
             put(COL_SOUND_URI, alarm.soundUri)
             put(COL_LABEL, alarm.label)
             put(COL_ONE_SHOT, alarm.oneShot)
+            put(COL_SPECIFIC_DATE, alarm.specificDate)
         }
     }
 
@@ -154,6 +161,12 @@ class DBHelper private constructor(
                         val soundUri = cursor.getStringValue(COL_SOUND_URI)
                         val label = cursor.getStringValue(COL_LABEL)
                         val oneShot = cursor.getIntValue(COL_ONE_SHOT) == 1
+                         val specificDateIndex = cursor.getColumnIndex(COL_SPECIFIC_DATE)
+                        val specificDate = if (specificDateIndex != -1 && !cursor.isNull(specificDateIndex)) {
+                            cursor.getLong(specificDateIndex)
+                        } else {
+                            null
+                        }
 
                         val alarm = Alarm(
                             id = id,
@@ -164,7 +177,8 @@ class DBHelper private constructor(
                             soundTitle = soundTitle,
                             soundUri = soundUri,
                             label = label,
-                            oneShot = oneShot
+                            oneShot = oneShot,
+                            specificDate = specificDate
                         )
                         alarms.add(alarm)
                     } catch (e: Exception) {
