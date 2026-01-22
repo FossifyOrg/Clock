@@ -35,6 +35,7 @@
         android:id="@+id/stopwatch_sorting_indicators_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/big_margin"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/stopwatch_list"
         app:layout_constraintTop_toBottomOf="@+id/stopwatch_time"
@@ -42,28 +43,34 @@
 
         <ImageView
             android:id="@+id/stopwatch_sorting_indicator_1"
-            android:layout_width="@dimen/lap_time_size"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/medium_margin"
             android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/stopwatch_sorting_indicator_2"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_weight="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/stopwatch_sorting_indicator_2"
-            android:layout_width="@dimen/lap_time_size"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/medium_margin"
             android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/stopwatch_sorting_indicator_3"
+            app:layout_constraintHorizontal_weight="2.2"
             app:layout_constraintStart_toEndOf="@+id/stopwatch_sorting_indicator_1"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/stopwatch_sorting_indicator_3"
-            android:layout_width="@dimen/lap_time_size"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="2.2"
             app:layout_constraintStart_toEndOf="@+id/stopwatch_sorting_indicator_2"
             app:layout_constraintTop_toTopOf="parent" />
 
