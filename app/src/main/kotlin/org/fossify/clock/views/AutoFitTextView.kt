@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.widget.TextView
+import org.fossify.commons.extensions.applyFontToTextView
 
 /**
  * A simple wrapper TextView that restores the original text size
@@ -16,6 +17,10 @@ class AutoFitTextView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyle: Int = 0,
 ) : TextView(context, attrs, defStyle) {
+
+    init {
+        if (!isInEditMode) context.applyFontToTextView(this)
+    }
 
     private var originalTextSize: Float = textSize
     private var originalWidth: Int = 0
