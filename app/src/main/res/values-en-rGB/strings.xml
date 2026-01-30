@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_launcher_name">Clock</string>
+    <string name="time_zone">Time zone</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="add_alarm">Add alarm</string>
+    <string name="no_timers_found">No timers found</string>
+    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
+    <string name="sort_by_timer_duration">Timer duration</string>
+    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
+    <string name="analogue_clock">Analogue clock</string>
+    <string name="start_stopwatch">Start stopwatch</string>
+</resources>
