@@ -1,0 +1,12 @@
+Added:
+
+• Added support for custom fonts
+
+Changed:
+
+• Updated translations
+
+Fixed:
+
+• Fixed overlap/truncation in stopwatch lap times 
+
