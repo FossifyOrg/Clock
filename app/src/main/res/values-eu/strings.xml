@@ -51,4 +51,6 @@
     <string name="sort_by_timer_duration">Tenporizadorearen iraupena</string>
     <string name="not_scheduled">Programatu gabe</string>
     <string name="missed_alarm">Galdutako alarma</string>
+    <string name="replaced_by_another_alarm">Beste alarma batek ordeztu du</string>
+    <string name="alarm_timed_out">Alarma iraungita</string>
 </resources>

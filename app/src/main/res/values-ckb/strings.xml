@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_launcher_name">کاژێر</string>
+    <string name="time_zone">ناوچەی کات</string>
+    <string name="vibrate">لەرزین</string>
+    <string name="no_days_selected">هیچ ڕۆژەک دیاری نەکراوە</string>
+    <string name="clock">کاژێر</string>
+    <string name="timer">کاتگر</string>
+    <string name="lap">خول</string>
+    <string name="clock_and_date">کاژێر و ڕێکەوت</string>
+    <string name="use_text_shadow">سێبەری نووسین بەکاربێنە</string>
+    <string name="show_seconds">پیشاندانی چرکە</string>
+</resources>

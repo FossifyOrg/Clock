@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.widget.TextClock
 import androidx.annotation.AttrRes
 import org.fossify.clock.extensions.config
+import org.fossify.commons.extensions.applyFontToTextView
 import java.text.DateFormatSymbols
 
 private const val AM_PM_SCALE = 0.4f
@@ -17,6 +18,10 @@ class MyTextClock @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     @AttrRes defStyleAttr: Int = android.R.attr.textViewStyle,
 ) : TextClock(context, attrs, defStyleAttr) {
+
+    init {
+        if (!isInEditMode) context.applyFontToTextView(this)
+    }
 
     private val amPmStrings by lazy {
         DateFormatSymbols.getInstance(

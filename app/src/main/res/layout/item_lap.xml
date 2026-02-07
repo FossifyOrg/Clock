@@ -6,50 +6,54 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
-    android:paddingVertical="@dimen/small_margin"
-    android:paddingLeft="@dimen/activity_margin">
+    android:paddingHorizontal="@dimen/big_margin"
+    android:paddingVertical="@dimen/small_margin">
 
     <org.fossify.commons.views.MyTextView
         android:id="@+id/lap_order"
-        android:layout_width="@dimen/lap_time_size"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/medium_margin"
         android:fontFeatureSettings="tnum"
-        android:gravity="end"
+        android:gravity="center"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:textSize="@dimen/bigger_text_size"
         app:layout_constraintEnd_toStartOf="@+id/lap_lap_time"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_weight="0.8"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="1" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="12" />
 
     <org.fossify.commons.views.MyTextView
         android:id="@+id/lap_lap_time"
-        android:layout_width="@dimen/lap_time_size"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/medium_margin"
         android:fontFeatureSettings="tnum"
         android:gravity="end"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:textSize="@dimen/bigger_text_size"
         app:layout_constraintEnd_toStartOf="@+id/lap_total_time"
+        app:layout_constraintHorizontal_weight="2.1"
         app:layout_constraintStart_toEndOf="@+id/lap_order"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="0.00" />
+        tools:text="24:43:00" />
 
     <org.fossify.commons.views.MyTextView
         android:id="@+id/lap_total_time"
-        android:layout_width="@dimen/lap_time_size"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
         android:fontFeatureSettings="tnum"
         android:gravity="end"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:textSize="@dimen/bigger_text_size"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="2.1"
         app:layout_constraintStart_toEndOf="@+id/lap_lap_time"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="0.00.00" />
+        tools:text="42:26:43:00" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
