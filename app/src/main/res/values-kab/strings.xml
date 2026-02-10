@@ -30,4 +30,10 @@
     <string name="settings_export_data">Sifeḍ tisusliwin d imakuden</string>
     <string name="faq_1_title">Amek ara beddleɣ afrayen deg yiccer n temrint n ukrunumetr?</string>
     <string name="faq_1_text">Sit kan ɣef kra n tgejdit, ayen ara yeǧǧen afran ad yeffeɣ seg tgejdit. S usiti-nniḍen i tzemreḍ ad beddleḍ gar walluy d uṣubbu n ufran.</string>
+    <string name="no_days_selected">Ulac ussan yettwafernen</string>
+    <string name="time_expired">Akud ifuk</string>
+    <string name="clock_and_date">Tamrilt akked uzemz</string>
+    <string name="sort_by_creation_order">Amizwer n tmerna</string>
+    <string name="sort_by_day_and_alarm_time">Ass d usrag n tengedwit</string>
+    <string name="analogue_clock">Tamrilt tametrant</string>
 </resources>
