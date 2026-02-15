@@ -10,13 +10,13 @@
     <string name="timer_stopped">Yettwaḥbes umakud</string>
     <string name="max_reminder_duration">Tanzagt n usmekti tafellayt</string>
     <string name="use_text_shadow">Seqdec tili n uḍris</string>
-    <string name="sort_by_alarm_time">Tasuslit n wakud</string>
+    <string name="sort_by_alarm_time">Tangedwit n wakud</string>
     <string name="sort_by_timer_duration">Teɣzi n wakud</string>
     <string name="digital_clock">Tamrilt tumḍint</string>
-    <string name="alarm_dismissed">Tasuslit tettwazgel</string>
-    <string name="alarm_created">Tasuslit tettwarna</string>
+    <string name="alarm_dismissed">Tangedwit tettwazgel</string>
+    <string name="alarm_created">Tangedwit tettwarna</string>
     <string name="add_timer">Rnu amakud</string>
-    <string name="upcoming_alarm">Tasuslit i d-iteddun</string>
+    <string name="upcoming_alarm">Tangedwit i d-iteddun</string>
     <string name="not_scheduled">ur yettwahegga ara</string>
     <string name="timers_notification_msg">Imakuden la tteddun</string>
     <string name="timer_single_notification_label_msg">Amakud i %s la iteddu</string>
@@ -26,8 +26,8 @@
         <item quantity="other">%d imakuden la tteddun</item>
     </plurals>
     <string name="clock_tab">iccer n temrilt</string>
-    <string name="settings_import_data">Kter tisusliwin d imakuden</string>
-    <string name="settings_export_data">Sifeḍ tisusliwin d imakuden</string>
+    <string name="settings_import_data">Kter tingedwiyin d imakuden</string>
+    <string name="settings_export_data">Sifeḍ tingedwiyin d imakuden</string>
     <string name="faq_1_title">Amek ara beddleɣ afrayen deg yiccer n temrint n ukrunumetr?</string>
     <string name="faq_1_text">Sit kan ɣef kra n tgejdit, ayen ara yeǧǧen afran ad yeffeɣ seg tgejdit. S usiti-nniḍen i tzemreḍ ad beddleḍ gar walluy d uṣubbu n ufran.</string>
     <string name="no_days_selected">Ulac ussan yettwafernen</string>
@@ -36,4 +36,20 @@
     <string name="sort_by_creation_order">Amizwer n tmerna</string>
     <string name="sort_by_day_and_alarm_time">Ass d usrag n tengedwit</string>
     <string name="analogue_clock">Tamrilt tametrant</string>
+    <string name="start_stopwatch">Sekker akrunumetr</string>
+    <string name="swipe_right_to_dismiss">Jbed ɣer uyeffus akken ad tagiḍ, neɣ ɣer uzelmaḍ akken ad smezgreḍ.</string>
+    <string name="select_timer_to_dismiss">Fren amakud akken ad tesfesxeḍ</string>
+    <string name="select_alarm_to_dismiss">Fren tangedwit akken ad t-tesfesxeḍ</string>
+    <string name="alarm_snoozed">Yella-d usemmezger n tengedwit sɣur %s</string>
+    <string name="no_alarms_found">Ulac tingedwiyin yettwafen</string>
+    <string name="add_alarm">Rnu tangedwit</string>
+    <string name="no_timers_found">Ulac Imakuden yettwafen</string>
+    <string name="missed_alarm">Tettwazgel tangedwit</string>
+    <string name="replaced_by_another_alarm">Yettwasemselsi s tengedwit niḍen</string>
+    <string name="alarm_timed_out">Akud n tengedwit iɛedda</string>
+    <string name="alarm_tab">Iccer n tengedwit</string>
+    <string name="stopwatch_tab">Iccer n ukrunumetr</string>
+    <string name="timer_tab">Iccer umakud</string>
+    <string name="show_seconds">Sken tasinin</string>
+    <string name="increase_volume_gradually">Snerni ableɣ cwiṭ ɣer cwiṭ</string>
 </resources>
