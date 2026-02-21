@@ -45,4 +45,7 @@
     <string name="new_timer">새로운 타이머</string>
     <string name="stopwatch_tab">스톱워치 탭</string>
     <string name="faq_1_text">아무 열이나 누르면, 해당 열에 대해 정렬됩니다. 다시 누르면 오름차순과 내림차순 정렬을 바꿀 수 있습니다.</string>
+    <string name="sort_by_timer_duration">타이머 길이</string>
+    <string name="not_scheduled">예약되지 않음</string>
+    <string name="missed_alarm">놓친 알람</string>
 </resources>
