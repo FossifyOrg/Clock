@@ -1,3 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    </resources>
+    <string name="app_launcher_name">นาฬิกา</string>
+    <string name="time_zone">เขตเวลา</string>
+    <string name="vibrate">สั่น</string>
+    <string name="no_days_selected">ไม่ได้เลือกวัน</string>
+    <string name="clock">นาฬิกา</string>
+    <string name="timer">ตัวจับเวลา</string>
+    <string name="stopwatch">นาฬิกาจับเวลา</string>
+    <string name="start_stopwatch">เริ่มนาฬิกาจับเวลา</string>
+    <string name="lap">รอบ</string>
+    <string name="stopwatch_stopped">หยุดนาฬิกาจับเวลาแล้ว</string>
+    <string name="timer_stopped">หยุดตัวจับเวลาแล้ว</string>
+    <string name="max_reminder_duration">ระยะเวลาเตือนสูงสุด</string>
+    <string name="time_expired">หมดเวลาแล้ว</string>
+    <string name="clock_and_date">นาฬิกาและวันที่</string>
+    <string name="use_text_shadow">ใช้เงาข้อความ</string>
+    <string name="swipe_right_to_dismiss">ปัดขวาเพื่อปิด หรือปัดซ้ายเพื่อเลื่อน</string>
+    <string name="sort_by_creation_order">ลำดับการสร้าง</string>
+    <string name="sort_by_alarm_time">เวลาปลุก</string>
+    <string name="sort_by_timer_duration">ระยะเวลาจับเวลา</string>
+    <string name="sort_by_day_and_alarm_time">วันและเวลาปลุก</string>
+    <string name="analogue_clock">นาฬิกาแบบเข็ม</string>
+    <string name="digital_clock">นาฬิกาแบบดิจิทัล</string>
+    <string name="alarm_dismissed">ปิดการแจ้งเตือนแล้ว</string>
+    <string name="select_timer_to_dismiss">เลือกตัวจับเวลาที่ต้องการปิด</string>
+    <string name="select_alarm_to_dismiss">เลือกการแจ้งเตือนที่ต้องการปิด</string>
+    <string name="alarm_created">สร้างการแจ้งเตือนแล้ว</string>
+    <string name="alarm_snoozed">เลื่อนการแจ้งเตือนออกไป %s</string>
+    <string name="no_alarms_found">ไม่พบการแจ้งเตือน</string>
+    <string name="add_alarm">เพิ่มการแจ้งเตือน</string>
+    <string name="no_timers_found">ไม่พบตัวจับเวลา</string>
+    <string name="add_timer">เพิ่มตัวจับเวลา</string>
+    <string name="upcoming_alarm">การแจ้งเตือนที่กำลังจะมาถึง</string>
+    <string name="not_scheduled">ไม่ได้ตั้งเวลา</string>
+    <string name="missed_alarm">การแจ้งเตือนที่พลาดไป</string>
+    <string name="replaced_by_another_alarm">ถูกแทนที่ด้วยการแจ้งเตือนอื่น</string>
+    <string name="alarm_timed_out">การแจ้งเตือนหมดเวลา</string>
+    <string name="timers_notification_msg">ตัวจับเวลากำลังทำงาน</string>
+    <string name="timer_single_notification_label_msg">ตัวจับเวลาสำหรับ %s กำลังทำงาน</string>
+    <string name="new_timer">ตัวจับเวลาใหม่</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="other">%d ตัวจับเวลากำลังทำงาน</item>
+    </plurals>
+    <string name="clock_tab">แท็บนาฬิกา</string>
+    <string name="alarm_tab">แท็บแจ้งเตือน</string>
+    <string name="stopwatch_tab">แท็บนาฬิกาจับเวลา</string>
+    <string name="timer_tab">แท็บตัวจับเวลา</string>
+    <string name="show_seconds">แสดงวินาที</string>
+    <string name="increase_volume_gradually">ค่อยๆ เพิ่มระดับเสียง</string>
+    <string name="settings_import_data">นำเข้าการแจ้งเตือนและตัวจับเวลา</string>
+    <string name="settings_export_data">ส่งออกการแจ้งเตือนและตัวจับเวลา</string>
+    <string name="faq_1_title">จะเปลี่ยนการเรียงลำดับรอบในแท็บนาฬิกาจับเวลาได้อย่างไร?</string>
+    <string name="faq_1_text">เพียงแตะที่คอลัมน์ใดก็ได้ รอบจะถูกเรียงลำดับตามคอลัมน์นั้น และสามารถแตะซ้ำเพื่อสลับระหว่างการเรียงจากน้อยไปมากและมากไปน้อย</string>
+</resources>
