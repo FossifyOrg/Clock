@@ -24,23 +24,24 @@ class DBHelper private constructor(
     val context: Context,
 ) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 
-    private val ALARMS_TABLE_NAME = "contacts"  // wrong table name, ignore it
-    private val COL_ID = "id"
-    private val COL_TIME_IN_MINUTES = "time_in_minutes"
-    private val COL_DAYS = "days"
-    private val COL_IS_ENABLED = "is_enabled"
-    private val COL_VIBRATE = "vibrate"
-    private val COL_SOUND_TITLE = "sound_title"
-    private val COL_SOUND_URI = "sound_uri"
-    private val COL_LABEL = "label"
-    private val COL_ONE_SHOT = "one_shot"
-    private val COL_SCHEDULED_DATE = "scheduled_date"
+    private val alarmsTableName = "contacts"  // wrong table name, ignore it
+    private val colId = "id"
+    private val colTimeInMinutes = "time_in_minutes"
+    private val colDays = "days"
+    private val colIsEnabled = "is_enabled"
+    private val colVibrate = "vibrate"
+    private val colSoundTitle = "sound_title"
+    private val colSoundUri = "sound_uri"
+    private val colLabel = "label"
+    private val colOneShot = "one_shot"
+    private val colScheduledDate = "scheduled_date"
 
     private val mDb = writableDatabase
 
     companion object {
         private const val DB_VERSION = 3
         const val DB_NAME = "alarms.db"
+        private const val VERSION_WITH_SCHEDULED_DATE = 3
 
         @SuppressLint("StaticFieldLeak")
         @Volatile
@@ -56,19 +57,31 @@ class DBHelper private constructor(
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
-            "CREATE TABLE IF NOT EXISTS $ALARMS_TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_TIME_IN_MINUTES INTEGER, $COL_DAYS INTEGER, " +
-                "$COL_IS_ENABLED INTEGER, $COL_VIBRATE INTEGER, $COL_SOUND_TITLE TEXT, $COL_SOUND_URI TEXT, $COL_LABEL TEXT, $COL_ONE_SHOT INTEGER, $COL_SCHEDULED_DATE INTEGER NOT NULL DEFAULT 0)"
+            "CREATE TABLE IF NOT EXISTS $alarmsTableName (" +
+                "$colId INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "$colTimeInMinutes INTEGER, " +
+                "$colDays INTEGER, " +
+                "$colIsEnabled INTEGER, " +
+                "$colVibrate INTEGER, " +
+                "$colSoundTitle TEXT, " +
+                "$colSoundUri TEXT, " +
+                "$colLabel TEXT, " +
+                "$colOneShot INTEGER, " +
+                "$colScheduledDate INTEGER NOT NULL DEFAULT 0)"
         )
         insertInitialAlarms(db)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         if (oldVersion == 1 && newVersion > oldVersion) {
-            db.execSQL("ALTER TABLE $ALARMS_TABLE_NAME ADD COLUMN $COL_ONE_SHOT INTEGER NOT NULL DEFAULT 0")
+            db.execSQL("ALTER TABLE $alarmsTableName ADD COLUMN $colOneShot INTEGER NOT NULL DEFAULT 0")
         }
 
-        if (oldVersion < 3) {
-            db.execSQL("ALTER TABLE $ALARMS_TABLE_NAME ADD COLUMN $COL_SCHEDULED_DATE INTEGER NOT NULL DEFAULT 0")
+        if (oldVersion < VERSION_WITH_SCHEDULED_DATE) {
+            db.execSQL(
+                "ALTER TABLE $alarmsTableName " +
+                    "ADD COLUMN $colScheduledDate INTEGER NOT NULL DEFAULT 0"
+            )
         }
     }
 
@@ -84,22 +97,22 @@ class DBHelper private constructor(
 
     fun insertAlarm(alarm: Alarm, db: SQLiteDatabase = mDb): Int {
         val values = fillAlarmContentValues(alarm)
-        return db.insert(ALARMS_TABLE_NAME, null, values).toInt()
+        return db.insert(alarmsTableName, null, values).toInt()
     }
 
     fun updateAlarm(alarm: Alarm): Boolean {
         val selectionArgs = arrayOf(alarm.id.toString())
         val values = fillAlarmContentValues(alarm)
-        val selection = "$COL_ID = ?"
-        return mDb.update(ALARMS_TABLE_NAME, values, selection, selectionArgs) == 1
+        val selection = "$colId = ?"
+        return mDb.update(alarmsTableName, values, selection, selectionArgs) == 1
     }
 
     fun updateAlarmEnabledState(id: Int, isEnabled: Boolean): Boolean {
         val selectionArgs = arrayOf(id.toString())
         val values = ContentValues()
-        values.put(COL_IS_ENABLED, isEnabled)
-        val selection = "$COL_ID = ?"
-        return mDb.update(ALARMS_TABLE_NAME, values, selection, selectionArgs) == 1
+        values.put(colIsEnabled, isEnabled)
+        val selection = "$colId = ?"
+        return mDb.update(alarmsTableName, values, selection, selectionArgs) == 1
     }
 
     fun deleteAlarms(alarms: ArrayList<Alarm>) {
@@ -108,8 +121,8 @@ class DBHelper private constructor(
         }
 
         val args = TextUtils.join(", ", alarms.map { it.id.toString() })
-        val selection = "$ALARMS_TABLE_NAME.$COL_ID IN ($args)"
-        mDb.delete(ALARMS_TABLE_NAME, selection, null)
+        val selection = "$alarmsTableName.$colId IN ($args)"
+        mDb.delete(alarmsTableName, selection, null)
     }
 
     fun getAlarmWithId(id: Int) = getAlarms().firstOrNull { it.id == id }
@@ -118,15 +131,15 @@ class DBHelper private constructor(
 
     private fun fillAlarmContentValues(alarm: Alarm): ContentValues {
         return ContentValues().apply {
-            put(COL_TIME_IN_MINUTES, alarm.timeInMinutes)
-            put(COL_DAYS, alarm.days)
-            put(COL_IS_ENABLED, alarm.isEnabled)
-            put(COL_VIBRATE, alarm.vibrate)
-            put(COL_SOUND_TITLE, alarm.soundTitle)
-            put(COL_SOUND_URI, alarm.soundUri)
-            put(COL_LABEL, alarm.label)
-            put(COL_ONE_SHOT, alarm.oneShot)
-            put(COL_SCHEDULED_DATE, alarm.scheduledDate)
+            put(colTimeInMinutes, alarm.timeInMinutes)
+            put(colDays, alarm.days)
+            put(colIsEnabled, alarm.isEnabled)
+            put(colVibrate, alarm.vibrate)
+            put(colSoundTitle, alarm.soundTitle)
+            put(colSoundUri, alarm.soundUri)
+            put(colLabel, alarm.label)
+            put(colOneShot, alarm.oneShot)
+            put(colScheduledDate, alarm.scheduledDate)
         }
     }
 
@@ -135,33 +148,33 @@ class DBHelper private constructor(
     fun getAlarms(): ArrayList<Alarm> {
         val alarms = ArrayList<Alarm>()
         val cols = arrayOf(
-            COL_ID,
-            COL_TIME_IN_MINUTES,
-            COL_DAYS,
-            COL_IS_ENABLED,
-            COL_VIBRATE,
-            COL_SOUND_TITLE,
-            COL_SOUND_URI,
-            COL_LABEL,
-            COL_ONE_SHOT,
-            COL_SCHEDULED_DATE
+            colId,
+            colTimeInMinutes,
+            colDays,
+            colIsEnabled,
+            colVibrate,
+            colSoundTitle,
+            colSoundUri,
+            colLabel,
+            colOneShot,
+            colScheduledDate
         )
         var cursor: Cursor? = null
         try {
-            cursor = mDb.query(ALARMS_TABLE_NAME, cols, null, null, null, null, null)
+            cursor = mDb.query(alarmsTableName, cols, null, null, null, null, null)
             if (cursor?.moveToFirst() == true) {
                 do {
                     try {
-                        val id = cursor.getIntValue(COL_ID)
-                        val timeInMinutes = cursor.getIntValue(COL_TIME_IN_MINUTES)
-                        val days = cursor.getIntValue(COL_DAYS)
-                        val isEnabled = cursor.getIntValue(COL_IS_ENABLED) == 1
-                        val vibrate = cursor.getIntValue(COL_VIBRATE) == 1
-                        val soundTitle = cursor.getStringValue(COL_SOUND_TITLE)
-                        val soundUri = cursor.getStringValue(COL_SOUND_URI)
-                        val label = cursor.getStringValue(COL_LABEL)
-                        val oneShot = cursor.getIntValue(COL_ONE_SHOT) == 1
-                        val scheduledDateIndex = cursor.getColumnIndex(COL_SCHEDULED_DATE)
+                        val id = cursor.getIntValue(colId)
+                        val timeInMinutes = cursor.getIntValue(colTimeInMinutes)
+                        val days = cursor.getIntValue(colDays)
+                        val isEnabled = cursor.getIntValue(colIsEnabled) == 1
+                        val vibrate = cursor.getIntValue(colVibrate) == 1
+                        val soundTitle = cursor.getStringValue(colSoundTitle)
+                        val soundUri = cursor.getStringValue(colSoundUri)
+                        val label = cursor.getStringValue(colLabel)
+                        val oneShot = cursor.getIntValue(colOneShot) == 1
+                        val scheduledDateIndex = cursor.getColumnIndex(colScheduledDate)
                         val scheduledDate = if (scheduledDateIndex == -1) 0L else cursor.getLong(scheduledDateIndex)
 
                         val alarm = Alarm(

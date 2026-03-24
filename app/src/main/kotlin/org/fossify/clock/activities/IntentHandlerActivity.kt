@@ -267,7 +267,9 @@ class IntentHandlerActivity : SimpleActivity() {
                         val calendar = java.util.Calendar.getInstance().apply {
                             timeInMillis = next.triggerTime
                         }
-                        val timeInMinutes = calendar.get(java.util.Calendar.HOUR_OF_DAY) * 60 + calendar.get(java.util.Calendar.MINUTE)
+                        val timeInMinutes =
+                            calendar.get(java.util.Calendar.HOUR_OF_DAY) * 60 +
+                                calendar.get(java.util.Calendar.MINUTE)
                         val nextEpochDay = getEpochDayFromMillis(next.triggerTime)
                         val dayBitToLookFor = if (timeInMinutes <= getCurrentDayMinutes()) {
                             getTomorrowBit()
