@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_launcher_name">Hodinky</string>
+    <string name="app_launcher_name">Hodiny</string>
     <string name="time_zone">Časové pásmo</string>
     <string name="vibrate">Vibrovanie</string>
     <string name="no_days_selected">Neboli označené žiadne dni</string>
