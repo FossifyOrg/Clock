@@ -43,4 +43,16 @@
     <string name="increase_volume_gradually">Паступова павялічваць гучнасць</string>
     <string name="faq_1_title">Як змяніць сартаванне кругоў на ўкладцы секундамера\?</string>
     <string name="faq_1_text">Проста націсніце на любы са слупкоў, і кругі будуць адсартаваны па дадзенаму слупку. Дадатковымі націсканнямі вы можаце пераключацца паміж сартаваннем па ўзрастанні і па змяншэнні.</string>
+    <string name="sort_by_timer_duration">Працягласць таймера</string>
+    <string name="select_timer_to_dismiss">Выберыце таймер для адключэння</string>
+    <string name="select_alarm_to_dismiss">Выберыце будзільнік для адключэння</string>
+    <string name="alarm_created">Будзільнік створаны</string>
+    <string name="missed_alarm">Прапушчаны будзільнік</string>
+    <string name="add_alarm">Дадаць будзільнік</string>
+    <string name="add_timer">Дадаць таймер</string>
+    <string name="not_scheduled">Не запланавана</string>
+    <string name="replaced_by_another_alarm">Заменены іншым будзільнікам</string>
+    <string name="alarm_timed_out">Час дзеяння будзільніка сышоў</string>
+    <string name="settings_import_data">Імпартаваць будзільнікі і таймеры</string>
+    <string name="settings_export_data">Экспартаваць будзільнікі і таймеры</string>
 </resources>
