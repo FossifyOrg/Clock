@@ -9,8 +9,8 @@
     <string name="stopwatch">Stopperóra</string>
     <string name="start_stopwatch">Stopperóra indítása</string>
     <string name="lap">Kör</string>
-    <string name="stopwatch_stopped">A stopper leállt</string>
-    <string name="timer_stopped">Az időzítő leállt</string>
+    <string name="stopwatch_stopped">A stopper leállítva</string>
+    <string name="timer_stopped">Az időzítő leállítva</string>
     <string name="max_reminder_duration">Értesítés leghosszabb időtartama</string>
     <string name="time_expired">Az idő lejárt</string>
     <string name="clock_and_date">Idő és dátum</string>
