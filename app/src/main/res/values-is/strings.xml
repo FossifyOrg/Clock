@@ -1,2 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_launcher_name">Klukka</string>
+    <string name="time_zone">Tímabelti</string>
+    <string name="vibrate">Titra</string>
+    <string name="no_days_selected">Engir dagar valdir</string>
+    <string name="clock">Klukka</string>
+    <string name="stopwatch">Skeiðklukka</string>
+    <string name="start_stopwatch">Ræsa skeiðklukku</string>
+    <string name="lap">Hringur</string>
+    <string name="stopwatch_stopped">Skeiðklukkan hefur verið stöðvuð</string>
+    <string name="max_reminder_duration">Hámarslengd ámynningar</string>
+    <string name="time_expired">Tími útrunninn</string>
+    <string name="clock_and_date">Klukka og dagsetning</string>
+    <string name="sort_by_alarm_time">Tími vekjara</string>
+    <string name="sort_by_day_and_alarm_time">Dagur og tími vekjara</string>
+    <string name="alarm_dismissed">Vekjari stövaður</string>
+    <string name="select_alarm_to_dismiss">Velja vekjara til að stöðva</string>
+    <string name="alarm_created">Vekjari búinn til</string>
+    <string name="alarm_snoozed">Vekjara seinkað um %s</string>
+    <string name="no_alarms_found">Engir vekjarar fundust</string>
+    <string name="add_alarm">Bæta við vekjara</string>
+    <string name="upcoming_alarm">Vekjarar á döfinni</string>
+    <string name="missed_alarm">Viðvaranir sem misst var af</string>
+    <string name="replaced_by_another_alarm">Skipt út fyrir annan vekjara</string>
+    <string name="alarm_timed_out">Vekjari rann út</string>
+    <string name="clock_tab">Klukkuflipi</string>
+    <string name="alarm_tab">Vekjaraflipi</string>
+    <string name="stopwatch_tab">Skeiðklukkuflipi</string>
+    <string name="show_seconds">Sýna sekúndur</string>
+    <string name="increase_volume_gradually">Hækka hljóðstyrk jafnt og þétt</string>
+    <string name="faq_1_title">Hvernig get ég breytt röðun hrigja í skeiðklukkuflipanum?</string>
+    <string name="faq_1_text">Smellið á hvaða dálk sem er, það mun raða hringjunum eftir þeim dálki. Með því að smella oftar er hægt að breyta milli þess að hafa minnsta eða hæsta gildi eftst.</string>
+</resources>
