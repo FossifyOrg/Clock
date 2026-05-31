@@ -22,11 +22,11 @@ import org.fossify.clock.extensions.isBitSet
 import org.fossify.clock.extensions.secondsToMillis
 import org.fossify.clock.extensions.timerHelper
 import org.fossify.clock.helpers.DEFAULT_ALARM_MINUTES
-import org.fossify.clock.helpers.TODAY_BIT
-import org.fossify.clock.helpers.TOMORROW_BIT
 import org.fossify.clock.helpers.UPCOMING_ALARM_NOTIFICATION_ID
 import org.fossify.clock.helpers.getBitForCalendarDay
 import org.fossify.clock.helpers.getCurrentDayMinutes
+import org.fossify.clock.helpers.getDateFromTimeInMinutes
+import org.fossify.clock.helpers.getEpochDayFromMillis
 import org.fossify.clock.helpers.getTodayBit
 import org.fossify.clock.helpers.getTomorrowBit
 import org.fossify.clock.models.Alarm
@@ -42,7 +42,6 @@ import org.fossify.commons.helpers.SILENT
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.models.AlarmSound
 import org.greenrobot.eventbus.EventBus
-import java.util.concurrent.TimeUnit
 
 class IntentHandlerActivity : SimpleActivity() {
     companion object {
@@ -114,22 +113,21 @@ class IntentHandlerActivity : SimpleActivity() {
 
         // We don't want to accidentally edit existing alarm, so allow reuse only when skipping UI
         if (hasExtra(AlarmClock.EXTRA_HOUR) && skipUi) {
-            var daysToCompare = weekDays
             val timeInMinutes = hour * 60 + minute
-            if (weekDays <= 0) {
-                daysToCompare = if (timeInMinutes > getCurrentDayMinutes()) {
-                    TODAY_BIT
-                } else {
-                    TOMORROW_BIT
-                }
-            }
+            val scheduledDateToCompare = if (weekDays <= 0) getDateFromTimeInMinutes(timeInMinutes) else 0L
             val existingAlarm = dbHelper.getAlarms().firstOrNull {
-                it.days == daysToCompare
-                        && it.vibrate == vibrate
-                        && it.soundTitle == soundToUse.title
-                        && it.soundUri == soundToUse.uri
-                        && it.label == (message ?: "")
-                        && it.timeInMinutes == timeInMinutes
+                val sameScheduling = if (weekDays > 0) {
+                    it.days == weekDays
+                } else {
+                    !it.isRecurring() && it.getScheduledDateEpochDay() == scheduledDateToCompare
+                }
+
+                sameScheduling
+                    && it.vibrate == vibrate
+                    && it.soundTitle == soundToUse.title
+                    && it.soundUri == soundToUse.uri
+                    && it.label == (message ?: "")
+                    && it.timeInMinutes == timeInMinutes
             }
 
             if (existingAlarm != null && !existingAlarm.isEnabled) {
@@ -156,11 +154,8 @@ class IntentHandlerActivity : SimpleActivity() {
         } else {
             newAlarm.timeInMinutes = hour * 60 + minute
             if (newAlarm.days <= 0) {
-                newAlarm.days = if (newAlarm.timeInMinutes > getCurrentDayMinutes()) {
-                    TODAY_BIT
-                } else {
-                    TOMORROW_BIT
-                }
+                newAlarm.days = 0
+                newAlarm.scheduledDate = getDateFromTimeInMinutes(newAlarm.timeInMinutes)
                 newAlarm.oneShot = true
             }
 
@@ -269,20 +264,23 @@ class IntentHandlerActivity : SimpleActivity() {
 
                     AlarmClock.ALARM_SEARCH_MODE_NEXT -> {
                         val next = alarmManager.nextAlarmClock
+                        val calendar = java.util.Calendar.getInstance().apply {
+                            timeInMillis = next.triggerTime
+                        }
                         val timeInMinutes =
-                            TimeUnit.MILLISECONDS.toMinutes(next.triggerTime).toInt()
+                            calendar.get(java.util.Calendar.HOUR_OF_DAY) * 60 +
+                                calendar.get(java.util.Calendar.MINUTE)
+                        val nextEpochDay = getEpochDayFromMillis(next.triggerTime)
                         val dayBitToLookFor = if (timeInMinutes <= getCurrentDayMinutes()) {
                             getTomorrowBit()
                         } else {
                             getTodayBit()
                         }
-                        val dayToLookFor = if (timeInMinutes <= getCurrentDayMinutes()) {
-                            TOMORROW_BIT
-                        } else {
-                            TODAY_BIT
-                        }
                         alarms = alarms.filter {
-                            it.timeInMinutes == timeInMinutes && (it.days.isBitSet(dayBitToLookFor) || it.days == dayToLookFor)
+                            it.timeInMinutes == timeInMinutes && (
+                                (it.isRecurring() && it.days.isBitSet(dayBitToLookFor))
+                                    || (!it.isRecurring() && it.getScheduledDateEpochDay() == nextEpochDay)
+                                )
                         }
                     }
 
