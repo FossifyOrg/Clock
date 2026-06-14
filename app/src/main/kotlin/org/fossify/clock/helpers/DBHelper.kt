@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.text.TextUtils
 import org.fossify.clock.extensions.cancelAlarmClock
 import org.fossify.clock.extensions.createNewAlarm
+import org.fossify.clock.extensions.stopAlarmService
 import org.fossify.clock.models.Alarm
 import org.fossify.commons.extensions.getIntValue
 import org.fossify.commons.extensions.getStringValue
@@ -100,8 +101,8 @@ class DBHelper private constructor(
     fun deleteAlarms(alarms: ArrayList<Alarm>) {
         alarms.filter { it.isEnabled }.forEach {
             context.cancelAlarmClock(it)
+            context.stopAlarmService(it.id)
         }
-
         val args = TextUtils.join(", ", alarms.map { it.id.toString() })
         val selection = "$ALARMS_TABLE_NAME.$COL_ID IN ($args)"
         mDb.delete(ALARMS_TABLE_NAME, selection, null)
