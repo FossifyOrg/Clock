@@ -11,6 +11,7 @@
     <string name="max_reminder_duration">リマインダーの最大再生時間</string>
     <string name="time_expired">時間切れ</string>
     <string name="clock_and_date">時計と日付</string>
+    <string name="date_format_md">%3$s%2$d日(%1$s)</string>
     <string name="use_text_shadow">文字に影を付ける</string>
     <string name="swipe_right_to_dismiss">右にスワイプして終了、または左にスワイプしてスヌーズ。</string>
     <string name="sort_by_creation_order">作成順</string>
