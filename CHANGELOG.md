@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Fixed alarms not stopping when dismissed or snoozed after being deleted while ringing ([#406])
 
 ## [1.6.0] - 2026-01-30
 ### Added
@@ -111,6 +113,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#247]: https://github.com/FossifyOrg/Clock/issues/247
 [#335]: https://github.com/FossifyOrg/Clock/issues/335
 [#346]: https://github.com/FossifyOrg/Clock/issues/346
+[#406]: https://github.com/FossifyOrg/Clock/issues/406
 
 [Unreleased]: https://github.com/FossifyOrg/Clock/compare/1.6.0...HEAD
 [1.6.0]: https://github.com/FossifyOrg/Clock/compare/1.5.0...1.6.0
