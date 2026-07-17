@@ -1,9 +1,9 @@
 package org.fossify.clock.dialogs
 
-import android.widget.RadioButton
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.databinding.DialogAddToGroupBinding
 import org.fossify.clock.extensions.dbHelper
+import org.fossify.clock.models.Group
 import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
 import org.fossify.commons.extensions.value
@@ -18,7 +18,12 @@ class AddToGroupDialog(
     private val radioIdToGroupId = HashMap<Int, Int>()
 
     init {
-        groups.forEach { group ->
+        val mutableGroups = groups.toMutableList()
+
+        if (groups.any())
+            mutableGroups.add(0, Group(0, "None"))
+
+        mutableGroups.forEach { group ->
             val radioButton = MyCompatRadioButton(activity).apply {
                 id = android.view.View.generateViewId()
                 text = group.title

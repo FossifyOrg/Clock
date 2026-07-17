@@ -38,20 +38,6 @@ import org.fossify.commons.interfaces.StartReorderDragListener
 import org.fossify.commons.views.MyRecyclerView
 import org.greenrobot.eventbus.EventBus
 
-// TODO: Hack fix. PR in fossify commons with fix when converting from array to arraylist
-const val MONDAY_BIT = 1
-const val TUESDAY_BIT = 2
-const val WEDNESDAY_BIT = 4
-const val THURSDAY_BIT = 8
-const val FRIDAY_BIT = 16
-const val SATURDAY_BIT = 32
-const val SUNDAY_BIT = 64
-const val EVERY_DAY_BIT =
-    MONDAY_BIT or TUESDAY_BIT or WEDNESDAY_BIT or THURSDAY_BIT or FRIDAY_BIT or SATURDAY_BIT or SUNDAY_BIT
-const val WEEK_DAYS_BIT = MONDAY_BIT or TUESDAY_BIT or WEDNESDAY_BIT or THURSDAY_BIT or FRIDAY_BIT
-const val WEEKENDS_BIT = SATURDAY_BIT or SUNDAY_BIT
-
-
 class AlarmsAdapter(
     activity: SimpleActivity,
     private var items: ArrayList<AlarmListItem>,
@@ -242,9 +228,9 @@ class AlarmsAdapter(
             )
             groupSubtitle.setTextColor(textColor)
 
-            val allEnabled = alarms.isNotEmpty() && alarms.all { it.isEnabled }
+            val anyEnabled = alarms.isNotEmpty() && alarms.any { it.isEnabled }
             groupSwitch.setColors(textColor, properPrimaryColor, backgroundColor)
-            groupSwitch.isChecked = allEnabled
+            groupSwitch.isChecked = anyEnabled
             groupSwitch.setOnClickListener {
                 toggleGroup(group.id, groupSwitch.isChecked)
             }
@@ -296,7 +282,7 @@ class AlarmsAdapter(
             return if (alarm.days == EVERY_DAY_BIT) {
                 activity.getString(org.fossify.commons.R.string.every_day)
             } else {
-                getSelectedDaysString(alarm.days)
+                activity.getSelectedDaysString(alarm.days)
             }
         }
 
@@ -305,25 +291,6 @@ class AlarmsAdapter(
             alarm.isToday() -> resources.getString(org.fossify.commons.R.string.today)
             else -> resources.getString(org.fossify.commons.R.string.tomorrow)
         }
-    }
-
-    // TODO: Hack fix. PR in fossify commons with fix when converting from array to arraylist
-    fun getSelectedDaysString(bitMask: Int): String {
-        val dayBits = arrayListOf(MONDAY_BIT, TUESDAY_BIT, WEDNESDAY_BIT, THURSDAY_BIT, FRIDAY_BIT, SATURDAY_BIT, SUNDAY_BIT)
-        val weekDays = ArrayList(resources.getStringArray(org.fossify.commons.R.array.week_days_short).toList())
-
-        if (baseConfig.isSundayFirst) {
-            dayBits.moveLastItemToFront()
-            weekDays.moveLastItemToFront()
-        }
-
-        var days = ""
-        dayBits.forEachIndexed { index, bit ->
-            if (bitMask and bit != 0) {
-                days += "${weekDays[index]}, "
-            }
-        }
-        return days.trim().trimEnd(',')
     }
 
     override fun onRowMoved(fromPosition: Int, toPosition: Int) {
