@@ -155,7 +155,7 @@ class DBHelper private constructor(
         return groups
     }
 
-    fun assignAlarmToGroup(alarmIds: List<Int>, groupId: Int) {
+    fun assignAlarmsToGroup(alarmIds: List<Int>, groupId: Int) {
         val values = ContentValues().apply { put(COL_GROUP_ID, groupId) }
         val args = TextUtils.join(", ", alarmIds)
         mDb.update(ALARMS_TABLE_NAME, values, "$COL_ID IN ($args)", null)
