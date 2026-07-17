@@ -10,8 +10,10 @@ import android.text.TextUtils
 import org.fossify.clock.extensions.cancelAlarmClock
 import org.fossify.clock.extensions.createNewAlarm
 import org.fossify.clock.models.Alarm
+import org.fossify.clock.models.Group
 import org.fossify.commons.extensions.getIntValue
 import org.fossify.commons.extensions.getStringValue
+import org.fossify.commons.extensions.toInt
 import org.fossify.commons.helpers.FRIDAY_BIT
 import org.fossify.commons.helpers.MONDAY_BIT
 import org.fossify.commons.helpers.SATURDAY_BIT
@@ -34,11 +36,15 @@ class DBHelper private constructor(
     private val COL_SOUND_URI = "sound_uri"
     private val COL_LABEL = "label"
     private val COL_ONE_SHOT = "one_shot"
+    private val GROUPS_TABLE_NAME = "alarm_groups"
+    private val COL_GROUP_ID = "group_id"
+    private val COL_GROUP_TITLE = "title"
+
 
     private val mDb = writableDatabase
 
     companion object {
-        private const val DB_VERSION = 2
+        private const val DB_VERSION = 3
         const val DB_NAME = "alarms.db"
 
         @SuppressLint("StaticFieldLeak")
@@ -55,15 +61,28 @@ class DBHelper private constructor(
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
-            "CREATE TABLE IF NOT EXISTS $ALARMS_TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_TIME_IN_MINUTES INTEGER, $COL_DAYS INTEGER, " +
-                "$COL_IS_ENABLED INTEGER, $COL_VIBRATE INTEGER, $COL_SOUND_TITLE TEXT, $COL_SOUND_URI TEXT, $COL_LABEL TEXT, $COL_ONE_SHOT INTEGER)"
+            "CREATE TABLE IF NOT EXISTS $ALARMS_TABLE_NAME (" +
+                "$COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_TIME_IN_MINUTES INTEGER, $COL_DAYS INTEGER, " +
+                "$COL_IS_ENABLED INTEGER, $COL_VIBRATE INTEGER, $COL_SOUND_TITLE TEXT, $COL_SOUND_URI TEXT, " +
+                "$COL_LABEL TEXT, $COL_ONE_SHOT INTEGER, $COL_GROUP_ID INTEGER)"
         )
+        createGroupsTable(db)
         insertInitialAlarms(db)
+    }
+
+    private fun createGroupsTable(db: SQLiteDatabase) {
+        db.execSQL(
+            "CREATE TABLE IF NOT EXISTS $GROUPS_TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_GROUP_TITLE TEXT)"
+        )
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         if (oldVersion == 1 && newVersion > oldVersion) {
             db.execSQL("ALTER TABLE $ALARMS_TABLE_NAME ADD COLUMN $COL_ONE_SHOT INTEGER NOT NULL DEFAULT 0")
+        }
+        if (oldVersion < 3) {
+            db.execSQL("ALTER TABLE $ALARMS_TABLE_NAME ADD COLUMN $COL_GROUP_ID INTEGER DEFAULT NULL")
+            createGroupsTable(db)
         }
     }
 
@@ -107,6 +126,47 @@ class DBHelper private constructor(
         mDb.delete(ALARMS_TABLE_NAME, selection, null)
     }
 
+    fun insertGroup(title: String): Int {
+        val values = ContentValues().apply { put(COL_GROUP_TITLE, title) }
+        return mDb.insert(GROUPS_TABLE_NAME, null, values).toInt();
+    }
+
+    fun updateGroupTitle(groupId: Int, title: String) {
+        val values = ContentValues().apply { put(COL_GROUP_TITLE, title) }
+        mDb.update(GROUPS_TABLE_NAME, values, "$COL_ID = ?", arrayOf(groupId.toString()))
+    }
+
+    fun deleteGroup(groupId: Int) {
+        val values = ContentValues().apply { putNull(COL_GROUP_ID) }
+        mDb.update(ALARMS_TABLE_NAME, values, "$COL_GROUP_ID = ?", arrayOf(groupId.toString()))
+        mDb.delete(GROUPS_TABLE_NAME, "$COL_ID = ?", arrayOf(groupId.toString()))
+    }
+    fun getGroups(): ArrayList<Group> {
+        val groups = ArrayList<Group>()
+        val cursor = mDb.query(GROUPS_TABLE_NAME, arrayOf(COL_ID, COL_GROUP_TITLE), null, null, null, null, null)
+        cursor.use {
+            if (it.moveToFirst()){
+                do {
+                    groups.add(Group(id = it.getIntValue(COL_ID), title = it.getStringValue(COL_GROUP_TITLE)))
+                } while (it.moveToNext())
+            }
+        }
+
+        return groups
+    }
+
+    fun assignAlarmToGroup(alarmIds: List<Int>, groupId: Int) {
+        val values = ContentValues().apply { put(COL_GROUP_ID, groupId) }
+        val args = TextUtils.join(", ", alarmIds)
+        mDb.update(ALARMS_TABLE_NAME, values, "$COL_ID IN ($args)", null)
+    }
+
+    fun updateGroupEnabledState(groupId: Int, isEnabled: Boolean): List<Alarm> {
+        val values = ContentValues().apply { put(COL_IS_ENABLED, isEnabled) }
+        mDb.update(ALARMS_TABLE_NAME, values, "$COL_GROUP_ID = ?", arrayOf(groupId.toString()))
+        return  getAlarms().filter { it.groupId == groupId }
+    }
+
     fun getAlarmWithId(id: Int) = getAlarms().firstOrNull { it.id == id }
 
     fun getAlarmsWithUri(uri: String) = getAlarms().filter { it.soundUri == uri }
@@ -121,6 +181,8 @@ class DBHelper private constructor(
             put(COL_SOUND_URI, alarm.soundUri)
             put(COL_LABEL, alarm.label)
             put(COL_ONE_SHOT, alarm.oneShot)
+            if (alarm.groupId != null)
+                put(COL_GROUP_ID, alarm.groupId)
         }
     }
 
@@ -137,7 +199,8 @@ class DBHelper private constructor(
             COL_SOUND_TITLE,
             COL_SOUND_URI,
             COL_LABEL,
-            COL_ONE_SHOT
+            COL_ONE_SHOT,
+            COL_GROUP_ID
         )
         var cursor: Cursor? = null
         try {
@@ -154,6 +217,7 @@ class DBHelper private constructor(
                         val soundUri = cursor.getStringValue(COL_SOUND_URI)
                         val label = cursor.getStringValue(COL_LABEL)
                         val oneShot = cursor.getIntValue(COL_ONE_SHOT) == 1
+                        val groupId = cursor.getIntValue(COL_GROUP_ID)
 
                         val alarm = Alarm(
                             id = id,
@@ -164,7 +228,8 @@ class DBHelper private constructor(
                             soundTitle = soundTitle,
                             soundUri = soundUri,
                             label = label,
-                            oneShot = oneShot
+                            oneShot = oneShot,
+                            groupId = groupId
                         )
                         alarms.add(alarm)
                     } catch (e: Exception) {
