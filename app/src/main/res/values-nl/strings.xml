@@ -59,4 +59,8 @@
     <string name="delete_group">Groep verwijderen</string>
     <string name="rename_group">Groep hernoemen</string>
     <string name="delete_group_confirmation">Deze groep verwijderen? De meldingen ervan worden dan teruggezet naar de hoofdlijst.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarm</item>
+        <item quantity="other">%d alarmen</item>
+    </plurals>
 </resources>

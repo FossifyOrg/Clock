@@ -9,4 +9,8 @@
     <string name="delete_group">Dzēst grupu</string>
     <string name="rename_group">Pārdēvēt grupu</string>
     <string name="delete_group_confirmation">Hunc gregem delere? Monitus eius ad indicem principalem redigentur.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d modinātājs</item>
+        <item quantity="other">%d modinātāji</item>
+    </plurals>
 </resources>

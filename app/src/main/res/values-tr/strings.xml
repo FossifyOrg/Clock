@@ -59,4 +59,8 @@
     <string name="delete_group">Grubu sil</string>
     <string name="rename_group">Grubun adını değiştir</string>
     <string name="delete_group_confirmation">¿Quieres eliminar este grupo? Sus alarmas se volverán a mover a la lista principal.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarmı</item>
+        <item quantity="other">%d alarm</item>
+    </plurals>
 </resources>

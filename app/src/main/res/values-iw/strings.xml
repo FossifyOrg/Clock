@@ -60,4 +60,8 @@
     <string name="delete_group">מחק קבוצה</string>
     <string name="rename_group">שינוי שם הקבוצה</string>
     <string name="delete_group_confirmation">האם למחוק את הקבוצה הזו? ההתראות שלה יועברו בחזרה לרשימה הראשית.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d אזעקה</item>
+        <item quantity="other">%d אזעקות</item>
+    </plurals>
 </resources>

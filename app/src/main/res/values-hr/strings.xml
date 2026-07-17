@@ -60,4 +60,8 @@
     <string name="delete_group">Izbriši grupu</string>
     <string name="rename_group">Preimenuj grupu</string>
     <string name="delete_group_confirmation">Izbrisati ovu grupu? Njezine će se alarme vratiti na glavnu listu.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarm</item>
+        <item quantity="other">%d alarma</item>
+    </plurals>
 </resources>

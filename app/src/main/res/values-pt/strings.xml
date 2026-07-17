@@ -36,7 +36,7 @@
     <string name="new_timer">Novo temporizador</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">%d temporizador em curso</item>
-        <item quantity="many">%d temporizadores em curso</item>
+        <item quantity="many">%d temporizadores em curso</item>ala
         <item quantity="other">%d temporizadores em curso</item>
     </plurals>
     <string name="clock_tab">Relógio</string>
@@ -60,4 +60,8 @@
     <string name="delete_group">Eliminar grupo</string>
     <string name="rename_group">Renomear grupo</string>
     <string name="delete_group_confirmation">Deseja eliminar este grupo? Os seus alarmes serão transferidos de volta para a lista principal.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">Alarme %d</item>
+        <item quantity="other">%d alarmes</item>
+    </plurals>
 </resources>

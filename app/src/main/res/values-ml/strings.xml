@@ -47,4 +47,8 @@
     <string name="delete_group">ഗ്രൂപ്പ് ഇല്ലാതാക്കുക</string>
     <string name="rename_group">ഗ്രൂപ്പ് പുനർനാമകരണം ചെയ്യുക</string>
     <string name="delete_group_confirmation">ഈ ഗ്രൂപ്പ് ഇല്ലാതാക്കണോ? ഇതിന്റെ അലാറങ്ങൾ പ്രധാന ലിസ്റ്റിലേക്ക് തിരികെ മാറ്റും.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d അലാറം</item>
+        <item quantity="other">%d അലാറങ്ങൾ</item>
+    </plurals>
 </resources>

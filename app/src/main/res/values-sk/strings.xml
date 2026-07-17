@@ -60,4 +60,8 @@
     <string name="delete_group">Odstrániť skupinu</string>
     <string name="rename_group">Pomenovať skupinu</string>
     <string name="delete_group_confirmation">Chcete túto skupinu odstrániť? Jej upozornenia sa presunú späť do hlavného zoznamu.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d budík</item>
+        <item quantity="other">%d budíkov</item>
+    </plurals>
 </resources>

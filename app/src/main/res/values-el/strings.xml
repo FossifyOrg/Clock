@@ -58,4 +58,8 @@
     <string name="delete_group">Διαγραφή ομάδας</string>
     <string name="rename_group">Μετονομασία ομάδας</string>
     <string name="delete_group_confirmation">Να διαγραφεί αυτή η ομάδα; Οι ειδοποιήσεις της θα μεταφερθούν ξανά στην κύρια λίστα.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d ξυπνητήρι</item>
+        <item quantity="other">%d ειδοποιήσεις</item>
+    </plurals>
 </resources>

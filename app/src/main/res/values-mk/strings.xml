@@ -7,4 +7,8 @@
     <string name="delete_group">Избриши група</string>
     <string name="rename_group">Преименувај група</string>
     <string name="delete_group_confirmation">Да се избрише оваа група? Нејзините аларми ќе бидат вратени во главната листа.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d аларм</item>
+        <item quantity="other">%d аларми</item>
+    </plurals>
 </resources>

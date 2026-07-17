@@ -63,4 +63,8 @@
     <string name="delete_group">حذف المجموعة</string>
     <string name="rename_group">إعادة تسمية المجموعة</string>
     <string name="delete_group_confirmation">هل تريد حذف هذه المجموعة؟ سيتم إعادة تنبيهاتها إلى القائمة الرئيسية.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">منبه %d</item>
+        <item quantity="other">%d منبهاتs</item>
+    </plurals>
 </resources>

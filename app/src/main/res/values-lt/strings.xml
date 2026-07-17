@@ -30,4 +30,8 @@
     <string name="delete_group">Ištrinti grupę</string>
     <string name="rename_group">Pervardyti grupę</string>
     <string name="delete_group_confirmation">Ar norite ištrinti šią grupę? Jos žadintuvai bus perkelti atgal į pagrindinį sąrašą.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d budilka</item>
+        <item quantity="other">%d budilkas</item>
+    </plurals>
 </resources>

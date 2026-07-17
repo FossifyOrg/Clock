@@ -58,4 +58,8 @@
     <string name="delete_group">グループを削除</string>
     <string name="rename_group">グループの名前を変更する</string>
     <string name="delete_group_confirmation">このグループを削除しますか？このグループのアラームはメインリストに戻されます。</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d アラーム</item>
+        <item quantity="other">%d 件のアラーム</item>
+    </plurals>
 </resources>

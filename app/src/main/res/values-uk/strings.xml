@@ -61,4 +61,8 @@
     <string name="delete_group">Видалити групу</string>
     <string name="rename_group">Перейменувати групу</string>
     <string name="delete_group_confirmation">¿Quieres eliminar este grupo? Sus alarmas se volverán a mover a la lista principal.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d будильник</item>
+        <item quantity="other">%d сигналів тривоги</item>
+    </plurals>
 </resources>

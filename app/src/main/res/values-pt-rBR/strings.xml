@@ -60,4 +60,8 @@
     <string name="delete_group">Excluir grupo</string>
     <string name="rename_group">Renomear grupo</string>
     <string name="delete_group_confirmation">ਇਸ ਗਰੁੱਪ ਨੂੰ ਮਿਟਾਓ? ਇਸ ਦੀਆਂ ਅਲਾਰਮਾਂ ਮੁੱਖ ਸੂਚੀ ਵਿੱਚ ਵਾਪਸ ਭੇਜ ਦਿੱਤੀਆਂ ਜਾਣਗੀਆਂ।</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">Alarme %d</item>
+        <item quantity="other">%d alarmes</item>
+    </plurals>
 </resources>

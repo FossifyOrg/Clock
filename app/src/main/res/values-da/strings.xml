@@ -59,4 +59,8 @@
     <string name="delete_group">Slet gruppe</string>
     <string name="rename_group">Omdøb gruppe</string>
     <string name="delete_group_confirmation">Skal denne gruppe slettes? Dens alarmer flyttes tilbage til hovedlisten.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarm</item>
+        <item quantity="other">%d alarmer</item>
+    </plurals>
 </resources>

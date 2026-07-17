@@ -59,4 +59,8 @@
     <string name="delete_group">Rühma kustutamine</string>
     <string name="rename_group">Rühma ümbernimetamine</string>
     <string name="delete_group_confirmation">Kas soovid selle grupi kustutada? Selle äratused viiakse tagasi põhinimekirja.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d äratus</item>
+        <item quantity="other">%d äratust</item>
+    </plurals>
 </resources>

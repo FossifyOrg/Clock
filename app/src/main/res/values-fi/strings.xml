@@ -59,4 +59,8 @@
     <string name="delete_group">Poista ryhmä</string>
     <string name="rename_group">Nimeä ryhmä uudelleen</string>
     <string name="delete_group_confirmation">Haluatko poistaa tämän ryhmän? Sen hälytykset siirretään takaisin pääluetteloon.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d hälytys</item>
+        <item quantity="other">%d hälytystä</item>
+    </plurals>
 </resources>

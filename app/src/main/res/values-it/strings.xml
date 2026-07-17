@@ -60,4 +60,8 @@
     <string name="delete_group">Elimina gruppo</string>
     <string name="rename_group">Rinomina gruppo</string>
     <string name="delete_group_confirmation">Elimina questo gruppo? I suoi allarmi verranno riportati nell\'elenco principale.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d allarme</item>
+        <item quantity="other">%d allarmi</item>
+    </plurals>
 </resources>

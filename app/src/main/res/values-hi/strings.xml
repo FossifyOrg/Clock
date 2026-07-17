@@ -59,4 +59,8 @@
     <string name="delete_group">समूह हटाएँ</string>
     <string name="rename_group">समूह का नाम बदलें</string>
     <string name="delete_group_confirmation">इस समूह को हटाएँ? इसके अलार्म मुख्य सूची में वापस स्थानांतरित कर दिए जाएँगे।</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d अलार्म</item>
+        <item quantity="other">%d अलार्म</item>
+    </plurals>
 </resources>

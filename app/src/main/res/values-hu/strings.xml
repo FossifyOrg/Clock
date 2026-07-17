@@ -59,4 +59,8 @@
     <string name="delete_group">Csoport törlése</string>
     <string name="rename_group">Csoport átnevezése</string>
     <string name="delete_group_confirmation">Törölje ezt a csoportot? A hozzá tartozó riasztások visszakerülnek a fő listára.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d riasztás</item>
+        <item quantity="other">%d riasztás</item>
+    </plurals>
 </resources>

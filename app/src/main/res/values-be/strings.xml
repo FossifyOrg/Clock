@@ -61,4 +61,8 @@
     <string name="delete_group">Выдаліць групу</string>
     <string name="rename_group">Перайменаваць групу</string>
     <string name="delete_group_confirmation">Выдаліць гэту групу? Яе абвесткі будуць вернуты ў асноўны спіс.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d ы трывожны сігнал</item>
+        <item quantity="other">%d трывог</item>
+    </plurals>
 </resources>

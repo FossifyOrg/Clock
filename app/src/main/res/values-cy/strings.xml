@@ -33,4 +33,8 @@
     <string name="delete_group">Dileu grŵp</string>
     <string name="rename_group">Ail-enwi grŵp</string>
     <string name="delete_group_confirmation">Dileu\'r grŵp hwn? Bydd ei larwmau\'n cael eu symud yn ôl i\'r prif restr.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarm</item>
+        <item quantity="other">%d larwm</item>
+    </plurals>
 </resources>

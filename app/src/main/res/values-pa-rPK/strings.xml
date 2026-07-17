@@ -35,4 +35,8 @@
     <string name="delete_group">ਸਮੂਹ ਮਿਟਾਓ</string>
     <string name="rename_group">ਸਮੂਹ ਦਾ ਨਾਮ ਬਦਲੋ</string>
     <string name="delete_group_confirmation">ਇਸ ਗਰੁੱਪ ਨੂੰ ਮਿਟਾਓ? ਇਸ ਦੀਆਂ ਅਲਾਰਮਾਂ ਮੁੱਖ ਸੂਚੀ ਵਿੱਚ ਵਾਪਸ ਭੇਜ ਦਿੱਤੀਆਂ ਜਾਣਗੀਆਂ।</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d ਚੇਤਾਵਨੀ</item>
+        <item quantity="other">%d ਚੇਤਾਵਨੀਆਂ</item>
+    </plurals>
 </resources>

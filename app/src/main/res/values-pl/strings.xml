@@ -61,4 +61,8 @@
     <string name="delete_group">Usuń grupę</string>
     <string name="rename_group">Zmień nazwę grupy</string>
     <string name="delete_group_confirmation">Czy chcesz usunąć tę grupę? Jej alarmy zostaną przeniesione z powrotem na listę główną.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarm</item>
+        <item quantity="other">%d alarmów</item>
+    </plurals>
 </resources>

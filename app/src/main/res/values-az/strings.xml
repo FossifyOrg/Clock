@@ -25,4 +25,8 @@
     <string name="delete_group">Qrupu sil</string>
     <string name="rename_group">Qrupun adını dəyişdir</string>
     <string name="delete_group_confirmation">Bu qrupu silin? Onun siqnalları əsas siyahıya qaytarılacaq.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarm</item>
+        <item quantity="other">%d alarms</item>
+    </plurals>
 </resources>

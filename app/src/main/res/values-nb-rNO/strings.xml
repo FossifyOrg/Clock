@@ -52,4 +52,8 @@
     <string name="delete_group">Slett gruppe</string>
     <string name="rename_group">Gi gruppen nytt navn</string>
     <string name="delete_group_confirmation">Skal denne gruppen slettes? Alarmene i den vil da bli flyttet tilbake til hovedlisten.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarm</item>
+        <item quantity="other">%d alarmer</item>
+    </plurals>
 </resources>

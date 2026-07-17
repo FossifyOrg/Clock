@@ -58,4 +58,8 @@
     <string name="delete_group">Hapus grup</string>
     <string name="rename_group">Endurnefna hóp</string>
     <string name="delete_group_confirmation">Hapus grup ini? Notifikasi dari grup ini akan dipindahkan kembali ke daftar utama.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">Alarm %d</item>
+        <item quantity="other">%d alarm</item>
+    </plurals>
 </resources>

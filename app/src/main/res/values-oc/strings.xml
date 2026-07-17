@@ -58,4 +58,8 @@
     <string name="delete_group">Suprimir lo grop</string>
     <string name="rename_group">Renomenar lo grop</string>
     <string name="delete_group_confirmation">Suprimir aqueste grop? Sas alarmas seràn tornadas a la lista principala.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">Alarma %d</item>
+        <item quantity="other">%d alarmas</item>
+    </plurals>
 </resources>

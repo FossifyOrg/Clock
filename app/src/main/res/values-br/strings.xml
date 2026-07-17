@@ -58,4 +58,8 @@
     <string name="delete_group">Dilemel ar strollad</string>
     <string name="rename_group">Adanvañ ar strollad</string>
     <string name="delete_group_confirmation">Dilemel ar strollad-mañ ? Adkaset e vo e evezhiadennoù d\'al listenn bennañ.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d diwall</item>
+        <item quantity="other">%d diwalls</item>
+    </plurals>
 </resources>

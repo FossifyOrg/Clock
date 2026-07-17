@@ -37,4 +37,8 @@
     <string name="delete_group">Eyða hópi</string>
     <string name="rename_group">Csoport átnevezése</string>
     <string name="delete_group_confirmation">Eyða þessum hópi? Viðvaranir hans verða færðar aftur í aðallista.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d viðvörun</item>
+        <item quantity="other">%d viðvaranir</item>
+    </plurals>
 </resources>

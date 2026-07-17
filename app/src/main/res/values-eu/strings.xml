@@ -59,4 +59,8 @@
     <string name="delete_group">Taldea ezabatu</string>
     <string name="rename_group">Taldearen izena aldatu</string>
     <string name="delete_group_confirmation">Talde hau ezabatu? Bere alerta guztiak berriro zerrenda nagusira eramango dira.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarma</item>
+        <item quantity="other">%d alarma</item>
+    </plurals>
 </resources>
