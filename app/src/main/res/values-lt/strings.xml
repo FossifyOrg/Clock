@@ -29,6 +29,5 @@
     <string name="group_name">Grupės pavadinimas</string>
     <string name="delete_group">Ištrinti grupę</string>
     <string name="rename_group">Pervardyti grupę</string>
-    <string name="none">Nėra</string>
     <string name="delete_group_confirmation">Ar norite ištrinti šią grupę? Jos žadintuvai bus perkelti atgal į pagrindinį sąrašą.</string>
 </resources>

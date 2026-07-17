@@ -60,6 +60,5 @@
     <string name="group_name">Название группы</string>
     <string name="delete_group">Удалить группу</string>
     <string name="rename_group">Переименовать группу</string>
-    <string name="none">Нет</string>
     <string name="delete_group_confirmation">Удалить эту группу? Ее оповещения будут перенесены обратно в основной список.</string>
 </resources>

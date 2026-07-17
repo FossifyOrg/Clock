@@ -59,6 +59,5 @@
     <string name="group_name">Numele grupului</string>
     <string name="delete_group">Șterge grupul</string>
     <string name="rename_group">Redenumire grup</string>
-    <string name="none">Niciuna</string>
     <string name="delete_group_confirmation">Vrei să ștergi acest grup? Alarmele sale vor fi mutate înapoi în lista principală.</string>
 </resources>

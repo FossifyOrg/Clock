@@ -59,6 +59,5 @@
     <string name="group_name">Nome del gruppo</string>
     <string name="delete_group">Elimina gruppo</string>
     <string name="rename_group">Rinomina gruppo</string>
-    <string name="none">Nessuno</string>
     <string name="delete_group_confirmation">Elimina questo gruppo? I suoi allarmi verranno riportati nell\'elenco principale.</string>
 </resources>

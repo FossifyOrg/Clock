@@ -60,6 +60,5 @@
     <string name="group_name">Nazwa grupy</string>
     <string name="delete_group">Usuń grupę</string>
     <string name="rename_group">Zmień nazwę grupy</string>
-    <string name="none">Brak</string>
     <string name="delete_group_confirmation">Czy chcesz usunąć tę grupę? Jej alarmy zostaną przeniesione z powrotem na listę główną.</string>
 </resources>

@@ -58,6 +58,5 @@
     <string name="group_name">Gruppenname</string>
     <string name="delete_group">Gruppe löschen</string>
     <string name="rename_group">Gruppe umbenennen</string>
-    <string name="none">Keine</string>
     <string name="delete_group_confirmation">Diese Gruppe löschen? Die darin enthaltenen Alarme werden zurück in die Hauptliste verschoben.</string>
 </resources>

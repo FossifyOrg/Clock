@@ -59,6 +59,5 @@
     <string name="group_name">Názov skupiny</string>
     <string name="delete_group">Odstrániť skupinu</string>
     <string name="rename_group">Pomenovať skupinu</string>
-    <string name="none">Žiadne</string>
     <string name="delete_group_confirmation">Chcete túto skupinu odstrániť? Jej upozornenia sa presunú späť do hlavného zoznamu.</string>
 </resources>

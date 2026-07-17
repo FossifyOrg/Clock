@@ -53,6 +53,5 @@
     <string name="group_name">그룹 이름</string>
     <string name="delete_group">그룹 삭제</string>
     <string name="rename_group">그룹 이름 변경</string>
-    <string name="none">없음</string>
     <string name="delete_group_confirmation">이 그룹을 삭제하시겠습니까? 이 그룹의 알림은 메인 목록으로 다시 이동됩니다.</string>
 </resources>

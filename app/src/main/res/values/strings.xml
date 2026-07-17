@@ -69,7 +69,6 @@
         <item quantity="other">%d alarms</item>
     </plurals>
     <string name="rename_group">Rename group</string>
-    <string name="none">None</string>
     <string name="delete_group_confirmation">Delete this group? Its alarms will be moved back to the main list.</string>
     <!--
         Haven't found some strings? There's more at

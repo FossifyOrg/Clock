@@ -59,6 +59,5 @@
     <string name="group_name">Naziv grupe</string>
     <string name="delete_group">Izbriši grupu</string>
     <string name="rename_group">Preimenuj grupu</string>
-    <string name="none">Nijedan</string>
     <string name="delete_group_confirmation">Izbrisati ovu grupu? Njezine će se alarme vratiti na glavnu listu.</string>
 </resources>

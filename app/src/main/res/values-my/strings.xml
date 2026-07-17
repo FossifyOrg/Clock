@@ -50,6 +50,5 @@
     <string name="group_name">အဖွဲ့အမည်</string>
     <string name="delete_group">အုပ်စု ဖျက်ရန်</string>
     <string name="rename_group">အဖွဲ့အမည်ပြောင်းပါ</string>
-    <string name="none">မရှိပါ</string>
     <string name="delete_group_confirmation">Да изтриете тази група ли? Нейните аларми ще бъдат преместени обратно в основния списък.</string>
 </resources>

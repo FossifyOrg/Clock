@@ -58,6 +58,5 @@
     <string name="group_name">Gruppnamn</string>
     <string name="delete_group">Ta bort grupp</string>
     <string name="rename_group">Byt namn på gruppen</string>
-    <string name="none">Inget</string>
     <string name="delete_group_confirmation">¿Quieres eliminar este grupo? Sus alarmas se volverán a mover a la lista principal.</string>
 </resources>

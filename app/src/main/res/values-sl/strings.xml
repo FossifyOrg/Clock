@@ -48,6 +48,5 @@
     <string name="group_name">Ime skupine</string>
     <string name="delete_group">Izbriši skupino</string>
     <string name="rename_group">Preimenuj skupino</string>
-    <string name="none">Nič</string>
     <string name="delete_group_confirmation">Ali želite izbrisati to skupino? Njeni alarmi bodo vrnjeni na glavni seznam.</string>
 </resources>

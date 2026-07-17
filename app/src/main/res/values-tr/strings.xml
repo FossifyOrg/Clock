@@ -58,6 +58,5 @@
     <string name="group_name">Grup adı</string>
     <string name="delete_group">Grubu sil</string>
     <string name="rename_group">Grubun adını değiştir</string>
-    <string name="none">Yok</string>
     <string name="delete_group_confirmation">¿Quieres eliminar este grupo? Sus alarmas se volverán a mover a la lista principal.</string>
 </resources>

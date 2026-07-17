@@ -60,6 +60,5 @@
     <string name="group_name">Назва групы</string>
     <string name="delete_group">Выдаліць групу</string>
     <string name="rename_group">Перайменаваць групу</string>
-    <string name="none">Няма</string>
     <string name="delete_group_confirmation">Выдаліць гэту групу? Яе абвесткі будуць вернуты ў асноўны спіс.</string>
 </resources>

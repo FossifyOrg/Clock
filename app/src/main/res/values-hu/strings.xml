@@ -58,6 +58,5 @@
     <string name="group_name">Csoport neve</string>
     <string name="delete_group">Csoport törlése</string>
     <string name="rename_group">Csoport átnevezése</string>
-    <string name="none">Nincs</string>
     <string name="delete_group_confirmation">Törölje ezt a csoportot? A hozzá tartozó riasztások visszakerülnek a fő listára.</string>
 </resources>

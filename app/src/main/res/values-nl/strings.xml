@@ -58,6 +58,5 @@
     <string name="group_name">Groepsnaam</string>
     <string name="delete_group">Groep verwijderen</string>
     <string name="rename_group">Groep hernoemen</string>
-    <string name="none">Geen</string>
     <string name="delete_group_confirmation">Deze groep verwijderen? De meldingen ervan worden dan teruggezet naar de hoofdlijst.</string>
 </resources>

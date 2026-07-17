@@ -24,6 +24,5 @@
     <string name="group_name">Qrup adı</string>
     <string name="delete_group">Qrupu sil</string>
     <string name="rename_group">Qrupun adını dəyişdir</string>
-    <string name="none">Heç biri</string>
     <string name="delete_group_confirmation">Bu qrupu silin? Onun siqnalları əsas siyahıya qaytarılacaq.</string>
 </resources>

@@ -46,6 +46,5 @@
     <string name="group_name">സംഘത്തിൻ്റെ പേര്</string>
     <string name="delete_group">ഗ്രൂപ്പ് ഇല്ലാതാക്കുക</string>
     <string name="rename_group">ഗ്രൂപ്പ് പുനർനാമകരണം ചെയ്യുക</string>
-    <string name="none">ഒന്നുമില്ല</string>
     <string name="delete_group_confirmation">ഈ ഗ്രൂപ്പ് ഇല്ലാതാക്കണോ? ഇതിന്റെ അലാറങ്ങൾ പ്രധാന ലിസ്റ്റിലേക്ക് തിരികെ മാറ്റും.</string>
 </resources>
