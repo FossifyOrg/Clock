@@ -55,4 +55,7 @@
     <string name="alarm_timed_out">Час дзеяння будзільніка сышоў</string>
     <string name="settings_import_data">Імпартаваць будзільнікі і таймеры</string>
     <string name="settings_export_data">Экспартаваць будзільнікі і таймеры</string>
+    <string name="add_to_group">Дадаць у групу</string>
+    <string name="new_group">Новая група</string>
+    <string name="group_name">Назва групы</string>
 </resources>

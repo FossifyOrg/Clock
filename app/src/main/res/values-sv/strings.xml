@@ -53,4 +53,7 @@
     <string name="missed_alarm">Missat alarm</string>
     <string name="replaced_by_another_alarm">Ersatt av ett annat alarm</string>
     <string name="alarm_timed_out">Alarm gick ut</string>
+    <string name="add_to_group">Lägg till i gruppen</string>
+    <string name="new_group">Ny grupp</string>
+    <string name="group_name">Gruppnamn</string>
 </resources>

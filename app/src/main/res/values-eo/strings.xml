@@ -53,4 +53,7 @@
     <string name="alarm_timed_out">Alarmo elĉerpiĝis</string>
     <string name="not_scheduled">Ne planita</string>
     <string name="replaced_by_another_alarm">Anstataŭigita de alia alarmo</string>
+    <string name="add_to_group">Aldoni al grupo</string>
+    <string name="new_group">Nova grupo</string>
+    <string name="group_name">Grupnomo</string>
 </resources>

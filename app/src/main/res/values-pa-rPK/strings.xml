@@ -30,4 +30,6 @@
     <string name="timer_tab">سماں والے دی ٹیب</string>
     <string name="show_seconds">سکنٹ ویکھو</string>
     <string name="increase_volume_gradually">ہولی ہولی آواز ودھاؤ</string>
+    <string name="new_group">ਨਵਾਂ ਸਮੂਹ</string>
+    <string name="group_name">ਸਮੂਹ ਦਾ ਨਾਮ</string>
 </resources>

@@ -53,4 +53,7 @@
     <string name="missed_alarm">Galdutako alarma</string>
     <string name="replaced_by_another_alarm">Beste alarma batek ordeztu du</string>
     <string name="alarm_timed_out">Alarma iraungita</string>
+    <string name="add_to_group">Taldeari gehitu</string>
+    <string name="new_group">Talde berria</string>
+    <string name="group_name">Taldearen izena</string>
 </resources>

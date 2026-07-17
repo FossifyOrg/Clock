@@ -54,4 +54,7 @@
     <string name="settings_import_data">Importovať budíky a časovače</string>
     <string name="settings_export_data">Exportovať budíky a časovače</string>
     <string name="sort_by_timer_duration">Dĺžky trvania časovača</string>
+    <string name="add_to_group">Pridať do skupiny</string>
+    <string name="new_group">Nová skupina</string>
+    <string name="group_name">Názov skupiny</string>
 </resources>

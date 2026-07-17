@@ -53,4 +53,7 @@
     <string name="missed_alarm">Wekker gemist</string>
     <string name="replaced_by_another_alarm">Vervangen door andere wekker</string>
     <string name="alarm_timed_out">Wekker afgelopen</string>
+    <string name="add_to_group">Aan groep toevoegen</string>
+    <string name="new_group">Nieuwe groep</string>
+    <string name="group_name">Groepsnaam</string>
 </resources>

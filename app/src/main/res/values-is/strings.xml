@@ -31,4 +31,7 @@
     <string name="increase_volume_gradually">Hækka hljóðstyrk jafnt og þétt</string>
     <string name="faq_1_title">Hvernig get ég breytt röðun hrigja í skeiðklukkuflipanum?</string>
     <string name="faq_1_text">Smellið á hvaða dálk sem er, það mun raða hringjunum eftir þeim dálki. Með því að smella oftar er hægt að breyta milli þess að hafa minnsta eða hæsta gildi eftst.</string>
+    <string name="add_to_group">Bæta við hóp</string>
+    <string name="new_group">Ný hópur</string>
+    <string name="group_name">Nafn hópsins</string>
 </resources>

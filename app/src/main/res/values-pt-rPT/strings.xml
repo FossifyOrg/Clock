@@ -54,4 +54,7 @@
     <string name="missed_alarm">Alarme perdido</string>
     <string name="replaced_by_another_alarm">Substituído por outro alarme</string>
     <string name="alarm_timed_out">Alarme expirou</string>
+    <string name="add_to_group">Adicionar ao grupo</string>
+    <string name="new_group">Novo grupo</string>
+    <string name="group_name">Nome do grupo</string>
 </resources>

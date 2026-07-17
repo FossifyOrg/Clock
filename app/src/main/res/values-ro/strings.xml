@@ -54,4 +54,7 @@
     <string name="not_scheduled">Nu este programat</string>
     <string name="missed_alarm">Alarmă ratată</string>
     <string name="replaced_by_another_alarm">Înlocuită cu o altă alarmă</string>
+    <string name="add_to_group">Adaugă la grup</string>
+    <string name="new_group">Grup nou</string>
+    <string name="group_name">Numele grupului</string>
 </resources>

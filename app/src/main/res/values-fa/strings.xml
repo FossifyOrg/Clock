@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_launcher_name">ساعت زنگی</string>
+    <string name="add_to_group">افزودن به گروه</string>
+    <string name="new_group">گروه جدید</string>
+    <string name="group_name">نام گروه</string>
 </resources>

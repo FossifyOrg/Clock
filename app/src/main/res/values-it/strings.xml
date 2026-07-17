@@ -54,4 +54,7 @@
     <string name="missed_alarm">Sveglia mancata</string>
     <string name="replaced_by_another_alarm">Sostituita da un\'altra sveglia</string>
     <string name="alarm_timed_out">Sveglia scaduta</string>
+    <string name="add_to_group">Aggiungi al gruppo</string>
+    <string name="new_group">Nuovo gruppo</string>
+    <string name="group_name">Nome del gruppo</string>
 </resources>

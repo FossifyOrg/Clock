@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.fossify.clock.R
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.databinding.ItemAlarmBinding
+import org.fossify.clock.dialogs.AddToGroupDialog
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getFormattedTime
@@ -63,6 +64,7 @@ class AlarmsAdapter(
         }
 
         when (id) {
+            R.id.cab_add_to_group -> addSelectedToGroup()
             R.id.cab_delete -> deleteItems()
         }
     }
@@ -112,6 +114,15 @@ class AlarmsAdapter(
         alarms = newItems
         notifyDataSetChanged()
         finishActMode()
+    }
+
+    private fun addSelectedToGroup() {
+        val selectedIds = getSelectedItems().map { it.id }
+        AddToGroupDialog(activity as SimpleActivity) { groupId ->
+            activity.dbHelper.assignAlarmsToGroup(selectedIds, groupId)
+            finishActMode()
+            EventBus.getDefault().post(AlarmEvent.Refresh)
+        }
     }
 
     private fun deleteItems() {

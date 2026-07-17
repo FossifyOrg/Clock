@@ -53,4 +53,7 @@
     <string name="not_scheduled">Pole ajastatud</string>
     <string name="missed_alarm">Märkamata äratus</string>
     <string name="replaced_by_another_alarm">Seda asendas teine äratus</string>
+    <string name="add_to_group">Lisa rühma</string>
+    <string name="new_group">Uus rühm</string>
+    <string name="group_name">Rühma nimi</string>
 </resources>

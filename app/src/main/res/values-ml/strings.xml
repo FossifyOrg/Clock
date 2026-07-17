@@ -41,4 +41,7 @@
     <string name="increase_volume_gradually">വോളിയം ക്രമേണ വർദ്ധിപ്പിക്കുക</string>
     <string name="faq_1_title">സ്റ്റോപ്പ് വാച്ച് ടാബിൽ ലാപ് സോർട്ടിംഗ് എങ്ങനെ മാറ്റാം?</string>
     <string name="faq_1_text">ഏതെങ്കിലും കോളങ്ങളിൽ ക്ലിക്കുചെയ്യുക, അത് നൽകിയ കോളം ഉപയോഗിച്ച് ലാപ്പുകൾ ക്രമീകരിക്കാൻ ഇടയാക്കും. അധിക ക്ലിക്കുകൾ ഉപയോഗിച്ച് നിങ്ങൾക്ക് അസെന്റിങ് ആയും ഡിസെൻഡിങ് ആയും ടോഗിൾ ചെയ്യാൻ സഹായിക്കും.</string>
+    <string name="add_to_group">ഗ്രൂപ്പിൽ ചേർക്കുക</string>
+    <string name="new_group">പുതിയ ഗ്രൂപ്പ്</string>
+    <string name="group_name">സംഘത്തിൻ്റെ പേര്</string>
 </resources>

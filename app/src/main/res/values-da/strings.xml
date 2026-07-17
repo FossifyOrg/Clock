@@ -53,4 +53,7 @@
         <item quantity="one">%d timer kører</item>
         <item quantity="other">%d timere kører</item>
     </plurals>
+    <string name="add_to_group">Tilføj til gruppe</string>
+    <string name="new_group">Ny gruppe</string>
+    <string name="group_name">Gruppe navn</string>
 </resources>

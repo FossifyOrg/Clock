@@ -48,4 +48,7 @@
     <string name="sort_by_timer_duration">타이머 길이</string>
     <string name="not_scheduled">예약되지 않음</string>
     <string name="missed_alarm">놓친 알람</string>
+    <string name="add_to_group">그룹에 추가</string>
+    <string name="new_group">새로운 그룹</string>
+    <string name="group_name">그룹 이름</string>
 </resources>

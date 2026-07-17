@@ -53,4 +53,7 @@
     <string name="alarm_timed_out">Alarma caduca</string>
     <string name="settings_import_data">Importar alarmas e temporizadores</string>
     <string name="settings_export_data">Exportar alarmas e temporizadores</string>
+    <string name="add_to_group">Engadir ao grupo</string>
+    <string name="new_group">Novo grupo</string>
+    <string name="group_name">Nome do grupo</string>
 </resources>

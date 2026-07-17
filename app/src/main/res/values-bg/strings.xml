@@ -53,4 +53,7 @@
     <string name="alarm_timed_out">Времето за звънене на будилника е изтекло</string>
     <string name="missed_alarm">Пропуснат будилник</string>
     <string name="replaced_by_another_alarm">Заменен от друг будилник</string>
+    <string name="add_to_group">Добави към групата</string>
+    <string name="new_group">Нова група</string>
+    <string name="group_name">Име на групата</string>
 </resources>

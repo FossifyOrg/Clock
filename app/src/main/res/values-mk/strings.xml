@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_launcher_name">Часовник</string>
+    <string name="add_to_group">Додај во група</string>
+    <string name="new_group">Нова група</string>
+    <string name="group_name">Име на групата</string>
 </resources>
