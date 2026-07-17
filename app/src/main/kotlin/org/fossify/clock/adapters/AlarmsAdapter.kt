@@ -8,16 +8,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import org.fossify.clock.R
+import org.fossify.clock.activities.GroupActivity
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.databinding.ItemAlarmBinding
+import org.fossify.clock.databinding.ItemAlarmGroupBinding
 import org.fossify.clock.dialogs.AddToGroupDialog
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getFormattedTime
+import org.fossify.clock.extensions.handleFullScreenNotificationsPermission
 import org.fossify.clock.helpers.updateNonRecurringAlarmDay
 import org.fossify.clock.interfaces.ToggleAlarmInterface
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.AlarmEvent
+import org.fossify.clock.models.AlarmListItem
+import org.fossify.clock.models.Group
 import org.fossify.commons.adapters.MyRecyclerViewAdapter
 import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.extensions.applyColorFilter
@@ -34,11 +39,16 @@ import org.greenrobot.eventbus.EventBus
 
 class AlarmsAdapter(
     activity: SimpleActivity,
-    private var alarms: ArrayList<Alarm>,
+    private var items: ArrayList<AlarmListItem>,
     private val toggleAlarmInterface: ToggleAlarmInterface,
     recyclerView: MyRecyclerView,
     itemClick: (Any) -> Unit,
 ) : MyRecyclerViewAdapter(activity, recyclerView, itemClick), ItemTouchHelperContract {
+
+    companion object {
+        private const val VIEW_TYPE_ALARM = 0
+        private const val VIEW_TYPE_GROUP = 1
+    }
 
     private var startReorderDragListener: StartReorderDragListener
 
@@ -69,13 +79,16 @@ class AlarmsAdapter(
         }
     }
 
-    override fun getSelectableItemCount() = alarms.size
+    override fun getSelectableItemCount() = items.count { it is AlarmListItem.AlarmRow }
 
-    override fun getIsItemSelectable(position: Int) = true
+    override fun getIsItemSelectable(position: Int) = items.getOrNull(position) is AlarmListItem.AlarmRow
 
-    override fun getItemSelectionKey(position: Int) = alarms.getOrNull(position)?.id
+    override fun getItemSelectionKey(position: Int) =
+        (items.getOrNull(position) as? AlarmListItem.AlarmRow)?.alarm?.id
 
-    override fun getItemKeyPosition(key: Int) = alarms.indexOfFirst { it.id == key }
+    override fun getItemKeyPosition(key: Int): Int {
+        return items.indexOfFirst { it is AlarmListItem.AlarmRow && it.alarm.id == key }
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onActionModeCreated() {
@@ -91,33 +104,57 @@ class AlarmsAdapter(
 
     override fun onRowSelected(myViewHolder: ViewHolder?) {}
 
+    override fun getItemViewType(position: Int): Int {
+        return when (items[position]) {
+            is AlarmListItem.GroupRow -> VIEW_TYPE_GROUP
+            is AlarmListItem.AlarmRow -> VIEW_TYPE_ALARM
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return createViewHolder(ItemAlarmBinding.inflate(layoutInflater, parent, false).root)
+        return if (viewType == VIEW_TYPE_GROUP) {
+            createViewHolder(ItemAlarmGroupBinding.inflate(layoutInflater, parent, false).root)
+        } else {
+            createViewHolder(ItemAlarmBinding.inflate(layoutInflater, parent, false).root)
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val alarm = alarms[position]
-        holder.bindView(
-            any = alarm,
-            allowSingleClick = true,
-            allowLongClick = true
-        ) { itemView, _ ->
-            setupView(itemView, alarm, holder)
+        when (val item = items[position]) {
+            is AlarmListItem.GroupRow -> {
+                holder.bindView(
+                    any = item.group,
+                    allowSingleClick = true,
+                    allowLongClick = false
+                ) { itemView, _ ->
+                    setupGroupView(itemView, item)
+                }
+            }
+
+            is AlarmListItem.AlarmRow -> {
+                holder.bindView(
+                    any = item.alarm,
+                    allowSingleClick = true,
+                    allowLongClick = true
+                ) { itemView, _ ->
+                    setupView(itemView, item.alarm, holder)
+                }
+            }
         }
         bindViewHolder(holder)
     }
 
-    override fun getItemCount() = alarms.size
+    override fun getItemCount() = items.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateItems(newItems: ArrayList<Alarm>) {
-        alarms = newItems
+    fun updateItems(newItems: ArrayList<AlarmListItem>) {
+        items = newItems
         notifyDataSetChanged()
         finishActMode()
     }
 
     private fun addSelectedToGroup() {
-        val selectedIds = getSelectedItems().map { it.id }
+        val selectedIds = getSelectedAlarms().map { it.id }
         AddToGroupDialog(activity as SimpleActivity) { groupId ->
             activity.dbHelper.assignAlarmsToGroup(selectedIds, groupId)
             finishActMode()
@@ -126,20 +163,19 @@ class AlarmsAdapter(
     }
 
     private fun deleteItems() {
-        val alarmsToRemove = ArrayList<Alarm>()
         val positions = getSelectedItemPositions()
-        getSelectedItems().forEach {
-            alarmsToRemove.add(it)
-        }
-
-        alarms.removeAll(alarmsToRemove)
+        val alarmsToRemove = getSelectedAlarms()
+        items.removeAll { it is AlarmListItem.AlarmRow && alarmsToRemove.contains(it.alarm) }
         removeSelectedItems(positions)
         activity.dbHelper.deleteAlarms(alarmsToRemove)
         EventBus.getDefault().post(AlarmEvent.Refresh)
     }
 
-    private fun getSelectedItems(): ArrayList<Alarm> {
-        return alarms.filter { selectedKeys.contains(it.id) } as ArrayList<Alarm>
+    private fun getSelectedAlarms(): ArrayList<Alarm> {
+        return items.filterIsInstance<AlarmListItem.AlarmRow>()
+            .map { it.alarm }
+            .filter { selectedKeys.contains(it.id) }
+            .toCollection(ArrayList())
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -173,6 +209,38 @@ class AlarmsAdapter(
             alarmSwitch.setColors(textColor, properPrimaryColor, backgroundColor)
             alarmSwitch.setOnClickListener {
                 toggleAlarm(binding = this, alarm = alarm)
+            }
+        }
+    }
+
+    private fun setupGroupView(view: View, groupRow: AlarmListItem.GroupRow) {
+        ItemAlarmGroupBinding.bind(view).apply {
+            val group = groupRow.group
+            val alarms = groupRow.alarms
+
+            groupIcon.applyColorFilter(textColor)
+            groupTitle.text = group.title
+            groupTitle.setTextColor(textColor)
+
+            groupSubtitle.text = resources.getQuantityString(
+                R.plurals.group_alarm_count, alarms.size, alarms.size
+            )
+            groupSubtitle.setTextColor(textColor)
+
+            val allEnabled = alarms.isNotEmpty() && alarms.all { it.isEnabled }
+            groupSwitch.setColors(textColor, properPrimaryColor, backgroundColor)
+            groupSwitch.isChecked = allEnabled
+            groupSwitch.setOnClickListener {
+                toggleGroup(group.id, groupSwitch.isChecked)
+            }
+        }
+    }
+
+    private fun toggleGroup(groupId: Int, isEnabled: Boolean) {
+        (activity as SimpleActivity).handleFullScreenNotificationsPermission { granted ->
+            if (granted) {
+                val updatedAlarms = activity.dbHelper.updateGroupEnabledState(groupId, isEnabled)
+                updatedAlarms.forEach { toggleAlarmInterface.alarmToggled(it.id, isEnabled) }
             }
         }
     }
@@ -213,7 +281,6 @@ class AlarmsAdapter(
             return if (alarm.days == EVERY_DAY_BIT) {
                 activity.getString(org.fossify.commons.R.string.every_day)
             } else {
-                // TODO: This does not respect config.firstDayOfWeek
                 activity.getSelectedDaysString(alarm.days)
             }
         }
@@ -226,17 +293,16 @@ class AlarmsAdapter(
     }
 
     override fun onRowMoved(fromPosition: Int, toPosition: Int) {
-        alarms.move(fromPosition, toPosition)
+        items.move(fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
-        saveAlarmsCustomOrder(alarms)
+        saveAlarmsCustomOrder()
         if (activity.config.alarmSort != SORT_BY_CUSTOM) {
             activity.config.alarmSort = SORT_BY_CUSTOM
         }
     }
 
-    private fun saveAlarmsCustomOrder(alarms: ArrayList<Alarm>) {
-        val alarmsCustomSortingIds = alarms.map { it.id }
-
-        activity.config.alarmsCustomSorting = alarmsCustomSortingIds.joinToString { it.toString() }
+    private fun saveAlarmsCustomOrder() {
+        val ids = items.filterIsInstance<AlarmListItem.AlarmRow>().map { it.alarm.id }
+        activity.config.alarmsCustomSorting = ids.joinToString { it.toString() }
     }
 }

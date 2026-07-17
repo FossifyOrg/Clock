@@ -63,6 +63,13 @@
     <string name="add_to_group">Add to group</string>
     <string name="new_group">New group</string>
     <string name="group_name">Group name</string>
+    <string name="delete_group">Delete group</string>
+    <string name="delete_group_confirmation">Delete this group? Its alarms will be moved back to the main list.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarm</item>
+        <item quantity="other">%d alarms</item>
+    </plurals>
+    <string name="rename_group">Rename group</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
