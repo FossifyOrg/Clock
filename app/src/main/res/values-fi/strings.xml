@@ -53,4 +53,7 @@
     <string name="not_scheduled">Ei aikataulutettu</string>
     <string name="replaced_by_another_alarm">Toinen hälytys korvannut</string>
     <string name="missed_alarm">Hukattu hälytys</string>
+    <string name="add_to_group">Lisää ryhmään</string>
+    <string name="new_group">Uusi ryhmä</string>
+    <string name="group_name">Ryhmän nimi</string>
 </resources>

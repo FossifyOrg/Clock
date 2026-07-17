@@ -57,4 +57,7 @@
     <string name="missed_alarm">تنبيه فائت</string>
     <string name="replaced_by_another_alarm">تم استبداله بمنبه آخر</string>
     <string name="sort_by_timer_duration">مدة المؤقِّت</string>
+    <string name="add_to_group">أضف إلى المجموعة</string>
+    <string name="new_group">مجموعة جديدة</string>
+    <string name="group_name">اسم المجموعة</string>
 </resources>

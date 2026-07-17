@@ -53,4 +53,7 @@
     <string name="not_scheduled">Planlanmadı</string>
     <string name="missed_alarm">Kaçırılmış alarm</string>
     <string name="replaced_by_another_alarm">Yerine başka bir alarm konuldu</string>
+    <string name="add_to_group">Gruba ekle</string>
+    <string name="new_group">Yeni grup</string>
+    <string name="group_name">Grup adı</string>
 </resources>

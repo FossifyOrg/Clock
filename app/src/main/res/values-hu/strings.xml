@@ -53,4 +53,7 @@
     <string name="not_scheduled">Nincs ütemezve</string>
     <string name="missed_alarm">Kihagyott ébresztés</string>
     <string name="replaced_by_another_alarm">Másik ébresztés helyettesíti</string>
+    <string name="add_to_group">Csoporthoz hozzáadása</string>
+    <string name="new_group">Új csoport</string>
+    <string name="group_name">Csoport neve</string>
 </resources>

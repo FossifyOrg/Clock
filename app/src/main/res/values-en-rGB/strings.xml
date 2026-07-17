@@ -53,4 +53,7 @@
     <string name="settings_export_data">Export alarms and timers</string>
     <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
     <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
+    <string name="add_to_group">Add to group</string>
+    <string name="new_group">New group</string>
+    <string name="group_name">Group name</string>
 </resources>

@@ -46,4 +46,7 @@
     <string name="settings_export_data">Eksporter alarmer og timere</string>
     <string name="not_scheduled">Ikke planlagt</string>
     <string name="alarm_timed_out">Alarmen gikk ut</string>
+    <string name="add_to_group">Legg til i gruppe</string>
+    <string name="new_group">Ny gruppe</string>
+    <string name="group_name">Gruppenavn</string>
 </resources>

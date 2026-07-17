@@ -55,4 +55,7 @@
     <string name="not_scheduled">Не заплановано</string>
     <string name="missed_alarm">Пропущений будильник</string>
     <string name="replaced_by_another_alarm">Замінено на інший будильник</string>
+    <string name="add_to_group">Додати до групи</string>
+    <string name="new_group">Нова група</string>
+    <string name="group_name">Назва групи</string>
 </resources>

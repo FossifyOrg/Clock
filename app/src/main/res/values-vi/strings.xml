@@ -45,4 +45,7 @@
     <string name="show_seconds">Hiển thị giây</string>
     <string name="increase_volume_gradually">Tăng âm lượng dần dần</string>
     <string name="faq_1_title">Làm cách nào tôi có thể thay đổi cách sắp xếp vòng ở danh mục đồng hồ bấm giờ?</string>
+    <string name="add_to_group">Thêm vào nhóm</string>
+    <string name="new_group">Nhóm mới</string>
+    <string name="group_name">Tên nhóm</string>
 </resources>

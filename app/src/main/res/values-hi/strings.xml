@@ -53,4 +53,7 @@
     <string name="not_scheduled">अनुसूचित नहीं</string>
     <string name="missed_alarm">अलार्म छूट गया</string>
     <string name="replaced_by_another_alarm">दूसरे अलार्म द्वारा प्रतिस्थापित</string>
+    <string name="add_to_group">समूह में जोड़ें</string>
+    <string name="new_group">नया समूह</string>
+    <string name="group_name">समूह का नाम</string>
 </resources>

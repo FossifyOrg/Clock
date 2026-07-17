@@ -52,4 +52,7 @@
     <string name="faq_1_title">Penaos e c\'hallan cheñch urzh rummañ an troioù en ivinell padventer?</string>
     <string name="faq_1_text">Klikit war unan eus ar bannoù evit rummañ an troioù hervez ar bann-mañ. Gant klikoù ouzhpenn e c\'hallit trec\'haoliñ etre urzh rummañ war-gresk ha war-zigresk.</string>
     <string name="sort_by_timer_duration">Padelezh ar munuter</string>
+    <string name="add_to_group">Ouzhpennañ d\'ar strollad</string>
+    <string name="new_group">Strollad nevez</string>
+    <string name="group_name">Anv ar strollad</string>
 </resources>

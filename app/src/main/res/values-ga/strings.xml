@@ -56,4 +56,7 @@
     <string name="not_scheduled">Gan sceidealú</string>
     <string name="missed_alarm">Aláram caillte</string>
     <string name="replaced_by_another_alarm">Cuireadh aláram eile ina áit</string>
+    <string name="add_to_group">Cuir leis an ngrúpa</string>
+    <string name="new_group">Grúpa nua</string>
+    <string name="group_name">Ainm an ghrúpa</string>
 </resources>

@@ -45,4 +45,7 @@
     <string name="increase_volume_gradually">မြည်သံအားတစ်ဆင့်ချင်းမြှင့်ပါ</string>
     <string name="faq_1_title">ငါဘယ်လိုစံချိန်ယူနာရီမှာပြန်​ကျော့ထားတယ့်စာရင်းအစီအစဥ်ကိုချိန်းနိုင်မလဲ?</string>
     <string name="faq_1_text">ကော်လံတစ်ခု​ပေါ်မှာနှိပ်ပါ သင်နှိပ်လိုက်သည့်​ကော်လံကိုတစ်ခါထပ်နှိပ်ခြင်းဖြင့် ကြီးစဥ်ငယ်လိုက် နဲ့ငယ်စဥ်ကြီးလိုက်စီနိုင်ပါတယ်။</string>
+    <string name="add_to_group">အုပ်စုထဲထည့်ပါ</string>
+    <string name="new_group">အသစ်အဖွဲ့</string>
+    <string name="group_name">အဖွဲ့အမည်</string>
 </resources>

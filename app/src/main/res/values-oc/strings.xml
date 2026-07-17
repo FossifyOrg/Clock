@@ -53,4 +53,6 @@
     <string name="settings_export_data">Exportar las alarmas e los minutadors</string>
     <string name="faq_1_title">Cossí cambi los torns dins l’onglet cronomètre ?</string>
     <string name="faq_1_text">Clicatz sus una de las colomnas, aquò farà que los torns seràn ordenats per la colomna donada. Amb de clics suplementaris podètz alternar entre l\'òrdre creissent e descreissent.</string>
+    <string name="new_group">Nòu grop</string>
+    <string name="group_name">Nom del grop</string>
 </resources>

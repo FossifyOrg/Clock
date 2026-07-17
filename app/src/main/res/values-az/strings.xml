@@ -19,4 +19,7 @@
     <string name="timer_tab">Sayğaç bölməsi</string>
     <string name="show_seconds">Saniyələri göstər</string>
     <string name="increase_volume_gradually">Səsi aramla yüksəlt</string>
+    <string name="add_to_group">Qrupa əlavə et</string>
+    <string name="new_group">Yeni qrup</string>
+    <string name="group_name">Qrup adı</string>
 </resources>

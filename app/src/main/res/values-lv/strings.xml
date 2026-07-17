@@ -3,4 +3,7 @@
     <string name="app_launcher_name">Pulkstenis</string>
     <string name="time_zone">Laika josla</string>
     <string name="vibrate">Trīcēt</string>
+    <string name="add_to_group">Pievienot grupai</string>
+    <string name="new_group">Jauna grupa</string>
+    <string name="group_name">Grupas nosaukums</string>
 </resources>
