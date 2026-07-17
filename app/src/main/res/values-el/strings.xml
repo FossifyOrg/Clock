@@ -55,4 +55,8 @@
     <string name="add_to_group">Προσθήκη στην ομάδα</string>
     <string name="new_group">Νέα ομάδα</string>
     <string name="group_name">Όνομα ομάδας</string>
+    <string name="delete_group">Διαγραφή ομάδας</string>
+    <string name="rename_group">Μετονομασία ομάδας</string>
+    <string name="none">Κανένα</string>
+    <string name="delete_group_confirmation">Να διαγραφεί αυτή η ομάδα; Οι ειδοποιήσεις της θα μεταφερθούν ξανά στην κύρια λίστα.</string>
 </resources>

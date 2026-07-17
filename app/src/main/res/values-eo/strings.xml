@@ -56,4 +56,8 @@
     <string name="add_to_group">Aldoni al grupo</string>
     <string name="new_group">Nova grupo</string>
     <string name="group_name">Grupnomo</string>
+    <string name="delete_group">Forigi grupon</string>
+    <string name="rename_group">Renomigi grupon</string>
+    <string name="none">Neniu</string>
+    <string name="delete_group_confirmation">Forigi ĉi tiun grupon? Ĝiaj alarmoj estos movitaj reen al la ĉefa listo.</string>
 </resources>

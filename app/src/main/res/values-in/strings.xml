@@ -55,4 +55,8 @@
     <string name="add_to_group">Tambahkan ke grup</string>
     <string name="new_group">Grup baru</string>
     <string name="group_name">Nama grup</string>
+    <string name="delete_group">Hapus grup</string>
+    <string name="rename_group">Endurnefna hóp</string>
+    <string name="none">Tidak ada</string>
+    <string name="delete_group_confirmation">Hapus grup ini? Notifikasi dari grup ini akan dipindahkan kembali ke daftar utama.</string>
 </resources>

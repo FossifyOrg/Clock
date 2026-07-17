@@ -46,4 +46,8 @@
     <string name="add_to_group">Додај у групу</string>
     <string name="new_group">Нова група</string>
     <string name="group_name">Назив групе</string>
+    <string name="delete_group">Избриши групу</string>
+    <string name="rename_group">Преименујте групу</string>
+    <string name="none">Ниједан</string>
+    <string name="delete_group_confirmation">Избришите ову групу? Њене аларме ће бити враћене у главну листу.</string>
 </resources>

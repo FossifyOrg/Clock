@@ -30,4 +30,8 @@
     <string name="faq_1_text">Clifia ar unrhyw un o\'r colofnau. Mi fydd hynny\'n ail-drefnu\'r lapiau yn ôl y golofn honno. Gyda chliciau ychwanegol, bydd y drefn yn toglo rhwng esgynnol a disgynnol.</string>
     <string name="new_group">Grŵp newydd</string>
     <string name="group_name">Enw\'r grŵp</string>
+    <string name="delete_group">Dileu grŵp</string>
+    <string name="rename_group">Ail-enwi grŵp</string>
+    <string name="none">Dim un</string>
+    <string name="delete_group_confirmation">Dileu\'r grŵp hwn? Bydd ei larwmau\'n cael eu symud yn ôl i\'r prif restr.</string>
 </resources>

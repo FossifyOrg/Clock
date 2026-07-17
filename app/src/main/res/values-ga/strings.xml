@@ -59,4 +59,8 @@
     <string name="add_to_group">Cuir leis an ngrúpa</string>
     <string name="new_group">Grúpa nua</string>
     <string name="group_name">Ainm an ghrúpa</string>
+    <string name="delete_group">Scrios an grúpa</string>
+    <string name="rename_group">Athainm an ghrúpa</string>
+    <string name="none">Níl aon cheann</string>
+    <string name="delete_group_confirmation">An grúpa seo a scriosadh? Aistrófar a chuid aláraim ar ais go dtí an príomhliosta.</string>
 </resources>

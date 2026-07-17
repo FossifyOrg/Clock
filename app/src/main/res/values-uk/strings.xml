@@ -58,4 +58,8 @@
     <string name="add_to_group">Додати до групи</string>
     <string name="new_group">Нова група</string>
     <string name="group_name">Назва групи</string>
+    <string name="delete_group">Видалити групу</string>
+    <string name="rename_group">Перейменувати групу</string>
+    <string name="none">Немає</string>
+    <string name="delete_group_confirmation">¿Quieres eliminar este grupo? Sus alarmas se volverán a mover a la lista principal.</string>
 </resources>

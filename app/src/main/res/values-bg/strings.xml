@@ -56,4 +56,8 @@
     <string name="add_to_group">Добави към групата</string>
     <string name="new_group">Нова група</string>
     <string name="group_name">Име на групата</string>
+    <string name="delete_group">Изтриване на група</string>
+    <string name="rename_group">Преименуване на група</string>
+    <string name="none">Няма</string>
+    <string name="delete_group_confirmation">Да изтриете тази група ли? Нейните аларми ще бъдат преместени обратно в основния списък.</string>
 </resources>

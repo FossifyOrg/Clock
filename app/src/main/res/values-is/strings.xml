@@ -34,4 +34,8 @@
     <string name="add_to_group">Bæta við hóp</string>
     <string name="new_group">Ný hópur</string>
     <string name="group_name">Nafn hópsins</string>
+    <string name="delete_group">Eyða hópi</string>
+    <string name="rename_group">Csoport átnevezése</string>
+    <string name="none">Enginn</string>
+    <string name="delete_group_confirmation">Eyða þessum hópi? Viðvaranir hans verða færðar aftur í aðallista.</string>
 </resources>

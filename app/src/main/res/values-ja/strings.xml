@@ -55,4 +55,8 @@
     <string name="add_to_group">グループに追加</string>
     <string name="new_group">新しいグループ</string>
     <string name="group_name">グループ名</string>
+    <string name="delete_group">グループを削除</string>
+    <string name="rename_group">グループの名前を変更する</string>
+    <string name="none">なし</string>
+    <string name="delete_group_confirmation">このグループを削除しますか？このグループのアラームはメインリストに戻されます。</string>
 </resources>

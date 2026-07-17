@@ -56,4 +56,8 @@
     <string name="add_to_group">Lisa rühma</string>
     <string name="new_group">Uus rühm</string>
     <string name="group_name">Rühma nimi</string>
+    <string name="delete_group">Rühma kustutamine</string>
+    <string name="rename_group">Rühma ümbernimetamine</string>
+    <string name="none">Puudub</string>
+    <string name="delete_group_confirmation">Kas soovid selle grupi kustutada? Selle äratused viiakse tagasi põhinimekirja.</string>
 </resources>

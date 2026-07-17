@@ -55,4 +55,8 @@
     <string name="faq_1_text">Clicatz sus una de las colomnas, aquò farà que los torns seràn ordenats per la colomna donada. Amb de clics suplementaris podètz alternar entre l\'òrdre creissent e descreissent.</string>
     <string name="new_group">Nòu grop</string>
     <string name="group_name">Nom del grop</string>
+    <string name="delete_group">Suprimir lo grop</string>
+    <string name="rename_group">Renomenar lo grop</string>
+    <string name="none">Cap</string>
+    <string name="delete_group_confirmation">Suprimir aqueste grop? Sas alarmas seràn tornadas a la lista principala.</string>
 </resources>

@@ -57,4 +57,8 @@
     <string name="add_to_group">הוסף לקבוצה</string>
     <string name="new_group">קבוצה חדשה</string>
     <string name="group_name">שם הקבוצה</string>
+    <string name="delete_group">מחק קבוצה</string>
+    <string name="rename_group">שינוי שם הקבוצה</string>
+    <string name="none">אין</string>
+    <string name="delete_group_confirmation">האם למחוק את הקבוצה הזו? ההתראות שלה יועברו בחזרה לרשימה הראשית.</string>
 </resources>

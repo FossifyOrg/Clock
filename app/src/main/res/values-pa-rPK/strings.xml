@@ -32,4 +32,8 @@
     <string name="increase_volume_gradually">ہولی ہولی آواز ودھاؤ</string>
     <string name="new_group">ਨਵਾਂ ਸਮੂਹ</string>
     <string name="group_name">ਸਮੂਹ ਦਾ ਨਾਮ</string>
+    <string name="delete_group">ਸਮੂਹ ਮਿਟਾਓ</string>
+    <string name="rename_group">ਸਮੂਹ ਦਾ ਨਾਮ ਬਦਲੋ</string>
+    <string name="none">ਕੋਈ ਨਹੀਂ</string>
+    <string name="delete_group_confirmation">ਇਸ ਗਰੁੱਪ ਨੂੰ ਮਿਟਾਓ? ਇਸ ਦੀਆਂ ਅਲਾਰਮਾਂ ਮੁੱਖ ਸੂਚੀ ਵਿੱਚ ਵਾਪਸ ਭੇਜ ਦਿੱਤੀਆਂ ਜਾਣਗੀਆਂ।</string>
 </resources>

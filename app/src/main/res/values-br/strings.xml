@@ -55,4 +55,8 @@
     <string name="add_to_group">Ouzhpennañ d\'ar strollad</string>
     <string name="new_group">Strollad nevez</string>
     <string name="group_name">Anv ar strollad</string>
+    <string name="delete_group">Dilemel ar strollad</string>
+    <string name="rename_group">Adanvañ ar strollad</string>
+    <string name="none">Hini ebet</string>
+    <string name="delete_group_confirmation">Dilemel ar strollad-mañ ? Adkaset e vo e evezhiadennoù d\'al listenn bennañ.</string>
 </resources>

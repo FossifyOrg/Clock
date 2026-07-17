@@ -4,4 +4,8 @@
     <string name="add_to_group">Додај во група</string>
     <string name="new_group">Нова група</string>
     <string name="group_name">Име на групата</string>
+    <string name="delete_group">Избриши група</string>
+    <string name="rename_group">Преименувај група</string>
+    <string name="none">Ништо</string>
+    <string name="delete_group_confirmation">Да се избрише оваа група? Нејзините аларми ќе бидат вратени во главната листа.</string>
 </resources>
