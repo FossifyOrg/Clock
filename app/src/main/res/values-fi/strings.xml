@@ -63,4 +63,5 @@
         <item quantity="one">%d hälytys</item>
         <item quantity="other">%d hälytystä</item>
     </plurals>
+    <string name="group_name_exists">Tällainen ryhmä on jo olemassa</string>
 </resources>

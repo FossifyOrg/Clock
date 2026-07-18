@@ -63,4 +63,5 @@
         <item quantity="one">%d аларма</item>
         <item quantity="other">%d аларми</item>
     </plurals>
+    <string name="group_name_exists">Вече съществува група с това име</string>
 </resources>

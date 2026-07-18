@@ -64,4 +64,5 @@
         <item quantity="one">%d אזעקה</item>
         <item quantity="other">%d אזעקות</item>
     </plurals>
+    <string name="group_name_exists">כבר קיימת קבוצה בשם זה</string>
 </resources>

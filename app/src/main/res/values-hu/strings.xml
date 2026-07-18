@@ -63,4 +63,5 @@
         <item quantity="one">%d riasztás</item>
         <item quantity="other">%d riasztás</item>
     </plurals>
+    <string name="group_name_exists">Már létezik egy ilyen nevű csoport</string>
 </resources>

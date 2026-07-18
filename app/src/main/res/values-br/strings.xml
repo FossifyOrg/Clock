@@ -62,4 +62,5 @@
         <item quantity="one">%d diwall</item>
         <item quantity="other">%d diwalls</item>
     </plurals>
+    <string name="group_name_exists">Ur strollad gant an anv-se a zo dija.</string>
 </resources>

@@ -64,4 +64,5 @@
         <item quantity="one">%d alarm</item>
         <item quantity="other">%d alarma</item>
     </plurals>
+    <string name="group_name_exists">Grupa s tim imenom već postoji</string>
 </resources>

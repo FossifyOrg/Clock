@@ -62,4 +62,5 @@
         <item quantity="one">%d アラーム</item>
         <item quantity="other">%d 件のアラーム</item>
     </plurals>
+    <string name="group_name_exists">その名前のグループはすでに存在します</string>
 </resources>

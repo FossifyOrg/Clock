@@ -64,4 +64,5 @@
         <item quantity="one">%d budík</item>
         <item quantity="other">%d budíků</item>
     </plurals>
+    <string name="group_name_exists">Skupina s tímto názvem již existuje</string>
 </resources>

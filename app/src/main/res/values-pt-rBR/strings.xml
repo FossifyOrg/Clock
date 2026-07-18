@@ -64,4 +64,5 @@
         <item quantity="one">Alarme %d</item>
         <item quantity="other">%d alarmes</item>
     </plurals>
+    <string name="group_name_exists">Já existe um grupo com esse nome</string>
 </resources>

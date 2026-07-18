@@ -13,4 +13,5 @@
         <item quantity="one">%d modinātājs</item>
         <item quantity="other">%d modinātāji</item>
     </plurals>
+    <string name="group_name_exists">Grupa ar šādu nosaukumu jau pastāv</string>
 </resources>

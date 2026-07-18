@@ -63,4 +63,5 @@
         <item quantity="one">%d alarma</item>
         <item quantity="other">%d alarma</item>
     </plurals>
+    <string name="group_name_exists">Izena horrekin talde bat dagoeneko badago.</string>
 </resources>

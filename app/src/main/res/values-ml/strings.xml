@@ -51,4 +51,5 @@
         <item quantity="one">%d അലാറം</item>
         <item quantity="other">%d അലാറങ്ങൾ</item>
     </plurals>
+    <string name="group_name_exists">അങ്ങനെയൊരു ഗ്രൂപ്പ് ഇതിനകം നിലവിലുണ്ട്</string>
 </resources>

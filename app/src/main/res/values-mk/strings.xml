@@ -11,4 +11,5 @@
         <item quantity="one">%d аларм</item>
         <item quantity="other">%d аларми</item>
     </plurals>
+    <string name="group_name_exists">Веќе постои група со тоа име.</string>
 </resources>

@@ -55,4 +55,5 @@
         <item quantity="one">Báo thức %d</item>
         <item quantity="other">%d báo thức</item>
     </plurals>
+    <string name="group_name_exists">Đã có một nhóm mang tên đó rồi</string>
 </resources>

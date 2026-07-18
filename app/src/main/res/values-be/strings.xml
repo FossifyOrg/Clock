@@ -65,4 +65,5 @@
         <item quantity="one">%d ы трывожны сігнал</item>
         <item quantity="other">%d трывог</item>
     </plurals>
+    <string name="group_name_exists">Ужо існуе група з такой назвай.</string>
 </resources>

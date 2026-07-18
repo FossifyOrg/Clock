@@ -65,4 +65,5 @@
         <item quantity="one">%d будильник</item>
         <item quantity="other">%d сигналів тривоги</item>
     </plurals>
+    <string name="group_name_exists">Група з такою назвою вже існує</string>
 </resources>

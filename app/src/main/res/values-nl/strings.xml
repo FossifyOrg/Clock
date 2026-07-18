@@ -63,4 +63,5 @@
         <item quantity="one">%d alarm</item>
         <item quantity="other">%d alarmen</item>
     </plurals>
+    <string name="group_name_exists">Er bestaat al een groep met die naam</string>
 </resources>

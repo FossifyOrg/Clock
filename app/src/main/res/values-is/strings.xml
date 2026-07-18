@@ -41,4 +41,5 @@
         <item quantity="one">%d viðvörun</item>
         <item quantity="other">%d viðvaranir</item>
     </plurals>
+    <string name="group_name_exists">Hópur með það nafn er þegar til.</string>
 </resources>

@@ -11,4 +11,5 @@
         <item quantity="one">هشدار %d</item>
         <item quantity="other">%d هشدار</item>
     </plurals>
+    <string name="group_name_exists">گروهی با آن نام از قبل وجود دارد</string>
 </resources>

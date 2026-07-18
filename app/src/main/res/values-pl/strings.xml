@@ -65,4 +65,5 @@
         <item quantity="one">%d alarm</item>
         <item quantity="other">%d alarmów</item>
     </plurals>
+    <string name="group_name_exists">Grupa o tej nazwie już istnieje</string>
 </resources>

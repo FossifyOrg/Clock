@@ -37,4 +37,5 @@
         <item quantity="one">%d alarm</item>
         <item quantity="other">%d larwm</item>
     </plurals>
+    <string name="group_name_exists">Mae grŵp o\'r enw hwnnw eisoes yn bodoli.</string>
 </resources>

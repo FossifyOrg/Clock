@@ -63,4 +63,5 @@
         <item quantity="one">%d äratus</item>
         <item quantity="other">%d äratust</item>
     </plurals>
+    <string name="group_name_exists">Sellise nimega rühm on juba olemas</string>
 </resources>

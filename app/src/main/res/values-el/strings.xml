@@ -62,4 +62,5 @@
         <item quantity="one">%d ξυπνητήρι</item>
         <item quantity="other">%d ειδοποιήσεις</item>
     </plurals>
+    <string name="group_name_exists">Υπάρχει ήδη μια ομάδα με αυτό το όνομα</string>
 </resources>

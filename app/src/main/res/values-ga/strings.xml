@@ -66,4 +66,5 @@
         <item quantity="one">Alaram %d</item>
         <item quantity="other">%d aláraim</item>
     </plurals>
+    <string name="group_name_exists">Tá grúpa leis an ainm sin ann cheana féin.</string>
 </resources>

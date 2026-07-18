@@ -67,4 +67,5 @@
         <item quantity="one">منبه %d</item>
         <item quantity="other">%d منبهاتs</item>
     </plurals>
+    <string name="group_name_exists">هناك مجموعة تحمل هذا الاسم بالفعل</string>
 </resources>

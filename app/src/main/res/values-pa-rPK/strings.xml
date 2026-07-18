@@ -39,4 +39,5 @@
         <item quantity="one">%d ਚੇਤਾਵਨੀ</item>
         <item quantity="other">%d ਚੇਤਾਵਨੀਆਂ</item>
     </plurals>
+    <string name="group_name_exists">ਉਸੇ ਨਾਮ ਦਾ ਇੱਕ ਗਰੁੱਪ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।</string>
 </resources>

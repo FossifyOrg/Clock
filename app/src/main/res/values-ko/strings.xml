@@ -58,4 +58,5 @@
         <item quantity="one">%d 알람</item>
         <item quantity="other">%d 개의 알람</item>
     </plurals>
+    <string name="group_name_exists">그런 이름의 그룹이 이미 존재합니다</string>
 </resources>

@@ -34,4 +34,5 @@
         <item quantity="one">%d budilka</item>
         <item quantity="other">%d budilkas</item>
     </plurals>
+    <string name="group_name_exists">Grupė su tokiu pavadinimu jau egzistuoja</string>
 </resources>

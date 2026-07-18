@@ -63,4 +63,5 @@
         <item quantity="one">%d अलार्म</item>
         <item quantity="other">%d अलार्म</item>
     </plurals>
+    <string name="group_name_exists">उस नाम का एक समूह पहले से ही मौजूद है।</string>
 </resources>

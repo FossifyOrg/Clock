@@ -62,4 +62,5 @@
         <item quantity="one">Alarma %d</item>
         <item quantity="other">%d alarmas</item>
     </plurals>
+    <string name="group_name_exists">Un grop amb aquel nom ja existís.</string>
 </resources>

@@ -63,4 +63,5 @@
         <item quantity="one">%d alarmı</item>
         <item quantity="other">%d alarm</item>
     </plurals>
+    <string name="group_name_exists">Bu isimde bir grup zaten mevcut</string>
 </resources>

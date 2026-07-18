@@ -63,4 +63,5 @@
         <item quantity="one">%d alarmo</item>
         <item quantity="other">%d alarmoj</item>
     </plurals>
+    <string name="group_name_exists">Jam ekzistas grupo kun tiu nomo.</string>
 </resources>

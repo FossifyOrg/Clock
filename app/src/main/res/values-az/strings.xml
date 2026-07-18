@@ -29,4 +29,5 @@
         <item quantity="one">%d alarm</item>
         <item quantity="other">%d alarms</item>
     </plurals>
+    <string name="group_name_exists">Bu adla artıq bir qrup mövcuddur</string>
 </resources>
