@@ -102,8 +102,8 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
             }
 
             val groups = safeContext.dbHelper.getGroups()
-            val groupedAlarms = allAlarms.filter { it.groupId != 0 }.groupBy { it.groupId }
-            var ungroupedAlarms = allAlarms.filter { it.groupId == 0 } as ArrayList<Alarm>
+            val groupedAlarms = allAlarms.filter { it.groupRef != 0 }.groupBy { it.groupRef }
+            var ungroupedAlarms = allAlarms.filter { it.groupRef == 0 } as ArrayList<Alarm>
 
             when (safeContext.config.alarmSort) {
                 SORT_BY_ALARM_TIME -> ungroupedAlarms.sortBy { it.timeInMinutes }

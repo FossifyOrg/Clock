@@ -6,5 +6,6 @@ import androidx.annotation.Keep
 @kotlinx.serialization.Serializable
 data class AlarmTimerBackup(
     val alarms: List<Alarm>,
+    val groups: List<Group>,
     val timers: List<Timer>,
 )

@@ -1,6 +1,6 @@
 package org.fossify.clock.dialogs
 
-import androidx.core.R
+import android.widget.Toast
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.databinding.DialogAddToGroupBinding
 import org.fossify.clock.extensions.dbHelper
@@ -23,7 +23,7 @@ class AddToGroupDialog(
 
         if (groups.any()){
             val noneText = activity.resources.getString(org.fossify.commons.R.string.none)
-            mutableGroups.add(0, Group(0, noneText))
+            mutableGroups.add(0, Group(0, 0, noneText))
         }
 
         mutableGroups.forEach { group ->
@@ -45,8 +45,14 @@ class AddToGroupDialog(
 
     private fun dialogConfirmed() {
         val newGroupName = binding.addToGroupNewName.value.trim()
-        val groupId = if (newGroupName.isNotEmpty()) {
+        val groupNameExists = activity.dbHelper.getGroups().any { it.title == newGroupName }
+
+        val groupId = if (newGroupName.isNotEmpty() && !groupNameExists) {
             activity.dbHelper.insertGroup(newGroupName)
+        } else if (groupNameExists) {
+            val text = activity.resources.getString(org.fossify.clock.R.string.group_name_exists)
+            Toast.makeText(activity.baseContext, text, Toast.LENGTH_SHORT).show()
+            return
         } else {
             val checkedRadioId = binding.addToGroupRadioGroup.checkedRadioButtonId
             radioIdToGroupId[checkedRadioId] ?: return

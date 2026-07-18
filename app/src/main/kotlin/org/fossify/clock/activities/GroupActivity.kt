@@ -80,7 +80,7 @@ class GroupActivity : SimpleActivity(), ToggleAlarmInterface {
             val newAlarm = createNewAlarm(DEFAULT_ALARM_MINUTES, 0)
             newAlarm.isEnabled = true
             newAlarm.days = getTomorrowBit()
-            newAlarm.groupId = groupId
+            newAlarm.groupRef = groupId
             openEditAlarm(newAlarm)
         }
     }
@@ -127,7 +127,7 @@ class GroupActivity : SimpleActivity(), ToggleAlarmInterface {
     private fun refreshAlarms() {
         ensureBackgroundThread {
             val alarms = dbHelper.getAlarms()
-                .filter { it.groupId == groupId }
+                .filter { it.groupRef == groupId }
                 .sortedBy { it.timeInMinutes }
 
             runOnUiThread {

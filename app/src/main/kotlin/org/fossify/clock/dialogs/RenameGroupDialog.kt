@@ -35,7 +35,7 @@ class RenameGroupDialog(
                             return@setOnClickListener
                         }
 
-                        activity.dbHelper.updateGroupTitle(group.id, newTitle)
+                        activity.dbHelper.updateGroup(Group(group.id, group.ref, newTitle))
                         callback()
                         alertDialog.dismiss()
                     }
