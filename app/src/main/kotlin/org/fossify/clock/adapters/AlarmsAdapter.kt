@@ -232,7 +232,7 @@ class AlarmsAdapter(
             groupSwitch.setColors(textColor, properPrimaryColor, backgroundColor)
             groupSwitch.isChecked = anyEnabled
             groupSwitch.setOnClickListener {
-                toggleGroup(group.id, groupSwitch.isChecked)
+                toggleGroup(group.ref, groupSwitch.isChecked)
             }
         }
     }

@@ -37,24 +37,24 @@ import org.greenrobot.eventbus.ThreadMode
 
 class GroupActivity : SimpleActivity(), ToggleAlarmInterface {
     companion object {
-        private const val GROUP_ID = "group_id"
+        private const val GROUP_REF = "group_ref"
 
-        fun start(context: Context, groupId: Int) {
+        fun start(context: Context, groupRef: Int) {
             context.startActivity(
-                Intent(context, GroupActivity::class.java).putExtra(GROUP_ID, groupId)
+                Intent(context, GroupActivity::class.java).putExtra(GROUP_REF, groupRef)
             )
         }
     }
 
     private val binding by viewBinding(ActivityGroupBinding::inflate)
-    private var groupId = -1
+    private var groupRef = -1
     private var currentEditAlarmDialog: EditAlarmDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        groupId = intent.getIntExtra(GROUP_ID, -1)
-        if (groupId == -1) {
+        groupRef = intent.getIntExtra(GROUP_REF, -1)
+        if (groupRef == -1) {
             finish()
             return
         }
@@ -66,7 +66,7 @@ class GroupActivity : SimpleActivity(), ToggleAlarmInterface {
         binding.groupToolbar.setOnMenuItemClickListener { menuItem ->
             if (menuItem.itemId == R.id.delete_group) {
                 ConfirmationDialog(this, messageId = R.string.delete_group_confirmation) {
-                    dbHelper.deleteGroup(groupId)
+                    dbHelper.deleteGroup(groupRef)
                     EventBus.getDefault().post(AlarmEvent.Refresh)
                     finish()
                 }
@@ -80,7 +80,7 @@ class GroupActivity : SimpleActivity(), ToggleAlarmInterface {
             val newAlarm = createNewAlarm(DEFAULT_ALARM_MINUTES, 0)
             newAlarm.isEnabled = true
             newAlarm.days = getTomorrowBit()
-            newAlarm.groupRef = groupId
+            newAlarm.groupRef = groupRef
             openEditAlarm(newAlarm)
         }
     }
@@ -108,7 +108,7 @@ class GroupActivity : SimpleActivity(), ToggleAlarmInterface {
     }
 
     private fun setupGroupTitle(): Boolean {
-        val group = dbHelper.getGroups().firstOrNull { it.id == groupId }
+        val group = dbHelper.getGroups().firstOrNull { it.ref == groupRef }
         if (group == null) {
             finish()
             return false
@@ -127,7 +127,7 @@ class GroupActivity : SimpleActivity(), ToggleAlarmInterface {
     private fun refreshAlarms() {
         ensureBackgroundThread {
             val alarms = dbHelper.getAlarms()
-                .filter { it.groupRef == groupId }
+                .filter { it.groupRef == groupRef }
                 .sortedBy { it.timeInMinutes }
 
             runOnUiThread {

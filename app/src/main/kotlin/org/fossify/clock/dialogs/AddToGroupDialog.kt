@@ -31,7 +31,7 @@ class AddToGroupDialog(
                 id = android.view.View.generateViewId()
                 text = group.title
             }
-            radioIdToGroupId[radioButton.id] = group.id
+            radioIdToGroupId[radioButton.id] = group.ref
             binding.addToGroupRadioGroup.addView(radioButton)
         }
 

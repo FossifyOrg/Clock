@@ -29,12 +29,12 @@ class ImportHelper(
             context.contentResolver.openInputStream(uri)?.use { inputStream ->
                 val backup = Json.decodeFromStream<AlarmTimerBackup>(inputStream)
                 val importedGroups = insertGroups(backup.groups)
-                val updatedAlarms = updateAlarmGroupIds(backup.alarms)
+                val updatedAlarms = updateAlarmGroupIds(backup.alarms, backup.groups)
                 val importedAlarms = insertAlarms(updatedAlarms)
                 val importedTimers = insertTimers(backup.timers)
                 when {
-                    importedGroups.count() > 0 || importedAlarms > 0 || importedTimers > 0 -> ImportResult.IMPORT_OK
-                    importedGroups.count() == 0 && importedAlarms == 0 && importedTimers == 0 -> ImportResult.IMPORT_INCOMPLETE
+                    importedGroups > 0 || importedAlarms > 0 || importedTimers > 0 -> ImportResult.IMPORT_OK
+                    importedGroups == 0 && importedAlarms == 0 && importedTimers == 0 -> ImportResult.IMPORT_INCOMPLETE
                     else -> ImportResult.IMPORT_FAIL
                 }
             } ?: ImportResult.IMPORT_FAIL
@@ -59,30 +59,35 @@ class ImportHelper(
         return insertedCount
     }
 
-    private fun updateAlarmGroupIds(alarms: List<Alarm>): List<Alarm> {
+    private fun updateAlarmGroupIds(alarms: List<Alarm>, backupGroups: List<Group>): List<Alarm> {
+        val localGroups = dbHelper.getGroups()
         alarms.forEach { alarm ->
-            val groups = dbHelper.getGroups().map { it.ref to it.id }
-            if (groups.any { (key) -> alarm.groupRef == key }) {
-                val tmp = groups[alarm.groupRef]
-                alarm.groupRef = tmp.second
+            if (alarm.groupRef != 0) {
+                val backupGroup = backupGroups.find { it.ref == alarm.groupRef }
+                if (backupGroup != null) {
+                    val localGroup = localGroups.find { it.title == backupGroup.title }
+                    if (localGroup != null) {
+                        alarm.groupRef = localGroup.ref
+                    }
+                }
             }
         }
 
         return alarms
     }
 
-    private fun insertGroups(groups: List<Group>): MutableMap<Int, Int> {
+    private fun insertGroups(groups: List<Group>): Int {
         val existingGroups = dbHelper.getGroups()
-        val idMap = mutableMapOf<Int, Int>()
+        var insertedCount = 0
         groups.forEach { group ->
             if (!isGroupInserted(group, existingGroups)){
-                val newId = dbHelper.insertGroup(group.title)
+                val newId = dbHelper.insertGroup(group.title, group.ref)
                 if (newId != -1){
-                    idMap.put(group.id, newId)
+                    insertedCount++
                 }
             }
         }
-        return idMap
+        return insertedCount
     }
 
     private fun insertTimers(timers: List<Timer>): Int {
@@ -116,6 +121,7 @@ class ImportHelper(
                 alarm.label == existingAlarm.label &&
                 alarm.oneShot == existingAlarm.oneShot
             ) {
+                alarm.id = existingAlarm.id
                 return true
             }
         }

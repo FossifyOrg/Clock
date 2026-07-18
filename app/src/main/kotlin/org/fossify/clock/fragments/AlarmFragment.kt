@@ -141,7 +141,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 .map { group ->
                     AlarmListItem.GroupRow(
                         group = group,
-                        alarms = groupedAlarms[group.id].orEmpty().sortedBy { it.timeInMinutes }
+                        alarms = groupedAlarms[group.ref].orEmpty().sortedBy { it.timeInMinutes }
                     )
                 }
 
@@ -169,7 +169,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 ) {
                     when (it) {
                         is Alarm -> openEditAlarm(it)
-                        is Group -> GroupActivity.start(safeActivity, it.id)
+                        is Group -> GroupActivity.start(safeActivity, it.ref)
                     }
                 }.apply {
                     binding.alarmsList.adapter = this

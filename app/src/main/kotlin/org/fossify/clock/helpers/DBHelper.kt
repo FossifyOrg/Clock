@@ -44,7 +44,7 @@ class DBHelper private constructor(
     private val mDb = writableDatabase
 
     companion object {
-        private const val DB_VERSION = 4
+        private const val DB_VERSION = 3
         const val DB_NAME = "alarms.db"
 
         @SuppressLint("StaticFieldLeak")
@@ -81,11 +81,8 @@ class DBHelper private constructor(
             db.execSQL("ALTER TABLE $ALARMS_TABLE_NAME ADD COLUMN $COL_ONE_SHOT INTEGER NOT NULL DEFAULT 0")
         }
         if (oldVersion < 3) {
-            db.execSQL("ALTER TABLE $ALARMS_TABLE_NAME ADD COLUMN $COL_GROUP_ID INTEGER DEFAULT NULL")
-            createGroupsTable(db)
-        }
-        if (oldVersion < 4) {
             db.execSQL("ALTER TABLE $GROUPS_TABLE_NAME ADD COLUMN $COL_GROUP_REF INTEGER DEFAULT 0")
+            createGroupsTable(db)
         }
     }
 
@@ -129,13 +126,23 @@ class DBHelper private constructor(
         mDb.delete(ALARMS_TABLE_NAME, selection, null)
     }
 
-    fun insertGroup(title: String): Int {
-        val values = ContentValues().apply { put(COL_GROUP_TITLE, title) }
+    fun insertGroup(title: String, ref: Int = 0): Int {
+        val values = ContentValues().apply {
+            put(COL_GROUP_TITLE, title)
+        }
         val res = mDb.insert(GROUPS_TABLE_NAME, null, values).toInt()
-        if (res != -1)
-            updateGroup(Group(res, res, title))
+        if (res == -1) {
+            return -1
+        }
 
-        return res
+        val finalRef = if (ref == 0) res else ref
+        if (ref == 0) {
+            updateGroup(Group(res, res, title))
+        } else {
+            updateGroup(Group(res, ref, title))
+        }
+
+        return finalRef
     }
 
     fun updateGroup(group: Group) {
@@ -145,10 +152,10 @@ class DBHelper private constructor(
         mDb.update(GROUPS_TABLE_NAME, values, "$COL_ID = ?", arrayOf(group.id.toString()))
     }
 
-    fun deleteGroup(groupId: Int) {
+    fun deleteGroup(groupRef: Int) {
         val values = ContentValues().apply { putNull(COL_GROUP_ID) }
-        mDb.update(ALARMS_TABLE_NAME, values, "$COL_GROUP_ID = ?", arrayOf(groupId.toString()))
-        mDb.delete(GROUPS_TABLE_NAME, "$COL_ID = ?", arrayOf(groupId.toString()))
+        mDb.update(ALARMS_TABLE_NAME, values, "$COL_GROUP_ID = ?", arrayOf(groupRef.toString()))
+        mDb.delete(GROUPS_TABLE_NAME, "$COL_GROUP_REF = ?", arrayOf(groupRef.toString()))
     }
     fun getGroups(): ArrayList<Group> {
         val groups = ArrayList<Group>()
@@ -164,16 +171,22 @@ class DBHelper private constructor(
         return groups
     }
 
-    fun assignAlarmsToGroup(alarmIds: List<Int>, groupId: Int) {
-        val values = ContentValues().apply { put(COL_GROUP_ID, groupId) }
+    fun assignAlarmsToGroup(alarmIds: List<Int>, groupRef: Int) {
+        val values = ContentValues().apply {
+            if (groupRef == 0) {
+                putNull(COL_GROUP_ID)
+            } else {
+                put(COL_GROUP_ID, groupRef)
+            }
+        }
         val args = TextUtils.join(", ", alarmIds)
         mDb.update(ALARMS_TABLE_NAME, values, "$COL_ID IN ($args)", null)
     }
 
-    fun updateGroupEnabledState(groupId: Int, isEnabled: Boolean): List<Alarm> {
+    fun updateGroupEnabledState(groupRef: Int, isEnabled: Boolean): List<Alarm> {
         val values = ContentValues().apply { put(COL_IS_ENABLED, isEnabled) }
-        mDb.update(ALARMS_TABLE_NAME, values, "$COL_GROUP_ID = ?", arrayOf(groupId.toString()))
-        return  getAlarms().filter { it.groupRef == groupId }
+        mDb.update(ALARMS_TABLE_NAME, values, "$COL_GROUP_ID = ?", arrayOf(groupRef.toString()))
+        return  getAlarms().filter { it.groupRef == groupRef }
     }
 
     fun getAlarmWithId(id: Int) = getAlarms().firstOrNull { it.id == id }
