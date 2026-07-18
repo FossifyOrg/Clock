@@ -72,7 +72,8 @@ class DBHelper private constructor(
 
     private fun createGroupsTable(db: SQLiteDatabase) {
         db.execSQL(
-            "CREATE TABLE IF NOT EXISTS $GROUPS_TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_GROUP_REF INTEGER, $COL_GROUP_TITLE TEXT)"
+            "CREATE TABLE IF NOT EXISTS $GROUPS_TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "$COL_GROUP_REF INTEGER, $COL_GROUP_TITLE TEXT)"
         )
     }
 
@@ -159,11 +160,13 @@ class DBHelper private constructor(
     }
     fun getGroups(): ArrayList<Group> {
         val groups = ArrayList<Group>()
-        val cursor = mDb.query(GROUPS_TABLE_NAME, arrayOf(COL_ID, COL_GROUP_REF, COL_GROUP_TITLE), null, null, null, null, null)
+        val cursor = mDb.query(GROUPS_TABLE_NAME, arrayOf(COL_ID, COL_GROUP_REF, COL_GROUP_TITLE),
+            null, null, null, null, null)
         cursor.use {
             if (it.moveToFirst()){
                 do {
-                    groups.add(Group(id = it.getIntValue(COL_ID), ref = it.getIntValue(COL_GROUP_REF), title = it.getStringValue(COL_GROUP_TITLE)))
+                    groups.add(Group(id = it.getIntValue(COL_ID), ref = it.getIntValue(COL_GROUP_REF),
+                        title = it.getStringValue(COL_GROUP_TITLE)))
                 } while (it.moveToNext())
             }
         }
