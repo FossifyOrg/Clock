@@ -31,7 +31,7 @@
     <string name="add_alarm">Thêm báo thức</string>
     <string name="no_timers_found">Không tìm thấy bộ hẹn giờ nào</string>
     <string name="add_timer">Thêm bộ hẹn giờ</string>
-    <string name="upcoming_alarm">Báo thức sắp tới</string>
+    <string name="upcoming_alarm">Báo thức sắp tới</string>r
     <string name="timers_notification_msg">Đồng hồ hẹn giờ đang chạy</string>
     <string name="timer_single_notification_label_msg">Bộ hẹn giờ cho %s đang chạy</string>
     <string name="new_timer">Hẹn giờ mới</string>
@@ -45,4 +45,15 @@
     <string name="show_seconds">Hiển thị giây</string>
     <string name="increase_volume_gradually">Tăng âm lượng dần dần</string>
     <string name="faq_1_title">Làm cách nào tôi có thể thay đổi cách sắp xếp vòng ở danh mục đồng hồ bấm giờ?</string>
+    <string name="add_to_group">Thêm vào nhóm</string>
+    <string name="new_group">Nhóm mới</string>
+    <string name="group_name">Tên nhóm</string>
+    <string name="delete_group">Xóa nhóm</string>
+    <string name="rename_group">Đổi tên nhóm</string>
+    <string name="delete_group_confirmation">Xóa nhóm này? Các cảnh báo của nhóm này sẽ được chuyển trở lại danh sách chính.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">Báo thức %d</item>
+        <item quantity="other">%d báo thức</item>
+    </plurals>
+    <string name="group_name_exists">Đã có một nhóm mang tên đó rồi</string>
 </resources>

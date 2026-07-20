@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_launcher_name">ساعت زنگی</string>
+    <string name="add_to_group">افزودن به گروه</string>
+    <string name="new_group">گروه جدید</string>
+    <string name="group_name">نام گروه</string>
+    <string name="delete_group">حذف گروه</string>
+    <string name="rename_group">نام گروه را تغییر دهید</string>
+    <string name="delete_group_confirmation">حذف این گروه؟ هشدارهای آن به فهرست اصلی بازگردانده خواهند شد.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">هشدار %d</item>
+        <item quantity="other">%d هشدار</item>
+    </plurals>
+    <string name="group_name_exists">گروهی با آن نام از قبل وجود دارد</string>
 </resources>

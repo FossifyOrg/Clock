@@ -53,4 +53,15 @@
     <string name="alarm_timed_out">Времето за звънене на будилника е изтекло</string>
     <string name="missed_alarm">Пропуснат будилник</string>
     <string name="replaced_by_another_alarm">Заменен от друг будилник</string>
+    <string name="add_to_group">Добави към групата</string>
+    <string name="new_group">Нова група</string>
+    <string name="group_name">Име на групата</string>
+    <string name="delete_group">Изтриване на група</string>
+    <string name="rename_group">Преименуване на група</string>
+    <string name="delete_group_confirmation">Да изтриете тази група ли? Нейните аларми ще бъдат преместени обратно в основния списък.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d аларма</item>
+        <item quantity="other">%d аларми</item>
+    </plurals>
+    <string name="group_name_exists">Вече съществува група с това име</string>
 </resources>

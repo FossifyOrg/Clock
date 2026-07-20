@@ -28,4 +28,14 @@
     <string name="increase_volume_gradually">Cynyddu uchder sain yn raddol</string>
     <string name="faq_1_title">Sut gallaf newid trefn lapiau yn y tab stopwats?</string>
     <string name="faq_1_text">Clifia ar unrhyw un o\'r colofnau. Mi fydd hynny\'n ail-drefnu\'r lapiau yn ôl y golofn honno. Gyda chliciau ychwanegol, bydd y drefn yn toglo rhwng esgynnol a disgynnol.</string>
+    <string name="new_group">Grŵp newydd</string>
+    <string name="group_name">Enw\'r grŵp</string>
+    <string name="delete_group">Dileu grŵp</string>
+    <string name="rename_group">Ail-enwi grŵp</string>
+    <string name="delete_group_confirmation">Dileu\'r grŵp hwn? Bydd ei larwmau\'n cael eu symud yn ôl i\'r prif restr.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarm</item>
+        <item quantity="other">%d larwm</item>
+    </plurals>
+    <string name="group_name_exists">Mae grŵp o\'r enw hwnnw eisoes yn bodoli.</string>
 </resources>

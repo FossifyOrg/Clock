@@ -53,4 +53,15 @@
     <string name="not_scheduled">Ei aikataulutettu</string>
     <string name="replaced_by_another_alarm">Toinen hälytys korvannut</string>
     <string name="missed_alarm">Hukattu hälytys</string>
+    <string name="add_to_group">Lisää ryhmään</string>
+    <string name="new_group">Uusi ryhmä</string>
+    <string name="group_name">Ryhmän nimi</string>
+    <string name="delete_group">Poista ryhmä</string>
+    <string name="rename_group">Nimeä ryhmä uudelleen</string>
+    <string name="delete_group_confirmation">Haluatko poistaa tämän ryhmän? Sen hälytykset siirretään takaisin pääluetteloon.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d hälytys</item>
+        <item quantity="other">%d hälytystä</item>
+    </plurals>
+    <string name="group_name_exists">Tällainen ryhmä on jo olemassa</string>
 </resources>

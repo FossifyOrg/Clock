@@ -43,4 +43,15 @@
     <string name="faq_1_title">Како могу да променим сортирање кругова на картици штоперице\?</string>
     <string name="faq_1_text">Само кликните на било коју колону, тако да ће кругови бити сортирани према датој колони. Додатним кликовима можете се пребацивати између растућег и опадајућег сортирања.</string>
     <string name="start_stopwatch">Покрени штоперицу</string>
+    <string name="add_to_group">Додај у групу</string>
+    <string name="new_group">Нова група</string>
+    <string name="group_name">Назив групе</string>
+    <string name="delete_group">Избриши групу</string>
+    <string name="rename_group">Преименујте групу</string>
+    <string name="delete_group_confirmation">Избришите ову групу? Њене аларме ће бити враћене у главну листу.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d аларм</item>
+        <item quantity="other">%d аларма</item>
+    </plurals>
+    <string name="group_name_exists">Већ постоји група са тим именом.</string>
 </resources>

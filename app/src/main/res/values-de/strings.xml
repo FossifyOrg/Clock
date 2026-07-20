@@ -53,4 +53,15 @@
     <string name="missed_alarm">Verpasster Alarm</string>
     <string name="replaced_by_another_alarm">Ersetzt durch einen anderen Alarm</string>
     <string name="alarm_timed_out">Alarm ist abgelaufen</string>
+    <string name="add_to_group">Zur Gruppe hinzufügen</string>
+    <string name="new_group">Neue Gruppe</string>
+    <string name="group_name">Gruppenname</string>
+    <string name="delete_group">Gruppe löschen</string>
+    <string name="rename_group">Gruppe umbenennen</string>
+    <string name="delete_group_confirmation">Diese Gruppe löschen? Die darin enthaltenen Alarme werden zurück in die Hauptliste verschoben.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d Alarm</item>
+        <item quantity="other">%d Alarme</item>
+    </plurals>
+    <string name="group_name_exists">Eine Gruppe mit diesem Namen existiert bereits</string>
 </resources>

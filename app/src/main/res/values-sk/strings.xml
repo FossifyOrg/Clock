@@ -54,4 +54,15 @@
     <string name="settings_import_data">Importovať budíky a časovače</string>
     <string name="settings_export_data">Exportovať budíky a časovače</string>
     <string name="sort_by_timer_duration">Dĺžky trvania časovača</string>
+    <string name="add_to_group">Pridať do skupiny</string>
+    <string name="new_group">Nová skupina</string>
+    <string name="group_name">Názov skupiny</string>
+    <string name="delete_group">Odstrániť skupinu</string>
+    <string name="rename_group">Pomenovať skupinu</string>
+    <string name="delete_group_confirmation">Chcete túto skupinu odstrániť? Jej upozornenia sa presunú späť do hlavného zoznamu.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d budík</item>
+        <item quantity="other">%d budíkov</item>
+    </plurals>
+    <string name="group_name_exists">Skupina s týmto názvom už existuje</string>
 </resources>

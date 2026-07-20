@@ -54,4 +54,15 @@
     <string name="missed_alarm">Zmeškaný budík</string>
     <string name="replaced_by_another_alarm">Nahrazen jiným budíkem</string>
     <string name="alarm_timed_out">Budík vypršel</string>
+    <string name="add_to_group">Přidat do skupiny</string>
+    <string name="new_group">Nová skupina</string>
+    <string name="group_name">Název skupiny</string>
+    <string name="delete_group">Odstranit skupinu</string>
+    <string name="rename_group">Přejmenovat skupinu</string>
+    <string name="delete_group_confirmation">Chcete tuto skupinu smazat? Její upozornění budou přesunuta zpět do hlavního seznamu.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d budík</item>
+        <item quantity="other">%d budíků</item>
+    </plurals>
+    <string name="group_name_exists">Skupina s tímto názvem již existuje</string>
 </resources>

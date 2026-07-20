@@ -55,4 +55,15 @@
     <string name="missed_alarm">Пропущенный будильник</string>
     <string name="replaced_by_another_alarm">Заменён другим будильником</string>
     <string name="alarm_timed_out">Время действия будильника истекло</string>
+    <string name="add_to_group">Добавить в группу</string>
+    <string name="new_group">Новая группа</string>
+    <string name="group_name">Название группы</string>
+    <string name="delete_group">Удалить группу</string>
+    <string name="rename_group">Переименовать группу</string>
+    <string name="delete_group_confirmation">Удалить эту группу? Ее оповещения будут перенесены обратно в основной список.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d будильник</item>
+        <item quantity="other">%d сигналов тревоги</item>
+    </plurals>
+    <string name="group_name_exists">Группа с таким названием уже существует</string>
 </resources>

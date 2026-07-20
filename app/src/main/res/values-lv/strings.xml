@@ -3,4 +3,15 @@
     <string name="app_launcher_name">Pulkstenis</string>
     <string name="time_zone">Laika josla</string>
     <string name="vibrate">Trīcēt</string>
+    <string name="add_to_group">Pievienot grupai</string>
+    <string name="new_group">Jauna grupa</string>
+    <string name="group_name">Grupas nosaukums</string>
+    <string name="delete_group">Dzēst grupu</string>
+    <string name="rename_group">Pārdēvēt grupu</string>
+    <string name="delete_group_confirmation">Hunc gregem delere? Monitus eius ad indicem principalem redigentur.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d modinātājs</item>
+        <item quantity="other">%d modinātāji</item>
+    </plurals>
+    <string name="group_name_exists">Grupa ar šādu nosaukumu jau pastāv</string>
 </resources>

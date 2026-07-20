@@ -43,4 +43,15 @@
     <string name="increase_volume_gradually">Povečajte postopno glasnost</string>
     <string name="faq_1_title">Kako spremenim razvrščanje krogov v zavihku štoparica\?</string>
     <string name="faq_1_text">Kliknite na izbrani stolpec, da se krogi razvrstijo stolpcu. Z dodatnimi kliki preklapljate med naraščajočim in padajočim razvrščanjem.</string>
+    <string name="add_to_group">Dodaj v skupino</string>
+    <string name="new_group">Nova skupina</string>
+    <string name="group_name">Ime skupine</string>
+    <string name="delete_group">Izbriši skupino</string>
+    <string name="rename_group">Preimenuj skupino</string>
+    <string name="delete_group_confirmation">Ali želite izbrisati to skupino? Njeni alarmi bodo vrnjeni na glavni seznam.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarm</item>
+        <item quantity="other">%d alarmov</item>
+    </plurals>
+    <string name="group_name_exists">Skupina s tem imenom že obstaja</string>
 </resources>

@@ -30,4 +30,14 @@
     <string name="timer_tab">سماں والے دی ٹیب</string>
     <string name="show_seconds">سکنٹ ویکھو</string>
     <string name="increase_volume_gradually">ہولی ہولی آواز ودھاؤ</string>
+    <string name="new_group">ਨਵਾਂ ਸਮੂਹ</string>
+    <string name="group_name">ਸਮੂਹ ਦਾ ਨਾਮ</string>
+    <string name="delete_group">ਸਮੂਹ ਮਿਟਾਓ</string>
+    <string name="rename_group">ਸਮੂਹ ਦਾ ਨਾਮ ਬਦਲੋ</string>
+    <string name="delete_group_confirmation">ਇਸ ਗਰੁੱਪ ਨੂੰ ਮਿਟਾਓ? ਇਸ ਦੀਆਂ ਅਲਾਰਮਾਂ ਮੁੱਖ ਸੂਚੀ ਵਿੱਚ ਵਾਪਸ ਭੇਜ ਦਿੱਤੀਆਂ ਜਾਣਗੀਆਂ।</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d ਚੇਤਾਵਨੀ</item>
+        <item quantity="other">%d ਚੇਤਾਵਨੀਆਂ</item>
+    </plurals>
+    <string name="group_name_exists">ਉਸੇ ਨਾਮ ਦਾ ਇੱਕ ਗਰੁੱਪ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।</string>
 </resources>

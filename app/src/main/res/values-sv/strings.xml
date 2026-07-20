@@ -53,4 +53,15 @@
     <string name="missed_alarm">Missat alarm</string>
     <string name="replaced_by_another_alarm">Ersatt av ett annat alarm</string>
     <string name="alarm_timed_out">Alarm gick ut</string>
+    <string name="add_to_group">Lägg till i gruppen</string>
+    <string name="new_group">Ny grupp</string>
+    <string name="group_name">Gruppnamn</string>
+    <string name="delete_group">Ta bort grupp</string>
+    <string name="rename_group">Byt namn på gruppen</string>
+    <string name="delete_group_confirmation">¿Quieres eliminar este grupo? Sus alarmas se volverán a mover a la lista principal.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d larm</item>
+        <item quantity="other">%d larm</item>
+    </plurals>
+    <string name="group_name_exists">Det finns redan en grupp med det namnet</string>
 </resources>

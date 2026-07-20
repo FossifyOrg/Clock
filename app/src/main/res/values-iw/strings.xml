@@ -54,4 +54,15 @@
     <string name="not_scheduled">לא מתוכנן</string>
     <string name="missed_alarm">התראה שלא נענתה</string>
     <string name="replaced_by_another_alarm">הוחלף על ידי התראה אחרת</string>
+    <string name="add_to_group">הוסף לקבוצה</string>
+    <string name="new_group">קבוצה חדשה</string>
+    <string name="group_name">שם הקבוצה</string>
+    <string name="delete_group">מחק קבוצה</string>
+    <string name="rename_group">שינוי שם הקבוצה</string>
+    <string name="delete_group_confirmation">האם למחוק את הקבוצה הזו? ההתראות שלה יועברו בחזרה לרשימה הראשית.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d אזעקה</item>
+        <item quantity="other">%d אזעקות</item>
+    </plurals>
+    <string name="group_name_exists">כבר קיימת קבוצה בשם זה</string>
 </resources>

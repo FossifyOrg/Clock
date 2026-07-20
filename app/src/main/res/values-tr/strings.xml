@@ -53,4 +53,15 @@
     <string name="not_scheduled">Planlanmadı</string>
     <string name="missed_alarm">Kaçırılmış alarm</string>
     <string name="replaced_by_another_alarm">Yerine başka bir alarm konuldu</string>
+    <string name="add_to_group">Gruba ekle</string>
+    <string name="new_group">Yeni grup</string>
+    <string name="group_name">Grup adı</string>
+    <string name="delete_group">Grubu sil</string>
+    <string name="rename_group">Grubun adını değiştir</string>
+    <string name="delete_group_confirmation">¿Quieres eliminar este grupo? Sus alarmas se volverán a mover a la lista principal.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarmı</item>
+        <item quantity="other">%d alarm</item>
+    </plurals>
+    <string name="group_name_exists">Bu isimde bir grup zaten mevcut</string>
 </resources>

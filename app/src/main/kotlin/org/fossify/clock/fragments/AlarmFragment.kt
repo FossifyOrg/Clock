@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import org.fossify.clock.activities.GroupActivity
 import org.fossify.clock.activities.MainActivity
 import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.adapters.AlarmsAdapter
@@ -26,6 +27,8 @@ import org.fossify.clock.helpers.getTomorrowBit
 import org.fossify.clock.interfaces.ToggleAlarmInterface
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.AlarmEvent
+import org.fossify.clock.models.AlarmListItem
+import org.fossify.clock.models.Group
 import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.getProperBackgroundColor
 import org.fossify.commons.extensions.getProperTextColor
@@ -40,7 +43,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 class AlarmFragment : Fragment(), ToggleAlarmInterface {
-    private var alarms = ArrayList<Alarm>()
+    private var alarmItems = ArrayList<AlarmListItem>()
     private var currentEditAlarmDialog: EditAlarmDialog? = null
 
     private lateinit var binding: FragmentAlarmBinding
@@ -89,21 +92,23 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         setupAlarms()
     }
 
-    private fun getSortedAlarms(callback: (alarms: ArrayList<Alarm>) -> Unit) {
+    private fun getSortedItems(callback: (items: ArrayList<AlarmListItem>) -> Unit) {
         val safeContext = context ?: return
         ensureBackgroundThread {
-            var newAlarms = context?.dbHelper?.getAlarms()
-            if (newAlarms == null) {
-                activity?.runOnUiThread {
-                    callback(arrayListOf())
-                }
+            val allAlarms = context?.dbHelper?.getAlarms()
+            if (allAlarms == null) {
+                activity?.runOnUiThread { callback(arrayListOf()) }
                 return@ensureBackgroundThread
             }
 
+            val groups = safeContext.dbHelper.getGroups()
+            val groupedAlarms = allAlarms.filter { it.groupRef != 0 }.groupBy { it.groupRef }
+            var ungroupedAlarms = allAlarms.filter { it.groupRef == 0 } as ArrayList<Alarm>
+
             when (safeContext.config.alarmSort) {
-                SORT_BY_ALARM_TIME -> newAlarms.sortBy { it.timeInMinutes }
-                SORT_BY_DATE_CREATED -> newAlarms.sortBy { it.id }
-                SORT_BY_DATE_AND_TIME -> newAlarms.sortWith(compareBy<Alarm> {
+                SORT_BY_ALARM_TIME -> ungroupedAlarms.sortBy { it.timeInMinutes }
+                SORT_BY_DATE_CREATED -> ungroupedAlarms.sortBy { it.id }
+                SORT_BY_DATE_AND_TIME -> ungroupedAlarms.sortWith(compareBy<Alarm> {
                     safeContext.firstDayOrder(it.days)
                 }.thenBy {
                     it.timeInMinutes
@@ -111,12 +116,12 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
                 SORT_BY_CUSTOM -> {
                     val customAlarmsSortOrderString = activity?.config?.alarmsCustomSorting
-                    if (customAlarmsSortOrderString == "") {
-                        newAlarms.sortBy { it.id }
+                    if (customAlarmsSortOrderString.isNullOrEmpty()) {
+                        ungroupedAlarms.sortBy { it.id }
                     } else {
                         val customAlarmsSortOrder: List<Int> =
-                            customAlarmsSortOrderString?.split(", ")?.map { it.toInt() }!!
-                        val alarmsIdValueMap = newAlarms.associateBy { it.id }
+                            customAlarmsSortOrderString.split(", ").map { it.toInt() }
+                        val alarmsIdValueMap = ungroupedAlarms.associateBy { it.id }
 
                         val sortedAlarms: ArrayList<Alarm> = ArrayList()
                         customAlarmsSortOrder.map { id ->
@@ -125,31 +130,47 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                             }
                         }
 
-                        newAlarms =
-                            (sortedAlarms + newAlarms.filter { it !in sortedAlarms }) as ArrayList<Alarm>
+                        ungroupedAlarms =
+                            (sortedAlarms + ungroupedAlarms.filter { it !in sortedAlarms }) as ArrayList<Alarm>
                     }
                 }
             }
 
+            val groupItems = groups
+                .sortedBy { it.title.lowercase() }
+                .map { group ->
+                    AlarmListItem.GroupRow(
+                        group = group,
+                        alarms = groupedAlarms[group.ref].orEmpty().sortedBy { it.timeInMinutes }
+                    )
+                }
+
+            val combined = ArrayList<AlarmListItem>()
+            combined.addAll(groupItems)
+            combined.addAll(ungroupedAlarms.map { AlarmListItem.AlarmRow(it) })
+
             activity?.runOnUiThread {
-                callback(newAlarms)
+                callback(combined)
             }
         }
     }
 
     private fun setupAlarms() {
-        getSortedAlarms { sortedAlarms ->
-            alarms = sortedAlarms
-            val safeActivity = activity as? SimpleActivity ?: return@getSortedAlarms
+        getSortedItems { items ->
+            alarmItems = items
+            val safeActivity = activity as? SimpleActivity ?: return@getSortedItems
             var currAdapter = binding.alarmsList.adapter as? AlarmsAdapter
             if (currAdapter == null) {
                 currAdapter = AlarmsAdapter(
                     activity = safeActivity,
-                    alarms = alarms,
+                    items = items,
                     toggleAlarmInterface = this,
                     recyclerView = binding.alarmsList
                 ) {
-                    openEditAlarm(it as Alarm)
+                    when (it) {
+                        is Alarm -> openEditAlarm(it)
+                        is Group -> GroupActivity.start(safeActivity, it.ref)
+                    }
                 }.apply {
                     binding.alarmsList.adapter = this
                 }
@@ -158,10 +179,10 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                     updatePrimaryColor()
                     updateBackgroundColor(safeActivity.getProperBackgroundColor())
                     updateTextColor(safeActivity.getProperTextColor())
-                    updateItems(alarms)
+                    updateItems(items)
                 }
             }
-            binding.alarmsPlaceholder.beVisibleIf(alarms.isEmpty())
+            binding.alarmsPlaceholder.beVisibleIf(items.isEmpty())
         }
     }
 
@@ -178,8 +199,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         (activity as SimpleActivity).handleFullScreenNotificationsPermission { granted ->
             if (granted) {
                 if (requireContext().dbHelper.updateAlarmEnabledState(id, isEnabled)) {
-                    val alarm = alarms.firstOrNull { it.id == id }
-                        ?: return@handleFullScreenNotificationsPermission
+                    val alarm = findAlarmById(id) ?: return@handleFullScreenNotificationsPermission
                     alarm.isEnabled = isEnabled
                     checkAlarmState(alarm)
                     if (!alarm.isEnabled && alarm.oneShot) {
@@ -194,6 +214,16 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 setupAlarms()
             }
         }
+    }
+
+    private fun findAlarmById(id: Int): Alarm? {
+        alarmItems.forEach { item ->
+            when (item) {
+                is AlarmListItem.AlarmRow -> if (item.alarm.id == id) return item.alarm
+                is AlarmListItem.GroupRow -> item.alarms.firstOrNull { it.id == id }?.let { return it }
+            }
+        }
+        return null
     }
 
     private fun checkAlarmState(alarm: Alarm) {
