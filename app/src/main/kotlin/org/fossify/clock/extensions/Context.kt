@@ -12,6 +12,7 @@ import android.content.Intent
 import android.media.AudioAttributes
 import android.media.AudioManager.STREAM_ALARM
 import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.text.SpannableString
@@ -51,6 +52,7 @@ import org.fossify.clock.helpers.getDefaultTimeZoneTitle
 import org.fossify.clock.helpers.getTimeOfNextAlarm
 import org.fossify.clock.interfaces.TimerDao
 import org.fossify.clock.models.Alarm
+import org.fossify.clock.models.AlarmEvent
 import org.fossify.clock.models.MyTimeZone
 import org.fossify.clock.models.Timer
 import org.fossify.clock.models.TimerState
@@ -87,6 +89,7 @@ import java.util.Locale
 import kotlin.math.ceil
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
+import org.greenrobot.eventbus.EventBus
 
 val Context.config: Config
     get() = Config.newInstance(applicationContext)
@@ -556,6 +559,26 @@ fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
         it.soundTitle = defaultAlarmSound.title
         it.soundUri = defaultAlarmSound.uri
         dbHelper.updateAlarm(it)
+    }
+    EventBus.getDefault().post(AlarmEvent.Refresh)
+}
+
+fun Context.isUriAccessible(uri: Uri): Boolean {
+    return try {
+        this.contentResolver.openAssetFileDescriptor(uri, "r")?.close()
+        true
+    } catch (_: Exception) {
+        false
+    }
+}
+
+fun Context.isUriAccessible(uriString: String): Boolean {
+    if (uriString.isBlank()) return false
+    return try {
+        val uri = uriString.toUri()
+        isUriAccessible(uri)
+    } catch (_: Exception) {
+        false
     }
 }
 
