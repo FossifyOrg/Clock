@@ -15,11 +15,13 @@ import org.fossify.clock.extensions.checkAlarmsWithDeletedSoundUri
 import org.fossify.clock.extensions.colorCompoundDrawable
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
+import org.fossify.clock.extensions.getFormattedDate
 import org.fossify.clock.extensions.getFormattedTime
 import org.fossify.clock.extensions.handleFullScreenNotificationsPermission
 import org.fossify.clock.extensions.rotateWeekdays
 import org.fossify.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
-import org.fossify.clock.helpers.getCurrentDayMinutes
+import org.fossify.clock.helpers.getCalendarFromEpochDay
+import org.fossify.clock.helpers.getDateFromTimeInMinutes
 import org.fossify.clock.helpers.updateNonRecurringAlarmDay
 import org.fossify.clock.models.Alarm
 import org.fossify.commons.dialogs.ConfirmationDialog
@@ -139,6 +141,7 @@ class EditAlarmDialog(
                 day.setOnClickListener {
                     if (!alarm.isRecurring()) {
                         alarm.days = 0
+                        alarm.scheduledDate = 0L
                     }
 
                     val selectDay = alarm.days and bitmask == 0
@@ -216,6 +219,7 @@ class EditAlarmDialog(
                 alarm.soundUri = lastConfig.soundUri
                 alarm.timeInMinutes = lastConfig.timeInMinutes
                 alarm.vibrate = lastConfig.vibrate
+                alarm.scheduledDate = lastConfig.scheduledDate
             }
         }
     }
@@ -226,6 +230,9 @@ class EditAlarmDialog(
 
     private fun timePicked(hours: Int, minutes: Int) {
         alarm.timeInMinutes = hours * 60 + minutes
+        if (!alarm.isRecurring()) {
+            alarm.scheduledDate = 0L
+        }
         updateAlarmTime()
     }
 
@@ -240,13 +247,9 @@ class EditAlarmDialog(
 
     private fun checkDaylessAlarm() {
         if (!alarm.isRecurring()) {
-            val textId = if (alarm.timeInMinutes > getCurrentDayMinutes()) {
-                org.fossify.commons.R.string.today
-            } else {
-                org.fossify.commons.R.string.tomorrow
-            }
-
-            binding.editAlarmDaylessLabel.text = "(${activity.getString(textId)})"
+            val epochDay = alarm.scheduledDate.takeIf { it > 0L } ?: getDateFromTimeInMinutes(alarm.timeInMinutes)
+            val calendar = getCalendarFromEpochDay(epochDay)
+            binding.editAlarmDaylessLabel.text = "(${activity.getFormattedDate(calendar)})"
         }
         binding.editAlarmDaylessLabel.beVisibleIf(!alarm.isRecurring())
     }
