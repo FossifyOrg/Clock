@@ -33,11 +33,48 @@
             android:textSize="@dimen/big_text_size"
             tools:text="@string/tomorrow" />
 
+         <LinearLayout
+            android:id="@+id/edit_alarm_date_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_alarm_time"
+            android:layout_marginStart="@dimen/activity_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/activity_margin"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/small_margin">
+
+            <ImageView
+                android:id="@+id/edit_alarm_calendar_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_calendar_vector"
+                android:layout_marginEnd="@dimen/normal_margin" />
+
+            <org.fossify.commons.views.MyTextView
+                android:id="@+id/edit_alarm_date_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/normal_text_size"
+                android:text="@string/select_specific_date" />
+
+            <ImageView
+                android:id="@+id/edit_alarm_date_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cross_vector"
+                android:padding="@dimen/small_margin"
+                android:visibility="gone" />
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/edit_alarm_days_holder"
             android:layout_width="match_parent"
             android:layout_height="@dimen/alarm_day_size"
-            android:layout_below="@+id/edit_alarm_time"
+            android:layout_below="@+id/edit_alarm_date_selector"
             android:layout_marginStart="@dimen/activity_margin"
             android:layout_marginTop="@dimen/medium_margin"
             android:layout_marginBottom="@dimen/medium_margin"
