@@ -27,9 +27,9 @@
     <string name="select_alarm_to_dismiss">Seleccionar alarma a apagar</string>
     <string name="alarm_created">Alarma creada</string>
     <string name="alarm_snoozed">Alarma pospuesta por %s</string>
-    <string name="no_alarms_found">No sé encontraron alarmas</string>
+    <string name="no_alarms_found">No se encontraron alarmas</string>
     <string name="add_alarm">Añadir alarma</string>
-    <string name="no_timers_found">No sé encontraron temporizadores</string>
+    <string name="no_timers_found">No se encontraron temporizadores</string>
     <string name="add_timer">Añadir temporizador</string>
     <string name="upcoming_alarm">Alarma entrante</string>
     <string name="not_scheduled">No programado</string>
