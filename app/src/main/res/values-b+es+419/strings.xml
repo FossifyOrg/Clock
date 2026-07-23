@@ -11,7 +11,7 @@
     <string name="lap">Vuelta</string>
     <string name="stopwatch_stopped">El cronómetro ha sido parado</string>
     <string name="timer_stopped">El temporizador ha sido parado</string>
-    <string name="max_reminder_duration">Duración maxima de recordatorio</string>
+    <string name="max_reminder_duration">Duración máxima de recordatorio</string>
     <string name="time_expired">Tiempo expirado</string>
     <string name="clock_and_date">Reloj y fecha</string>
     <string name="use_text_shadow">Usar sombreado de texto</string>
@@ -53,5 +53,5 @@
     <string name="settings_import_data">Importar alarmas y temporizadores</string>
     <string name="settings_export_data">Exportar alarmas y temporizadores</string>
     <string name="faq_1_title">¿Cómo puedo cambiar el orden de las vueltas en la sección de cronómetros?</string>
-    <string name="faq_1_text">Solo toca cualquiera de las columnas, eso hará que las vueltas estén ordenadas por la columna dada. Con toques adicionales puedes cambiar entre hacer el orden ascendiente o descendiente.</string>
+    <string name="faq_1_text">Solo toca cualquiera de las columnas, eso hará que las vueltas estén ordenadas por la columna dada. Con toques adicionales puedes cambiar entre hacer el orden ascendente o descendiente.</string>
 </resources>
