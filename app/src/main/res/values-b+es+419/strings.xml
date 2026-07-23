@@ -31,7 +31,7 @@
     <string name="add_alarm">Añadir alarma</string>
     <string name="no_timers_found">No se encontraron temporizadores</string>
     <string name="add_timer">Añadir temporizador</string>
-    <string name="upcoming_alarm">Alarma entrante</string>
+    <string name="upcoming_alarm">Alarma próxima</string>
     <string name="not_scheduled">No programado</string>
     <string name="missed_alarm">Alarma perdida</string>
     <string name="replaced_by_another_alarm">Reemplazada por otra alarma</string>
