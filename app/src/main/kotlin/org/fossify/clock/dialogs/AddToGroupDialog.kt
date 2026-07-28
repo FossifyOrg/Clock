@@ -11,6 +11,7 @@ import org.fossify.commons.extensions.value
 import org.fossify.commons.views.MyCompatRadioButton
 
 class AddToGroupDialog(
+    val selectedRefs: List<Int>,
     val activity: SimpleActivity,
     val callback: (groupId: Int) -> Unit,
 ) {
@@ -21,7 +22,7 @@ class AddToGroupDialog(
     init {
         val mutableGroups = groups.toMutableList()
 
-        if (groups.any()){
+        if (groups.any() && selectedRefs.any { it != 0 }){
             val noneText = activity.resources.getString(org.fossify.commons.R.string.none)
             mutableGroups.add(0, Group(0, 0, noneText))
         }

@@ -155,8 +155,11 @@ class AlarmsAdapter(
     }
 
     private fun addSelectedToGroup() {
-        val selectedIds = getSelectedAlarms().map { it.id }
-        AddToGroupDialog(activity as SimpleActivity) { groupId ->
+        val selectedAlarms = getSelectedAlarms()
+        val selectedIds = selectedAlarms.map { it.id }
+        val selectedRefs = selectedAlarms.map { it.groupRef }
+
+        AddToGroupDialog(selectedRefs, activity as SimpleActivity) { groupId ->
             activity.dbHelper.assignAlarmsToGroup(selectedIds, groupId)
             finishActMode()
             EventBus.getDefault().post(AlarmEvent.Refresh)
