@@ -90,6 +90,28 @@
     </issue>
 
     <issue
+        id="AndroidGradlePluginVersion"
+        message="A newer version of com.android.application than 9.2.1 is available: 9.3.1"
+        errorLine1="gradlePlugins-agp = &quot;9.2.1&quot;"
+        errorLine2="                    ~~~~~~~">
+        <location
+            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
+            line="27"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.constraintlayout:constraintlayout than 2.2.1 is available: 2.2.2"
+        errorLine1="androidx-constraintlayout = &quot;2.2.1&quot;"
+        errorLine2="                            ~~~~~~~">
+        <location
+            file="$HOME/work/Clock/Clock/gradle/libs.versions.toml"
+            line="11"
+            column="29"/>
+    </issue>
+
+    <issue
         id="GradleDependency"
         message="A newer version of androidx.lifecycle:lifecycle-process than 2.10.0 is available: 2.11.0"
         errorLine1="androidx-lifecycle = &quot;2.10.0&quot;"
@@ -157,7 +179,7 @@
 
     <issue
         id="NewerVersionAvailable"
-        message="A newer version of io.nlopez.compose.rules:detekt than 0.4.28 is available: 0.6.2"
+        message="A newer version of io.nlopez.compose.rules:detekt than 0.4.28 is available: 0.6.3"
         errorLine1="detektCompose = &quot;0.4.28&quot;"
         errorLine2="                ~~~~~~~~">
         <location
