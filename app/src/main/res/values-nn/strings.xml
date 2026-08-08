@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_launcher_name">Klokke</string>
+    <string name="time_zone">Tidssone</string>
+    <string name="vibrate">Dirra</string>
+    <string name="no_days_selected">Ingen dagar valde</string>
+    <string name="clock">Klokke</string>
+    <string name="timer">Tidtakar</string>
+    <string name="stopwatch">Stoppeklokke</string>
+    <string name="start_stopwatch">Slå på stoppeklokka</string>
+</resources>
