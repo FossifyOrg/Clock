@@ -8,4 +8,11 @@
     <string name="timer">Tidtakar</string>
     <string name="stopwatch">Stoppeklokke</string>
     <string name="start_stopwatch">Slå på stoppeklokka</string>
+    <string name="lap">Omgang</string>
+    <string name="stopwatch_stopped">Stoppeklokka vart stogga</string>
+    <string name="timer_stopped">Tidtakaren vart stogga</string>
+    <string name="max_reminder_duration">Påminning varar lengst mogleg</string>
+    <string name="time_expired">Tida gjekk ut</string>
+    <string name="clock_and_date">Klokkeslett og dato</string>
+    <string name="use_text_shadow">Nytta tekstskugge</string>
 </resources>
