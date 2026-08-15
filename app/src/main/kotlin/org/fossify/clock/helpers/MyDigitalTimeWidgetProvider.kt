@@ -66,6 +66,9 @@ class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
 
             setViewVisibility(clockToHide, View.GONE)
             setViewVisibility(clockToShow, View.VISIBLE)
+
+            val format12Hour = if (context.config.widgetShowAmPm) FORMAT_12H else FORMAT_12H_NO_AM_PM
+            setCharSequence(R.id.widget_text_clock_12, "setFormat12Hour", format12Hour)
         }
     }
 
