@@ -1,14 +1,14 @@
 [versions]
 #jetbrains
-kotlin = "2.3.21"
+kotlin = "2.4.10"
 kotlinxSerializationJson = "1.11.0"
 #KSP
-ksp = "2.3.7"
+ksp = "2.3.10"
 #Detekt
 detekt = "1.23.8"
 detektCompose = "0.4.28"
 #AndroidX
-androidx-constraintlayout = "2.2.1"
+androidx-constraintlayout = "2.2.2"
 androidx-lifecycle = "2.10.0"
 androidx-preference = "1.2.1"
 #AutoFitTextView
@@ -16,7 +16,7 @@ autofittextview = "0.2.1"
 #Eventbus
 eventbus = "3.3.1"
 #KotlinX
-kotlinx-coroutines = "1.10.2"
+kotlinx-coroutines = "1.11.0"
 #NumberPicker
 numberpicker = "2.4.13"
 #Room
@@ -24,7 +24,7 @@ room = "2.8.4"
 #Fossify
 commons = "6.1.6"
 #Gradle
-gradlePlugins-agp = "9.2.0"
+gradlePlugins-agp = "9.2.1"
 #build
 app-build-compileSDKVersion = "36"
 app-build-targetSDK = "36"
