@@ -43,4 +43,16 @@
     <string name="increase_volume_gradually">Povečajte postopno glasnost</string>
     <string name="faq_1_title">Kako spremenim razvrščanje krogov v zavihku štoparica\?</string>
     <string name="faq_1_text">Kliknite na izbrani stolpec, da se krogi razvrstijo stolpcu. Z dodatnimi kliki preklapljate med naraščajočim in padajočim razvrščanjem.</string>
+    <string name="start_stopwatch">Zaženi štoparico</string>
+    <string name="sort_by_timer_duration">Trajanje časovnika</string>
+    <string name="select_timer_to_dismiss">Izberite časovnik za opustitev</string>
+    <string name="select_alarm_to_dismiss">Izberite alarm za opustitev</string>
+    <string name="alarm_created">Alarm ustvarjen</string>
+    <string name="upcoming_alarm">Prihajajoči alarm</string>
+    <string name="not_scheduled">Ni načrtovano</string>
+    <string name="missed_alarm">Zamujeni alarm</string>
+    <string name="replaced_by_another_alarm">Zamenjal ga je drug alarm</string>
+    <string name="alarm_timed_out">Časovna omejitev alarma je potekla</string>
+    <string name="settings_import_data">Uvozi alarme in časovnike</string>
+    <string name="settings_export_data">Izvoz alarmov in časovnikov</string>
 </resources>
