@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import org.fossify.clock.extensions.alarmController
+import org.fossify.clock.extensions.getUpcomingAlarmNotificationId
 import org.fossify.clock.extensions.goAsync
 import org.fossify.clock.extensions.hideNotification
 import org.fossify.clock.helpers.ALARM_ID
@@ -19,13 +20,9 @@ class AlarmReceiver : BroadcastReceiver() {
         val id = intent.getIntExtra(ALARM_ID, -1)
         if (id == -1) return
 
-        cancelUpcomingAlarmNotification(context)
+        context.hideNotification(getUpcomingAlarmNotificationId(id))
         goAsync {
             context.alarmController.onAlarmTriggered(id)
         }
-    }
-
-    private fun cancelUpcomingAlarmNotification(context: Context) {
-        context.hideNotification(UPCOMING_ALARM_NOTIFICATION_ID)
     }
 }

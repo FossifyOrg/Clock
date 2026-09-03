@@ -44,7 +44,7 @@ import org.fossify.clock.helpers.TIMER_ID
 import org.fossify.clock.helpers.TODAY_BIT
 import org.fossify.clock.helpers.TOMORROW_BIT
 import org.fossify.clock.helpers.TimerHelper
-import org.fossify.clock.helpers.UPCOMING_ALARM_INTENT_ID
+import org.fossify.clock.helpers.UPCOMING_ALARM_NOTIFICATION_ID
 import org.fossify.clock.helpers.formatTime
 import org.fossify.clock.helpers.getAllTimeZones
 import org.fossify.clock.helpers.getDefaultTimeZoneTitle
@@ -225,11 +225,14 @@ fun Context.getUpcomingAlarmPendingIntent(alarm: Alarm): PendingIntent {
 
     return PendingIntent.getBroadcast(
         this,
-        UPCOMING_ALARM_INTENT_ID,
+        alarm.id,
         intent,
         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     )
 }
+
+fun getUpcomingAlarmNotificationId(alarmId: Int): Int =
+    UPCOMING_ALARM_NOTIFICATION_ID + alarmId
 
 fun Context.getOpenAlarmTabIntent(): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
