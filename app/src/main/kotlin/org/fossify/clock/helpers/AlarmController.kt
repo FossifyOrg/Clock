@@ -28,14 +28,15 @@ class AlarmController(
 ) {
     /**
      * Reschedules all enabled alarms.
-     * Skips rescheduling one-time alarms that were set for today but whose time has already passed,
-     * and potentially upcoming alarms for today depending on the logic in `scheduleNextOccurrence`.
+     * For one-time alarms, "today" / "tomorrow" are stored as relative sentinels.
+     * Normalize them against the current clock before rescheduling so a saved
+     * "tomorrow" alarm does not get pushed out by another full day after boot,
+     * package replacement, or a manual time change.
      */
     fun rescheduleEnabledAlarms() {
         db.getEnabledAlarms().forEach {
-            // TODO: Skipped upcoming alarms are being *rescheduled* here.
-            if (!it.isToday() || it.timeInMinutes > getCurrentDayMinutes()) {
-                scheduleNextOccurrence(it, false)
+            normalizeRescheduledAlarm(it)?.let { normalizedAlarm ->
+                scheduleNextOccurrence(normalizedAlarm, false)
             }
         }
     }
@@ -190,6 +191,33 @@ class AlarmController(
             db.deleteAlarms(arrayListOf(alarm))
         } else {
             db.updateAlarmEnabledState(alarm.id, false)
+        }
+    }
+
+    private fun normalizeRescheduledAlarm(alarm: Alarm): Alarm? {
+        if (alarm.isRecurring()) {
+            return alarm
+        }
+
+        if (alarm.hasAbsoluteDate()) {
+            return alarm.takeIf { getTimeOfNextAlarm(it) != null }
+        }
+
+        val currentMinutes = getCurrentDayMinutes()
+        return when {
+            alarm.days == TODAY_BIT && alarm.timeInMinutes > currentMinutes -> {
+                alarm.copy(days = 0, scheduledDate = getCurrentEpochDay())
+            }
+
+            alarm.days == TOMORROW_BIT && alarm.timeInMinutes > currentMinutes -> {
+                alarm.copy(days = 0, scheduledDate = getTomorrowEpochDay())
+            }
+
+            alarm.days == TOMORROW_BIT -> {
+                alarm.copy(days = 0, scheduledDate = getCurrentEpochDay())
+            }
+
+            else -> null
         }
     }
 
