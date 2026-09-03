@@ -59,6 +59,7 @@ import org.fossify.clock.receivers.HideTimerReceiver
 import org.fossify.clock.receivers.SkipUpcomingAlarmReceiver
 import org.fossify.clock.receivers.StopAlarmReceiver
 import org.fossify.clock.receivers.UpcomingAlarmReceiver
+import org.fossify.clock.services.AlarmService
 import org.fossify.clock.services.SnoozeService
 import org.fossify.commons.extensions.formatMinutesToTimeString
 import org.fossify.commons.extensions.formatSecondsToTimeString
@@ -280,6 +281,14 @@ fun Context.cancelAlarmClock(alarm: Alarm) {
     val alarmManager = alarmManager
     alarmManager.cancel(getAlarmIntent(alarm))
     alarmManager.cancel(getUpcomingAlarmPendingIntent(alarm))
+}
+
+fun Context.stopAlarmService(id: Int) {
+    val intent = Intent(this, AlarmService::class.java).apply {
+        action = AlarmService.ACTION_STOP_ALARM
+        putExtra(ALARM_ID, id)
+    }
+    startService(intent)
 }
 
 fun Context.hideNotification(id: Int) {
