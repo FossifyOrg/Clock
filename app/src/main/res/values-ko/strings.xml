@@ -8,6 +8,7 @@
     <string name="max_reminder_duration">알림 최대 지속시간</string>
     <string name="time_expired">시간 만료</string>
     <string name="clock_and_date">시계 및 날짜</string>
+    <string name="date_format_md">%3$s %2$d일 %1$s</string>
     <string name="use_text_shadow">텍스트 그림자 사용</string>
     <string name="sort_by_creation_order">생성된 순서</string>
     <string name="analogue_clock">아날로그 시계</string>
