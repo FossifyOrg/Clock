@@ -54,4 +54,15 @@
     <string name="not_scheduled">Não agendado</string>
     <string name="missed_alarm">Alarme perdido</string>
     <string name="replaced_by_another_alarm">Substituído por outro alarme</string>
+    <string name="add_to_group">Adicionar ao grupo</string>
+    <string name="new_group">Novo grupo</string>
+    <string name="group_name">Nome do grupo</string>
+    <string name="delete_group">Excluir grupo</string>
+    <string name="rename_group">Renomear grupo</string>
+    <string name="delete_group_confirmation">ਇਸ ਗਰੁੱਪ ਨੂੰ ਮਿਟਾਓ? ਇਸ ਦੀਆਂ ਅਲਾਰਮਾਂ ਮੁੱਖ ਸੂਚੀ ਵਿੱਚ ਵਾਪਸ ਭੇਜ ਦਿੱਤੀਆਂ ਜਾਣਗੀਆਂ।</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">Alarme %d</item>
+        <item quantity="other">%d alarmes</item>
+    </plurals>
+    <string name="group_name_exists">Já existe um grupo com esse nome</string>
 </resources>

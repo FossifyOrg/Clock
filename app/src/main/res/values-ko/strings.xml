@@ -48,4 +48,15 @@
     <string name="sort_by_timer_duration">타이머 길이</string>
     <string name="not_scheduled">예약되지 않음</string>
     <string name="missed_alarm">놓친 알람</string>
+    <string name="add_to_group">그룹에 추가</string>
+    <string name="new_group">새로운 그룹</string>
+    <string name="group_name">그룹 이름</string>
+    <string name="delete_group">그룹 삭제</string>
+    <string name="rename_group">그룹 이름 변경</string>
+    <string name="delete_group_confirmation">이 그룹을 삭제하시겠습니까? 이 그룹의 알림은 메인 목록으로 다시 이동됩니다.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d 알람</item>
+        <item quantity="other">%d 개의 알람</item>
+    </plurals>
+    <string name="group_name_exists">그런 이름의 그룹이 이미 존재합니다</string>
 </resources>

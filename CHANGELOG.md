@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2626-07-18
+### Added
+- Added alarm groups (see [PR #473](https://github.com/FossifyOrg/Clock/pull/473) for more details)
+
 ## [1.6.0] - 2026-01-30
 ### Added
 - Added support for custom fonts

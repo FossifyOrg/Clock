@@ -52,4 +52,15 @@
     <string name="settings_export_data">Εξαγωγή ξυπνητηριών και χρονομέτρων</string>
     <string name="sort_by_timer_duration">Διάρκεια χρονομέτρου</string>
     <string name="missed_alarm">Η αφύπνιση παραλήφθηκε</string>
+    <string name="add_to_group">Προσθήκη στην ομάδα</string>
+    <string name="new_group">Νέα ομάδα</string>
+    <string name="group_name">Όνομα ομάδας</string>
+    <string name="delete_group">Διαγραφή ομάδας</string>
+    <string name="rename_group">Μετονομασία ομάδας</string>
+    <string name="delete_group_confirmation">Να διαγραφεί αυτή η ομάδα; Οι ειδοποιήσεις της θα μεταφερθούν ξανά στην κύρια λίστα.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d ξυπνητήρι</item>
+        <item quantity="other">%d ειδοποιήσεις</item>
+    </plurals>
+    <string name="group_name_exists">Υπάρχει ήδη μια ομάδα με αυτό το όνομα</string>
 </resources>

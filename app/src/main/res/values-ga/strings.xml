@@ -38,7 +38,7 @@
     <string name="analogue_clock">Clog analógach</string>
     <string name="digital_clock">Clog digiteach</string>
     <string name="upcoming_alarm">Aláram atá le teacht</string>
-    <string name="timers_notification_msg">Amadóirí ag rith</string>
+    <string name="timers_notification_msg">Amadóirí ag rith</string>r
     <string name="timer_single_notification_label_msg">Tá an t- amadóir do %s ag rith</string>
     <string name="new_timer">Amadóir Nua</string>
     <string name="clock_tab">Cluaisín clog</string>
@@ -56,4 +56,15 @@
     <string name="not_scheduled">Gan sceidealú</string>
     <string name="missed_alarm">Aláram caillte</string>
     <string name="replaced_by_another_alarm">Cuireadh aláram eile ina áit</string>
+    <string name="add_to_group">Cuir leis an ngrúpa</string>
+    <string name="new_group">Grúpa nua</string>
+    <string name="group_name">Ainm an ghrúpa</string>
+    <string name="delete_group">Scrios an grúpa</string>
+    <string name="rename_group">Athainm an ghrúpa</string>
+    <string name="delete_group_confirmation">An grúpa seo a scriosadh? Aistrófar a chuid aláraim ar ais go dtí an príomhliosta.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">Alaram %d</item>
+        <item quantity="other">%d aláraim</item>
+    </plurals>
+    <string name="group_name_exists">Tá grúpa leis an ainm sin ann cheana féin.</string>
 </resources>

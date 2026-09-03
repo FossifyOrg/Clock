@@ -19,4 +19,15 @@
     <string name="timer_tab">Sayğaç bölməsi</string>
     <string name="show_seconds">Saniyələri göstər</string>
     <string name="increase_volume_gradually">Səsi aramla yüksəlt</string>
+    <string name="add_to_group">Qrupa əlavə et</string>
+    <string name="new_group">Yeni qrup</string>
+    <string name="group_name">Qrup adı</string>
+    <string name="delete_group">Qrupu sil</string>
+    <string name="rename_group">Qrupun adını dəyişdir</string>
+    <string name="delete_group_confirmation">Bu qrupu silin? Onun siqnalları əsas siyahıya qaytarılacaq.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarm</item>
+        <item quantity="other">%d alarms</item>
+    </plurals>
+    <string name="group_name_exists">Bu adla artıq bir qrup mövcuddur</string>
 </resources>

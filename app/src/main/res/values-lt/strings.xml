@@ -24,4 +24,15 @@
     <string name="show_seconds">Rodyti sekundes</string>
     <string name="faq_1_title">Kaip aš galiu pakeisti etapų rikiavimą chronometro auselėje?</string>
     <string name="faq_1_text">Spustelėkite ant bet kurio stulpelio, tai surikiuos etapus pagal tą stulpelį. Su papildomais paspaudimais Jūs galite pasirinkti tarp rikiavimo mažėjančia arba didėjančia tvarka.</string>
+    <string name="add_to_group">Pridėti prie grupės</string>
+    <string name="new_group">Nauja grupė</string>
+    <string name="group_name">Grupės pavadinimas</string>
+    <string name="delete_group">Ištrinti grupę</string>
+    <string name="rename_group">Pervardyti grupę</string>
+    <string name="delete_group_confirmation">Ar norite ištrinti šią grupę? Jos žadintuvai bus perkelti atgal į pagrindinį sąrašą.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d budilka</item>
+        <item quantity="other">%d budilkas</item>
+    </plurals>
+    <string name="group_name_exists">Grupė su tokiu pavadinimu jau egzistuoja</string>
 </resources>

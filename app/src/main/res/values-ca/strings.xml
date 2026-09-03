@@ -54,4 +54,15 @@
     <string name="missed_alarm">Alarma desatesa</string>
     <string name="replaced_by_another_alarm">Substituïda per una altra alarma</string>
     <string name="alarm_timed_out">L\'alarma ha excedit el temps d\'espera</string>
+    <string name="add_to_group">Afegeix al grup</string>
+    <string name="new_group">Grup nou</string>
+    <string name="group_name">Nom del grup</string>
+    <string name="delete_group">Suprimeix grup</string>
+    <string name="rename_group">Canvia el nom del grup</string>
+    <string name="delete_group_confirmation">Eliminar aquest grup? Les seves alarmes es tornaran a traslladar a la llista principal.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">Alerta %d</item>
+        <item quantity="other">%d alarmes</item>
+    </plurals>
+    <string name="group_name_exists">Ja existeix un grup amb aquest nom.</string>
 </resources>

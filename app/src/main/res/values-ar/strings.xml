@@ -57,4 +57,15 @@
     <string name="missed_alarm">تنبيه فائت</string>
     <string name="replaced_by_another_alarm">تم استبداله بمنبه آخر</string>
     <string name="sort_by_timer_duration">مدة المؤقِّت</string>
+    <string name="add_to_group">أضف إلى المجموعة</string>
+    <string name="new_group">مجموعة جديدة</string>
+    <string name="group_name">اسم المجموعة</string>
+    <string name="delete_group">حذف المجموعة</string>
+    <string name="rename_group">إعادة تسمية المجموعة</string>
+    <string name="delete_group_confirmation">هل تريد حذف هذه المجموعة؟ سيتم إعادة تنبيهاتها إلى القائمة الرئيسية.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">منبه %d</item>
+        <item quantity="other">%d منبهاتs</item>
+    </plurals>
+    <string name="group_name_exists">هناك مجموعة تحمل هذا الاسم بالفعل</string>
 </resources>

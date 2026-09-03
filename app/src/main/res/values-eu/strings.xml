@@ -53,4 +53,15 @@
     <string name="missed_alarm">Galdutako alarma</string>
     <string name="replaced_by_another_alarm">Beste alarma batek ordeztu du</string>
     <string name="alarm_timed_out">Alarma iraungita</string>
+    <string name="add_to_group">Taldeari gehitu</string>
+    <string name="new_group">Talde berria</string>
+    <string name="group_name">Taldearen izena</string>
+    <string name="delete_group">Taldea ezabatu</string>
+    <string name="rename_group">Taldearen izena aldatu</string>
+    <string name="delete_group_confirmation">Talde hau ezabatu? Bere alerta guztiak berriro zerrenda nagusira eramango dira.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarma</item>
+        <item quantity="other">%d alarma</item>
+    </plurals>
+    <string name="group_name_exists">Izena horrekin talde bat dagoeneko badago.</string>
 </resources>

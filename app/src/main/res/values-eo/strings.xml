@@ -53,4 +53,15 @@
     <string name="alarm_timed_out">Alarmo elĉerpiĝis</string>
     <string name="not_scheduled">Ne planita</string>
     <string name="replaced_by_another_alarm">Anstataŭigita de alia alarmo</string>
+    <string name="add_to_group">Aldoni al grupo</string>
+    <string name="new_group">Nova grupo</string>
+    <string name="group_name">Grupnomo</string>
+    <string name="delete_group">Forigi grupon</string>
+    <string name="rename_group">Renomigi grupon</string>
+    <string name="delete_group_confirmation">Forigi ĉi tiun grupon? Ĝiaj alarmoj estos movitaj reen al la ĉefa listo.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarmo</item>
+        <item quantity="other">%d alarmoj</item>
+    </plurals>
+    <string name="group_name_exists">Jam ekzistas grupo kun tiu nomo.</string>
 </resources>

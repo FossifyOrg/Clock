@@ -307,12 +307,13 @@ class SettingsActivity : SimpleActivity() {
 
     private fun exportData(outputUri: Uri) {
         val alarms = dbHelper.getAlarms()
+        val groups = dbHelper.getGroups()
         val timers = timerDb.getTimers()
         if (alarms.isEmpty() && timers.isEmpty()) {
             toast(org.fossify.commons.R.string.no_entries_for_exporting)
         } else {
             ExportHelper(this).exportData(
-                backup = AlarmTimerBackup(alarms, timers),
+                backup = AlarmTimerBackup(alarms, groups, timers),
                 outputUri = outputUri,
             ) {
                 toast(
