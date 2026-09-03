@@ -7,9 +7,11 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.widget.SeekBar
+import androidx.core.view.isVisible
 import org.fossify.clock.databinding.WidgetConfigDigitalBinding
 import org.fossify.clock.extensions.config
 import org.fossify.clock.helpers.FORMAT_12H
+import org.fossify.clock.helpers.FORMAT_12H_NO_AM_PM
 import org.fossify.clock.helpers.FORMAT_24H
 import org.fossify.clock.helpers.MyDigitalTimeWidgetProvider
 import org.fossify.clock.helpers.SIMPLE_PHONE
@@ -30,6 +32,7 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
     private var mWidgetId = 0
     private var mBgColor = 0
     private var mTextColor = 0
+    private var mShowAmPm = true
     private var mBgColorWithoutTransparency = 0
     private var mFeatureLockedDialog: FeatureLockedDialog? = null
     private val binding: WidgetConfigDigitalBinding by viewBinding(WidgetConfigDigitalBinding::inflate)
@@ -59,6 +62,13 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
         binding.configDigitalSave.setOnClickListener { saveConfig() }
         binding.configDigitalBgColor.setOnClickListener { pickBackgroundColor() }
         binding.configDigitalTextColor.setOnClickListener { pickTextColor() }
+
+        binding.configDigitalShowAmPm.isVisible = !config.use24HourFormat
+        binding.configDigitalShowAmPm.isChecked = mShowAmPm
+        binding.configDigitalShowAmPm.setOnCheckedChangeListener { _, isChecked ->
+            mShowAmPm = isChecked
+            updateClockPreviewFormat()
+        }
 
         val primaryColor = getProperPrimaryColor()
         binding.configDigitalBgSeekbar.setColors(mTextColor, primaryColor, primaryColor)
@@ -98,15 +108,30 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
             mTextColor = resources.getColor(org.fossify.commons.R.color.you_primary_color, theme)
         }
 
+        mShowAmPm = config.widgetShowAmPm
         updateTextColor()
+        updateClockPreviewFormat()
+    }
 
-        val clockFormat = if (config.use24HourFormat) FORMAT_24H else FORMAT_12H
+    private fun updateClockPreviewFormat() {
+        val clockFormat = if (config.use24HourFormat) {
+            FORMAT_24H
+        } else if (mShowAmPm) {
+            FORMAT_12H
+        } else {
+            FORMAT_12H_NO_AM_PM
+        }
+
         binding.configDigitalTime.format24Hour = clockFormat
         binding.configDigitalTime.format12Hour = clockFormat
     }
 
     private fun saveConfig() {
-        storeWidgetColors()
+        config.apply {
+            widgetBgColor = mBgColor
+            widgetTextColor = mTextColor
+            widgetShowAmPm = mShowAmPm
+        }
         requestWidgetUpdate()
 
         Intent().apply {
@@ -114,13 +139,6 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
             setResult(RESULT_OK, this)
         }
         finish()
-    }
-
-    private fun storeWidgetColors() {
-        config.apply {
-            widgetBgColor = mBgColor
-            widgetTextColor = mTextColor
-        }
     }
 
     private fun pickBackgroundColor() {
