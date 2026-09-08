@@ -104,6 +104,16 @@ const val FORMAT_24H = "HH:mm"
 const val FORMAT_12H_WITH_SECONDS = "h:mm:ss a"
 const val FORMAT_24H_WITH_SECONDS = "HH:mm:ss"
 
+// alarm reenable
+const val PROMPT_ENTRY_TYPE = "prompt_entry_type"
+const val PROMPT_ENTRY_ID = "prompt_entry_id"
+const val PENDING_REENABLES = "pending_reenables"
+const val ENTRY_TYPE = "entry_type"
+const val ENTRY_ID = "entry_id"
+const val ENTRY_TYPE_NONE = 0
+const val ENTRY_TYPE_ALARM = 1
+const val ENTRY_TYPE_GROUP = 2
+
 private val DAY_BIT_MAP = mapOf(
     Calendar.SUNDAY to SUNDAY_BIT,
     Calendar.MONDAY to MONDAY_BIT,
@@ -311,3 +321,5 @@ fun updateNonRecurringAlarmDay(alarm: Alarm) {
         TOMORROW_BIT
     }
 }
+
+fun createPendingReenableRequestCode(entryType: Int, entryId: Int) = entryType * 100_000 + entryId

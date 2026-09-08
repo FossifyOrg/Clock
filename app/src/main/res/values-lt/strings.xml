@@ -35,4 +35,5 @@
         <item quantity="other">%d budilkas</item>
     </plurals>
     <string name="group_name_exists">Grupė su tokiu pavadinimu jau egzistuoja</string>
+    <string name="turn_on_again_tomorrow">Rytoj vėl įjungti?</string>
 </resources>

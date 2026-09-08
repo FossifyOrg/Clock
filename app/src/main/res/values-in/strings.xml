@@ -50,6 +50,7 @@
     <string name="settings_import_data">Impor alarm dan pewaktu</string>
     <string name="settings_export_data">Ekspor alarm dan pewaktu</string>
     <string name="not_scheduled">Belum dijadwalkan</string>
+    <string name="turn_on_again_tomorrow">Besok dinyalakan lagi?</string>
     <string name="missed_alarm">Alarm terlewat</string>
     <string name="replaced_by_another_alarm">Digantikan oleh alarm lain</string>
     <string name="add_to_group">Tambahkan ke grup</string>

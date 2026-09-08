@@ -7,6 +7,7 @@ import org.fossify.clock.extensions.gson.gson
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.ObfuscatedAlarm
 import org.fossify.clock.models.ObfuscatedTimer
+import org.fossify.clock.models.PendingReenable
 import org.fossify.clock.models.Timer
 import org.fossify.commons.extensions.getDefaultAlarmSound
 import org.fossify.commons.extensions.getDefaultAlarmTitle
@@ -150,4 +151,18 @@ class Config(context: Context) : BaseConfig(context) {
         set(migrateFirstDayOfWeek) = prefs.edit {
             putBoolean(MIGRATE_FIRST_DAY_OF_WEEK, migrateFirstDayOfWeek)
         }
+
+    var promptEntryType: Int
+        get() = prefs.getInt(PROMPT_ENTRY_TYPE, ENTRY_TYPE_NONE)
+        set(promptEntryType) = prefs.edit { putInt(PROMPT_ENTRY_TYPE, promptEntryType) }
+
+    var promptEntryId: Int
+        get() = prefs.getInt(PROMPT_ENTRY_ID, -1)
+        set(promptEntryId) = prefs.edit { putInt(PROMPT_ENTRY_ID, promptEntryId) }
+
+    var pendingReenables: List<PendingReenable>
+        get() = prefs.getString(PENDING_REENABLES, null)?.let {
+            gson.fromJson(it, Array<PendingReenable>::class.java).toList()
+        } ?: emptyList()
+        set(value) = prefs.edit { putString(PENDING_REENABLES, gson.toJson(value)) }
 }

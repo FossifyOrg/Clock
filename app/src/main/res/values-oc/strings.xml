@@ -30,6 +30,7 @@
     <string name="no_timers_found">Cap de minutador pas trobat</string>
     <string name="add_timer">Apondre una minutador</string>
     <string name="upcoming_alarm">Alarma per arribar</string>
+    <string name="turn_on_again_tomorrow">Reencendre deman matin?</string>
     <string name="missed_alarm">Alarma mancada</string>
     <string name="replaced_by_another_alarm">Remplaçada per una autra alarma</string>
     <string name="alarm_timed_out">Alarma expirada</string>

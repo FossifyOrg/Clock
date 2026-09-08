@@ -57,4 +57,5 @@
         <item quantity="other">%d alarmer</item>
     </plurals>
     <string name="group_name_exists">Det finnes allerede en gruppe med det navnet</string>
+    <string name="turn_on_again_tomorrow">Slå den på igjen i morgen?</string>
 </resources>

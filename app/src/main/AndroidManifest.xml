@@ -182,6 +182,8 @@
 
         <receiver android:name=".receivers.SkipUpcomingAlarmReceiver" />
 
+        <receiver android:name=".receivers.ReenableAlarmReceiver" />
+
         <receiver android:name=".receivers.UpcomingAlarmReceiver" />
 
         <receiver

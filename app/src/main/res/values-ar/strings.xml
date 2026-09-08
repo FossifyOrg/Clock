@@ -54,6 +54,7 @@
     <string name="settings_export_data">تصدير المنبهات والمؤقتات</string>
     <string name="settings_import_data">استيراد المنبهات والمؤقتات</string>
     <string name="not_scheduled">غير مجدول</string>
+    <string name="turn_on_again_tomorrow">هل نعيد تشغيله غدًا؟</string>
     <string name="missed_alarm">تنبيه فائت</string>
     <string name="replaced_by_another_alarm">تم استبداله بمنبه آخر</string>
     <string name="sort_by_timer_duration">مدة المؤقِّت</string>

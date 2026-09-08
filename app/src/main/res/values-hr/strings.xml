@@ -49,6 +49,7 @@
     <string name="timer">Timer</string>
     <string name="sort_by_timer_duration">Trajanje timera</string>
     <string name="not_scheduled">Nije planirano</string>
+    <string name="turn_on_again_tomorrow">Upaliti ponovno sutra?</string>
     <string name="missed_alarm">Propušteni alarm</string>
     <string name="replaced_by_another_alarm">Zamijenjen drugim alarmom</string>
     <string name="alarm_timed_out">Vrijeme alarma je isteklo</string>

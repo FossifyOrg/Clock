@@ -52,6 +52,7 @@
     <string name="settings_import_data">Импорт таймеров и будильников</string>
     <string name="sort_by_timer_duration">Длительность таймера</string>
     <string name="not_scheduled">Не запланировано</string>
+    <string name="turn_on_again_tomorrow">Зажгите завтра снова</string>
     <string name="missed_alarm">Пропущенный будильник</string>
     <string name="replaced_by_another_alarm">Заменён другим будильником</string>
     <string name="alarm_timed_out">Время действия будильника истекло</string>

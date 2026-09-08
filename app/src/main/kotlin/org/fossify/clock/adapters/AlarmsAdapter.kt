@@ -17,6 +17,9 @@ import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getFormattedTime
 import org.fossify.clock.extensions.handleFullScreenNotificationsPermission
+import org.fossify.clock.extensions.pendingReenableManager
+import org.fossify.clock.helpers.ENTRY_TYPE_ALARM
+import org.fossify.clock.helpers.ENTRY_TYPE_GROUP
 import org.fossify.clock.helpers.updateNonRecurringAlarmDay
 import org.fossify.clock.interfaces.ToggleAlarmInterface
 import org.fossify.clock.models.Alarm
@@ -214,6 +217,11 @@ class AlarmsAdapter(
             alarmSwitch.setOnClickListener {
                 toggleAlarm(binding = this, alarm = alarm)
             }
+            alarmReenablePrompt.setTextColor(properPrimaryColor)
+            alarmReenablePrompt.beVisibleIf(activity.pendingReenableManager.isPromptVisible(ENTRY_TYPE_ALARM, alarm.id))
+            alarmReenablePrompt.setOnClickListener {
+                onReenableClicked(ENTRY_TYPE_ALARM, alarm.id, listOf(alarm))
+            }
         }
     }
 
@@ -237,6 +245,12 @@ class AlarmsAdapter(
             groupSwitch.setOnClickListener {
                 toggleGroup(group.ref, groupSwitch.isChecked)
             }
+
+            groupReenablePrompt.setTextColor(properPrimaryColor)
+            groupReenablePrompt.beVisibleIf(activity.pendingReenableManager.isPromptVisible(ENTRY_TYPE_GROUP, group.ref))
+            groupReenablePrompt.setOnClickListener {
+                onReenableClicked(ENTRY_TYPE_GROUP, group.ref, alarms)
+            }
         }
     }
 
@@ -245,8 +259,19 @@ class AlarmsAdapter(
             if (granted) {
                 val updatedAlarms = activity.dbHelper.updateGroupEnabledState(groupId, isEnabled)
                 updatedAlarms.forEach { toggleAlarmInterface.alarmToggled(it.id, isEnabled) }
+                notifyManualToggle(ENTRY_TYPE_GROUP, groupId, isEnabled)
             }
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun notifyManualToggle(entryType: Int, entryId: Int, isEnabled: Boolean) {
+        if (isEnabled) {
+            activity.pendingReenableManager.onManuallyEnabled(entryType, entryId)
+        } else {
+            activity.pendingReenableManager.onManuallyDisabled(entryType, entryId)
+        }
+        notifyDataSetChanged()
     }
 
     private fun toggleAlarm(binding: ItemAlarmBinding, alarm: Alarm) {
@@ -254,6 +279,7 @@ class AlarmsAdapter(
             alarm.isRecurring() -> {
                 if (activity.config.wasAlarmWarningShown) {
                     toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
+                    notifyManualToggle(ENTRY_TYPE_ALARM, alarm.id, binding.alarmSwitch.isChecked)
                 } else {
                     ConfirmationDialog(
                         activity = activity,
@@ -263,6 +289,7 @@ class AlarmsAdapter(
                     ) {
                         activity.config.wasAlarmWarningShown = true
                         toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
+                        notifyManualToggle(ENTRY_TYPE_ALARM, alarm.id, binding.alarmSwitch.isChecked)
                     }
                 }
             }
@@ -274,8 +301,15 @@ class AlarmsAdapter(
                     alarm = alarm, isEnabled = binding.alarmSwitch.isChecked
                 )
                 toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
+                notifyManualToggle(ENTRY_TYPE_ALARM, alarm.id, binding.alarmSwitch.isChecked)
             }
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onReenableClicked(entryType: Int, entryId: Int, affectedAlarms: List<Alarm>) {
+        activity.pendingReenableManager.confirmReenable(entryType, entryId, affectedAlarms)
+        notifyDataSetChanged()
     }
 
     private fun getAlarmSelectedDaysString(

@@ -21,6 +21,7 @@
     <string name="no_alarms_found">Engir vekjarar fundust</string>
     <string name="add_alarm">Bæta við vekjara</string>
     <string name="upcoming_alarm">Vekjarar á döfinni</string>
+    <string name="turn_on_again_tomorrow">Kveikja aftur á morgun?</string>
     <string name="missed_alarm">Viðvaranir sem misst var af</string>
     <string name="replaced_by_another_alarm">Skipt út fyrir annan vekjara</string>
     <string name="alarm_timed_out">Vekjari rann út</string>

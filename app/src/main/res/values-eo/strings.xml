@@ -49,6 +49,7 @@
     <string name="settings_import_data">Importi alarmojn kaj tempomezurilojn</string>
     <string name="settings_export_data">Eksporti alarmojn kaj tempomezurilojn</string>
     <string name="sort_by_timer_duration">Daŭro de tempomezurilo</string>
+    <string name="turn_on_again_tomorrow">Ĉu vi ŝaltos ĝin denove morgaŭ?</string>
     <string name="missed_alarm">Perdita alarmo</string>
     <string name="alarm_timed_out">Alarmo elĉerpiĝis</string>
     <string name="not_scheduled">Ne planita</string>
