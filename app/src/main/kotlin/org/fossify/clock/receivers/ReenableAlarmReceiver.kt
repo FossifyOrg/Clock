@@ -10,6 +10,7 @@ import org.fossify.clock.extensions.goAsync
 import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.helpers.ENTRY_ID
 import org.fossify.clock.helpers.ENTRY_TYPE
+import org.fossify.clock.helpers.PendingReenableManager.Companion.enableAlarmIds
 import org.fossify.clock.helpers.updateNonRecurringAlarmDay
 import org.fossify.clock.models.AlarmEvent
 import org.greenrobot.eventbus.EventBus
@@ -26,16 +27,7 @@ class ReenableAlarmReceiver : BroadcastReceiver() {
                 val job = context.config.pendingReenables
                     .find { it.entryId == id && it.entryType == type } ?: return@goAsync
 
-                job.alarmIds.forEach { alarmId ->
-                    context.dbHelper.getAlarmWithId(alarmId)?.let { alarm ->
-                        alarm.isEnabled = true
-                        if (!alarm.isRecurring()) {
-                            updateNonRecurringAlarmDay(alarm)
-                        }
-                        context.dbHelper.updateAlarm(alarm)
-                        context.alarmController.scheduleNextOccurrence(alarm)
-                    }
-                }
+                enableAlarmIds(context, job.alarmIds)
 
                 context.config.pendingReenables = context.config.pendingReenables
                     .filterNot { it.entryId == id && it.entryType == type }

@@ -4,12 +4,14 @@ import android.app.AlarmManager
 import android.app.Application
 import android.content.Context
 import androidx.core.app.AlarmManagerCompat
+import org.fossify.clock.extensions.alarmController
 import org.fossify.clock.extensions.alarmManager
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getReenablePendingIntent
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.PendingReenable
+import kotlin.time.Clock
 
 class PendingReenableManager(
     private val context: Application,
@@ -31,10 +33,8 @@ class PendingReenableManager(
     }
 
     fun confirmReenable(entryType: Int, entryId: Int, affectedAlarms: List<Alarm>) {
-        var triggerAtMillis = affectedAlarms.mapNotNull { getTimeOfNextAlarm(it)?.timeInMillis }.maxOrNull()
+        val triggerAtMillis = affectedAlarms.mapNotNull { getTimeOfNextAlarm(it)?.timeInMillis }.maxOrNull()
         if (triggerAtMillis == null || triggerAtMillis == 0L) return
-
-//        triggerAtMillis += 120000 // add 2 minute to avoid it triggering after reenabeling
 
         val pendingReenable = PendingReenable(
             entryType = entryType,
@@ -53,6 +53,24 @@ class PendingReenableManager(
         )
 
         clearPromptIfMatching(entryType, entryId)
+    }
+
+    fun reprocessPendingReenables() {
+        val now = System.currentTimeMillis()
+        val (due, notYetDue) = config.pendingReenables.partition { it.triggerAtMillis <= now }
+
+        due.forEach { pending -> enableAlarmIds(context, pending.alarmIds) }
+
+        notYetDue.forEach { pending ->
+            AlarmManagerCompat.setExactAndAllowWhileIdle(
+                context.alarmManager,
+                AlarmManager.RTC_WAKEUP,
+                pending.triggerAtMillis,
+                context.getReenablePendingIntent(pending)
+            )
+        }
+
+        config.pendingReenables = notYetDue
     }
 
     private fun clearPromptIfMatching(entryType: Int, entryId: Int) {
@@ -82,6 +100,19 @@ class PendingReenableManager(
                     db = appContext.dbHelper,
                     config = appContext.config
                 ).also { instance = it }
+            }
+        }
+
+        fun enableAlarmIds(context: Context, alarmIds: List<Int>) {
+            alarmIds.forEach { alarmId ->
+                context.dbHelper.getAlarmWithId(alarmId)?.let { alarm ->
+                    alarm.isEnabled = true
+                    if (!alarm.isRecurring()) {
+                        updateNonRecurringAlarmDay(alarm)
+                    }
+                    context.dbHelper.updateAlarm(alarm)
+                    context.alarmController.scheduleNextOccurrence(alarm)
+                }
             }
         }
     }
