@@ -170,7 +170,7 @@ class GroupActivity : SimpleActivity(), ToggleAlarmInterface {
 
     private fun checkAlarmState(alarm: Alarm) {
         if (alarm.isEnabled) {
-            alarmController.scheduleNextOccurrence(alarm = alarm, showToasts = true)
+            alarmController.scheduleNextOccurrence(alarm = alarm)
         } else {
             cancelAlarmClock(alarm)
         }

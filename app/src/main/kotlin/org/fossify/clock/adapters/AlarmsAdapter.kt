@@ -18,8 +18,10 @@ import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getFormattedTime
 import org.fossify.clock.extensions.handleFullScreenNotificationsPermission
 import org.fossify.clock.extensions.pendingReenableManager
+import org.fossify.clock.extensions.showRemainingTimeMessage
 import org.fossify.clock.helpers.ENTRY_TYPE_ALARM
 import org.fossify.clock.helpers.ENTRY_TYPE_GROUP
+import org.fossify.clock.helpers.getTimeOfNextAlarm
 import org.fossify.clock.helpers.updateNonRecurringAlarmDay
 import org.fossify.clock.interfaces.ToggleAlarmInterface
 import org.fossify.clock.models.Alarm
@@ -259,6 +261,9 @@ class AlarmsAdapter(
             if (granted) {
                 val updatedAlarms = activity.dbHelper.updateGroupEnabledState(groupId, isEnabled)
                 updatedAlarms.forEach { toggleAlarmInterface.alarmToggled(it.id, isEnabled) }
+                if (isEnabled)
+                    showEarliestTriggerToast(updatedAlarms)
+
                 notifyManualToggle(ENTRY_TYPE_GROUP, groupId, isEnabled)
             }
         }
@@ -279,6 +284,7 @@ class AlarmsAdapter(
             alarm.isRecurring() -> {
                 if (activity.config.wasAlarmWarningShown) {
                     toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
+
                     notifyManualToggle(ENTRY_TYPE_ALARM, alarm.id, binding.alarmSwitch.isChecked)
                 } else {
                     ConfirmationDialog(
@@ -289,9 +295,12 @@ class AlarmsAdapter(
                     ) {
                         activity.config.wasAlarmWarningShown = true
                         toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
+
                         notifyManualToggle(ENTRY_TYPE_ALARM, alarm.id, binding.alarmSwitch.isChecked)
                     }
                 }
+                if (binding.alarmSwitch.isChecked)
+                    showEarliestTriggerToast(listOf(alarm))
             }
 
             else -> {
@@ -301,9 +310,16 @@ class AlarmsAdapter(
                     alarm = alarm, isEnabled = binding.alarmSwitch.isChecked
                 )
                 toggleAlarmInterface.alarmToggled(alarm.id, binding.alarmSwitch.isChecked)
+                if (binding.alarmSwitch.isChecked)
+                    showEarliestTriggerToast(listOf(alarm))
                 notifyManualToggle(ENTRY_TYPE_ALARM, alarm.id, binding.alarmSwitch.isChecked)
             }
         }
+    }
+
+    private fun showEarliestTriggerToast(alarms: List<Alarm>) {
+        val earliest = alarms.mapNotNull { getTimeOfNextAlarm(it)?.timeInMillis }.minOrNull() ?: return
+        activity.showRemainingTimeMessage(earliest - System.currentTimeMillis())
     }
 
     @SuppressLint("NotifyDataSetChanged")

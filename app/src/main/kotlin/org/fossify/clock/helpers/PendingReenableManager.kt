@@ -33,8 +33,8 @@ class PendingReenableManager(
     }
 
     fun confirmReenable(entryType: Int, entryId: Int, affectedAlarms: List<Alarm>) {
-        val triggerAtMillis = affectedAlarms.mapNotNull { getTimeOfNextAlarm(it)?.timeInMillis }.maxOrNull()
-        if (triggerAtMillis == null || triggerAtMillis == 0L) return
+        val triggerAtMillis = affectedAlarms.maxOfOrNull { getLastRelevantOccurrence(it).timeInMillis } ?: return
+        if (triggerAtMillis == 0L) return
 
         val pendingReenable = PendingReenable(
             entryType = entryType,

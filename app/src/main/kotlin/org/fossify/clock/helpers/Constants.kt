@@ -322,4 +322,28 @@ fun updateNonRecurringAlarmDay(alarm: Alarm) {
     }
 }
 
+fun getLastRelevantOccurrence(alarm: Alarm): Calendar {
+    val referenceTime = Calendar.getInstance().apply {
+        set(Calendar.HOUR_OF_DAY, alarm.timeInMinutes / 60)
+        set(Calendar.MINUTE, alarm.timeInMinutes % 60)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }
+
+    return when (alarm.days) {
+        TODAY_BIT -> referenceTime
+        TOMORROW_BIT -> referenceTime.apply { add(Calendar.DAY_OF_MONTH, 1) }
+        else -> {
+            repeat(7) {
+                val currentDay = getDayNumber(referenceTime.get(Calendar.DAY_OF_WEEK))
+                if (alarm.days.isBitSet(currentDay)) {
+                    return referenceTime
+                }
+                referenceTime.add(Calendar.DAY_OF_MONTH, 1)
+            }
+            referenceTime
+        }
+    }
+}
+
 fun createPendingReenableRequestCode(entryType: Int, entryId: Int) = entryType * 100_000 + entryId
