@@ -29,6 +29,8 @@ import org.fossify.clock.helpers.AlarmController
 import org.fossify.clock.helpers.Config
 import org.fossify.clock.helpers.DBHelper
 import org.fossify.clock.helpers.EDITED_TIME_ZONE_SEPARATOR
+import org.fossify.clock.helpers.ENTRY_ID
+import org.fossify.clock.helpers.ENTRY_TYPE
 import org.fossify.clock.helpers.FORMAT_12H
 import org.fossify.clock.helpers.FORMAT_24H
 import org.fossify.clock.helpers.MyAnalogueTimeWidgetProvider
@@ -37,6 +39,7 @@ import org.fossify.clock.helpers.NOTIFICATION_ID
 import org.fossify.clock.helpers.OPEN_ALARMS_TAB_INTENT_ID
 import org.fossify.clock.helpers.OPEN_STOPWATCH_TAB_INTENT_ID
 import org.fossify.clock.helpers.OPEN_TAB
+import org.fossify.clock.helpers.PendingReenableManager
 import org.fossify.clock.helpers.TAB_ALARM
 import org.fossify.clock.helpers.TAB_STOPWATCH
 import org.fossify.clock.helpers.TAB_TIMER
@@ -45,6 +48,7 @@ import org.fossify.clock.helpers.TODAY_BIT
 import org.fossify.clock.helpers.TOMORROW_BIT
 import org.fossify.clock.helpers.TimerHelper
 import org.fossify.clock.helpers.UPCOMING_ALARM_INTENT_ID
+import org.fossify.clock.helpers.createPendingReenableRequestCode
 import org.fossify.clock.helpers.formatTime
 import org.fossify.clock.helpers.getAllTimeZones
 import org.fossify.clock.helpers.getDefaultTimeZoneTitle
@@ -52,10 +56,12 @@ import org.fossify.clock.helpers.getTimeOfNextAlarm
 import org.fossify.clock.interfaces.TimerDao
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.MyTimeZone
+import org.fossify.clock.models.PendingReenable
 import org.fossify.clock.models.Timer
 import org.fossify.clock.models.TimerState
 import org.fossify.clock.receivers.AlarmReceiver
 import org.fossify.clock.receivers.HideTimerReceiver
+import org.fossify.clock.receivers.ReenableAlarmReceiver
 import org.fossify.clock.receivers.SkipUpcomingAlarmReceiver
 import org.fossify.clock.receivers.StopAlarmReceiver
 import org.fossify.clock.receivers.UpcomingAlarmReceiver
@@ -105,6 +111,9 @@ val Context.alarmManager: AlarmManager
 
 val Context.alarmController: AlarmController
     get() = AlarmController.getInstance(applicationContext)
+
+val Context.pendingReenableManager: PendingReenableManager
+    get() = PendingReenableManager.getInstance(applicationContext)
 
 fun Context.getFormattedDate(calendar: Calendar): String {
     val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7 // make sure index 0 means monday
@@ -271,6 +280,18 @@ fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
     return PendingIntent.getBroadcast(
         this,
         alarm.id,
+        intent,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
+}
+
+fun Context.getReenablePendingIntent(job: PendingReenable): PendingIntent {
+    val intent = Intent(this, ReenableAlarmReceiver::class.java)
+    intent.putExtra(ENTRY_ID, job.entryId)
+    intent.putExtra(ENTRY_TYPE, job.entryType)
+    return PendingIntent.getBroadcast(
+        this,
+        createPendingReenableRequestCode(job.entryType, job.entryId),
         intent,
         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     )

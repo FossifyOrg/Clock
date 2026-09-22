@@ -30,6 +30,7 @@
     <string name="no_timers_found">Cap de minutador pas trobat</string>
     <string name="add_timer">Apondre una minutador</string>
     <string name="upcoming_alarm">Alarma per arribar</string>
+    <string name="turn_on_again_tomorrow">Reencendre deman matin?</string>
     <string name="missed_alarm">Alarma mancada</string>
     <string name="replaced_by_another_alarm">Remplaçada per una autra alarma</string>
     <string name="alarm_timed_out">Alarma expirada</string>
@@ -53,4 +54,14 @@
     <string name="settings_export_data">Exportar las alarmas e los minutadors</string>
     <string name="faq_1_title">Cossí cambi los torns dins l’onglet cronomètre ?</string>
     <string name="faq_1_text">Clicatz sus una de las colomnas, aquò farà que los torns seràn ordenats per la colomna donada. Amb de clics suplementaris podètz alternar entre l\'òrdre creissent e descreissent.</string>
+    <string name="new_group">Nòu grop</string>
+    <string name="group_name">Nom del grop</string>
+    <string name="delete_group">Suprimir lo grop</string>
+    <string name="rename_group">Renomenar lo grop</string>
+    <string name="delete_group_confirmation">Suprimir aqueste grop? Sas alarmas seràn tornadas a la lista principala.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">Alarma %d</item>
+        <item quantity="other">%d alarmas</item>
+    </plurals>
+    <string name="group_name_exists">Un grop amb aquel nom ja existís.</string>
 </resources>

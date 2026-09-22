@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import org.fossify.clock.extensions.alarmController
 import org.fossify.clock.extensions.goAsync
+import org.fossify.clock.extensions.pendingReenableManager
 
 /**
  * Receiver responsible for rescheduling alarms in background.
@@ -16,6 +17,7 @@ class RescheduleAlarmsReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         goAsync {
             context.alarmController.rescheduleEnabledAlarms()
+            context.pendingReenableManager.reprocessPendingReenables()
         }
     }
 }

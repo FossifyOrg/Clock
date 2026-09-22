@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/activity_margin"
+        android:paddingTop="@dimen/activity_margin">
+
+        <RadioGroup
+            android:id="@+id/add_to_group_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <org.fossify.commons.views.MyEditText
+            android:id="@+id/add_to_group_new_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:hint="@string/new_group" />
+    </LinearLayout>
+</ScrollView>

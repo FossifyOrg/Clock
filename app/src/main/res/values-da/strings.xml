@@ -43,6 +43,7 @@
     <string name="add_timer">Tilføj timer</string>
     <string name="upcoming_alarm">Kommende alarm</string>
     <string name="not_scheduled">Ikke planlagt</string>
+    <string name="turn_on_again_tomorrow">Tænd den igen i morgen?</string>
     <string name="missed_alarm">Misset alarm</string>
     <string name="replaced_by_another_alarm">Erstattet af en anden alarm</string>
     <string name="alarm_timed_out">Alarmen udløb</string>
@@ -53,4 +54,15 @@
         <item quantity="one">%d timer kører</item>
         <item quantity="other">%d timere kører</item>
     </plurals>
+    <string name="add_to_group">Tilføj til gruppe</string>
+    <string name="new_group">Ny gruppe</string>
+    <string name="group_name">Gruppe navn</string>
+    <string name="delete_group">Slet gruppe</string>
+    <string name="rename_group">Omdøb gruppe</string>
+    <string name="delete_group_confirmation">Skal denne gruppe slettes? Dens alarmer flyttes tilbage til hovedlisten.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d alarm</item>
+        <item quantity="other">%d alarmer</item>
+    </plurals>
+    <string name="group_name_exists">Der findes allerede en gruppe med det navn</string>
 </resources>

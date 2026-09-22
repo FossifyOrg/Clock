@@ -98,7 +98,9 @@ class TimerAdapter(
 
     override fun getActionMenuId() = R.menu.cab_alarms
 
-    override fun prepareActionMode(menu: Menu) {}
+    override fun prepareActionMode(menu: Menu) {
+        menu.findItem(R.id.cab_add_to_group)?.isVisible = false
+    }
 
     override fun actionItemPressed(id: Int) {
         if (selectedKeys.isEmpty()) {

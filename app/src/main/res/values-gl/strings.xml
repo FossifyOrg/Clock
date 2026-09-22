@@ -48,9 +48,21 @@
     <string name="faq_1_text">So faga clic en calquera das columnas, iso fará que se ordenen pola columna dada. Con clics adicionais, pode alternar entre clasificación ascendente e descendente.</string>
     <string name="sort_by_timer_duration">Duración do temporizador</string>
     <string name="not_scheduled">Non programado</string>
+    <string name="turn_on_again_tomorrow">¿Volver a acender mañá?</string>
     <string name="missed_alarm">Alarma perdida</string>
     <string name="replaced_by_another_alarm">Substituída por outra alarma</string>
     <string name="alarm_timed_out">Alarma caduca</string>
     <string name="settings_import_data">Importar alarmas e temporizadores</string>
     <string name="settings_export_data">Exportar alarmas e temporizadores</string>
+    <string name="add_to_group">Engadir ao grupo</string>
+    <string name="new_group">Novo grupo</string>
+    <string name="group_name">Nome do grupo</string>
+    <string name="delete_group">Eliminar grupo</string>
+    <string name="rename_group">Renombrar grupo</string>
+    <string name="delete_group_confirmation">Eliminar este grupo? As súas alarmas volverán á lista principal.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">Alarma %d</item>
+        <item quantity="other">%d alarmas</item>
+    </plurals>
+    <string name="group_name_exists">Xa existe un grupo con ese nome.</string>
 </resources>

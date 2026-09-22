@@ -21,6 +21,7 @@
     <string name="no_alarms_found">Engir vekjarar fundust</string>
     <string name="add_alarm">Bæta við vekjara</string>
     <string name="upcoming_alarm">Vekjarar á döfinni</string>
+    <string name="turn_on_again_tomorrow">Kveikja aftur á morgun?</string>
     <string name="missed_alarm">Viðvaranir sem misst var af</string>
     <string name="replaced_by_another_alarm">Skipt út fyrir annan vekjara</string>
     <string name="alarm_timed_out">Vekjari rann út</string>
@@ -31,4 +32,15 @@
     <string name="increase_volume_gradually">Hækka hljóðstyrk jafnt og þétt</string>
     <string name="faq_1_title">Hvernig get ég breytt röðun hrigja í skeiðklukkuflipanum?</string>
     <string name="faq_1_text">Smellið á hvaða dálk sem er, það mun raða hringjunum eftir þeim dálki. Með því að smella oftar er hægt að breyta milli þess að hafa minnsta eða hæsta gildi eftst.</string>
+    <string name="add_to_group">Bæta við hóp</string>
+    <string name="new_group">Ný hópur</string>
+    <string name="group_name">Nafn hópsins</string>
+    <string name="delete_group">Eyða hópi</string>
+    <string name="rename_group">Csoport átnevezése</string>
+    <string name="delete_group_confirmation">Eyða þessum hópi? Viðvaranir hans verða færðar aftur í aðallista.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d viðvörun</item>
+        <item quantity="other">%d viðvaranir</item>
+    </plurals>
+    <string name="group_name_exists">Hópur með það nafn er þegar til.</string>
 </resources>

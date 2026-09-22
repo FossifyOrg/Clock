@@ -53,6 +53,18 @@
     <string name="sort_by_timer_duration">Тривалість таймера</string>
     <string name="alarm_timed_out">Час спрацювання будильника вичерпано</string>
     <string name="not_scheduled">Не заплановано</string>
+    <string name="turn_on_again_tomorrow">Запали знову завтра</string>
     <string name="missed_alarm">Пропущений будильник</string>
     <string name="replaced_by_another_alarm">Замінено на інший будильник</string>
+    <string name="add_to_group">Додати до групи</string>
+    <string name="new_group">Нова група</string>
+    <string name="group_name">Назва групи</string>
+    <string name="delete_group">Видалити групу</string>
+    <string name="rename_group">Перейменувати групу</string>
+    <string name="delete_group_confirmation">¿Quieres eliminar este grupo? Sus alarmas se volverán a mover a la lista principal.</string>
+    <plurals name="group_alarm_count">
+        <item quantity="one">%d будильник</item>
+        <item quantity="other">%d сигналів тривоги</item>
+    </plurals>
+    <string name="group_name_exists">Група з такою назвою вже існує</string>
 </resources>

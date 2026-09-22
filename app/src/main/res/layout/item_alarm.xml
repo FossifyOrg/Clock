@@ -54,6 +54,27 @@
         app:layout_constraintTop_toBottomOf="@id/alarm_days"
         tools:text="Good morning!" />
 
+    <org.fossify.commons.views.MyTextView
+        android:id="@+id/alarm_reenable_prompt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/tiny_margin"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:ellipsize="end"
+        android:focusable="true"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:text="@string/turn_on_again_tomorrow"
+        android:textSize="@dimen/bigger_text_size"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/alarm_switch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/alarm_label"
+        tools:text="Turn on again tomorrow?"
+        tools:visibility="visible" />
+
     <org.fossify.commons.views.MyMaterialSwitch
         android:id="@+id/alarm_switch"
         android:layout_width="wrap_content"
