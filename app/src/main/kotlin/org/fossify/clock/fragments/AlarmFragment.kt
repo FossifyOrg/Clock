@@ -229,7 +229,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     private fun checkAlarmState(alarm: Alarm) {
         val activity = activity as? MainActivity ?: return
         if (alarm.isEnabled) {
-            activity.alarmController.scheduleNextOccurrence(alarm = alarm, showToasts = true)
+            activity.alarmController.scheduleNextOccurrence(alarm = alarm)
         } else {
             activity.cancelAlarmClock(alarm)
         }

@@ -38,4 +38,5 @@
         <item quantity="other">%d larwm</item>
     </plurals>
     <string name="group_name_exists">Mae grŵp o\'r enw hwnnw eisoes yn bodoli.</string>
+    <string name="turn_on_again_tomorrow">Tynnau eto yfory</string>
 </resources>

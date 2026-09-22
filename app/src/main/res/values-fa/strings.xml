@@ -12,4 +12,5 @@
         <item quantity="other">%d هشدار</item>
     </plurals>
     <string name="group_name_exists">گروهی با آن نام از قبل وجود دارد</string>
+    <string name="turn_on_again_tomorrow">فردا صبح دوباره روشن کن</string>
 </resources>

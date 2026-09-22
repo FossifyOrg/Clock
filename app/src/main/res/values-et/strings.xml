@@ -51,6 +51,7 @@
     <string name="sort_by_timer_duration">Taimeri kestus</string>
     <string name="alarm_timed_out">Äratus aegus</string>
     <string name="not_scheduled">Pole ajastatud</string>
+    <string name="turn_on_again_tomorrow">Kas homme jälle sisse lülitada?</string>
     <string name="missed_alarm">Märkamata äratus</string>
     <string name="replaced_by_another_alarm">Seda asendas teine äratus</string>
     <string name="add_to_group">Lisa rühma</string>

@@ -47,6 +47,7 @@
     <string name="select_timer_to_dismiss">Выберыце таймер для адключэння</string>
     <string name="select_alarm_to_dismiss">Выберыце будзільнік для адключэння</string>
     <string name="alarm_created">Будзільнік створаны</string>
+    <string name="turn_on_again_tomorrow">Заўтра зноў уключыць?</string>
     <string name="missed_alarm">Прапушчаны будзільнік</string>
     <string name="add_alarm">Дадаць будзільнік</string>
     <string name="add_timer">Дадаць таймер</string>

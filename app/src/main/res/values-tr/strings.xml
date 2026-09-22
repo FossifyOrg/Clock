@@ -51,6 +51,7 @@
     <string name="sort_by_timer_duration">Zamanlayıcı süresi</string>
     <string name="alarm_timed_out">Alarm zaman aşımına uğradı</string>
     <string name="not_scheduled">Planlanmadı</string>
+    <string name="turn_on_again_tomorrow">Yarın tekrar açın</string>
     <string name="missed_alarm">Kaçırılmış alarm</string>
     <string name="replaced_by_another_alarm">Yerine başka bir alarm konuldu</string>
     <string name="add_to_group">Gruba ekle</string>

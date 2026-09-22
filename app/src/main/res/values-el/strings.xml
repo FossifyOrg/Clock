@@ -51,6 +51,7 @@
     <string name="settings_import_data">Εισαγωγή ξυπνητηριών και χρονομέτρων</string>
     <string name="settings_export_data">Εξαγωγή ξυπνητηριών και χρονομέτρων</string>
     <string name="sort_by_timer_duration">Διάρκεια χρονομέτρου</string>
+    <string name="turn_on_again_tomorrow">Να το ξαναβάλω αύριο;</string>
     <string name="missed_alarm">Η αφύπνιση παραλήφθηκε</string>
     <string name="add_to_group">Προσθήκη στην ομάδα</string>
     <string name="new_group">Νέα ομάδα</string>

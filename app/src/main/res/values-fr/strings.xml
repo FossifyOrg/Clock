@@ -52,6 +52,7 @@
     <string name="settings_import_data">Importer des alarmes et des timers</string>
     <string name="not_scheduled">Non programmé</string>
     <string name="replaced_by_another_alarm">Remplacée par une autre alarme</string>
+    <string name="turn_on_again_tomorrow">On le rallume demain ?</string>
     <string name="missed_alarm">Alarme manquée</string>
     <string name="alarm_timed_out">Alarme expirée</string>
     <string name="add_to_group">Ajouter au groupe</string>

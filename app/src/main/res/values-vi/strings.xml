@@ -56,4 +56,5 @@
         <item quantity="other">%d báo thức</item>
     </plurals>
     <string name="group_name_exists">Đã có một nhóm mang tên đó rồi</string>
+    <string name="turn_on_again_tomorrow">Hãy bật lại vào ngày mai</string>
 </resources>

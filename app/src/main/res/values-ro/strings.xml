@@ -52,6 +52,7 @@
     <string name="settings_import_data">Importă alarme și cronometre</string>
     <string name="settings_export_data">Exportă alarme și cronometre</string>
     <string name="not_scheduled">Nu este programat</string>
+    <string name="turn_on_again_tomorrow">Pornește-l din nou mâine</string>
     <string name="missed_alarm">Alarmă ratată</string>
     <string name="replaced_by_another_alarm">Înlocuită cu o altă alarmă</string>
     <string name="add_to_group">Adaugă la grup</string>

@@ -54,4 +54,5 @@
         <item quantity="other">%d аларма</item>
     </plurals>
     <string name="group_name_exists">Већ постоји група са тим именом.</string>
+    <string name="turn_on_again_tomorrow">Укључи поново сутра ујутру</string>
 </resources>
