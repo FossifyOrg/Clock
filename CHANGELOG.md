@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.1] - 2026-09-24
+### Changed
+- Updated translations
+
 ## [1.6.0] - 2026-01-30
 ### Added
 - Added support for custom fonts
@@ -112,7 +116,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#335]: https://github.com/FossifyOrg/Clock/issues/335
 [#346]: https://github.com/FossifyOrg/Clock/issues/346
 
-[Unreleased]: https://github.com/FossifyOrg/Clock/compare/1.6.0...HEAD
+[Unreleased]: https://github.com/FossifyOrg/Clock/compare/1.6.1...HEAD
+[1.6.1]: https://github.com/FossifyOrg/Clock/compare/1.6.0...1.6.1
 [1.6.0]: https://github.com/FossifyOrg/Clock/compare/1.5.0...1.6.0
 [1.5.0]: https://github.com/FossifyOrg/Clock/compare/1.4.0...1.5.0
 [1.4.0]: https://github.com/FossifyOrg/Clock/compare/1.3.1...1.4.0
