@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import org.fossify.clock.R
+import org.fossify.clock.extensions.dbHelper
 import org.fossify.clock.extensions.getClosestEnabledAlarmString
 import org.fossify.clock.extensions.getOpenAlarmTabIntent
 import org.fossify.clock.extensions.getSkipUpcomingAlarmPendingIntent
@@ -35,6 +36,7 @@ class UpcomingAlarmReceiver : BroadcastReceiver() {
     }
 
     private fun showUpcomingAlarmNotification(context: Context, alarmId: Int) {
+        val label = context.dbHelper.getAlarmWithId(alarmId)?.label.orEmpty()
         context.getClosestEnabledAlarmString { alarmString ->
             val notificationManager = context.notificationManager
             NotificationChannel(
@@ -52,9 +54,15 @@ class UpcomingAlarmReceiver : BroadcastReceiver() {
                 alarmId = alarmId, notificationId = UPCOMING_ALARM_NOTIFICATION_ID
             )
 
+            val contentText = if (label.isNotEmpty()) {
+                "$alarmString - $label"
+            } else {
+                alarmString
+            }
+
             val notification = NotificationCompat.Builder(context, UPCOMING_ALARM_CHANNEL_ID)
                 .setContentTitle(context.getString(R.string.upcoming_alarm))
-                .setContentText(alarmString)
+                .setContentText(contentText)
                 .setSmallIcon(R.drawable.ic_alarm_vector)
                 .setPriority(Notification.PRIORITY_LOW)
                 .addAction(
