@@ -100,7 +100,19 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
 
         updateTextColor()
 
-        val clockFormat = if (config.use24HourFormat) FORMAT_24H else FORMAT_12H
+        binding.configDigitalShowAmPm.isChecked = config.widgetShowAmPm
+        binding.configDigitalShowAmPm.setOnCheckedChangeListener { _, checked ->
+            config.widgetShowAmPm = checked
+            val clockFormat = if (config.use24HourFormat) FORMAT_24H else if (checked) FORMAT_12H else FORMAT_12H_NO_AMPM
+            binding.configDigitalTime.format24Hour = clockFormat
+            binding.configDigitalTime.format12Hour = clockFormat
+        }
+
+        val clockFormat = when {
+            config.use24HourFormat -> FORMAT_24H
+            config.widgetShowAmPm -> FORMAT_12H
+            else -> FORMAT_12H_NO_AMPM
+        }
         binding.configDigitalTime.format24Hour = clockFormat
         binding.configDigitalTime.format12Hour = clockFormat
     }
