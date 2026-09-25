@@ -113,7 +113,12 @@ fun Context.getFormattedDate(calendar: Calendar): String {
 
     val dayString = resources.getStringArray(org.fossify.commons.R.array.week_days_short)[dayOfWeek]
     val monthString = resources.getStringArray(org.fossify.commons.R.array.months)[month]
-    return "$dayString, $dayOfMonth $monthString"
+
+    return formatDateString(monthString, dayOfMonth, dayString)
+}
+
+private fun Context.formatDateString(month: String, day: Int, weekday: String): String {
+    return getString(R.string.date_format_md, weekday, day, month)
 }
 
 fun Context.getEditedTimeZonesMap(): HashMap<Int, String> {

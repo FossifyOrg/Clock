@@ -14,6 +14,7 @@
     <string name="max_reminder_duration">Max reminder duration</string>
     <string name="time_expired">Time expired</string>
     <string name="clock_and_date">Clock and date</string>
+    <string name="date_format_md">%1$s, %2$d %3$s</string>
     <string name="use_text_shadow">Use text shadow</string>
     <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
     <string name="sort_by_creation_order">Creation order</string>
