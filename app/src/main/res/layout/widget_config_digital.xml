@@ -58,6 +58,15 @@
 
         </RelativeLayout>
 
+        <org.fossify.commons.views.MyMaterialSwitch
+            android:id="@+id/config_digital_show_am_pm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/config_digital_bg_color"
+            android:layout_marginStart="@dimen/tiny_margin"
+            android:layout_marginEnd="@dimen/tiny_margin"
+            android:text="@string/show_am_pm" />
+
         <ImageView
             android:id="@+id/config_digital_bg_color"
             android:layout_width="@dimen/widget_colorpicker_size"
