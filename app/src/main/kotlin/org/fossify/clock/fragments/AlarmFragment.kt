@@ -16,13 +16,13 @@ import org.fossify.clock.extensions.cancelAlarmClock
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.createNewAlarm
 import org.fossify.clock.extensions.dbHelper
-import org.fossify.clock.extensions.firstDayOrder
 import org.fossify.clock.extensions.handleFullScreenNotificationsPermission
 import org.fossify.clock.extensions.updateWidgets
 import org.fossify.clock.helpers.DEFAULT_ALARM_MINUTES
 import org.fossify.clock.helpers.SORT_BY_ALARM_TIME
 import org.fossify.clock.helpers.SORT_BY_DATE_AND_TIME
-import org.fossify.clock.helpers.getTomorrowBit
+import org.fossify.clock.helpers.getTimeOfNextAlarm
+import org.fossify.clock.helpers.getTomorrowEpochDay
 import org.fossify.clock.interfaces.ToggleAlarmInterface
 import org.fossify.clock.models.Alarm
 import org.fossify.clock.models.AlarmEvent
@@ -81,7 +81,8 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
             alarmFab.setOnClickListener {
                 val newAlarm = root.context.createNewAlarm(DEFAULT_ALARM_MINUTES, 0)
                 newAlarm.isEnabled = true
-                newAlarm.days = getTomorrowBit()
+                newAlarm.days = 0
+                newAlarm.scheduledDate = getTomorrowEpochDay()
                 openEditAlarm(newAlarm)
             }
         }
@@ -103,11 +104,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
             when (safeContext.config.alarmSort) {
                 SORT_BY_ALARM_TIME -> newAlarms.sortBy { it.timeInMinutes }
                 SORT_BY_DATE_CREATED -> newAlarms.sortBy { it.id }
-                SORT_BY_DATE_AND_TIME -> newAlarms.sortWith(compareBy<Alarm> {
-                    safeContext.firstDayOrder(it.days)
-                }.thenBy {
-                    it.timeInMinutes
-                })
+                SORT_BY_DATE_AND_TIME -> newAlarms.sortBy { getTimeOfNextAlarm(it)?.timeInMillis ?: Long.MAX_VALUE }
 
                 SORT_BY_CUSTOM -> {
                     val customAlarmsSortOrderString = activity?.config?.alarmsCustomSorting

@@ -12,7 +12,9 @@ import org.fossify.clock.activities.SimpleActivity
 import org.fossify.clock.databinding.ItemAlarmBinding
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
+import org.fossify.clock.extensions.getFormattedDate
 import org.fossify.clock.extensions.getFormattedTime
+import org.fossify.clock.helpers.getCalendarFromEpochDay
 import org.fossify.clock.helpers.updateNonRecurringAlarmDay
 import org.fossify.clock.interfaces.ToggleAlarmInterface
 import org.fossify.clock.models.Alarm
@@ -209,6 +211,10 @@ class AlarmsAdapter(
 
         return when {
             !isEnabled -> resources.getString(R.string.not_scheduled)
+            alarm.getScheduledDateEpochDay() > 0L -> {
+                activity.getFormattedDate(getCalendarFromEpochDay(alarm.getScheduledDateEpochDay()))
+            }
+
             alarm.isToday() -> resources.getString(org.fossify.commons.R.string.today)
             else -> resources.getString(org.fossify.commons.R.string.tomorrow)
         }
