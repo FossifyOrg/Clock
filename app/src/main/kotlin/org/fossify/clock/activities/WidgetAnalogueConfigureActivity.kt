@@ -10,14 +10,12 @@ import org.fossify.clock.databinding.WidgetConfigAnalogueBinding
 import org.fossify.clock.extensions.config
 import org.fossify.clock.helpers.MyAnalogueTimeWidgetProvider
 import org.fossify.commons.dialogs.ColorPickerDialog
-import org.fossify.commons.dialogs.FeatureLockedDialog
 import org.fossify.commons.extensions.adjustAlpha
 import org.fossify.commons.extensions.applyColorFilter
 import org.fossify.commons.extensions.getContrastColor
 import org.fossify.commons.extensions.getProperPrimaryColor
 import org.fossify.commons.extensions.getProperTextColor
 import org.fossify.commons.extensions.isDynamicTheme
-import org.fossify.commons.extensions.isOrWasThankYouInstalled
 import org.fossify.commons.extensions.setFillWithStroke
 import org.fossify.commons.extensions.viewBinding
 import org.fossify.commons.helpers.IS_CUSTOMIZING_COLORS
@@ -27,7 +25,6 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
     private var mWidgetId = 0
     private var mBgColor = 0
     private var mBgColorWithoutTransparency = 0
-    private var mFeatureLockedDialog: FeatureLockedDialog? = null
     private val binding: WidgetConfigAnalogueBinding by viewBinding(WidgetConfigAnalogueBinding::inflate)
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,21 +49,6 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
 
         val primaryColor = getProperPrimaryColor()
         binding.configAnalogueBgSeekbar.setColors(getProperTextColor(), primaryColor, primaryColor)
-
-        if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
-            mFeatureLockedDialog = FeatureLockedDialog(this) {
-                if (!isOrWasThankYouInstalled()) {
-                    finish()
-                }
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
-            mFeatureLockedDialog?.dismissDialog()
-        }
     }
 
     private fun initVariables() {
