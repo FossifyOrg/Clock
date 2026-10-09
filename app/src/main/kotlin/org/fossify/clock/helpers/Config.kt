@@ -138,6 +138,10 @@ class Config(context: Context) : BaseConfig(context) {
             putBoolean(WAS_INITIAL_WIDGET_SET_UP, wasInitialWidgetSetUp)
         }
 
+    var widgetShowAmPm: Boolean
+        get() = prefs.getBoolean(WIDGET_SHOW_AM_PM, true)
+        set(widgetShowAmPm) = prefs.edit { putBoolean(WIDGET_SHOW_AM_PM, widgetShowAmPm) }
+
     var lastDataExportPath: String
         get() = prefs.getString(LAST_DATA_EXPORT_PATH, "")!!
         set(lastDataExportPath) = prefs.edit {
