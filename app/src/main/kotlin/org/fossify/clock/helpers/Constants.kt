@@ -11,6 +11,9 @@ import org.fossify.commons.helpers.THURSDAY_BIT
 import org.fossify.commons.helpers.TUESDAY_BIT
 import org.fossify.commons.helpers.WEDNESDAY_BIT
 import org.fossify.commons.helpers.isPiePlus
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
@@ -164,6 +167,33 @@ fun getTomorrowBit(): Int {
     return 1 shl dayOfWeek
 }
 
+fun getCurrentEpochDay(): Long = LocalDate.now().toEpochDay()
+
+fun getTomorrowEpochDay(): Long = LocalDate.now().plusDays(1).toEpochDay()
+
+fun getEpochDayFromMillis(timeInMillis: Long): Long {
+    return Instant.ofEpochMilli(timeInMillis).atZone(ZoneId.systemDefault()).toLocalDate().toEpochDay()
+}
+
+fun getDateFromTimeInMinutes(timeInMinutes: Int): Long {
+    return if (timeInMinutes > getCurrentDayMinutes()) {
+        getCurrentEpochDay()
+    } else {
+        getTomorrowEpochDay()
+    }
+}
+
+fun getCalendarFromEpochDay(epochDay: Long): Calendar {
+    val timeInMillis = LocalDate.ofEpochDay(epochDay)
+        .atStartOfDay(ZoneId.systemDefault())
+        .toInstant()
+        .toEpochMilli()
+
+    return Calendar.getInstance().apply {
+        this.timeInMillis = timeInMillis
+    }
+}
+
 fun getTodayBit(): Int {
     val calendar = Calendar.getInstance()
     val dayOfWeek = getDayNumber(calendar.get(Calendar.DAY_OF_WEEK))
@@ -274,7 +304,14 @@ fun getAllTimeZones() = arrayListOf(
 )
 
 fun getTimeOfNextAlarm(alarm: Alarm): Calendar? {
-    return getTimeOfNextAlarm(alarm.timeInMinutes, alarm.days)
+    return if (alarm.isRecurring()) {
+        getTimeOfNextAlarm(alarm.timeInMinutes, alarm.days)
+    } else {
+        when {
+            alarm.hasAbsoluteDate() -> getTimeOfNextAlarm(alarm.timeInMinutes, alarm.scheduledDate)
+            else -> getTimeOfNextAlarm(alarm.timeInMinutes, alarm.days)
+        }
+    }
 }
 
 fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
@@ -303,11 +340,27 @@ fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, days: Int): Calendar? {
     }
 }
 
-fun updateNonRecurringAlarmDay(alarm: Alarm) {
-    if (alarm.isRecurring()) return
-    alarm.days = if (alarm.timeInMinutes > getCurrentDayMinutes()) {
-        TODAY_BIT
-    } else {
-        TOMORROW_BIT
+fun getTimeOfNextAlarm(alarmTimeInMinutes: Int, epochDay: Long): Calendar? {
+    if (epochDay <= 0L) {
+        return null
     }
+
+    val nextAlarmTime = getCalendarFromEpochDay(epochDay).apply {
+        set(Calendar.HOUR_OF_DAY, alarmTimeInMinutes / 60)
+        set(Calendar.MINUTE, alarmTimeInMinutes % 60)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }
+
+    return nextAlarmTime.takeIf { Calendar.getInstance() < it }
+}
+
+fun updateNonRecurringAlarmDay(alarm: Alarm) {
+    if (alarm.isRecurring()) {
+        alarm.scheduledDate = 0L
+        return
+    }
+
+    alarm.days = 0
+    alarm.scheduledDate = getDateFromTimeInMinutes(alarm.timeInMinutes)
 }
