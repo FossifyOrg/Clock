@@ -100,6 +100,8 @@ const val STOPWATCH_TOGGLE_ACTION = "org.fossify.clock.TOGGLE_STOPWATCH"
 
 // time formatting
 const val FORMAT_12H = "h:mm a"
+const val FORMAT_12H_NO_AMPM = "h:mm"
+const val WIDGET_SHOW_AM_PM = "widget_show_am_pm"
 const val FORMAT_24H = "HH:mm"
 const val FORMAT_12H_WITH_SECONDS = "h:mm:ss a"
 const val FORMAT_24H_WITH_SECONDS = "HH:mm:ss"

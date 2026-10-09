@@ -150,4 +150,9 @@ class Config(context: Context) : BaseConfig(context) {
         set(migrateFirstDayOfWeek) = prefs.edit {
             putBoolean(MIGRATE_FIRST_DAY_OF_WEEK, migrateFirstDayOfWeek)
         }
+
+    var widgetShowAmPm: Boolean
+        get() = prefs.getBoolean(WIDGET_SHOW_AM_PM, true)
+        set(showAmPm) = prefs.edit().putBoolean(WIDGET_SHOW_AM_PM, showAmPm).apply()
+
 }
