@@ -120,9 +120,7 @@ class EditAlarmDialog(
             editAlarmLabelImage.applyColorFilter(textColor)
             editAlarm.setText(alarm.label)
 
-            val dayLetters =
-                activity.resources.getStringArray(org.fossify.commons.R.array.week_day_letters)
-                    .toList() as ArrayList<String>
+            val dayLetters =activity.resources.getStringArray(org.fossify.commons.R.array.week_day_letters)
             val dayIndexes = activity.rotateWeekdays(arrayListOf(0, 1, 2, 3, 4, 5, 6))
 
             dayIndexes.forEach {
