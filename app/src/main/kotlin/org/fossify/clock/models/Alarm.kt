@@ -1,6 +1,8 @@
 package org.fossify.clock.models
 
 import androidx.annotation.Keep
+import org.fossify.clock.helpers.getCurrentEpochDay
+import org.fossify.clock.helpers.getTomorrowEpochDay
 import org.fossify.clock.helpers.TODAY_BIT
 import org.fossify.clock.helpers.TOMORROW_BIT
 
@@ -16,12 +18,27 @@ data class Alarm(
     var soundUri: String,
     var label: String,
     var oneShot: Boolean = false,
+    var scheduledDate: Long = 0L,
 ) {
     fun isRecurring() = days > 0
 
-    fun isToday() = days == TODAY_BIT
+    fun hasAbsoluteDate() = scheduledDate > 0L
 
-    fun isTomorrow() = days == TOMORROW_BIT
+    fun getScheduledDateEpochDay(): Long {
+        if (scheduledDate > 0L) {
+            return scheduledDate
+        }
+
+        return when (days) {
+            TODAY_BIT -> getCurrentEpochDay()
+            TOMORROW_BIT -> getTomorrowEpochDay()
+            else -> 0L
+        }
+    }
+
+    fun isToday() = !isRecurring() && getScheduledDateEpochDay() == getCurrentEpochDay()
+
+    fun isTomorrow() = !isRecurring() && getScheduledDateEpochDay() == getTomorrowEpochDay()
 }
 
 @Keep
@@ -35,6 +52,7 @@ data class ObfuscatedAlarm(
     var g: String,
     var h: String,
     var i: Boolean = false,
+    var j: Long = 0L,
 ) {
-    fun toAlarm() = Alarm(a, b, c, d, e, f, g, h, i)
+    fun toAlarm() = Alarm(a, b, c, d, e, f, g, h, i, j)
 }
