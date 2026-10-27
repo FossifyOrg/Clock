@@ -6,8 +6,8 @@
     <string name="no_days_selected">روزی انتخاب نشد</string>
     <string name="clock">ساعت زنگی</string>
     <string name="timer">زمان سنج</string>
-    <string name="stopwatch">گام شمار</string>
-    <string name="start_stopwatch">شروع کردن گام شمار</string>
+    <string name="stopwatch">کرنومتر</string>
+    <string name="start_stopwatch">شروع کردن کرنومتر</string>
     <string name="show_seconds">نشان دادن ثانیه</string>
     <string name="increase_volume_gradually">به تدریج افزودن صدا</string>
 </resources>
