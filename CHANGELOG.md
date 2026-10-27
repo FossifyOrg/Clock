@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [1.6.0] - 2026-01-06
+### Changed
+- Added specific date alarm functionality ([#42])
+
 
 ## [1.6.0] - 2026-01-30
 ### Added
@@ -103,6 +107,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release.
 
 [#11]: https://github.com/FossifyOrg/Clock/issues/11
+[#42]: https://github.com/FossifyOrg/Clock/issues/42
 [#107]: https://github.com/FossifyOrg/Clock/issues/107
 [#144]: https://github.com/FossifyOrg/Clock/issues/144
 [#158]: https://github.com/FossifyOrg/Clock/issues/158
