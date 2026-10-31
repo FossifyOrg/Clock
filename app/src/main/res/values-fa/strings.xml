@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_launcher_name">ساعت زنگی</string>
-    <string name="time_zone">منطقه ی زمانی</string>
+    <string name="time_zone">منطقه‌ی زمانی</string>
     <string name="vibrate">لرزیدن</string>
     <string name="no_days_selected">روزی انتخاب نشد</string>
-    <string name="clock">ساعت زنگی</string>
-    <string name="timer">زمان سنج</string>
+    <string name="clock">ساعت</string>
+    <string name="timer">زمان‌سنج</string>
     <string name="stopwatch">کرنومتر</string>
     <string name="start_stopwatch">شروع کردن کرنومتر</string>
     <string name="show_seconds">نشان دادن ثانیه</string>
