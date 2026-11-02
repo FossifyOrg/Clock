@@ -64,6 +64,13 @@ class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
                 R.id.widget_text_clock_12
             }
 
+            // The 12-hour clock drops the AM/PM marker when the user turned it off in the
+            // widget configuration. Both formats are set because the app's own 12/24-hour
+            // setting, not the system's, decides which clock is shown.
+            val format12h = if (context.config.widgetShowAmPm) FORMAT_12H else FORMAT_12H_NO_AM_PM
+            setCharSequence(R.id.widget_text_clock_12, "setFormat12Hour", format12h)
+            setCharSequence(R.id.widget_text_clock_12, "setFormat24Hour", format12h)
+
             setViewVisibility(clockToHide, View.GONE)
             setViewVisibility(clockToShow, View.VISIBLE)
         }

@@ -10,12 +10,14 @@ import android.widget.SeekBar
 import org.fossify.clock.databinding.WidgetConfigDigitalBinding
 import org.fossify.clock.extensions.config
 import org.fossify.clock.helpers.FORMAT_12H
+import org.fossify.clock.helpers.FORMAT_12H_NO_AM_PM
 import org.fossify.clock.helpers.FORMAT_24H
 import org.fossify.clock.helpers.MyDigitalTimeWidgetProvider
 import org.fossify.clock.helpers.SIMPLE_PHONE
 import org.fossify.commons.dialogs.ColorPickerDialog
 import org.fossify.commons.extensions.adjustAlpha
 import org.fossify.commons.extensions.applyColorFilter
+import org.fossify.commons.extensions.beGoneIf
 import org.fossify.commons.extensions.getContrastColor
 import org.fossify.commons.extensions.getProperPrimaryColor
 import org.fossify.commons.extensions.isDynamicTheme
@@ -29,6 +31,7 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
     private var mBgColor = 0
     private var mTextColor = 0
     private var mBgColorWithoutTransparency = 0
+    private var mShowAmPm = true
     private val binding: WidgetConfigDigitalBinding by viewBinding(WidgetConfigDigitalBinding::inflate)
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +59,10 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
         binding.configDigitalSave.setOnClickListener { saveConfig() }
         binding.configDigitalBgColor.setOnClickListener { pickBackgroundColor() }
         binding.configDigitalTextColor.setOnClickListener { pickTextColor() }
+        binding.configDigitalAmPm.setOnCheckedChangeListener { _, isChecked ->
+            mShowAmPm = isChecked
+            updateTimeFormat()
+        }
 
         val primaryColor = getProperPrimaryColor()
         binding.configDigitalBgSeekbar.setColors(mTextColor, primaryColor, primaryColor)
@@ -82,7 +89,19 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
 
         updateTextColor()
 
-        val clockFormat = if (config.use24HourFormat) FORMAT_24H else FORMAT_12H
+        mShowAmPm = config.widgetShowAmPm
+        // AM/PM only exists on the 12-hour clock, so there is nothing to switch otherwise.
+        binding.configDigitalAmPm.beGoneIf(config.use24HourFormat)
+        binding.configDigitalAmPm.isChecked = mShowAmPm
+        updateTimeFormat()
+    }
+
+    private fun updateTimeFormat() {
+        val clockFormat = when {
+            config.use24HourFormat -> FORMAT_24H
+            mShowAmPm -> FORMAT_12H
+            else -> FORMAT_12H_NO_AM_PM
+        }
         binding.configDigitalTime.format24Hour = clockFormat
         binding.configDigitalTime.format12Hour = clockFormat
     }
@@ -102,6 +121,7 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
         config.apply {
             widgetBgColor = mBgColor
             widgetTextColor = mTextColor
+            widgetShowAmPm = mShowAmPm
         }
     }
 
