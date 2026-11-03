@@ -36,6 +36,7 @@
     <string name="missed_alarm">Missed alarm</string>
     <string name="replaced_by_another_alarm">Replaced by another alarm</string>
     <string name="alarm_timed_out">Alarm timed out</string>
+    <string name="select_specific_date">Select specific date</string>
 
     <!-- Timer -->
     <string name="timers_notification_msg">Timers are running</string>
