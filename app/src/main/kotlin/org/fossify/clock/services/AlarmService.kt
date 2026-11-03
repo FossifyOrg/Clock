@@ -6,6 +6,7 @@ import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.AudioManager.STREAM_ALARM
 import android.media.MediaPlayer
+import android.media.RingtoneManager
 import android.os.Handler
 import android.os.Looper
 import android.os.VibrationEffect
@@ -13,13 +14,17 @@ import android.os.Vibrator
 import androidx.core.net.toUri
 import org.fossify.clock.activities.AlarmActivity
 import org.fossify.clock.extensions.alarmController
+import org.fossify.clock.extensions.checkAlarmsWithDeletedSoundUri
 import org.fossify.clock.extensions.config
 import org.fossify.clock.extensions.dbHelper
+import org.fossify.clock.extensions.isUriAccessible
 import org.fossify.clock.helpers.ALARM_ID
 import org.fossify.clock.helpers.ALARM_NOTIFICATION_ID
 import org.fossify.clock.helpers.AlarmNotificationHelper
 import org.fossify.clock.models.Alarm
+import org.fossify.commons.extensions.getDefaultAlarmSound
 import org.fossify.commons.helpers.SILENT
+import org.fossify.commons.helpers.ensureBackgroundThread
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -109,7 +114,15 @@ class AlarmService : Service() {
     }
 
     private fun startAlarmEffects(alarm: Alarm) {
-        if (alarm.soundUri != SILENT) {
+        var soundUri = alarm.soundUri
+        if (!isUriAccessible(soundUri)) {
+            ensureBackgroundThread {
+                checkAlarmsWithDeletedSoundUri(soundUri)
+            }
+            soundUri = applicationContext.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM).uri
+        }
+
+        if (soundUri != SILENT) {
             try {
                 val audioAttributes = AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_ALARM)
@@ -118,7 +131,7 @@ class AlarmService : Service() {
 
                 mediaPlayer = MediaPlayer().apply {
                     setAudioAttributes(audioAttributes)
-                    setDataSource(this@AlarmService, alarm.soundUri.toUri())
+                    setDataSource(this@AlarmService, soundUri.toUri())
                     isLooping = true
                     prepare()
                     start()
