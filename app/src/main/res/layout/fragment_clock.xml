@@ -33,10 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/clock_time"
-            android:format12Hour="EEE, d MMM"
-            android:format24Hour="EEE, d MMM"
             android:gravity="center_horizontal"
             android:textSize="@dimen/big_text_size"
+            app:useLocalizedDateFormat="true"
             tools:text="Mon, 1 January" />
 
         <org.fossify.commons.views.MyTextView
