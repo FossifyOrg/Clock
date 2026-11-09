@@ -14,13 +14,11 @@ import org.fossify.clock.helpers.FORMAT_24H
 import org.fossify.clock.helpers.MyDigitalTimeWidgetProvider
 import org.fossify.clock.helpers.SIMPLE_PHONE
 import org.fossify.commons.dialogs.ColorPickerDialog
-import org.fossify.commons.dialogs.FeatureLockedDialog
 import org.fossify.commons.extensions.adjustAlpha
 import org.fossify.commons.extensions.applyColorFilter
 import org.fossify.commons.extensions.getContrastColor
 import org.fossify.commons.extensions.getProperPrimaryColor
 import org.fossify.commons.extensions.isDynamicTheme
-import org.fossify.commons.extensions.isOrWasThankYouInstalled
 import org.fossify.commons.extensions.setFillWithStroke
 import org.fossify.commons.extensions.viewBinding
 import org.fossify.commons.helpers.IS_CUSTOMIZING_COLORS
@@ -31,7 +29,6 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
     private var mBgColor = 0
     private var mTextColor = 0
     private var mBgColorWithoutTransparency = 0
-    private var mFeatureLockedDialog: FeatureLockedDialog? = null
     private val binding: WidgetConfigDigitalBinding by viewBinding(WidgetConfigDigitalBinding::inflate)
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,21 +59,6 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
 
         val primaryColor = getProperPrimaryColor()
         binding.configDigitalBgSeekbar.setColors(mTextColor, primaryColor, primaryColor)
-
-        if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
-            mFeatureLockedDialog = FeatureLockedDialog(this) {
-                if (!isOrWasThankYouInstalled()) {
-                    finish()
-                }
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
-            mFeatureLockedDialog?.dismissDialog()
-        }
     }
 
     private fun initVariables() {

@@ -33,7 +33,6 @@ import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.formatMinutesToTimeString
 import org.fossify.commons.extensions.formatSecondsToTimeString
 import org.fossify.commons.extensions.getProperPrimaryColor
-import org.fossify.commons.extensions.isOrWasThankYouInstalled
 import org.fossify.commons.extensions.showPickSecondsDialog
 import org.fossify.commons.extensions.toast
 import org.fossify.commons.extensions.updateTextColors

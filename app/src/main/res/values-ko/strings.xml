@@ -48,4 +48,8 @@
     <string name="sort_by_timer_duration">타이머 길이</string>
     <string name="not_scheduled">예약되지 않음</string>
     <string name="missed_alarm">놓친 알람</string>
+    <string name="replaced_by_another_alarm">다른 알람으로 대체됨</string>
+    <string name="alarm_timed_out">알람 시간 초과</string>
+    <string name="settings_import_data">알람 및 타이머 가져오기</string>
+    <string name="settings_export_data">알람 및 타이머 내보내기</string>
 </resources>

@@ -191,7 +191,7 @@ class MainActivity : SimpleActivity() {
             findItem(R.id.sort).isVisible = binding.viewPager.currentItem == getTabIndex(TAB_ALARM)
                     || binding.viewPager.currentItem == getTabIndex(TAB_TIMER)
             findItem(R.id.more_apps_from_us).isVisible =
-                !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
+                resources.getBoolean(org.fossify.commons.R.bool.is_google_play_build)
         }
     }
 
@@ -375,7 +375,7 @@ class MainActivity : SimpleActivity() {
             )
         )
 
-        if (!resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)) {
+        if (resources.getBoolean(org.fossify.commons.R.bool.is_google_play_build)) {
             faqItems.add(
                 FAQItem(
                     title = org.fossify.commons.R.string.faq_2_title_commons,
