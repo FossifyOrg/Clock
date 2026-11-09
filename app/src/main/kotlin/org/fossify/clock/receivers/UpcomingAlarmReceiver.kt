@@ -49,7 +49,11 @@ class UpcomingAlarmReceiver : BroadcastReceiver() {
         val dayOfWeek = context.resources.getStringArray(org.fossify.commons.R.array.week_days_short)[dayOfWeekIndex]
         val pattern = if (context.config.use24HourFormat) FORMAT_24H else FORMAT_12H
         val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(alarmTime.time)
-        val alarmString = "$dayOfWeek $formattedTime"
+        var alarmString = "$dayOfWeek $formattedTime"
+        val label = context.dbHelper.getAlarmWithId(alarmId)?.label.orEmpty()
+        if (label.isNotEmpty()) {
+            alarmString = "$alarmString - $label"
+        }
 
         val notificationId = getUpcomingAlarmNotificationId(alarmId)
         val notificationManager = context.notificationManager
