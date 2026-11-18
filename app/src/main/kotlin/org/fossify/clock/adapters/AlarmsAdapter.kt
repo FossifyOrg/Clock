@@ -209,8 +209,7 @@ class AlarmsAdapter(
 
         return when {
             !isEnabled -> resources.getString(R.string.not_scheduled)
-            alarm.isToday() -> resources.getString(org.fossify.commons.R.string.today)
-            else -> resources.getString(org.fossify.commons.R.string.tomorrow)
+            else -> alarm.getDateLabel(activity)
         }
     }
 
