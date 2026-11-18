@@ -92,6 +92,14 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/tiny_margin" />
 
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/config_digital_show_am_pm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/config_digital_save"
+            android:layout_margin="@dimen/activity_margin"
+            android:text="@string/show_am_pm" />
+
         <Button
             android:id="@+id/config_digital_save"
             style="@style/MyWidgetConfigSaveStyle"
