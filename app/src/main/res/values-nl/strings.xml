@@ -5,9 +5,9 @@
     <string name="vibrate">Trillen</string>
     <string name="no_days_selected">Geen dagen geselecteerd</string>
     <string name="clock">Klok</string>
-    <string name="start_stopwatch">Stopwatch starten</string>
+    <string name="start_stopwatch">Chronometer starten</string>
     <string name="lap">Ronde</string>
-    <string name="stopwatch_stopped">Stopwatch is gestopt</string>
+    <string name="stopwatch_stopped">Chronometer is gestopt</string>
     <string name="timer_stopped">Timer is gestopt</string>
     <string name="max_reminder_duration">Maximale herinneringsduur</string>
     <string name="time_expired">Tijd verstreken</string>
@@ -44,7 +44,7 @@
     <string name="increase_volume_gradually">Volume geleidelijk verhogen</string>
     <string name="faq_1_title">Hoe kan ik rondetijden sorteren in de stopwatch?</string>
     <string name="faq_1_text">Klik op een van de kolommen om de rondetijden te sorteren op basis van die kolom. Klik nogmaals op dezelfde kolom om de sorteervolgorde om te keren.</string>
-    <string name="stopwatch">Stopwatch</string>
+    <string name="stopwatch">Chronometer</string>
     <string name="timer">Timer</string>
     <string name="settings_import_data">Wekkers en timers importeren</string>
     <string name="settings_export_data">Wekkers en timers exporteren</string>
