@@ -65,4 +65,5 @@
         https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
     -->
 
+    <string name="show_am_pm">Show AM/PM</string>
 </resources>
